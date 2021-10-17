@@ -1,0 +1,34 @@
+@font-face {
+  font-family: "Tahoma";
+  src: url("../fonts/Tahoma.ttf");
+}
+@font-face {
+  font-family: "Acumin Regular";
+  src: url("../fonts/AcuminPro/AcuminRegular.otf");
+}
+@font-face {
+  font-family: "Acumin Bold";
+  src: url("../fonts/AcuminPro/AcuminBold.otf");
+}
+@font-face {
+  font-family: "Acumin Italic";
+  src: url("../fonts/AcuminPro/AcuminItalic.otf");
+}
+@font-face {
+  font-family: "Acumin Bold Italic";
+  src: url("../fonts/AcuminPro/AcuminBoldItalic.otf");
+}
+li {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+h1 {
+  display: block;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  font-weight: bold;
+}
