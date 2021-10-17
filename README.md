@@ -1,69 +1,59 @@
-# frontend
+<h1 align="center">chatApp</h1>
+<p align="center">Client para a API de conversas em tempo real</p>
+<div align="center">
+  <img src="https://img.shields.io/badge/npm-v7.19.1-brightgreen" />
+  <img src="https://img.shields.io/badge/node-v14.16.1-brightgreen" />
+  <img src="https://img.shields.io/badge/Typescript-v4.2-blue">
+  <img src="https://img.shields.io/badge/VueJS-v3-brightgreen">
+  <img src="https://img.shields.io/badge/NuxtJS-v2.15.7-darkgreen">
+  <img src="https://img.shields.io/badge/Scss-v10.1.1-ff69b4">
+</div>
+<h4 align="center"> 
+	🚧  Em desenvolvimento...  🚧
+</h4>
 
-## Build Setup
+### Pré-requisitos
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), [Npm](https://npmjs.com).
+Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+
+### 🎲 Rodando o Front End
 
 ```bash
-# install dependencies
+# Clone este repositório
+$ git clone https://github.com/jose13162/chatApp
+
+# Acesse a pasta do projeto no terminal/cmd
+$ cd chatApp
+
+# Instale as dependências
 $ npm install
 
-# serve with hot reload at localhost:3000
+# Execute a aplicação em modo de desenvolvimento
 $ npm run dev
 
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
+# O servidor iniciará na porta:3000 - acesse http://localhost:3000
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+### 🛠 Tecnologias
 
-## Special Directories
+As seguintes ferramentas foram usadas na construção do projeto:
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+- [Node.js](https://nodejs.org/en/)
+- [NuxtJS](https://nuxtjs.org/)
+- [VueJS](https://v3.vuejs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Scss](https://www.sass-lang.com/)
 
-### `assets`
+### Autor
 
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
+---
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
+<a href="https://github.com/jose13162">
+  <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/77130179?s=400&u=6391f7b20bf725e259e02aa698fe6b4f5266286c&v=4" width="100px;" alt="Foto de perfil de José Anselmo"/>
+  <br />
+  <sub style="color: lightblue; text-decoration: none;"><b>José Anselmo</b></sub>
 
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+[![Instagram Badge](https://img.shields.io/badge/-@tete627-FCAF45?style=flat-square&labelColor=E1306C&logo=instagram&logoColor=white&link=https://instagram.com/tete627)](https://instagram.com/tete627)
+</a>
