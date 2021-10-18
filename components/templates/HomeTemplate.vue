@@ -3,9 +3,9 @@
     <header class="header">
       <Navigation @toggleHamburgerMenu="toggleHamburgerMenu" />
     </header>
-    <nav class="hamburger-nav">
+    <div class="wrapper">
       <HamburgerMenu :active="hamburgerMenuActive" />
-    </nav>
+    </div>
   </div>
 </template>
 
@@ -28,16 +28,19 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .home-template {
   height: 100vh;
+  width: 100%;
   margin: 0;
-  display: grid;
-  grid-template-rows: auto 1fr;
   overflow-y: hidden;
   overflow-x: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr;
 }
 .header {
+  width: 100%;
   z-index: 1;
 }
-.hamburger-nav {
+.wrapper {
   position: relative;
   height: 100%;
 }

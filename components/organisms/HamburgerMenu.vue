@@ -2,27 +2,36 @@
   <div class="hamburger-menu">
     <nav class="main-nav">
       <ul class="main-ul">
-        <li class="nav-item" @click="toggleDropdown(0)">
-          <a :class="['nav-link', 'dropdown-button']">Amigos</a>
-          <div class="hamburger-dropdown">
-            <ul>
-              <li>
-                <a class="dropdown-link">Todos</a>
-              </li>
-              <li>
-                <a class="dropdown-link">Pendente</a>
-              </li>
-              <li>
-                <a class="dropdown-link">Bloqueados</a>
-              </li>
-            </ul>
+        <li class="nav-item">
+          <div
+            :class="['nav-link-wrapper', 'hamburger-dropdown-button']"
+            @click="toggleDropdown"
+          >
+            <a class="nav-link">Amigos</a>
+            <div class="hamburger-dropdown">
+              <ul>
+                <li class="hamburger-dropdown-item">
+                  <a class="hamburger-dropdown-link">Todos</a>
+                </li>
+                <li class="hamburger-dropdown-item">
+                  <a class="hamburger-dropdown-link">Pendente</a>
+                </li>
+                <li class="hamburger-dropdown-item">
+                  <a class="hamburger-dropdown-link">Bloqueados</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </li>
         <li class="nav-item">
-          <a href="/" class="nav-link">Conversas</a>
+          <div class="nav-link-wrapper">
+            <a href="/" class="nav-link">Conversas</a>
+          </div>
         </li>
         <li class="nav-item">
-          <a href="/" class="nav-link">Grupos</a>
+          <div class="nav-link-wrapper">
+            <a href="/" class="nav-link">Grupos</a>
+          </div>
         </li>
       </ul>
     </nav>
@@ -59,20 +68,30 @@ export default Vue.extend({
       }
     },
   },
-  methods: {
-    toggleDropdown(index: number) {
-      const dropdowns = document.querySelectorAll(".hamburger-dropdown");
-      const dropdown = dropdowns[index];
+  mounted() {
+    window.addEventListener("click", (event: Event) => {
+      event.preventDefault();
 
-      if (dropdown.classList.contains("hamburger-dropdown-active")) {
-        dropdown.classList.toggle("hamburger-dropdown-active");
-      } else {
-        dropdowns.forEach((dropdown) => {
-          dropdown.classList.remove("hamburger-dropdown-active");
-        });
+      const target = event.target as Element;
 
-        dropdown.classList.toggle("hamburger-dropdown-active");
+      if (
+        !target.classList.contains("hamburger-dropdown-button") &&
+        !target.classList.contains("hamburger-dropdown-link") &&
+        !target.classList.contains("nav-link")
+      ) {
+        const dropdown = document.querySelector(
+          ".hamburger-dropdown"
+        ) as Element;
+
+        dropdown.classList.remove("hamburger-dropdown-active");
       }
+    });
+  },
+  methods: {
+    toggleDropdown() {
+      const dropdown = document.querySelector(".hamburger-dropdown") as Element;
+
+      dropdown.classList.toggle("hamburger-dropdown-active");
     },
   },
 });
@@ -101,34 +120,33 @@ export default Vue.extend({
     display: grid;
     .main-ul {
       margin: 0;
-      padding: 0.3125rem;
+      padding: 0;
       margin-block-end: 0;
       display: grid;
       grid-template-columns: 1fr;
       grid-template-rows: max-content;
       grid-auto-flow: row;
-      gap: 0.25rem;
       .nav-item {
-        position: relative;
-        padding: 0.3rem 1rem;
-        border-radius: 0.5rem;
-        cursor: pointer;
-        &:hover {
-          background: color("primary", "lightest");
-        }
-        .nav-link {
-          font-size: 1.25rem;
-          font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
-          color: color("light", "darkest");
+        .nav-link-wrapper {
+          width: 100%;
+          padding: 0.5rem 1rem;
           &:hover {
+            background: color("primary", "lightest");
             color: color("light");
+          }
+          .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 1.25rem;
+            font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
+            color: color("light", "darkest");
           }
         }
         .hamburger-dropdown {
-          border-radius: 0.3rem;
           position: absolute;
-          left: -10.3125rem;
-          top: -0.3125rem;
+          left: -10rem;
+          top: 0;
           background: color("light", "darkest");
           width: 10rem;
           box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
@@ -143,7 +161,7 @@ export default Vue.extend({
               width: 100%;
               position: relative;
               cursor: pointer;
-              a {
+              .hamburger-dropdown-link {
                 font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
                 color: color("dark");
                 &:hover {
@@ -180,7 +198,7 @@ export default Vue.extend({
           opacity: 1;
           pointer-events: auto;
           transform: translateX(0);
-          border-radius: 0 0 0.3rem 0.3rem;
+          border-radius: 0 0 0 0.3rem;
         }
       }
     }

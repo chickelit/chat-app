@@ -5,9 +5,7 @@
       <nav class="main-nav">
         <ul class="main-ul">
           <li>
-            <a
-              :class="['nav-item', 'dropdown-button']"
-              @click="toggleDropdown(0)"
+            <a :class="['nav-item', 'dropdown-button']" @click="toggleDropdown"
               >Amigos</a
             >
             <div class="dropdown">
@@ -54,28 +52,17 @@ export default Vue.extend({
         !target.classList.contains("dropdown-button") &&
         !target.classList.contains("dropdown-link")
       ) {
-        const dropdowns = document.querySelectorAll(".dropdown");
+        const dropdown = document.querySelector(".dropdown") as Element;
 
-        dropdowns.forEach((dropdown) => {
-          dropdown.classList.remove("dropdown-active");
-        });
+        dropdown.classList.remove("dropdown-active");
       }
     });
   },
   methods: {
-    toggleDropdown(index: number) {
-      const dropdowns = document.querySelectorAll(".dropdown");
-      const dropdown = dropdowns[index];
+    toggleDropdown() {
+      const dropdown = document.querySelector(".dropdown") as Element;
 
-      if (dropdown.classList.contains("dropdown-active")) {
-        dropdown.classList.toggle("dropdown-active");
-      } else {
-        dropdowns.forEach((dropdown) => {
-          dropdown.classList.remove("dropdown-active");
-        });
-
-        dropdown.classList.toggle("dropdown-active");
-      }
+      dropdown.classList.toggle("dropdown-active");
     },
   },
 });
