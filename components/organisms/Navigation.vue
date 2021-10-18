@@ -32,6 +32,11 @@
           </li>
         </ul>
       </nav>
+      <button class="hamburger-button" @click="$emit('toggleHamburgerMenu')">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </button>
     </Container>
   </div>
 </template>
@@ -78,6 +83,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .navigation {
+  position: relative;
   width: 100%;
   background: color("primary");
   display: grid;
@@ -86,10 +92,11 @@ export default Vue.extend({
     padding: 0.75rem;
     display: grid;
     grid-template-columns: auto 1fr;
+    grid-template-rows: auto;
     align-items: center;
     .title {
       cursor: pointer;
-      font-family: "Tahoma";
+      font-family: Tahoma, Arial, Helvetica, sans-serif;
       font-size: 2rem;
       font-weight: 500;
       color: color("light", "darkest");
@@ -101,6 +108,9 @@ export default Vue.extend({
       display: grid;
       align-items: center;
       justify-self: end;
+      @include screen("small") {
+        display: none;
+      }
       .main-ul {
         margin: 0;
         display: grid;
@@ -113,7 +123,7 @@ export default Vue.extend({
           position: relative;
           .nav-item {
             font-size: 1rem;
-            font-family: "Acumin Regular";
+            font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
             color: color("light", "darkest");
             cursor: pointer;
             &:hover {
@@ -140,7 +150,7 @@ export default Vue.extend({
                 position: relative;
                 cursor: pointer;
                 a {
-                  font-family: "Acumin Regular";
+                  font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
                   color: color("dark");
                   &:hover {
                     color: color("dark", "darkest");
@@ -174,10 +184,35 @@ export default Vue.extend({
           }
           .dropdown-active {
             opacity: 1;
-            transform: translateY(0);
             pointer-events: auto;
+            transform: translateY(0);
             border-radius: 0 0 0.3rem 0.3rem;
           }
+        }
+      }
+    }
+    .hamburger-button {
+      display: none;
+      @include screen("small") {
+        display: grid;
+        cursor: pointer;
+        justify-self: end;
+        width: 2rem;
+        height: auto;
+        display: grid;
+        grid-auto-rows: 0.3125rem;
+        grid-auto-flow: row;
+        gap: 0.3125rem;
+      }
+      .bar {
+        width: 100%;
+        height: 100%;
+        background: color("light", "darkest");
+        border-radius: 1rem;
+      }
+      &:hover {
+        .bar {
+          background: color("light");
         }
       }
     }
