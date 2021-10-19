@@ -135,7 +135,7 @@ export default Vue.extend({
             border-radius: 0.3rem;
             position: absolute;
             right: 0;
-            top: 2.45rem;
+            top: 2.2rem;
             background: color("light", "darkest");
             width: 10rem;
             box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
