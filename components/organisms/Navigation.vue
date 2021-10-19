@@ -2,10 +2,10 @@
   <div class="navigation">
     <Container class="container">
       <h1 class="title">ChatApp</h1>
-      <nav class="main-nav">
-        <ul class="main-ul">
-          <li>
-            <a :class="['nav-item', 'dropdown-button']" @click="toggleDropdown"
+      <nav class="nav">
+        <ul>
+          <li class="nav-item">
+            <a :class="['nav-link', 'dropdown-button']" @click="toggleDropdown"
               >Amigos</a
             >
             <div class="dropdown">
@@ -22,11 +22,11 @@
               </ul>
             </div>
           </li>
-          <li>
-            <NuxtLink to="/" class="nav-item">Conversas</NuxtLink>
+          <li class="nav-item">
+            <NuxtLink to="/" class="nav-link">Conversas</NuxtLink>
           </li>
-          <li>
-            <NuxtLink to="/" class="nav-item">Grupos</NuxtLink>
+          <li class="nav-item">
+            <NuxtLink to="/" class="nav-link">Grupos</NuxtLink>
           </li>
         </ul>
       </nav>
@@ -86,9 +86,10 @@ export default Vue.extend({
   width: 100%;
   background: color("primary");
   display: grid;
+  align-items: center;
   justify-items: center;
+  padding: 0.5rem;
   .container {
-    padding: 0.75rem;
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: auto;
@@ -98,19 +99,20 @@ export default Vue.extend({
       font-family: Tahoma, Arial, Helvetica, sans-serif;
       font-size: 2rem;
       font-weight: 500;
+      justify-self: start;
       color: color("light", "darkest");
       &:hover {
         color: color("light");
       }
     }
-    .main-nav {
+    nav {
       display: grid;
       align-items: center;
       justify-self: end;
       @include screen("small") {
         display: none;
       }
-      .main-ul {
+      ul {
         margin: 0;
         display: grid;
         grid-auto-columns: max-content;
@@ -118,9 +120,9 @@ export default Vue.extend({
         grid-auto-flow: column;
         gap: 2rem;
         align-items: center;
-        li {
+        .nav-item {
           position: relative;
-          .nav-item {
+          .nav-link {
             font-size: 1rem;
             font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
             color: color("light", "darkest");
@@ -192,10 +194,10 @@ export default Vue.extend({
     }
     .hamburger-button {
       display: none;
+      justify-self: end;
       @include screen("small") {
         display: grid;
         cursor: pointer;
-        justify-self: end;
         width: 2rem;
         height: auto;
         display: grid;

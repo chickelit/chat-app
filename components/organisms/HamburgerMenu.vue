@@ -1,7 +1,7 @@
 <template>
   <div class="hamburger-menu">
-    <nav class="main-nav">
-      <ul class="hamburger-items">
+    <nav>
+      <ul>
         <li class="hamburger-item">
           <div
             :class="['hamburger-link-wrapper', 'hamburger-dropdown-button']"
@@ -80,7 +80,6 @@ export default Vue.extend({
         "hamburger-dropdown-link",
         "hamburger-dropdown-items",
         "hamburger-dropdown-item",
-        "hamburger-link",
       ];
 
       const classList = target.classList.value.split(" ") as string[];
@@ -122,6 +121,7 @@ export default Vue.extend({
     background: color("primary", "lighter");
     position: absolute;
     right: 0;
+    top: 0;
     box-shadow: -2px 0 5px 0 rgba(0, 0, 0, 0.1);
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     &.active {
@@ -130,9 +130,9 @@ export default Vue.extend({
       transform: translateX(0);
     }
   }
-  .main-nav {
+  nav {
     display: grid;
-    .hamburger-items {
+    ul {
       margin: 0;
       padding: 0;
       margin-block-end: 0;
