@@ -3,8 +3,11 @@
     <header class="header">
       <Navigation @toggleHamburgerMenu="toggleHamburgerMenu" />
     </header>
-    <div class="wrapper">
+    <Container class="container">
       <ConversationNavigation />
+      <Chat />
+    </Container>
+    <div class="wrapper">
       <HamburgerMenu :active="hamburgerMenuActive" />
     </div>
   </div>
@@ -47,8 +50,18 @@ export default Vue.extend({
   height: 100%;
   position: relative;
   display: grid;
-  grid-template-columns: 29.25rem;
+  align-items: center;
+}
+.container {
+  display: grid;
+  grid-template-columns: 20rem 1fr;
   grid-template-rows: 1fr;
   align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+.main {
+  height: 100%;
+  width: 100%;
 }
 </style>
