@@ -115,13 +115,13 @@ export default Vue.extend({
   opacity: 0;
   pointer-events: none;
   transform: translateX(100%);
+  position: absolute;
+  right: 0;
+  top: 0;
   @include screen("small") {
     height: 100%;
     width: 40%;
     background: color("primary", "lighter");
-    position: absolute;
-    right: 0;
-    top: 0;
     box-shadow: -2px 0 5px 0 rgba(0, 0, 0, 0.1);
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     &.active {
