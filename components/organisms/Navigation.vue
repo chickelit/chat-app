@@ -9,14 +9,14 @@
               >Amigos</a
             >
             <div class="dropdown">
-              <ul>
-                <li>
+              <ul class="dropdown-items">
+                <li class="dropdown-item">
                   <a class="dropdown-link">Todos</a>
                 </li>
-                <li>
+                <li class="dropdown-item">
                   <a class="dropdown-link">Pendente</a>
                 </li>
-                <li>
+                <li class="dropdown-item">
                   <a class="dropdown-link">Bloqueados</a>
                 </li>
               </ul>
@@ -47,10 +47,22 @@ export default Vue.extend({
       event.preventDefault();
 
       const target = event.target as Element;
+      const whiteList = [
+        "dropdown-button",
+        "dropdown-link",
+        "dropdown-items",
+        "dropdown-item",
+      ];
+
+      const classList = target.classList.value.split(" ") as string[];
 
       if (
-        !target.classList.contains("dropdown-button") &&
-        !target.classList.contains("dropdown-link")
+        !whiteList.some((whiteListClass) => {
+          return (
+            classList.filter((listClass) => listClass === whiteListClass)
+              .length > 0
+          );
+        })
       ) {
         const dropdown = document.querySelector(".dropdown") as Element;
 

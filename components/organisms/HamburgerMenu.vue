@@ -1,36 +1,38 @@
 <template>
   <div class="hamburger-menu">
     <nav class="main-nav">
-      <ul class="main-ul">
-        <li class="nav-item">
+      <ul class="hamburger-items">
+        <li class="hamburger-item">
           <div
-            :class="['nav-link-wrapper', 'hamburger-dropdown-button']"
+            :class="['hamburger-link-wrapper', 'hamburger-dropdown-button']"
             @click="toggleDropdown"
           >
-            <a class="nav-link">Amigos</a>
-            <div class="hamburger-dropdown">
-              <ul>
-                <li class="hamburger-dropdown-item">
-                  <a class="hamburger-dropdown-link">Todos</a>
-                </li>
-                <li class="hamburger-dropdown-item">
-                  <a class="hamburger-dropdown-link">Pendente</a>
-                </li>
-                <li class="hamburger-dropdown-item">
-                  <a class="hamburger-dropdown-link">Bloqueados</a>
-                </li>
-              </ul>
-            </div>
+            <a :class="['hamburger-link', 'hamburger-dropdown-button']"
+              >Amigos</a
+            >
+          </div>
+          <div class="hamburger-dropdown">
+            <ul class="hamburger-dropdown-items">
+              <li class="hamburger-dropdown-item">
+                <a class="hamburger-dropdown-link">Todos</a>
+              </li>
+              <li class="hamburger-dropdown-item">
+                <a class="hamburger-dropdown-link">Pendente</a>
+              </li>
+              <li class="hamburger-dropdown-item">
+                <a class="hamburger-dropdown-link">Bloqueados</a>
+              </li>
+            </ul>
           </div>
         </li>
-        <li class="nav-item">
-          <div class="nav-link-wrapper">
-            <a href="/" class="nav-link">Conversas</a>
+        <li class="hamburger-item">
+          <div class="hamburger-link-wrapper">
+            <a href="/" class="hamburger-link">Conversas</a>
           </div>
         </li>
-        <li class="nav-item">
-          <div class="nav-link-wrapper">
-            <a href="/" class="nav-link">Grupos</a>
+        <li class="hamburger-item">
+          <div class="hamburger-link-wrapper">
+            <a href="/" class="hamburger-link">Grupos</a>
           </div>
         </li>
       </ul>
@@ -73,11 +75,23 @@ export default Vue.extend({
       event.preventDefault();
 
       const target = event.target as Element;
+      const whiteList = [
+        "hamburger-dropdown-button",
+        "hamburger-dropdown-link",
+        "hamburger-dropdown-items",
+        "hamburger-dropdown-item",
+        "hamburger-link",
+      ];
+
+      const classList = target.classList.value.split(" ") as string[];
 
       if (
-        !target.classList.contains("hamburger-dropdown-button") &&
-        !target.classList.contains("hamburger-dropdown-link") &&
-        !target.classList.contains("nav-link")
+        !whiteList.some((whiteListClass) => {
+          return (
+            classList.filter((listClass) => listClass === whiteListClass)
+              .length > 0
+          );
+        })
       ) {
         const dropdown = document.querySelector(
           ".hamburger-dropdown"
@@ -118,7 +132,7 @@ export default Vue.extend({
   }
   .main-nav {
     display: grid;
-    .main-ul {
+    .hamburger-items {
       margin: 0;
       padding: 0;
       margin-block-end: 0;
@@ -126,15 +140,15 @@ export default Vue.extend({
       grid-template-columns: 1fr;
       grid-template-rows: max-content;
       grid-auto-flow: row;
-      .nav-item {
-        .nav-link-wrapper {
+      .hamburger-item {
+        .hamburger-link-wrapper {
           width: 100%;
           padding: 0.5rem 1rem;
           &:hover {
             background: color("primary", "lightest");
             color: color("light");
           }
-          .nav-link {
+          .hamburger-link {
             position: relative;
             padding: 0.5rem 1rem;
             cursor: pointer;
@@ -154,8 +168,8 @@ export default Vue.extend({
           pointer-events: none;
           transform: translateX(-10px);
           transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
-          ul {
-            li {
+          .hamburger-dropdown-items {
+            .hamburger-dropdown-item {
               display: grid;
               justify-content: end;
               width: 100%;
