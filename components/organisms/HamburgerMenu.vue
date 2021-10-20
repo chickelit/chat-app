@@ -117,7 +117,7 @@ export default Vue.extend({
   transform: translateX(100%);
   position: absolute;
   right: 0;
-  top: 0;
+  top: 4.25rem;
   @include screen("small") {
     height: 100%;
     width: 40%;

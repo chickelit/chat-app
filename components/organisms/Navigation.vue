@@ -88,7 +88,7 @@ export default Vue.extend({
   display: grid;
   align-items: center;
   justify-items: center;
-  padding: 0.5rem;
+  padding: 1rem 0;
   .container {
     display: grid;
     grid-template-columns: auto 1fr;
