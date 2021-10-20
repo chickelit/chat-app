@@ -38,20 +38,38 @@
         <li class="conversation-card">
           <ConversationCard />
         </li>
+        <li class="conversation-card">
+          <ConversationCard />
+        </li>
+        <li class="conversation-card">
+          <ConversationCard />
+        </li>
+        <li class="conversation-card">
+          <ConversationCard />
+        </li>
+        <li class="conversation-card">
+          <ConversationCard />
+        </li>
       </ul>
     </nav>
   </aside>
 </template>
 
 <style lang="scss" scoped>
+::-webkit-scrollbar {
+  width: 0px;
+}
 .aside {
-  width: 100%;
   height: 100%;
   background: color("primary");
   border-radius: 0.3125rem;
   .conversation-navigation {
-    margin: 0.5rem;
+    position: relative;
+    height: 100%;
     ul {
+      position: absolute;
+      inset: 0.5rem;
+      overflow-y: scroll;
       display: grid;
       grid-template-columns: 1fr;
       grid-auto-rows: auto;

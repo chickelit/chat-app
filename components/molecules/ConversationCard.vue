@@ -13,10 +13,6 @@
 </template>
 
 <style lang="scss" scoped>
-.skeleton {
-  opacity: 0.7;
-  animation: skeleton-loading 1s linear infinite alternate;
-}
 .username {
   .skeleton-text {
     width: 100%;
@@ -33,15 +29,6 @@
     border-radius: 0.125rem;
   }
 }
-@keyframes skeleton-loading {
-  0% {
-    background-color: hsl(200, 20%, 65%);
-  }
-  100% {
-    background-color: hsl(200, 20%, 95%);
-  }
-}
-
 .conversation-card {
   padding: 0.25rem;
   border-radius: 0.3rem;

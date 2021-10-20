@@ -4,12 +4,10 @@
       <Navigation @toggleHamburgerMenu="toggleHamburgerMenu" />
     </header>
     <Container class="container">
-      <ConversationNavigation />
-      <Chat />
+      <ConversationNavigation class="conversation-navigation" />
+      <Chat class="chat" />
     </Container>
-    <div class="wrapper">
-      <HamburgerMenu :active="hamburgerMenuActive" />
-    </div>
+    <HamburgerMenu class="hamburger-menu" :active="hamburgerMenuActive" />
   </div>
 </template>
 
@@ -31,6 +29,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .home-template {
+  position: relative;
   height: 100vh;
   width: 100%;
   margin: 0;
@@ -45,23 +44,21 @@ export default Vue.extend({
   width: 100%;
   z-index: 1;
 }
-.wrapper {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  display: grid;
-  align-items: center;
-}
 .container {
+  padding: 1rem;
   display: grid;
-  grid-template-columns: 20rem 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   align-items: center;
   gap: 1rem;
-  padding: 1rem;
+  @include screen("infinity") {
+    grid-template-columns: 20rem 1fr;
+  }
 }
-.main {
-  height: 100%;
-  width: 100%;
+.chat {
+  display: none;
+  @include screen("infinity") {
+    display: block;
+  }
 }
 </style>
