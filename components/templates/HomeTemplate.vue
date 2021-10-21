@@ -5,7 +5,7 @@
     </header>
     <Container class="container">
       <ConversationNavigation class="conversation-navigation" />
-      <Chat class="chat" />
+      <Chat />
     </Container>
     <HamburgerMenu class="hamburger-menu" :active="hamburgerMenuActive" />
   </div>
@@ -53,12 +53,6 @@ export default Vue.extend({
   gap: 1rem;
   @include screen("infinity") {
     grid-template-columns: 20rem 1fr;
-  }
-}
-.chat {
-  display: none;
-  @include screen("infinity") {
-    display: block;
   }
 }
 </style>

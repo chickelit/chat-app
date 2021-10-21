@@ -14,6 +14,11 @@
           type="text"
           placeholder="Mensagem"
         />
+        <label title="Enviar mídia" for="file-upload" class="file-upload">
+          <div class="line horizontal"></div>
+          <div class="line vertinal"></div>
+        </label>
+        <input id="file-upload" type="file" class="custom-file-upload" />
       </form>
     </div>
   </main>
@@ -21,13 +26,16 @@
 
 <style lang="scss" scoped>
 .chat {
+  display: none;
   width: 100%;
   height: 100%;
   background: color("primary", "lighter");
   border-radius: 0.3125rem;
-  display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
+  @include screen("infinity") {
+    display: grid;
+  }
 }
 .header {
   background: color("primary");
@@ -65,13 +73,49 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
-  .message-engine-input {
-    background: color("primary", "lighter");
-    font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
-    color: color("dark", "lightest");
-    padding: 0.25rem;
-    border-radius: 0.3rem;
-    font-size: 1.0625rem;
+  form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    .message-engine-input {
+      background: color("primary", "lighter");
+      font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
+      color: color("dark", "lightest");
+      padding: 0.25rem;
+      border-radius: 0.3rem;
+      font-size: 1.0625rem;
+      transition: all 0.15s linear;
+      &:focus {
+        background: color("primary", "lightest");
+      }
+    }
+  }
+}
+.file-upload {
+  cursor: pointer;
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 100%;
+  background: color("primary", "lighter");
+  transition: all 0.15s linear;
+  &:hover {
+    background: color("primary", "lightest");
+  }
+}
+input[type="file"] {
+  display: none;
+}
+.line {
+  height: 1.6rem;
+  border-radius: 1rem;
+  width: 0.25rem;
+  background: color("dark", "lightest");
+  position: absolute;
+  top: 0.45rem;
+  left: 1.2rem;
+  &.horizontal {
+    transform: rotate(90deg);
   }
 }
 </style>
