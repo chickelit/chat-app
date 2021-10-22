@@ -82,7 +82,7 @@
       background: color("primary", "lighter");
       font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
       color: color("dark", "lightest");
-      padding: 0.25rem;
+      padding: 0.25rem 0.75rem;
       border-radius: 0.3rem;
       font-size: 1.0625rem;
       transition: all 0.15s linear;
