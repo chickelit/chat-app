@@ -60,6 +60,7 @@
   width: 0px;
 }
 .aside {
+  min-height: 32rem;
   height: 100%;
   background: color("primary");
   border-radius: 0.3125rem;

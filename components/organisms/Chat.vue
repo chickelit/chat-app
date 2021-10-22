@@ -26,6 +26,7 @@
 
 <style lang="scss" scoped>
 .chat {
+  min-height: 32rem;
   display: none;
   width: 100%;
   height: 100%;
