@@ -3,27 +3,26 @@
     <nav>
       <ul>
         <li class="hamburger-item">
-          <div
-            :class="['hamburger-link-wrapper', 'hamburger-dropdown-button']"
-            @click="toggleDropdown"
+          <button
+            :class="['hamburger-link', 'hamburger-link-wrapper']"
+            @focus="activateHamburgerDropdown"
+            @blur="unactivateHamburgerDropdown"
           >
-            <a :class="['hamburger-link', 'hamburger-dropdown-button']"
-              >Amigos</a
-            >
-          </div>
-          <div class="hamburger-dropdown">
-            <ul class="hamburger-dropdown-items">
-              <li class="hamburger-dropdown-item">
-                <a class="hamburger-dropdown-link">Todos</a>
-              </li>
-              <li class="hamburger-dropdown-item">
-                <a class="hamburger-dropdown-link">Pendente</a>
-              </li>
-              <li class="hamburger-dropdown-item">
-                <a class="hamburger-dropdown-link">Bloqueados</a>
-              </li>
-            </ul>
-          </div>
+            <div class="hamburger-link-dropdown-text">Amigos</div>
+            <div class="hamburger-dropdown">
+              <ul class="hamburger-dropdown-items">
+                <li class="hamburger-dropdown-item">
+                  <a class="hamburger-dropdown-link">Todos</a>
+                </li>
+                <li class="hamburger-dropdown-item">
+                  <a class="hamburger-dropdown-link">Pendente</a>
+                </li>
+                <li class="hamburger-dropdown-item">
+                  <a class="hamburger-dropdown-link">Bloqueados</a>
+                </li>
+              </ul>
+            </div>
+          </button>
         </li>
         <li class="hamburger-item">
           <div class="hamburger-link-wrapper">
@@ -70,41 +69,24 @@ export default Vue.extend({
       }
     },
   },
-  mounted() {
-    window.addEventListener("click", (event: Event) => {
-      event.preventDefault();
-
-      const target = event.target as Element;
-      const whiteList = [
-        "hamburger-dropdown-button",
-        "hamburger-dropdown-link",
-        "hamburger-dropdown-items",
-        "hamburger-dropdown-item",
-      ];
-
-      const classList = target.classList.value.split(" ") as string[];
-
-      if (
-        !whiteList.some((whiteListClass) => {
-          return (
-            classList.filter((listClass) => listClass === whiteListClass)
-              .length > 0
-          );
-        })
-      ) {
-        const dropdown = document.querySelector(
-          ".hamburger-dropdown"
-        ) as Element;
-
-        dropdown.classList.remove("hamburger-dropdown-active");
-      }
-    });
-  },
   methods: {
-    toggleDropdown() {
-      const dropdown = document.querySelector(".hamburger-dropdown") as Element;
+    activateHamburgerDropdown() {
+      const hamburgerDropdown = document.querySelector(
+        ".hamburger-dropdown"
+      ) as Element;
 
-      dropdown.classList.toggle("hamburger-dropdown-active");
+      if (!hamburgerDropdown.classList.contains("hamburger-dropdown-active")) {
+        hamburgerDropdown.classList.add("hamburger-dropdown-active");
+      }
+    },
+    unactivateHamburgerDropdown() {
+      const hamburgerDropdown = document.querySelector(
+        ".hamburger-dropdown"
+      ) as Element;
+
+      if (hamburgerDropdown.classList.contains("hamburger-dropdown-active")) {
+        hamburgerDropdown.classList.remove("hamburger-dropdown-active");
+      }
     },
   },
 });
@@ -142,22 +124,25 @@ export default Vue.extend({
       grid-auto-flow: row;
       .hamburger-item {
         .hamburger-link-wrapper {
+          position: relative;
           width: 100%;
           padding: 0.5rem 1rem;
           &:hover {
             background: color("primary", "lightest");
             color: color("light");
           }
-          .hamburger-link {
-            position: relative;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            font-size: 1.25rem;
-            font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
-            color: color("light", "darkest");
-          }
+        }
+        .hamburger-link {
+          cursor: pointer;
+          font-size: 1.25rem;
+          font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
+          color: color("light", "darkest");
+          text-justify: start;
+          display: grid;
+          justify-items: start;
         }
         .hamburger-dropdown {
+          font-size: 1rem;
           position: absolute;
           left: -10rem;
           top: 0;
