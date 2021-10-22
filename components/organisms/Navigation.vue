@@ -5,22 +5,26 @@
       <nav class="nav">
         <ul>
           <li class="nav-item">
-            <a :class="['nav-link', 'dropdown-button']" @click="toggleDropdown"
-              >Amigos</a
+            <button
+              :class="['nav-link', 'dropdown-button']"
+              @focus="activateDropdown"
+              @blur="unactivateDropdown"
             >
-            <div class="dropdown">
-              <ul class="dropdown-items">
-                <li class="dropdown-item">
-                  <a class="dropdown-link">Todos</a>
-                </li>
-                <li class="dropdown-item">
-                  <a class="dropdown-link">Pendente</a>
-                </li>
-                <li class="dropdown-item">
-                  <a class="dropdown-link">Bloqueados</a>
-                </li>
-              </ul>
-            </div>
+              Amigos
+              <div class="dropdown">
+                <ul class="dropdown-items">
+                  <li class="dropdown-item">
+                    <a class="dropdown-link">Todos</a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a class="dropdown-link">Pendente</a>
+                  </li>
+                  <li class="dropdown-item">
+                    <a class="dropdown-link">Bloqueados</a>
+                  </li>
+                </ul>
+              </div>
+            </button>
           </li>
           <li class="nav-item">
             <NuxtLink to="/" class="nav-link">Conversas</NuxtLink>
@@ -42,39 +46,20 @@
 <script lang="ts">
 import Vue from "vue";
 export default Vue.extend({
-  mounted() {
-    window.addEventListener("click", (event: Event) => {
-      event.preventDefault();
-
-      const target = event.target as Element;
-      const whiteList = [
-        "dropdown-button",
-        "dropdown-link",
-        "dropdown-items",
-        "dropdown-item",
-      ];
-
-      const classList = target.classList.value.split(" ") as string[];
-
-      if (
-        !whiteList.some((whiteListClass) => {
-          return (
-            classList.filter((listClass) => listClass === whiteListClass)
-              .length > 0
-          );
-        })
-      ) {
-        const dropdown = document.querySelector(".dropdown") as Element;
-
-        dropdown.classList.remove("dropdown-active");
-      }
-    });
-  },
   methods: {
-    toggleDropdown() {
+    activateDropdown() {
       const dropdown = document.querySelector(".dropdown") as Element;
 
-      dropdown.classList.toggle("dropdown-active");
+      if (!dropdown.classList.contains("dropdown-active")) {
+        dropdown.classList.add("dropdown-active");
+      }
+    },
+    unactivateDropdown() {
+      const dropdown = document.querySelector(".dropdown") as Element;
+
+      if (dropdown.classList.contains("dropdown-active")) {
+        dropdown.classList.remove("dropdown-active");
+      }
     },
   },
 });
@@ -135,7 +120,7 @@ export default Vue.extend({
             border-radius: 0.3rem;
             position: absolute;
             right: 0;
-            top: 2.2rem;
+            top: 2.7rem;
             background: color("light", "darkest");
             width: 10rem;
             box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
