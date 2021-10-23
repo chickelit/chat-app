@@ -34,6 +34,11 @@
             <a href="/" class="hamburger-link">Grupos</a>
           </div>
         </li>
+         <li class="hamburger-item">
+          <div class="hamburger-link-wrapper">
+            <a href="/" class="hamburger-link">Meu perfil</a>
+          </div>
+        </li>
       </ul>
     </nav>
   </div>

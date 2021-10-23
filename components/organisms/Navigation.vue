@@ -32,6 +32,11 @@
           <li class="nav-item">
             <NuxtLink to="/" class="nav-link">Grupos</NuxtLink>
           </li>
+          <li class="nav-item">
+            <a href="">
+              <div class="avatar skeleton"></div>
+            </a>
+          </li>
         </ul>
       </nav>
       <button class="hamburger-button" @click="$emit('toggleHamburgerMenu')">
@@ -67,6 +72,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .navigation {
+  height: 2.5rem;
   position: relative;
   width: 100%;
   background: color("primary");
@@ -107,6 +113,11 @@ export default Vue.extend({
         align-items: center;
         .nav-item {
           position: relative;
+          .avatar {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 100%;
+          }
           .nav-link {
             font-size: 1rem;
             font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
