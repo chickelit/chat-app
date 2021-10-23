@@ -12,19 +12,17 @@
     <div class="message-engine">
       <form>
         <BaseInput v-model="message.content" placeholder="Mensagem" />
-        <label
-          title="Enviar mídia"
-          for="file-upload"
-          :class="['file-upload', 'form-button']"
-        >
-          <div class="line horizontal"></div>
-          <div class="line vertical"></div>
+        <button type="submit" class="form-button">
+          <img src="@/assets/img/send.svg" alt="Paper plane" />
+        </button>
+        <label for="file-upload" :class="['file-upload', 'form-button']">
+          <img src="@/assets/img/arrow-up.svg" alt="Arrow up" />
         </label>
         <input
           id="file-upload"
           type="file"
           class="custom-file-upload"
-          disabled
+          accept=".jpg,.jpeg,.png,.mp3,.mp4"
         />
       </form>
     </div>
@@ -40,11 +38,6 @@ export default Vue.extend({
         content: "",
       },
     };
-  },
-  computed: {
-    usingInput() {
-      return this.$data.message.content !== "";
-    },
   },
 });
 </script>
@@ -109,7 +102,7 @@ export default Vue.extend({
   grid-template-rows: auto;
   form {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr auto auto;
     gap: 1rem;
   }
 }
@@ -121,6 +114,13 @@ export default Vue.extend({
   border-radius: 100%;
   background: color("primary", "lighter");
   transition: all 0.15s linear;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  img {
+    width: 80%;
+    filter: invert(0.45);
+  }
   &:hover {
     background: color("primary", "lightest");
   }
