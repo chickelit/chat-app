@@ -6,23 +6,48 @@
         <div class="skeleton skeleton-text"></div>
       </div>
     </header>
-    <div class="message-list"></div>
+    <div class="scroll-wrapper">
+      <MessageList />
+    </div>
     <div class="message-engine">
       <form>
-        <input
-          class="message-engine-input"
-          type="text"
-          placeholder="Mensagem"
-        />
-        <label title="Enviar mídia" for="file-upload" class="file-upload">
+        <BaseInput v-model="message.content" placeholder="Mensagem" />
+        <label
+          title="Enviar mídia"
+          for="file-upload"
+          :class="['file-upload', 'form-button']"
+        >
           <div class="line horizontal"></div>
-          <div class="line vertinal"></div>
+          <div class="line vertical"></div>
         </label>
-        <input id="file-upload" type="file" class="custom-file-upload" />
+        <input
+          id="file-upload"
+          type="file"
+          class="custom-file-upload"
+          disabled
+        />
       </form>
     </div>
   </main>
 </template>
+
+<script lang="ts">
+import Vue from "vue";
+export default Vue.extend({
+  data() {
+    return {
+      message: {
+        content: "",
+      },
+    };
+  },
+  computed: {
+    usingInput() {
+      return this.$data.message.content !== "";
+    },
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 .chat {
@@ -34,6 +59,12 @@
   border-radius: 0.3125rem;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
+  .scroll-wrapper {
+    ::-webkit-scrollbar {
+      width: 0px;
+    }
+    position: relative;
+  }
   @include screen("infinity") {
     display: grid;
   }
@@ -67,6 +98,8 @@
   }
 }
 .message-engine {
+  align-self: end;
+  height: 2.5rem;
   background: color("primary");
   padding: 0.75rem;
   box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
@@ -78,21 +111,9 @@
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 1rem;
-    .message-engine-input {
-      background: color("primary", "lighter");
-      font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
-      color: color("dark", "lightest");
-      padding: 0.25rem 0.75rem;
-      border-radius: 0.3rem;
-      font-size: 1.0625rem;
-      transition: all 0.15s linear;
-      &:focus {
-        background: color("primary", "lightest");
-      }
-    }
   }
 }
-.file-upload {
+.form-button {
   cursor: pointer;
   position: relative;
   width: 2.5rem;
