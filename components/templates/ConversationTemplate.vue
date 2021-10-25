@@ -45,6 +45,6 @@ export default Vue.extend({
 }
 .container {
   position: relative;
-  padding: 1rem ;
+  padding: 1rem 0;
 }
 </style>
