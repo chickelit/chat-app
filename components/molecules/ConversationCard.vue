@@ -1,5 +1,5 @@
 <template>
-  <a href="" class="conversation-card">
+  <a href="/conversations/1" class="conversation-card">
     <div class="avatar skeleton" />
     <div class="container">
       <div class="username">

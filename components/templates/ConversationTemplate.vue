@@ -4,7 +4,7 @@
       <Navigation @toggleHamburgerMenu="toggleHamburgerMenu" />
     </header>
     <Container class="container">
-      <ConversationNavigation />
+      <Chat />
     </Container>
     <HamburgerMenu class="hamburger-menu" :active="hamburgerMenuActive" />
   </div>
@@ -45,6 +45,6 @@ export default Vue.extend({
 }
 .container {
   position: relative;
-  padding: 1rem 0;
+  padding: 1rem ;
 }
 </style>
