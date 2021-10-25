@@ -45,26 +45,24 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .chat {
   min-height: 32rem;
-  display: none;
-  width: 100%;
-  height: 100%;
+  min-width: 18rem;
+  position: absolute;
+  inset: 1rem 0;
+  display: grid;
   background: color("primary", "lighter");
   border-radius: 0.3125rem;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
   .scroll-wrapper {
+    position: relative;
     ::-webkit-scrollbar {
       width: 0px;
     }
-    position: relative;
-  }
-  @include screen("infinity") {
-    display: grid;
   }
 }
 .header {
-  background: color("primary");
   padding: 0.75rem;
+  background: color("primary");
   border-radius: 0.3125rem 0.3125rem 0 0;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
   display: grid;
@@ -79,22 +77,21 @@ export default Vue.extend({
   border-radius: 100%;
 }
 .title {
-  width: 100%;
   font-size: 1.25rem;
   font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
   font-weight: 600;
   color: color("dark", "lightest");
   .skeleton-text {
     height: 1.25rem;
-    width: 20rem;
+    width: 12rem;
     border-radius: 0.125rem;
   }
 }
 .message-engine {
   align-self: end;
   height: 2.5rem;
+  padding: 0.5rem;
   background: color("primary");
-  padding: 0.75rem;
   box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
   border-radius: 0 0 0.3125rem 0.3125rem;
   display: grid;

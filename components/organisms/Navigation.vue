@@ -103,6 +103,19 @@ export default Vue.extend({
         grid-auto-flow: column;
         gap: 2rem;
         align-items: center;
+        .nuxt-link-active {
+          position: relative;
+        }
+        .nuxt-link-active:after {
+          content: "";
+          top: 1.5rem;
+          left: 0;
+          border-radius: 0.5rem;
+          width: 100%;
+          height: 0.5rem;
+          background: color("dark", "lightest");
+          position: absolute;
+        }
         .nav-item {
           position: relative;
           .avatar {
