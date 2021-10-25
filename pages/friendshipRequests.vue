@@ -1,5 +1,5 @@
 <template>
-  <FriendsTemplate />
+  <FriendshipRequestsTemplate />
 </template>
 
 <script lang="ts">

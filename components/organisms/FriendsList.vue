@@ -1,6 +1,6 @@
 <template>
-  <main class="main">
-    <nav class="friend-navigation">
+  <div class="friends-list">
+    <nav>
       <ul>
         <li class="friend-card">
           <FriendCard />
@@ -52,19 +52,19 @@
         </li>
       </ul>
     </nav>
-  </main>
+  </div>
 </template>
 
 <style lang="scss" scoped>
 ::-webkit-scrollbar {
   width: 0px;
 }
-.main {
+.friends-list {
   position: absolute;
   inset: 1rem 0;
   background: color("primary");
   border-radius: 0.3125rem;
-  .friend-navigation {
+  nav {
     position: absolute;
     inset: 0.5rem;
     ul {
@@ -73,7 +73,7 @@
       overflow-y: scroll;
       display: grid;
       grid-template-columns: 1fr;
-      grid-auto-rows: auto;
+      grid-auto-rows: max-content;
       grid-auto-flow: row;
       gap: 0.5rem;
     }

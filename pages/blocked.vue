@@ -1,5 +1,5 @@
 <template>
-  <FriendsTemplate />
+  <BlockedUsersTemplate />
 </template>
 
 <script lang="ts">
