@@ -61,7 +61,7 @@
 }
 .main {
   position: absolute;
-  inset: 1rem;
+  inset: 1rem 0;
   background: color("primary");
   border-radius: 0.3125rem;
   .conversation-navigation {
