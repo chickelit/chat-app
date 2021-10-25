@@ -1,5 +1,5 @@
 <template>
-  <aside class="aside">
+  <main class="main">
     <nav class="conversation-navigation">
       <ul>
         <li class="conversation-card">
@@ -52,24 +52,24 @@
         </li>
       </ul>
     </nav>
-  </aside>
+  </main>
 </template>
 
 <style lang="scss" scoped>
 ::-webkit-scrollbar {
   width: 0px;
 }
-.aside {
-  min-height: 32rem;
-  height: 100%;
+.main {
+  position: absolute;
+  inset: 1rem;
   background: color("primary");
   border-radius: 0.3125rem;
   .conversation-navigation {
-    position: relative;
-    height: 100%;
+    position: absolute;
+    inset: 0.5rem;
     ul {
       position: absolute;
-      inset: 0.5rem;
+      inset: 0;
       overflow-y: scroll;
       display: grid;
       grid-template-columns: 1fr;
