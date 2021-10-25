@@ -1,39 +1,40 @@
 <template>
   <div class="navigation">
     <Container class="container">
-      <h1 class="title">ChatApp</h1>
+      <a href="/" class="title">ChatApp</a>
       <nav class="nav">
         <ul>
           <li class="nav-item">
             <button
               :class="['nav-link', 'dropdown-button']"
-              @focus="activateDropdown"
-              @blur="unactivateDropdown"
+              @click="toggleDropdown"
             >
               Amigos
-              <div class="dropdown">
-                <ul class="dropdown-items">
-                  <li class="dropdown-item">
-                    <a class="dropdown-link">Todos</a>
-                  </li>
-                  <li class="dropdown-item">
-                    <a class="dropdown-link">Pendente</a>
-                  </li>
-                  <li class="dropdown-item">
-                    <a class="dropdown-link">Bloqueados</a>
-                  </li>
-                </ul>
-              </div>
             </button>
+            <div class="dropdown">
+              <ul class="dropdown-items">
+                <li class="dropdown-item">
+                  <a href="/friends" class="dropdown-link">Todos</a>
+                </li>
+                <li class="dropdown-item">
+                  <a href="/friendshipRequests" class="dropdown-link"
+                    >Pendente</a
+                  >
+                </li>
+                <li class="dropdown-item">
+                  <a href="/blocked" class="dropdown-link">Bloqueados</a>
+                </li>
+              </ul>
+            </div>
           </li>
           <li class="nav-item">
-            <NuxtLink to="/" class="nav-link">Conversas</NuxtLink>
+            <NuxtLink to="/conversations" class="nav-link">Conversas</NuxtLink>
           </li>
           <li class="nav-item">
-            <NuxtLink to="/" class="nav-link">Grupos</NuxtLink>
+            <NuxtLink to="/groups" class="nav-link">Grupos</NuxtLink>
           </li>
           <li class="nav-item">
-            <a href="">
+            <a href="/profile">
               <div class="avatar skeleton"></div>
             </a>
           </li>
@@ -52,19 +53,10 @@
 import Vue from "vue";
 export default Vue.extend({
   methods: {
-    activateDropdown() {
+    toggleDropdown() {
       const dropdown = document.querySelector(".dropdown") as Element;
 
-      if (!dropdown.classList.contains("dropdown-active")) {
-        dropdown.classList.add("dropdown-active");
-      }
-    },
-    unactivateDropdown() {
-      const dropdown = document.querySelector(".dropdown") as Element;
-
-      if (dropdown.classList.contains("dropdown-active")) {
-        dropdown.classList.remove("dropdown-active");
-      }
+      dropdown.classList.toggle("active");
     },
   },
 });
@@ -131,7 +123,7 @@ export default Vue.extend({
             border-radius: 0.3rem;
             position: absolute;
             right: 0;
-            top: 2.7rem;
+            top: 2.825rem;
             background: color("light", "darkest");
             width: 10rem;
             box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
@@ -139,13 +131,17 @@ export default Vue.extend({
             pointer-events: none;
             transform: translateY(10px);
             transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+            &.active {
+              opacity: 1;
+              pointer-events: auto;
+              transform: translateY(0);
+            }
             ul {
               li {
                 display: grid;
                 justify-content: end;
                 width: 100%;
                 position: relative;
-                cursor: pointer;
                 a {
                   font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
                   color: color("dark");
@@ -178,12 +174,6 @@ export default Vue.extend({
               justify-items: end;
               gap: 0.25rem;
             }
-          }
-          .dropdown-active {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateY(0);
-            border-radius: 0 0 0.3rem 0.3rem;
           }
         }
       }

@@ -4,21 +4,27 @@
       <ul>
         <li class="hamburger-item">
           <button
-            :class="['hamburger-link', 'hamburger-link-wrapper']"
-            @focus="activateHamburgerDropdown"
-            @blur="unactivateHamburgerDropdown"
+            :class="[
+              'hamburger-link',
+              'hamburger-link-wrapper',
+              'hamburger-dropdown-button',
+            ]"
           >
-            <div class="hamburger-link-dropdown-text">Amigos</div>
+            Amigos
             <div class="hamburger-dropdown">
               <ul class="hamburger-dropdown-items">
                 <li class="hamburger-dropdown-item">
-                  <a class="hamburger-dropdown-link">Todos</a>
+                  <a href="/friends" class="hamburger-dropdown-link">Todos</a>
                 </li>
                 <li class="hamburger-dropdown-item">
-                  <a class="hamburger-dropdown-link">Pendente</a>
+                  <a href="/friendshipRequests" class="hamburger-dropdown-link"
+                    >Pendente</a
+                  >
                 </li>
                 <li class="hamburger-dropdown-item">
-                  <a class="hamburger-dropdown-link">Bloqueados</a>
+                  <a href="/blocked" class="hamburger-dropdown-link"
+                    >Bloqueados</a
+                  >
                 </li>
               </ul>
             </div>
@@ -26,17 +32,17 @@
         </li>
         <li class="hamburger-item">
           <div class="hamburger-link-wrapper">
-            <a href="/" class="hamburger-link">Conversas</a>
+            <a href="/conversations" class="hamburger-link">Conversas</a>
           </div>
         </li>
         <li class="hamburger-item">
           <div class="hamburger-link-wrapper">
-            <a href="/" class="hamburger-link">Grupos</a>
+            <a href="/group" class="hamburger-link">Grupos</a>
           </div>
         </li>
-         <li class="hamburger-item">
+        <li class="hamburger-item">
           <div class="hamburger-link-wrapper">
-            <a href="/" class="hamburger-link">Meu perfil</a>
+            <a href="/profile" class="hamburger-link">Meu perfil</a>
           </div>
         </li>
       </ul>
@@ -198,11 +204,15 @@ export default Vue.extend({
             gap: 0.25rem;
           }
         }
-        .hamburger-dropdown-active {
-          opacity: 1;
-          pointer-events: auto;
-          transform: translateX(0);
-          border-radius: 0 0 0 0.3rem;
+        .hamburger-dropdown-button {
+          &:hover {
+            .hamburger-dropdown {
+              opacity: 1;
+              pointer-events: auto;
+              transform: translateX(0);
+              border-radius: 0 0 0 0.3rem;
+            }
+          }
         }
       }
     }
