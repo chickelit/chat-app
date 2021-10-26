@@ -2,44 +2,6 @@
   <div class="navigation">
     <Container class="container">
       <a href="/" class="title">ChatApp</a>
-      <nav class="nav">
-        <ul>
-          <li class="nav-item">
-            <button
-              :class="['nav-link', 'dropdown-button']"
-              @click="toggleDropdown"
-            >
-              Amigos
-            </button>
-            <div class="dropdown">
-              <ul class="dropdown-items">
-                <li class="dropdown-item">
-                  <a href="/friends" class="dropdown-link">Todos</a>
-                </li>
-                <li class="dropdown-item">
-                  <a href="/friendshipRequests" class="dropdown-link"
-                    >Pendente</a
-                  >
-                </li>
-                <li class="dropdown-item">
-                  <a href="/blocked" class="dropdown-link">Bloqueados</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <NuxtLink to="/conversations" class="nav-link">Conversas</NuxtLink>
-          </li>
-          <li class="nav-item">
-            <NuxtLink to="/groups" class="nav-link">Grupos</NuxtLink>
-          </li>
-          <li class="nav-item">
-            <a href="/profile">
-              <div class="avatar skeleton"></div>
-            </a>
-          </li>
-        </ul>
-      </nav>
       <button class="hamburger-button" @click="$emit('toggleHamburgerMenu')">
         <div class="bar"></div>
         <div class="bar"></div>
@@ -101,14 +63,14 @@ export default Vue.extend({
         grid-auto-columns: max-content;
         grid-template-rows: max-content;
         grid-auto-flow: column;
-        gap: 2rem;
+        gap: 3rem;
         align-items: center;
         .nuxt-link-active {
           position: relative;
         }
         .nuxt-link-active:after {
           content: "";
-          top: 1.5rem;
+          top: 2.4rem;
           left: 0;
           border-radius: 0.5rem;
           width: 100%;
@@ -117,7 +79,6 @@ export default Vue.extend({
           position: absolute;
         }
         .nav-item {
-          position: relative;
           .avatar {
             width: 2.5rem;
             height: 2.5rem;
@@ -132,78 +93,18 @@ export default Vue.extend({
               color: color("light");
             }
           }
-          .dropdown {
-            border-radius: 0.3rem;
-            position: absolute;
-            right: 0;
-            top: 2.825rem;
-            background: color("light", "darkest");
-            width: 10rem;
-            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(10px);
-            transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
-            &.active {
-              opacity: 1;
-              pointer-events: auto;
-              transform: translateY(0);
-            }
-            ul {
-              li {
-                display: grid;
-                justify-content: end;
-                width: 100%;
-                position: relative;
-                a {
-                  font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
-                  color: color("dark");
-                  &:hover {
-                    color: color("dark", "darkest");
-                  }
-                }
-                ::after {
-                  content: "";
-                  position: absolute;
-                  width: 100%;
-                  height: 1px;
-                  background: color("dark", "lightest");
-                  bottom: 0;
-                  left: 0;
-                }
-              }
-              :nth-last-child(1) {
-                ::after {
-                  width: 0;
-                  height: 0;
-                }
-              }
-              padding: 0.5rem;
-              margin: 0;
-              display: grid;
-              grid-auto-rows: max-content;
-              grid-auto-flow: row;
-              grid-template-columns: 1fr;
-              justify-items: end;
-              gap: 0.25rem;
-            }
-          }
         }
       }
     }
     .hamburger-button {
-      display: none;
       justify-self: end;
-      @include screen("small") {
-        display: grid;
-        cursor: pointer;
-        width: 2rem;
-        height: auto;
-        display: grid;
-        grid-auto-rows: 0.3125rem;
-        grid-auto-flow: row;
-        gap: 0.3125rem;
-      }
+      cursor: pointer;
+      width: 2rem;
+      height: auto;
+      display: grid;
+      grid-auto-rows: 0.3125rem;
+      grid-auto-flow: row;
+      gap: 0.3125rem;
       .bar {
         width: 100%;
         height: 100%;
