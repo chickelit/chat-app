@@ -5,26 +5,16 @@
       <div class="username">
         <div class="skeleton skeleton-text"></div>
       </div>
-      <div class="latest-message">
-        <div class="skeleton skeleton-text"></div>
-      </div>
     </div>
   </a>
 </template>
 
 <style lang="scss" scoped>
 .username {
+  width: 55%;
   .skeleton-text {
     width: 100%;
     height: 1rem;
-    margin-bottom: 0.25rem;
-    border-radius: 0.125rem;
-  }
-}
-.latest-message {
-  .skeleton-text {
-    width: 100%;
-    height: 0.875rem;
     margin-bottom: 0.25rem;
     border-radius: 0.125rem;
   }
@@ -46,14 +36,6 @@
     height: 100%;
     width: 100%;
     border-radius: 100%;
-  }
-  .container {
-    .username {
-      width: 55%;
-    }
-    .latest-message {
-      width: 85%;
-    }
   }
 }
 </style>
