@@ -2,52 +2,52 @@
   <div class="friendship-requests-list">
     <nav>
       <ul>
-        <li class="friend-request-card">
+        <li>
           <FriendshipRequestCard />
         </li>
-        <li class="friend-request-card">
+        <li>
           <FriendshipRequestCard />
         </li>
-        <li class="friend-request-card">
+        <li>
           <FriendshipRequestCard />
         </li>
-        <li class="friend-request-card">
+        <li>
           <FriendshipRequestCard />
         </li>
-        <li class="friend-request-card">
+        <li>
           <FriendshipRequestCard />
         </li>
-        <li class="friend-request-card">
+        <li>
           <FriendshipRequestCard />
         </li>
-        <li class="friend-request-card">
+        <li>
           <FriendshipRequestCard />
         </li>
-        <li class="friend-request-card">
+        <li>
           <FriendshipRequestCard />
         </li>
-        <li class="friend-request-card">
+        <li>
           <FriendshipRequestCard />
         </li>
-        <li class="friend-request-card">
+        <li>
           <FriendshipRequestCard />
         </li>
-        <li class="friend-request-card">
+        <li>
           <FriendshipRequestCard />
         </li>
-        <li class="friend-request-card">
+        <li>
           <FriendshipRequestCard />
         </li>
-        <li class="friend-request-card">
+        <li>
           <FriendshipRequestCard />
         </li>
-        <li class="friend-request-card">
+        <li>
           <FriendshipRequestCard />
         </li>
-        <li class="friend-request-card">
+        <li>
           <FriendshipRequestCard />
         </li>
-        <li class="friend-request-card">
+        <li>
           <FriendshipRequestCard />
         </li>
       </ul>

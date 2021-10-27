@@ -2,52 +2,52 @@
   <div class="groups-list">
     <nav>
       <ul>
-        <li class="group-card">
+        <li>
           <GroupCard />
         </li>
-        <li class="group-card">
+        <li>
           <GroupCard />
         </li>
-        <li class="group-card">
+        <li>
           <GroupCard />
         </li>
-        <li class="group-card">
+        <li>
           <GroupCard />
         </li>
-        <li class="group-card">
+        <li>
           <GroupCard />
         </li>
-        <li class="group-card">
+        <li>
           <GroupCard />
         </li>
-        <li class="group-card">
+        <li>
           <GroupCard />
         </li>
-        <li class="group-card">
+        <li>
           <GroupCard />
         </li>
-        <li class="group-card">
+        <li>
           <GroupCard />
         </li>
-        <li class="group-card">
+        <li>
           <GroupCard />
         </li>
-        <li class="group-card">
+        <li>
           <GroupCard />
         </li>
-        <li class="group-card">
+        <li>
           <GroupCard />
         </li>
-        <li class="group-card">
+        <li>
           <GroupCard />
         </li>
-        <li class="group-card">
+        <li>
           <GroupCard />
         </li>
-        <li class="group-card">
+        <li>
           <GroupCard />
         </li>
-        <li class="group-card">
+        <li>
           <GroupCard />
         </li>
       </ul>

@@ -2,52 +2,52 @@
   <div class="conversations-list">
     <nav>
       <ul>
-        <li class="conversation-card">
+        <li>
           <ConversationCard />
         </li>
-        <li class="conversation-card">
+        <li>
           <ConversationCard />
         </li>
-        <li class="conversation-card">
+        <li>
           <ConversationCard />
         </li>
-        <li class="conversation-card">
+        <li>
           <ConversationCard />
         </li>
-        <li class="conversation-card">
+        <li>
           <ConversationCard />
         </li>
-        <li class="conversation-card">
+        <li>
           <ConversationCard />
         </li>
-        <li class="conversation-card">
+        <li>
           <ConversationCard />
         </li>
-        <li class="conversation-card">
+        <li>
           <ConversationCard />
         </li>
-        <li class="conversation-card">
+        <li>
           <ConversationCard />
         </li>
-        <li class="conversation-card">
+        <li>
           <ConversationCard />
         </li>
-        <li class="conversation-card">
+        <li>
           <ConversationCard />
         </li>
-        <li class="conversation-card">
+        <li>
           <ConversationCard />
         </li>
-        <li class="conversation-card">
+        <li>
           <ConversationCard />
         </li>
-        <li class="conversation-card">
+        <li>
           <ConversationCard />
         </li>
-        <li class="conversation-card">
+        <li>
           <ConversationCard />
         </li>
-        <li class="conversation-card">
+        <li>
           <ConversationCard />
         </li>
       </ul>

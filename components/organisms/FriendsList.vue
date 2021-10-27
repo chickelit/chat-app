@@ -2,52 +2,52 @@
   <div class="friends-list">
     <nav>
       <ul>
-        <li class="friend-card">
+        <li>
           <FriendCard />
         </li>
-        <li class="friend-card">
+        <li>
           <FriendCard />
         </li>
-        <li class="friend-card">
+        <li>
           <FriendCard />
         </li>
-        <li class="friend-card">
+        <li>
           <FriendCard />
         </li>
-        <li class="friend-card">
+        <li>
           <FriendCard />
         </li>
-        <li class="friend-card">
+        <li>
           <FriendCard />
         </li>
-        <li class="friend-card">
+        <li>
           <FriendCard />
         </li>
-        <li class="friend-card">
+        <li>
           <FriendCard />
         </li>
-        <li class="friend-card">
+        <li>
           <FriendCard />
         </li>
-        <li class="friend-card">
+        <li>
           <FriendCard />
         </li>
-        <li class="friend-card">
+        <li>
           <FriendCard />
         </li>
-        <li class="friend-card">
+        <li>
           <FriendCard />
         </li>
-        <li class="friend-card">
+        <li>
           <FriendCard />
         </li>
-        <li class="friend-card">
+        <li>
           <FriendCard />
         </li>
-        <li class="friend-card">
+        <li>
           <FriendCard />
         </li>
-        <li class="friend-card">
+        <li>
           <FriendCard />
         </li>
       </ul>
