@@ -4,37 +4,32 @@
       <ul>
         <li class="hamburger-item">
           <div class="hamburger-link-wrapper">
-            <a href="/" class="hamburger-link">Home</a>
+            <NuxtLink to="/" class="hamburger-link">Home</NuxtLink>
           </div>
         </li>
         <li class="hamburger-item">
           <div class="hamburger-link-wrapper">
-            <a href="/friends" class="hamburger-link">Amigos</a>
+            <NuxtLink to="/friends" class="hamburger-link">Amigos</NuxtLink>
           </div>
         </li>
         <li class="hamburger-item">
           <div class="hamburger-link-wrapper">
-            <a href="/conversations" class="hamburger-link">Conversas</a>
+            <NuxtLink to="/conversations" class="hamburger-link">Conversas</NuxtLink>
           </div>
         </li>
         <li class="hamburger-item">
           <div class="hamburger-link-wrapper">
-            <a href="/groups" class="hamburger-link">Grupos</a>
+            <NuxtLink to="/groups" class="hamburger-link">Grupos</NuxtLink>
           </div>
         </li>
         <li class="hamburger-item">
           <div class="hamburger-link-wrapper">
-            <a href="/friendshipRequests" class="hamburger-link">Pedidos de amizade</a>
+            <NuxtLink to="/friendshipRequests" class="hamburger-link">Pedidos de amizade</NuxtLink>
           </div>
         </li>
         <li class="hamburger-item">
           <div class="hamburger-link-wrapper">
-            <a href="/blocked" class="hamburger-link">Bloqueados</a>
-          </div>
-        </li>
-        <li class="hamburger-item">
-          <div class="hamburger-link-wrapper">
-            <a href="/profile" class="hamburger-link">Meu perfil</a>
+            <NuxtLink to="/profile" class="hamburger-link">Meu perfil</NuxtLink>
           </div>
         </li>
       </ul>
