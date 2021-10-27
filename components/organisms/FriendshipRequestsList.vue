@@ -3,52 +3,52 @@
     <nav>
       <ul>
         <li>
-          <FriendshipRequestCard />
+          <FriendshipRequestCard :index="0" />
         </li>
         <li>
-          <FriendshipRequestCard />
+          <FriendshipRequestCard :index="1" />
         </li>
         <li>
-          <FriendshipRequestCard />
+          <FriendshipRequestCard :index="2" />
         </li>
         <li>
-          <FriendshipRequestCard />
+          <FriendshipRequestCard :index="3" />
         </li>
         <li>
-          <FriendshipRequestCard />
+          <FriendshipRequestCard :index="4" />
         </li>
         <li>
-          <FriendshipRequestCard />
+          <FriendshipRequestCard :index="5" />
         </li>
         <li>
-          <FriendshipRequestCard />
+          <FriendshipRequestCard :index="6" />
         </li>
         <li>
-          <FriendshipRequestCard />
+          <FriendshipRequestCard :index="7" />
         </li>
         <li>
-          <FriendshipRequestCard />
+          <FriendshipRequestCard :index="8" />
         </li>
         <li>
-          <FriendshipRequestCard />
+          <FriendshipRequestCard :index="9" />
         </li>
         <li>
-          <FriendshipRequestCard />
+          <FriendshipRequestCard :index="10" />
         </li>
         <li>
-          <FriendshipRequestCard />
+          <FriendshipRequestCard :index="11" />
         </li>
         <li>
-          <FriendshipRequestCard />
+          <FriendshipRequestCard :index="12" />
         </li>
         <li>
-          <FriendshipRequestCard />
+          <FriendshipRequestCard :index="13" />
         </li>
         <li>
-          <FriendshipRequestCard />
+          <FriendshipRequestCard :index="14" />
         </li>
         <li>
-          <FriendshipRequestCard />
+          <FriendshipRequestCard :index="15" />
         </li>
       </ul>
     </nav>

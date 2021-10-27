@@ -3,52 +3,52 @@
     <nav>
       <ul>
         <li>
-          <FriendCard />
+          <FriendCard :index="0" />
         </li>
         <li>
-          <FriendCard />
+          <FriendCard :index="1" />
         </li>
         <li>
-          <FriendCard />
+          <FriendCard :index="2" />
         </li>
         <li>
-          <FriendCard />
+          <FriendCard :index="3" />
         </li>
         <li>
-          <FriendCard />
+          <FriendCard :index="4" />
         </li>
         <li>
-          <FriendCard />
+          <FriendCard :index="5" />
         </li>
         <li>
-          <FriendCard />
+          <FriendCard :index="6" />
         </li>
         <li>
-          <FriendCard />
+          <FriendCard :index="7" />
         </li>
         <li>
-          <FriendCard />
+          <FriendCard :index="8" />
         </li>
         <li>
-          <FriendCard />
+          <FriendCard :index="9" />
         </li>
         <li>
-          <FriendCard />
+          <FriendCard :index="10" />
         </li>
         <li>
-          <FriendCard />
+          <FriendCard :index="11" />
         </li>
         <li>
-          <FriendCard />
+          <FriendCard :index="12" />
         </li>
         <li>
-          <FriendCard />
+          <FriendCard :index="13" />
         </li>
         <li>
-          <FriendCard />
+          <FriendCard :index="14" />
         </li>
         <li>
-          <FriendCard />
+          <FriendCard :index="15" />
         </li>
       </ul>
     </nav>

@@ -18,6 +18,9 @@ $colors: (
     lightest: #b4b4b4,
     darkest: #5a5a5a,
   ),
+  danger: (
+    base: #c70000
+  )
 ) !default;
 
 @function color($color, $complementary: null) {
