@@ -79,4 +79,13 @@
     }
   }
 }
+li {
+  &:nth-last-child(1) {
+    ::v-deep.friendship-request-card {
+      .friendship-request-card-dropdown {
+        top: -1.6rem;
+      }
+    }
+  }
+}
 </style>

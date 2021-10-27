@@ -14,7 +14,9 @@
       </div>
     </div>
     <div class="friendship-request-card-dropdown">
-      <div class="friendship-request-card-dropdown-item danger">Recusar o pedido</div>
+      <div class="friendship-request-card-dropdown-item danger">
+        Recusar o pedido
+      </div>
       <div class="friendship-request-card-dropdown-item">Aceitar o pedido</div>
     </div>
   </a>
@@ -58,7 +60,8 @@ export default Vue.extend({
   padding: 0.3125rem;
   z-index: 1;
   position: absolute;
-  right: 3.4rem;
+  right: 2.4rem;
+  top: 2.5rem;
   background: color("dark", "lightest");
   border-radius: 0.3125rem;
   box-shadow: -2px 0 5px 0 rgba(0, 0, 0, 0.1);
