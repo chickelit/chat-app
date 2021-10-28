@@ -1,5 +1,5 @@
 <template>
   <div class="conversation-template">
-    <Chat />
+    <ConversationChat />
   </div>
 </template>

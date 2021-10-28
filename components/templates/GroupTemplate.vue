@@ -1,5 +1,5 @@
 <template>
   <div class="group-template">
-    <Chat />
+    <GroupChat />
   </div>
 </template>

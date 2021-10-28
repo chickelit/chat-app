@@ -1,5 +1,5 @@
 <template>
-  <main class="chat">
+  <main class="group-chat">
     <header class="header">
       <div class="cover skeleton"></div>
       <div class="title">
@@ -7,9 +7,9 @@
       </div>
     </header>
     <div class="scroll-wrapper">
-      <MessageList />
+      <GroupMessageList />
     </div>
-    <div class="message-engine">
+    <div class="group-message-engine">
       <form>
         <BaseInput v-model="message.content" placeholder="Mensagem" />
         <button type="submit" class="form-button">
@@ -43,7 +43,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.chat {
+.group-chat {
   min-height: 32rem;
   min-width: 18rem;
   position: absolute;
@@ -87,7 +87,7 @@ export default Vue.extend({
     border-radius: 0.125rem;
   }
 }
-.message-engine {
+.group-message-engine {
   align-self: end;
   height: 2.5rem;
   padding: 0.5rem;
@@ -124,17 +124,5 @@ export default Vue.extend({
 }
 input[type="file"] {
   display: none;
-}
-.line {
-  height: 1.6rem;
-  border-radius: 1rem;
-  width: 0.25rem;
-  background: color("dark", "lightest");
-  position: absolute;
-  top: 0.45rem;
-  left: 1.2rem;
-  &.horizontal {
-    transform: rotate(90deg);
-  }
 }
 </style>
