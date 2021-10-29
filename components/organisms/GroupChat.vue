@@ -8,6 +8,12 @@
     </header>
     <div class="scroll-wrapper">
       <GroupMessageList />
+      <div class="scroll-down" @click="scrollToBottom">
+        <img
+          src="@/assets/img/scroll-down.svg"
+          alt="Duas setas apontando para baixo"
+        />
+      </div>
     </div>
     <div class="group-message-engine">
       <form>
@@ -39,6 +45,14 @@ export default Vue.extend({
       },
     };
   },
+  methods: {
+    scrollToBottom() {
+      const messageList = document.querySelector(".group-message-list")!;
+      const latestMessage = messageList.lastChild as Element;
+
+      latestMessage?.scrollIntoView({ behavior: "smooth", block: "end" });
+    },
+  },
 });
 </script>
 
@@ -57,6 +71,28 @@ export default Vue.extend({
     position: relative;
     ::-webkit-scrollbar {
       width: 0px;
+    }
+    .scroll-down {
+      cursor: pointer;
+      position: absolute;
+      top: -1.125rem;
+      right: 2.5rem;
+      width: 2.25rem;
+      height: 2.25rem;
+      background: color("secondary");
+      border-radius: 100%;
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      transition: all 0.15s linear;
+      &:hover {
+        background: color("secondary", "lighter");
+      }
+      img {
+        height: 85%;
+        width: 85%;
+        filter: invert(0.45);
+      }
     }
   }
 }

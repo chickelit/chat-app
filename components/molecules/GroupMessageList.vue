@@ -30,6 +30,18 @@
   </div>
 </template>
 
+<script lang="ts">
+import Vue from "vue";
+export default Vue.extend({
+  mounted() {
+    const messageList = document.querySelector(".group-message-list")!;
+    const latestMessage = messageList.lastChild as Element;
+
+    latestMessage.scrollIntoView({ behavior: "auto", block: "end" });
+  },
+});
+</script>
+
 <style lang="scss" scoped>
 .group-message-list {
   position: absolute;

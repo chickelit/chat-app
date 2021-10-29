@@ -30,6 +30,18 @@
   </div>
 </template>
 
+<script lang="ts">
+import Vue from "vue";
+export default Vue.extend({
+  mounted() {
+    const messageList = document.querySelector(".conversation-message-list")!;
+    const latestMessage = messageList.lastChild as Element;
+
+    latestMessage?.scrollIntoView({ behavior: "auto", block: "end" });
+  }
+});
+</script>
+
 <style lang="scss" scoped>
 .conversation-message-list {
   position: absolute;
