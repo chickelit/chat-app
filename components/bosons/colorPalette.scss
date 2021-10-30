@@ -2,12 +2,12 @@ $colors: (
   primary: (
     base: #18293d,
     lighter: #21364e,
-    lightest: #2b4461
+    lightest: #2b4461,
   ),
   secondary: (
     base: #324d6d,
     lighter: #3e5d83,
-    lightest: #536f92
+    lightest: #536f92,
   ),
   light: (
     base: #f7f7f7,
@@ -19,8 +19,12 @@ $colors: (
     darkest: #5a5a5a,
   ),
   danger: (
-    base: #c70000
-  )
+    base: #c70000,
+  ),
+  success: (
+    base: #1f771f,
+    lighter: #358835,
+  ),
 ) !default;
 
 @function color($color, $complementary: null) {

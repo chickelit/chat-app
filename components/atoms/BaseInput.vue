@@ -1,5 +1,11 @@
 <template>
-  <input class="base-input" :type="type" :placeholder="placeholder" @input="$emit('input', $event.target.value)" />
+  <input
+    class="base-input"
+    :type="type"
+    :placeholder="placeholder"
+    :maxlength="maxLength"
+    @input="$emit('input', $event.target.value)"
+  />
 </template>
 
 <script lang="ts">
@@ -14,6 +20,10 @@ export default Vue.extend({
       type: String,
       default: "",
     },
+    maxLength: {
+      type: Number,
+      default: 255,
+    },
   },
 });
 </script>
@@ -27,6 +37,7 @@ export default Vue.extend({
   border-radius: 0.3rem;
   font-size: 1.0625rem;
   transition: all 0.15s linear;
+  box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
   &:focus {
     background: color("primary", "lightest");
   }

@@ -50,5 +50,8 @@ export default Vue.extend({
 .container {
   position: relative;
   padding: 1rem 0;
+  .main {
+    height: 100%;
+  }
 }
 </style>
