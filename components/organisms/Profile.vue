@@ -29,6 +29,7 @@
     background: color("secondary");
     padding: 1rem;
     display: grid;
+    box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
     grid-auto-rows: max-content;
     justify-items: center;
     align-items: center;
