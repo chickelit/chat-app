@@ -1,5 +1,5 @@
 <template>
-  <div class="website">
+  <div class="website-layout">
     <header class="header">
       <Navigation @toggleHamburgerMenu="toggleHamburgerMenu" />
     </header>
@@ -31,7 +31,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.website {
+.website-layout {
   position: relative;
   height: 100vh;
   width: 100%;
