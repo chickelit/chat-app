@@ -91,7 +91,7 @@ export default Vue.extend({
       img {
         height: 85%;
         width: 85%;
-        filter: invert(0.45);
+        filter: invert(0.65);
       }
     }
   }

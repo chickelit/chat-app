@@ -26,7 +26,6 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .navigation {
-  height: 2.5rem;
   position: relative;
   width: 100%;
   background: color("primary");

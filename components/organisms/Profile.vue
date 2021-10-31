@@ -25,6 +25,9 @@
   justify-items: center;
   align-items: center;
   .wrapper {
+    border-radius: 0.3125rem;
+    background: color("secondary");
+    padding: 1rem;
     display: grid;
     grid-auto-rows: max-content;
     justify-items: center;
@@ -35,6 +38,7 @@
       grid-template-columns: 20rem;
       gap: 0.4375rem;
       button[type="submit"] {
+        margin-top: 1rem;
         font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
         color: color("dark", "lightest");
         background: color("success");
@@ -60,13 +64,17 @@
   }
 }
 .disabled-input {
-  background: color("secondary");
+  background: color("primary");
 }
 .forgot-password {
   a {
     font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
     color: color("dark", "lightest");
     text-decoration: underline;
+    transition: all 0.15s linear;
+    &:hover {
+      color: color("light");
+    }
   }
 }
 input[type="file"] {

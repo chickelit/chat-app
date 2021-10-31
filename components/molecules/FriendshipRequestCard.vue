@@ -102,13 +102,12 @@ export default Vue.extend({
   cursor: pointer;
   width: 2.4rem;
   height: 2.4rem;
-  background: color("primary", "lightest");
+  background: color("secondary");
   border-radius: 100%;
   display: grid;
   align-items: center;
   transition: all 0.15s linear;
   &:hover {
-    background: color("secondary");
     opacity: 0.8;
   }
   .wrapper {
@@ -120,7 +119,7 @@ export default Vue.extend({
     .dot {
       width: 0.3125rem;
       height: 0.3125rem;
-      background: color("primary");
+      background: color("dark", "lightest");
       border-radius: 100%;
     }
   }

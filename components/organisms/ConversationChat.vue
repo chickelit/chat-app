@@ -78,19 +78,20 @@ export default Vue.extend({
       right: 2.5rem;
       width: 2.25rem;
       height: 2.25rem;
-      background: color("secondary");
+      background: color("secondary", "lighter");
       border-radius: 100%;
+      box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
       display: grid;
       align-items: center;
       justify-items: center;
       transition: all 0.15s linear;
       &:hover {
-        background: color("secondary", "lighter");
+        opacity: 0.8;
       }
       img {
         height: 85%;
         width: 85%;
-        filter: invert(0.45);
+        filter: invert(0.65);
       }
     }
     ::-webkit-scrollbar {
