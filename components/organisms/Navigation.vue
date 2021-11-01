@@ -11,19 +11,6 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
-export default Vue.extend({
-  methods: {
-    toggleDropdown() {
-      const dropdown = document.querySelector(".dropdown") as Element;
-
-      dropdown.classList.toggle("active");
-    },
-  },
-});
-</script>
-
 <style lang="scss" scoped>
 .navigation {
   position: relative;
