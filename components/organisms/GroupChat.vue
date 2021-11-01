@@ -79,7 +79,7 @@ export default Vue.extend({
       right: 2.5rem;
       width: 2.25rem;
       height: 2.25rem;
-      background: color("secondary");
+      background: color("secondary", "darker");
       border-radius: 100%;
       display: grid;
       align-items: center;

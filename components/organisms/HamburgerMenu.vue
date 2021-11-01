@@ -14,7 +14,9 @@
         </li>
         <li class="hamburger-item">
           <div class="hamburger-link-wrapper">
-            <NuxtLink to="/conversations" class="hamburger-link">Conversas</NuxtLink>
+            <NuxtLink to="/conversations" class="hamburger-link"
+              >Conversas</NuxtLink
+            >
           </div>
         </li>
         <li class="hamburger-item">
@@ -24,7 +26,14 @@
         </li>
         <li class="hamburger-item">
           <div class="hamburger-link-wrapper">
-            <NuxtLink to="/friendshipRequests" class="hamburger-link">Pedidos de amizade</NuxtLink>
+            <NuxtLink to="/newGroup" class="hamburger-link">Criar grupo</NuxtLink>
+          </div>
+        </li>
+        <li class="hamburger-item">
+          <div class="hamburger-link-wrapper">
+            <NuxtLink to="/friendshipRequests" class="hamburger-link"
+              >Pedidos de amizade</NuxtLink
+            >
           </div>
         </li>
         <li class="hamburger-item">
@@ -58,7 +67,7 @@ export default Vue.extend({
         hamburgerMenu.classList.remove("active");
       }
     },
-  }
+  },
 });
 </script>
 

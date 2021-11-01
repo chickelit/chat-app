@@ -78,7 +78,7 @@ export default Vue.extend({
       right: 2.5rem;
       width: 2.25rem;
       height: 2.25rem;
-      background: color("secondary", "lighter");
+      background: color("secondary", "darker");
       border-radius: 100%;
       box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
       display: grid;
@@ -86,7 +86,7 @@ export default Vue.extend({
       justify-items: center;
       transition: all 0.15s linear;
       &:hover {
-        opacity: 0.8;
+        background: color("secondary", "lighter");
       }
       img {
         height: 85%;

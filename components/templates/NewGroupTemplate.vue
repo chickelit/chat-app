@@ -1,11 +1,11 @@
 <template>
-  <div class="profile-template">
-    <Profile />
+  <div class="new-group-template">
+    <NewGroupForm />
   </div>
 </template>
 
 <style lang="scss" scoped>
-.profile-template {
+.new-group-template {
   height: 100%;
   display: grid;
   align-items: center;
