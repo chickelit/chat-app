@@ -16,11 +16,18 @@
   font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
   color: color("dark", "lightest");
   justify-self: center;
+  position: absolute;
+  top: -1.5rem;
+  background: color("secondary", "darker");
+  padding: 0.25rem 1rem;
+  border-radius: 0.3125rem;
+  box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
 }
 .register-form {
+  position: relative;
   width: 22.5rem;
   background: color("primary");
-  padding: 2rem 4rem;
+  padding: 4rem 4rem 2rem 4rem;
   border-radius: 0.3125rem;
   display: grid;
   grid-template-columns: 1fr;
