@@ -3,7 +3,7 @@
     <nav>
       <ul>
         <li>
-          <GroupCard />
+          <GroupCard :mine="true" />
         </li>
         <li>
           <GroupCard />
@@ -12,40 +12,7 @@
           <GroupCard />
         </li>
         <li>
-          <GroupCard />
-        </li>
-        <li>
-          <GroupCard />
-        </li>
-        <li>
-          <GroupCard />
-        </li>
-        <li>
-          <GroupCard />
-        </li>
-        <li>
-          <GroupCard />
-        </li>
-        <li>
-          <GroupCard />
-        </li>
-        <li>
-          <GroupCard />
-        </li>
-        <li>
-          <GroupCard />
-        </li>
-        <li>
-          <GroupCard />
-        </li>
-        <li>
-          <GroupCard />
-        </li>
-        <li>
-          <GroupCard />
-        </li>
-        <li>
-          <GroupCard />
+          <GroupCard :mine="true" />
         </li>
         <li>
           <GroupCard />

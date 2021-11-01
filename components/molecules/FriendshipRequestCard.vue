@@ -102,13 +102,13 @@ export default Vue.extend({
   cursor: pointer;
   width: 2.4rem;
   height: 2.4rem;
-  background: color("secondary");
+  background: color("secondary", "darker");
   border-radius: 100%;
   display: grid;
   align-items: center;
   transition: all 0.15s linear;
   &:hover {
-    opacity: 0.8;
+    background: color("secondary");
   }
   .wrapper {
     display: grid;
