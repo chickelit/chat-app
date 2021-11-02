@@ -2,52 +2,52 @@
   <div class="conversations-list">
     <ul>
       <li>
-        <ConversationCard />
+        <ConversationCard :index="0" />
       </li>
       <li>
-        <ConversationCard />
+        <ConversationCard :index="1" />
       </li>
       <li>
-        <ConversationCard />
+        <ConversationCard :index="2" />
       </li>
       <li>
-        <ConversationCard />
+        <ConversationCard :index="3" />
       </li>
       <li>
-        <ConversationCard />
+        <ConversationCard :index="4" />
       </li>
       <li>
-        <ConversationCard />
+        <ConversationCard :index="5" />
       </li>
       <li>
-        <ConversationCard />
+        <ConversationCard :index="6" />
       </li>
       <li>
-        <ConversationCard />
+        <ConversationCard :index="7" />
       </li>
       <li>
-        <ConversationCard />
+        <ConversationCard :index="8" />
       </li>
       <li>
-        <ConversationCard />
+        <ConversationCard :index="9" />
       </li>
       <li>
-        <ConversationCard />
+        <ConversationCard :index="10" />
       </li>
       <li>
-        <ConversationCard />
+        <ConversationCard :index="11" />
       </li>
       <li>
-        <ConversationCard />
+        <ConversationCard :index="12" />
       </li>
       <li>
-        <ConversationCard />
+        <ConversationCard :index="13" />
       </li>
       <li>
-        <ConversationCard />
+        <ConversationCard :index="14" />
       </li>
       <li>
-        <ConversationCard />
+        <ConversationCard :index="15" />
       </li>
     </ul>
   </div>
