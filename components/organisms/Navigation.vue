@@ -1,105 +1,106 @@
 <template>
-  <div class="navigation">
-    <Container class="container">
-      <a href="/" class="title">ChatApp</a>
-      <button class="hamburger-button" @click="$emit('toggleHamburgerMenu')">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </button>
-    </Container>
-  </div>
+  <nav class="navigation">
+    <ul class="navigation-items">
+      <li
+        :class="['navigation-item', 'active']"
+        @click="
+          setView($event);
+          $emit('changeView', 'Conversations');
+        "
+      >
+        Conversas
+      </li>
+      <li
+        class="navigation-item"
+        @click="
+          setView($event);
+          $emit('changeView', 'Groups');
+        "
+      >
+        Grupos
+      </li>
+      <li
+        class="navigation-item"
+        @click="
+          setView($event);
+          $emit('changeView', 'Friends');
+        "
+      >
+        Amigos
+      </li>
+    </ul>
+  </nav>
 </template>
+
+<script lang="ts">
+import Vue from "vue";
+export default Vue.extend({
+  methods: {
+    setView({ target }: Event) {
+      const element = target as Element;
+      const navigationItems = document.querySelectorAll(".navigation-item")!;
+
+      navigationItems.forEach((item) => {
+        if (item.classList.contains("active")) {
+          item.classList.remove("active");
+        }
+      });
+
+      if (!element.classList.contains("active")) {
+        element.classList.add("active");
+      }
+    },
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 .navigation {
-  position: relative;
-  width: 100%;
-  background: color("primary");
+  background: color("primary", "lighter");
+  height: 2.5rem;
+  box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
   display: grid;
   align-items: center;
-  justify-items: center;
-  padding: 1rem 0;
-  .container {
+  .navigation-items {
+    height: 100%;
     display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: column;
     align-items: center;
-    .title {
+    justify-content: space-between;
+    .navigation-item {
+      height: 100%;
+      width: 100%;
+      position: relative;
       cursor: pointer;
-      font-family: Tahoma, Arial, Helvetica, sans-serif;
-      font-size: 2rem;
-      font-weight: 500;
-      justify-self: start;
+      font-family: "Acumin Regular";
       color: color("light", "darkest");
-      &:hover {
-        color: color("light");
-      }
-    }
-    nav {
+      font-weight: 600;
+      font-size: 1.125rem;
+      transition: all 0.15s linear;
       display: grid;
       align-items: center;
-      justify-self: end;
-      @include screen("small") {
-        display: none;
-      }
-      ul {
-        margin: 0;
-        display: grid;
-        grid-auto-columns: max-content;
-        grid-template-rows: max-content;
-        grid-auto-flow: column;
-        gap: 3rem;
-        align-items: center;
-        .nuxt-link-active {
-          position: relative;
-        }
-        .nuxt-link-active:after {
-          content: "";
-          top: 2.4rem;
-          left: 0;
-          border-radius: 0.5rem;
-          width: 100%;
-          height: 0.5rem;
-          background: color("dark", "lightest");
-          position: absolute;
-        }
-        .nav-item {
-          .avatar {
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 100%;
-          }
-          .nav-link {
-            font-size: 1rem;
-            font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
-            color: color("light", "darkest");
-            cursor: pointer;
-            &:hover {
-              color: color("light");
-            }
-          }
-        }
-      }
-    }
-    .hamburger-button {
-      justify-self: end;
-      cursor: pointer;
-      width: 2rem;
-      height: auto;
-      display: grid;
-      grid-auto-rows: 0.3125rem;
-      grid-auto-flow: row;
-      gap: 0.3125rem;
-      .bar {
-        width: 100%;
-        height: 100%;
-        background: color("light", "darkest");
-        border-radius: 1rem;
-      }
+      justify-items: center;
       &:hover {
-        .bar {
-          background: color("light");
+        background: color("primary", "lightest");
+        color: color("light");
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        opacity: 0;
+        width: 100%;
+        height: 0.1875rem;
+        background: color("light", "darkest");
+        bottom: 0;
+        left: 0;
+        border-radius: 0.5rem;
+        justify-self: center;
+        transition: opacity 0.15s linear;
+      }
+      &.active {
+        &:after {
+          opacity: 1;
         }
       }
     }

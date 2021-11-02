@@ -32,64 +32,62 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.options {
+.danger {
+  color: color("danger") !important;
+}
+.group-card-dropdown {
+  opacity: 0;
+  pointer-events: none;
+  padding: 0.3125rem;
+  z-index: 1;
+  position: absolute;
+  right: 3rem;
+  top: 1.5rem;
+  background: color("dark", "lightest");
+  border-radius: 0.3125rem;
   box-shadow: -2px 0 5px 0 rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  width: 2.4rem;
-  height: 2.4rem;
-  background: color("secondary", "darker");
-  border-radius: 100%;
+  min-width: 12rem;
   display: grid;
-  align-items: center;
+  grid-auto-rows: max-content;
+  gap: 0.25rem;
   transition: all 0.15s linear;
-  &:hover {
-    background: color("secondary");
-  }
-  .wrapper {
-    display: grid;
-    grid-auto-rows: max-content;
-    align-items: center;
-    justify-items: center;
-    gap: 0.125rem;
-    .dot {
-      width: 0.3125rem;
-      height: 0.3125rem;
-      background: color("dark", "lightest");
-      border-radius: 100%;
+  transform: translateX(-10px);
+  .friend-card-dropdown-item {
+    cursor: pointer;
+    position: relative;
+    font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
+    color: color("dark", "darkest");
+    &:nth-last-child(1) {
+      &:after {
+        height: 0;
+      }
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: -0.0625rem;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: color("dark", "darkest");
     }
   }
-}
-.title {
-  max-width: 16rem;
-  .skeleton-text {
-    width: 100%;
-    height: 1rem;
-    margin-bottom: 0.25rem;
-    border-radius: 0.125rem;
-  }
-}
-.latest-message {
-  max-width: 28rem;
-  .skeleton-text {
-    width: 100%;
-    height: 0.875rem;
-    margin-bottom: 0.25rem;
-    border-radius: 0.125rem;
+  &.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
   }
 }
 .group-card {
-  padding: 0.25rem;
-  border-radius: 0.3rem;
+  position: relative;
+  padding: 0.5rem 1rem;
   background: color("secondary", "lighter");
   display: grid;
-  grid-template-columns: 3rem 1fr;
+  grid-template-columns: 3rem 1fr auto;
   grid-template-rows: 3rem;
   gap: 0.5rem;
   align-items: center;
   transition: all 0.15s linear;
-  &.mine {
-    grid-template-columns: 3rem 1fr auto;
-  }
   &:hover {
     background: color("secondary", "lightest");
   }
@@ -98,12 +96,47 @@ export default Vue.extend({
     width: 100%;
     border-radius: 100%;
   }
-  .container {
-    .title {
-      width: 55%;
+  .title {
+    .skeleton-text {
+      width: 16rem;
+      height: 1rem;
+      margin-bottom: 0.25rem;
+      border-radius: 0.125rem;
     }
-    .latest-message {
-      width: 85%;
+  }
+  .latest-message {
+    .skeleton-text {
+      width: 20rem;
+      height: 1rem;
+      margin-bottom: 0.25rem;
+      border-radius: 0.125rem;
+    }
+  }
+  .options {
+    box-shadow: -2px 0 5px 0 rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    width: 2.4rem;
+    height: 2.4rem;
+    background: color("secondary", "darker");
+    border-radius: 100%;
+    display: grid;
+    align-items: center;
+    transition: all 0.15s linear;
+    &:hover {
+      background: color("secondary");
+    }
+    .wrapper {
+      display: grid;
+      grid-auto-rows: max-content;
+      align-items: center;
+      justify-items: center;
+      gap: 0.125rem;
+      .dot {
+        width: 0.3125rem;
+        height: 0.3125rem;
+        background: color("dark", "lightest");
+        border-radius: 100%;
+      }
     }
   }
 }

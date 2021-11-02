@@ -58,8 +58,8 @@ export default Vue.extend({
   padding: 0.3125rem;
   z-index: 1;
   position: absolute;
-  right: 2.4rem;
-  top: 2.5rem;
+  right: 3rem;
+  top: 1.5rem;
   background: color("dark", "lightest");
   border-radius: 0.3125rem;
   box-shadow: -2px 0 5px 0 rgba(0, 0, 0, 0.1);
@@ -133,8 +133,7 @@ export default Vue.extend({
 }
 .friend-card {
   position: relative;
-  padding: 0.5rem;
-  border-radius: 0.3rem;
+  padding: 0.5rem 1rem;
   background: color("secondary", "lighter");
   display: grid;
   grid-template-columns: 3rem 1fr auto;
