@@ -1,5 +1,5 @@
 <template>
-  <a class="friend-card" @mouseleave="disableDropdown">
+  <div class="friend-card" @mouseleave="disableDropdown">
     <div class="avatar skeleton"></div>
     <div class="container">
       <div class="username">
@@ -17,7 +17,7 @@
       <div class="friend-card-dropdown-item">Conversar com zezin</div>
       <div class="friend-card-dropdown-item danger">Desfazer amizade</div>
     </div>
-  </a>
+  </div>
 </template>
 
 <script lang="ts">
@@ -60,7 +60,7 @@ export default Vue.extend({
   position: absolute;
   right: 3rem;
   top: 1.5rem;
-  background: color("dark", "lightest");
+  background: color("light", "darkest");
   border-radius: 0.3125rem;
   box-shadow: -2px 0 5px 0 rgba(0, 0, 0, 0.1);
   min-width: 12rem;
@@ -123,15 +123,16 @@ export default Vue.extend({
   }
 }
 .username {
-  width: 55%;
+  width: 100%;
   .skeleton-text {
-    width: 16rem;
+    width: 75%;
     height: 1rem;
     margin-bottom: 0.25rem;
     border-radius: 0.125rem;
   }
 }
 .friend-card {
+  cursor: pointer;
   position: relative;
   padding: 0.5rem 1rem;
   background: color("secondary", "lighter");

@@ -31,6 +31,7 @@ export default Vue.extend({
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: max-content max-content 1fr max-content;
+  user-select: none;
   .main {
     position: relative;
   }

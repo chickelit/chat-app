@@ -1,5 +1,5 @@
 <template>
-  <a class="friendship-request-card" @mouseleave="disableDropdown">
+  <div class="friendship-request-card" @mouseleave="disableDropdown">
     <div class="avatar skeleton"></div>
     <div class="container">
       <div class="username">
@@ -19,7 +19,7 @@
       </div>
       <div class="friendship-request-card-dropdown-item">Aceitar o pedido</div>
     </div>
-  </a>
+  </div>
 </template>
 
 <script lang="ts">
@@ -62,7 +62,7 @@ export default Vue.extend({
   position: absolute;
   right: 2.4rem;
   top: 2.5rem;
-  background: color("dark", "lightest");
+  background: color("light", "darkest");
   border-radius: 0.3125rem;
   box-shadow: -2px 0 5px 0 rgba(0, 0, 0, 0.1);
   min-width: 12rem;
@@ -125,9 +125,9 @@ export default Vue.extend({
   }
 }
 .username {
-  width: 55%;
+  width: 100;
   .skeleton-text {
-    width: 16rem;
+    width: 75%;
     height: 1rem;
     margin-bottom: 0.25rem;
     border-radius: 0.125rem;

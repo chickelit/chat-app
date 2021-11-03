@@ -1,5 +1,5 @@
 <template>
-  <a href="/conversations/1" class="conversation-card">
+  <div class="conversation-card">
     <div class="avatar skeleton" />
     <div class="container">
       <div class="username">
@@ -9,7 +9,7 @@
         <div class="skeleton skeleton-text"></div>
       </div>
     </div>
-  </a>
+  </div>
 </template>
 
 <script lang="ts">
@@ -115,27 +115,30 @@ export default Vue.extend({
   }
 }
 .username {
+  width: 100%;
   .skeleton-text {
-    width: 16rem;
+    width: 60%;
     height: 1rem;
     margin-bottom: 0.25rem;
     border-radius: 0.125rem;
   }
 }
 .latest-message {
+  width: 100%;
   .skeleton-text {
-    width: 24rem;
+    width: 70%;
     height: 1rem;
     margin-bottom: 0.25rem;
     border-radius: 0.125rem;
   }
 }
 .conversation-card {
+  cursor: pointer;
   position: relative;
   padding: 0.5rem 1rem;
   background: color("secondary", "lighter");
   display: grid;
-  grid-template-columns: 3rem 1fr auto;
+  grid-template-columns: 3rem 1fr;
   grid-template-rows: 3rem;
   gap: 0.5rem;
   align-items: center;

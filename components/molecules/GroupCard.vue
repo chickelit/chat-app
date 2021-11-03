@@ -1,5 +1,5 @@
 <template>
-  <a href="/groups/1" :class="['group-card', { mine }]">
+  <div :class="['group-card', { mine }]">
     <div class="cover skeleton" />
     <div class="container">
       <div class="title">
@@ -9,14 +9,7 @@
         <div class="skeleton skeleton-text"></div>
       </div>
     </div>
-    <a v-if="mine" href="/groups/1/settings" class="options">
-      <div class="wrapper">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
-    </a>
-  </a>
+  </div>
 </template>
 
 <script lang="ts">
@@ -26,6 +19,26 @@ export default Vue.extend({
     mine: {
       type: Boolean,
       default: false,
+    },
+    index: {
+      type: Number,
+      required: true,
+    },
+  },
+  methods: {
+    toggleDropdown() {
+      const groupCardDropdown = document.querySelectorAll(
+        ".group-card-dropdown"
+      )[this.index] as Element;
+
+      groupCardDropdown.classList.toggle("active");
+    },
+    disableDropdown() {
+      const groupCardDropdown = document.querySelectorAll(
+        ".group-card-dropdown"
+      )[this.index] as Element;
+
+      groupCardDropdown.classList.remove("active");
     },
   },
 });
@@ -79,11 +92,12 @@ export default Vue.extend({
   }
 }
 .group-card {
+  cursor: pointer;
   position: relative;
   padding: 0.5rem 1rem;
   background: color("secondary", "lighter");
   display: grid;
-  grid-template-columns: 3rem 1fr auto;
+  grid-template-columns: 3rem 1fr;
   grid-template-rows: 3rem;
   gap: 0.5rem;
   align-items: center;
@@ -97,16 +111,18 @@ export default Vue.extend({
     border-radius: 100%;
   }
   .title {
+    width: 100%;
     .skeleton-text {
-      width: 16rem;
+      width: 60%;
       height: 1rem;
       margin-bottom: 0.25rem;
       border-radius: 0.125rem;
     }
   }
   .latest-message {
+    width: 100%;
     .skeleton-text {
-      width: 20rem;
+      width: 70%;
       height: 1rem;
       margin-bottom: 0.25rem;
       border-radius: 0.125rem;
