@@ -135,8 +135,7 @@ export default Vue.extend({
 }
 .friendship-request-card {
   position: relative;
-  padding: 0.5rem;
-  border-radius: 0.3rem;
+  padding: 0.5rem 1rem;
   background: color("secondary", "lighter");
   display: grid;
   grid-template-columns: 3rem 1fr auto;

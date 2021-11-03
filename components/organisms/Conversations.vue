@@ -1,57 +1,23 @@
 <template>
   <div class="conversations-list">
     <ul>
-      <li>
-        <ConversationCard :index="0" />
-      </li>
-      <li>
-        <ConversationCard :index="1" />
-      </li>
-      <li>
-        <ConversationCard :index="2" />
-      </li>
-      <li>
-        <ConversationCard :index="3" />
-      </li>
-      <li>
-        <ConversationCard :index="4" />
-      </li>
-      <li>
-        <ConversationCard :index="5" />
-      </li>
-      <li>
-        <ConversationCard :index="6" />
-      </li>
-      <li>
-        <ConversationCard :index="7" />
-      </li>
-      <li>
-        <ConversationCard :index="8" />
-      </li>
-      <li>
-        <ConversationCard :index="9" />
-      </li>
-      <li>
-        <ConversationCard :index="10" />
-      </li>
-      <li>
-        <ConversationCard :index="11" />
-      </li>
-      <li>
-        <ConversationCard :index="12" />
-      </li>
-      <li>
-        <ConversationCard :index="13" />
-      </li>
-      <li>
-        <ConversationCard :index="14" />
-      </li>
-      <li>
-        <ConversationCard :index="15" />
+      <li v-for="(conversation, index) of conversations" :key="index">
+        <ConversationCard :index="index" />
       </li>
     </ul>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from "vue";
+export default Vue.extend({
+  data() {
+    return {
+      conversations: Array(15).fill(false),
+    };
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 ::-webkit-scrollbar {

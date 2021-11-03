@@ -1,54 +1,39 @@
 <template>
   <div class="groups-list">
     <ul>
-      <li>
-        <GroupCard :mine="true" />
-      </li>
-      <li>
-        <GroupCard />
-      </li>
-      <li>
-        <GroupCard />
-      </li>
-      <li>
-        <GroupCard :mine="true" />
-      </li>
-      <li>
-        <GroupCard />
-      </li>
-      <li>
-        <GroupCard :mine="true" />
-      </li>
-      <li>
-        <GroupCard />
-      </li>
-      <li>
-        <GroupCard />
-      </li>
-      <li>
-        <GroupCard :mine="true" />
-      </li>
-      <li>
-        <GroupCard />
-      </li>
-      <li>
-        <GroupCard :mine="true" />
-      </li>
-      <li>
-        <GroupCard />
-      </li>
-      <li>
-        <GroupCard />
-      </li>
-      <li>
-        <GroupCard :mine="true" />
-      </li>
-      <li>
-        <GroupCard />
+      <li v-for="(group, index) of groups" :key="index">
+        <GroupCard :index="index" :mine="group.mine" />
       </li>
     </ul>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from "vue";
+export default Vue.extend({
+  data() {
+    return {
+      groups: [
+        { mine: false },
+        { mine: false },
+        { mine: true },
+        { mine: false },
+        { mine: true },
+        { mine: false },
+        { mine: false },
+        { mine: false },
+        { mine: false },
+        { mine: false },
+        { mine: false },
+        { mine: false },
+        { mine: true },
+        { mine: false },
+        { mine: false },
+      ],
+    };
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 ::-webkit-scrollbar {

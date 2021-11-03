@@ -1,72 +1,126 @@
 <template>
-  <div class="friendship-requests-list">
-    <nav>
+  <div class="friendship-requests">
+    <nav class="friendship-requests-navigation">
       <ul>
-        <li>
-          <FriendshipRequestCard :index="0" />
+        <li
+          class="friendship-requests-navigation-item"
+          @click="
+            setView($event);
+            $emit('changeView', 'Friends');
+          "
+        >
+          Todos
         </li>
-        <li>
-          <FriendshipRequestCard :index="1" />
-        </li>
-        <li>
-          <FriendshipRequestCard :index="2" />
-        </li>
-        <li>
-          <FriendshipRequestCard :index="3" />
-        </li>
-        <li>
-          <FriendshipRequestCard :index="4" />
-        </li>
-        <li>
-          <FriendshipRequestCard :index="5" />
-        </li>
-        <li>
-          <FriendshipRequestCard :index="6" />
-        </li>
-        <li>
-          <FriendshipRequestCard :index="7" />
-        </li>
-        <li>
-          <FriendshipRequestCard :index="8" />
-        </li>
-        <li>
-          <FriendshipRequestCard :index="9" />
-        </li>
-        <li>
-          <FriendshipRequestCard :index="10" />
-        </li>
-        <li>
-          <FriendshipRequestCard :index="11" />
-        </li>
-        <li>
-          <FriendshipRequestCard :index="12" />
-        </li>
-        <li>
-          <FriendshipRequestCard :index="13" />
-        </li>
-        <li>
-          <FriendshipRequestCard :index="14" />
-        </li>
-        <li>
-          <FriendshipRequestCard :index="15" />
+        <li
+          :class="['friendship-requests-navigation-item', 'active']"
+          @click="
+            setView($event);
+            $emit('changeView', 'FriendshipRequests');
+          "
+        >
+          Pendentes
         </li>
       </ul>
     </nav>
+    <div class="friendship-requests-list">
+      <ul>
+        <li v-for="(friend, index) of friends" :key="index">
+          <FriendshipRequestCard :index="index" />
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from "vue";
+export default Vue.extend({
+  data() {
+    return {
+      friends: Array(15).fill(false),
+    };
+  },
+  methods: {
+    setView({ target }: Event) {
+      const element = target as Element;
+      const navigationItems = document.querySelectorAll(
+        ".friendship-requests-navigation-item"
+      )!;
+
+      navigationItems.forEach((item) => {
+        if (item.classList.contains("active")) {
+          item.classList.remove("active");
+        }
+      });
+
+      if (!element.classList.contains("active")) {
+        element.classList.add("active");
+      }
+    },
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 ::-webkit-scrollbar {
   width: 0px;
 }
-.friendship-requests-list {
+.friendship-requests {
+  height: 100%;
+  background: color("secondary");
   position: absolute;
-  inset: 1rem 0;
-  background: color("primary");
-  border-radius: 0.3125rem;
-  nav {
+  inset: 0;
+  overflow-y: scroll;
+  display: grid;
+  grid-template-rows: 2.5rem 1fr;
+  .friendship-requests-navigation {
     position: absolute;
-    inset: 0.5rem;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    background: color("primary", "lightest");
+    height: 2.5rem;
+    box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-rows: 1fr;
+    ul {
+      height: 100%;
+      align-self: center;
+      display: grid;
+      grid-auto-columns: 1fr;
+      grid-auto-flow: column;
+      align-items: center;
+      justify-content: space-between;
+      li {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        cursor: pointer;
+        font-family: "Acumin Regular";
+        color: color("light", "darkest");
+        font-weight: 600;
+        font-size: 1.125rem;
+        transition: all 0.15s linear;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        &:hover {
+          background: color("secondary");
+          color: color("light");
+        }
+        &.active {
+          background: color("secondary");
+          color: color("light");
+        }
+      }
+    }
+  }
+  .friendship-requests-list {
+    position: absolute;
+    top: 2.5rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
     ul {
       position: absolute;
       inset: 0;
@@ -75,15 +129,15 @@
       grid-template-columns: 1fr;
       grid-auto-rows: max-content;
       grid-auto-flow: row;
-      gap: 0.5rem;
-    }
-  }
-}
-li {
-  &:nth-last-child(1) {
-    ::v-deep.friendship-request-card {
-      .friendship-request-card-dropdown {
-        top: -1.6rem;
+      gap: 0.125rem;
+      li {
+        &:nth-last-child(1) {
+          ::v-deep.friend-card {
+            .friend-card-dropdown {
+              top: -0.8rem;
+            }
+          }
+        }
       }
     }
   }

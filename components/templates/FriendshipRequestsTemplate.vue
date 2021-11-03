@@ -1,5 +1,5 @@
 <template>
   <div class="friends-template">
-    <FriendshipRequestsList />
+    <FriendshipRequests />
   </div>
 </template>

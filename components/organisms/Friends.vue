@@ -1,57 +1,65 @@
 <template>
   <div class="friends">
-    <ul>
-      <li>
-        <FriendCard :index="0" />
-      </li>
-      <li>
-        <FriendCard :index="1" />
-      </li>
-      <li>
-        <FriendCard :index="2" />
-      </li>
-      <li>
-        <FriendCard :index="3" />
-      </li>
-      <li>
-        <FriendCard :index="4" />
-      </li>
-      <li>
-        <FriendCard :index="5" />
-      </li>
-      <li>
-        <FriendCard :index="6" />
-      </li>
-      <li>
-        <FriendCard :index="7" />
-      </li>
-      <li>
-        <FriendCard :index="8" />
-      </li>
-      <li>
-        <FriendCard :index="9" />
-      </li>
-      <li>
-        <FriendCard :index="10" />
-      </li>
-      <li>
-        <FriendCard :index="11" />
-      </li>
-      <li>
-        <FriendCard :index="12" />
-      </li>
-      <li>
-        <FriendCard :index="13" />
-      </li>
-      <li>
-        <FriendCard :index="14" />
-      </li>
-      <li>
-        <FriendCard :index="15" />
-      </li>
-    </ul>
+    <nav class="friends-navigation">
+      <ul>
+        <li
+          :class="['friends-navigation-item', 'active']"
+          @click="
+            setView($event);
+            $emit('changeView', 'Friends');
+          "
+        >
+          Todos
+        </li>
+        <li
+          class="friends-navigation-item"
+          @click="
+            setView($event);
+            $emit('changeView', 'FriendshipRequests');
+          "
+        >
+          Pendentes
+        </li>
+      </ul>
+    </nav>
+    <div class="friends-list">
+      <ul>
+        <li v-for="(friend, index) of friends" :key="index">
+          <FriendCard :index="index" />
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from "vue";
+export default Vue.extend({
+  data() {
+    return {
+      friends: Array(15).fill(false),
+    };
+  },
+  methods: {
+    setView({ target }: Event) {
+      const element = target as Element;
+      const navigationItems = document.querySelectorAll(
+        ".friends-navigation-item"
+      )!;
+
+      navigationItems.forEach((item) => {
+        if (item.classList.contains("active")) {
+          item.classList.remove("active");
+        }
+      });
+
+      if (!element.classList.contains("active")) {
+        element.classList.add("active");
+      }
+    },
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 ::-webkit-scrollbar {
@@ -63,20 +71,71 @@
   position: absolute;
   inset: 0;
   overflow-y: scroll;
-  ul {
+  display: grid;
+  grid-template-rows: 2.5rem 1fr;
+  .friends-navigation {
     position: absolute;
-    inset: 0;
-    overflow-y: scroll;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    background: color("primary", "lightest");
+    height: 2.5rem;
+    box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
     display: grid;
-    grid-template-columns: 1fr;
-    grid-auto-rows: max-content;
-    grid-auto-flow: row;
-    gap: 0.125rem;
-    li {
-      &:nth-last-child(1) {
-        ::v-deep.friend-card {
-          .friend-card-dropdown {
-            top: -0.8rem;
+    grid-template-rows: 1fr;
+    ul {
+      height: 100%;
+      align-self: center;
+      display: grid;
+      grid-auto-columns: 1fr;
+      grid-auto-flow: column;
+      align-items: center;
+      justify-content: space-between;
+      li {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        cursor: pointer;
+        font-family: "Acumin Regular";
+        color: color("light", "darkest");
+        font-weight: 600;
+        font-size: 1.125rem;
+        transition: all 0.15s linear;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        &:hover {
+          background: color("secondary");
+          color: color("light");
+        }
+        &.active {
+          background: color("secondary");
+          color: color("light");
+        }
+      }
+    }
+  }
+  .friends-list {
+    position: absolute;
+    top: 2.5rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    ul {
+      position: absolute;
+      inset: 0;
+      overflow-y: scroll;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-auto-rows: max-content;
+      grid-auto-flow: row;
+      gap: 0.125rem;
+      li {
+        &:nth-last-child(1) {
+          ::v-deep.friend-card {
+            .friend-card-dropdown {
+              top: -0.8rem;
+            }
           }
         }
       }

@@ -3,7 +3,7 @@
     <Header />
     <Navigation @changeView="changeView($event)" />
     <main class="main">
-      <component :is="view" />
+      <component :is="view" @changeView="changeView($event)" />
     </main>
     <Footer />
   </div>
