@@ -1,7 +1,7 @@
 <template>
   <div class="groups-list">
-    <ul>
-      <li v-for="(group, index) of groups" :key="index">
+    <ul class="groups">
+      <li v-for="(group, index) of groups" :key="index" class="group">
         <GroupCard :index="index" :mine="group.mine" />
       </li>
     </ul>
@@ -43,7 +43,7 @@ export default Vue.extend({
   position: absolute;
   inset: 0;
   background: color("secondary");
-  ul {
+  .groups {
     position: absolute;
     inset: 0;
     overflow-y: scroll;
@@ -52,6 +52,15 @@ export default Vue.extend({
     grid-auto-rows: max-content;
     grid-auto-flow: row;
     gap: 0.125rem;
+    .group {
+      &:nth-last-child(1) {
+        ::v-deep.group-card {
+          .group-card-dropdown {
+            top: 0.8rem;
+          }
+        }
+      }
+    }
   }
 }
 </style>

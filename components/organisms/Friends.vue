@@ -1,8 +1,8 @@
 <template>
   <div class="friends">
-    <div class="friends-list">
-      <ul>
-        <li v-for="(friend, index) of friends" :key="index">
+    <div class="container">
+      <ul class="friends-list">
+        <li v-for="(friend, index) of friends" :key="index" class="friend">
           <FriendCard :index="index" />
         </li>
       </ul>
@@ -115,13 +115,13 @@ export default Vue.extend({
       }
     }
   }
-  .friends-list {
+  .container {
     position: absolute;
     top: 0;
     bottom: 2.5rem;
     left: 0;
     right: 0;
-    ul {
+    .friends-list {
       position: absolute;
       inset: 0;
       overflow-y: scroll;
@@ -130,7 +130,7 @@ export default Vue.extend({
       grid-auto-rows: max-content;
       grid-auto-flow: row;
       gap: 0.125rem;
-      li {
+      .friend {
         &:nth-last-child(1) {
           ::v-deep.friend-card {
             .friend-card-dropdown {

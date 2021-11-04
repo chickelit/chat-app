@@ -1,7 +1,11 @@
 <template>
-  <div class="conversations-list">
-    <ul>
-      <li v-for="(conversation, index) of conversations" :key="index">
+  <div class="conversations">
+    <ul class="conversations-list">
+      <li
+        v-for="(conversation, index) of conversations"
+        :key="index"
+        class="conversation"
+      >
         <ConversationCard :index="index" />
       </li>
     </ul>
@@ -23,11 +27,11 @@ export default Vue.extend({
 ::-webkit-scrollbar {
   width: 0px;
 }
-.conversations-list {
+.conversations {
   position: absolute;
   inset: 0;
   background: color("secondary");
-  ul {
+  .conversations-list {
     position: absolute;
     inset: 0;
     overflow-y: scroll;
