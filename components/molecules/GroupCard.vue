@@ -1,5 +1,5 @@
 <template>
-  <div :class="['group-card', { mine }]" @mouseleave="disableDropdown">
+  <a href="/chat/group/1" :class="['group-card', { mine }]" @mouseleave="disableDropdown">
     <div class="cover skeleton" />
     <div class="container">
       <div class="title">
@@ -19,7 +19,7 @@
     <div class="group-card-dropdown">
       <div class="group-card-dropdown-item">Ver dados do grupo</div>
     </div>
-  </div>
+  </a>
 </template>
 
 <script lang="ts">

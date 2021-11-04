@@ -1,5 +1,5 @@
 <template>
-  <main class="group-chat">
+  <div class="group-chat">
     <header class="header">
       <div class="cover skeleton"></div>
       <div class="title">
@@ -32,7 +32,7 @@
         />
       </form>
     </div>
-  </main>
+  </div>
 </template>
 
 <script lang="ts">
@@ -58,13 +58,10 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .group-chat {
-  min-height: 32rem;
-  min-width: 18rem;
-  position: absolute;
-  inset: 1rem 0;
+  width: 100%;
+  height: 100vh;
   display: grid;
   background: color("primary", "lighter");
-  border-radius: 0.3125rem;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
   .scroll-wrapper {

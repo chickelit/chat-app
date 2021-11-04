@@ -1,5 +1,5 @@
 <template>
-  <div class="conversation-card">
+  <a href="/chat/conversation/1" class="conversation-card">
     <div class="avatar skeleton" />
     <div class="container">
       <div class="username">
@@ -9,7 +9,7 @@
         <div class="skeleton skeleton-text"></div>
       </div>
     </div>
-  </div>
+  </a>
 </template>
 
 <script lang="ts">
@@ -19,22 +19,6 @@ export default Vue.extend({
     index: {
       type: Number,
       required: true,
-    },
-  },
-  methods: {
-    toggleDropdown() {
-      const friendCardDropdown = document.querySelectorAll(
-        ".friend-card-dropdown"
-      )[this.index] as Element;
-
-      friendCardDropdown.classList.toggle("active");
-    },
-    disableDropdown() {
-      const friendCardDropdown = document.querySelectorAll(
-        ".friend-card-dropdown"
-      )[this.index] as Element;
-
-      friendCardDropdown.classList.remove("active");
     },
   },
 });
