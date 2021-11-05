@@ -32,7 +32,7 @@ export default Vue.extend({
 .base-input {
   background: color("primary", "lighter");
   font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
-  color: color("dark", "lightest");
+  color: color("light", "darkest");
   padding: 0.25rem 0.75rem;
   border-radius: 0.3rem;
   font-size: 1.0625rem;
@@ -40,6 +40,10 @@ export default Vue.extend({
   box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
   &:focus {
     background: color("primary", "lightest");
+    color: color("light");
+  }
+  &::placeholder {
+    color: color("light", "darkest");
   }
 }
 </style>

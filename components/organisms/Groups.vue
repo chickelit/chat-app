@@ -2,7 +2,11 @@
   <div class="groups-list">
     <ul class="groups">
       <li v-for="(group, index) of groups" :key="index" class="group">
-        <GroupCard :index="index" :mine="group.mine" />
+        <GroupCard
+          :index="index"
+          :mine="group.mine"
+          @click="$emit('changeView', 'GroupChat')"
+        />
       </li>
     </ul>
   </div>

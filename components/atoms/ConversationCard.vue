@@ -1,5 +1,5 @@
 <template>
-  <a href="/chat/conversation/1" class="conversation-card">
+  <div class="conversation-card" @click="$emit('click')">
     <div class="avatar skeleton" />
     <div class="container">
       <div class="username">
@@ -9,7 +9,7 @@
         <div class="skeleton skeleton-text"></div>
       </div>
     </div>
-  </a>
+  </div>
 </template>
 
 <script lang="ts">

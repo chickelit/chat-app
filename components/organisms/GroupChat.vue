@@ -1,23 +1,26 @@
 <template>
   <div class="group-chat">
-    <header class="header">
-      <div class="cover skeleton"></div>
-      <div class="title">
+    <ChatHeader class="chat-header">
+      <div class="back" @click="$emit('changeView', 'Groups')">
+        <img src="@/assets/img/arrow-left.svg" alt="Arrow left" />
+      </div>
+      <div class="avatar skeleton"></div>
+      <div class="username">
         <div class="skeleton skeleton-text"></div>
       </div>
-    </header>
+    </ChatHeader>
     <div class="scroll-wrapper">
-      <GroupMessageList />
-      <div class="scroll-down" @click="scrollToBottom">
-        <img
-          src="@/assets/img/scroll-down.svg"
-          alt="Duas setas apontando para baixo"
+      <MessageList>
+        <GroupMessage
+          v-for="(message, index) in messages"
+          :key="index"
+          :mine="message.mine"
         />
-      </div>
+      </MessageList>
     </div>
-    <div class="group-message-engine">
+    <div class="message-engine">
       <form>
-        <BaseInput v-model="message.content" placeholder="Mensagem" />
+        <BaseInput placeholder="Mensagem" />
         <button type="submit" class="form-button">
           <img src="@/assets/img/send.svg" alt="Paper plane" />
         </button>
@@ -40,122 +43,121 @@ import Vue from "vue";
 export default Vue.extend({
   data() {
     return {
-      message: {
-        content: "",
-      },
+      messages: [
+        { mine: true },
+        { mine: true },
+        { mine: false },
+        { mine: true },
+        { mine: false },
+        { mine: false },
+        { mine: true },
+        { mine: true },
+        { mine: false },
+        { mine: false },
+        { mine: true },
+        { mine: false },
+        { mine: false },
+        { mine: true },
+        { mine: true },
+        { mine: false },
+        { mine: false },
+        { mine: true },
+        { mine: false },
+      ],
     };
-  },
-  methods: {
-    scrollToBottom() {
-      const messageList = document.querySelector(".group-message-list")!;
-      const latestMessage = messageList.lastChild as Element;
-
-      latestMessage?.scrollIntoView({ behavior: "smooth", block: "end" });
-    },
   },
 });
 </script>
 
 <style lang="scss" scoped>
 .group-chat {
+  position: fixed;
+  top: 0;
+  bottom: 0;
   width: 100%;
-  height: 100vh;
   display: grid;
   background: color("primary", "lighter");
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
+  .chat-header {
+    .back {
+      cursor: pointer;
+      &:hover {
+        img {
+          filter: invert(0.75);
+        }
+      }
+      img {
+        filter: invert(0.65);
+        transition: all 0.15s linear;
+      }
+    }
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+    }
+    .username {
+      font-size: 1.25rem;
+      font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
+      font-weight: 600;
+      color: color("dark", "lightest");
+      .skeleton-text {
+        height: 1.25rem;
+        width: 12rem;
+        border-radius: 0.125rem;
+      }
+    }
+  }
+  .message-engine {
+    align-self: end;
+    height: 2.5rem;
+    padding: 0.5rem;
+    background: color("primary");
+    box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 0.3125rem 0.3125rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    form {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 1rem;
+      .form-button {
+        cursor: pointer;
+        position: relative;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 100%;
+        background: color("primary", "lighter");
+        transition: all 0.15s linear;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        img {
+          width: 80%;
+          filter: invert(0.65);
+          transition: all 0.15s linear;
+        }
+        &:hover {
+          background: color("primary", "lightest");
+          img {
+            filter: invert(0.75);
+          }
+        }
+      }
+      input[type="file"] {
+        display: none;
+      }
+    }
+  }
   .scroll-wrapper {
     position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
     ::-webkit-scrollbar {
       width: 0px;
     }
-    .scroll-down {
-      cursor: pointer;
-      position: absolute;
-      top: -1.125rem;
-      right: 2.5rem;
-      width: 2.25rem;
-      height: 2.25rem;
-      background: color("secondary", "darker");
-      border-radius: 100%;
-      display: grid;
-      align-items: center;
-      justify-items: center;
-      transition: all 0.15s linear;
-      &:hover {
-        background: color("secondary", "lighter");
-      }
-      img {
-        height: 85%;
-        width: 85%;
-        filter: invert(0.65);
-      }
-    }
   }
-}
-.header {
-  padding: 0.75rem;
-  background: color("primary");
-  border-radius: 0.3125rem 0.3125rem 0 0;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
-  display: grid;
-  grid-template-columns: 3.4rem 1fr;
-  grid-template-rows: 3.4rem;
-  align-items: center;
-  gap: 1rem;
-}
-.cover {
-  width: 100%;
-  height: 100%;
-  border-radius: 100%;
-}
-.title {
-  font-size: 1.25rem;
-  font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
-  font-weight: 600;
-  color: color("dark", "lightest");
-  .skeleton-text {
-    height: 1.25rem;
-    width: 12rem;
-    border-radius: 0.125rem;
-  }
-}
-.group-message-engine {
-  align-self: end;
-  height: 2.5rem;
-  padding: 0.5rem;
-  background: color("primary");
-  box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
-  border-radius: 0 0 0.3125rem 0.3125rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-  form {
-    display: grid;
-    grid-template-columns: 1fr auto auto;
-    gap: 1rem;
-  }
-}
-.form-button {
-  cursor: pointer;
-  position: relative;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 100%;
-  background: color("primary", "lighter");
-  transition: all 0.15s linear;
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  img {
-    width: 80%;
-    filter: invert(0.45);
-  }
-  &:hover {
-    background: color("primary", "lightest");
-  }
-}
-input[type="file"] {
-  display: none;
 }
 </style>

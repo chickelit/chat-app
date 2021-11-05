@@ -1,5 +1,0 @@
-<template>
-  <div class="friends-template">
-    <FriendsList />
-  </div>
-</template>

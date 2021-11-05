@@ -1,11 +1,9 @@
 <template>
   <header class="header">
-    <h1 class="title">
-      <a href="/">ChatApp</a>
-    </h1>
-    <a href="/profile">
+    <h1 class="title">ChatApp</h1>
+    <div class="container">
       <div class="avatar skeleton"></div>
-    </a>
+    </div>
   </header>
 </template>
 
@@ -19,21 +17,20 @@
   grid-template-columns: 1fr auto;
   align-items: center;
   .title {
-    a {
-      font-family: "Tahoma";
-      color: color("light", "darkest");
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.15s linear;
-      &:hover {
-        color: color("light");
-      }
+    font-family: "Tahoma";
+    color: color("light", "darkest");
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s linear;
+    &:hover {
+      color: color("light");
     }
   }
-  a {
+  .container {
     height: 75%;
     aspect-ratio: 1 / 1;
     border-radius: 100%;
+    cursor: pointer;
     .avatar {
       height: 100%;
       width: 100%;
