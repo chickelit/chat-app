@@ -6,7 +6,7 @@
         :key="index"
         class="conversation"
       >
-        <ConversationCard :index="index" @click="$emit('changeView', 'ConversationChat')" />
+        <ConversationCard aria-label="Conversar com <username>" :index="index" @click="$emit('changeView', 'ConversationChat')" />
       </li>
     </ul>
   </div>

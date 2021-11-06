@@ -1,5 +1,5 @@
 <template>
-  <div class="conversation-card" @click="$emit('click')">
+  <div class="conversation-card" role="link" @click="$emit('click')">
     <div class="avatar skeleton" />
     <div class="container">
       <div class="username">

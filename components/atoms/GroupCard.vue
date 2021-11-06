@@ -1,15 +1,27 @@
 <template>
-  <div :class="['group-card', { mine }]" @mouseleave="disableDropdown" @click="$emit('click')">
-    <div class="cover skeleton" />
-    <div class="container">
-      <div class="title">
-        <div class="skeleton skeleton-text"></div>
-      </div>
-      <div class="latest-message">
-        <div class="skeleton skeleton-text"></div>
+  <div
+    :class="['group-card', { mine }]"
+    aria-label="Conversar no grupo <title>"
+    role="link"
+    @mouseleave="disableDropdown"
+  >
+    <div class="data-container" @click="$emit('click')">
+      <div class="cover skeleton" />
+      <div class="container">
+        <div class="title">
+          <div class="skeleton skeleton-text"></div>
+        </div>
+        <div class="latest-message">
+          <div class="skeleton skeleton-text"></div>
+        </div>
       </div>
     </div>
-    <div class="options" @click="toggleDropdown">
+    <div
+      class="options"
+      aria-label="Opções do grupo"
+      role="button"
+      @click="toggleDropdown"
+    >
       <div class="wrapper">
         <div class="dot"></div>
         <div class="dot"></div>
@@ -17,7 +29,13 @@
       </div>
     </div>
     <div class="group-card-dropdown">
-      <div class="group-card-dropdown-item">Ver dados do grupo</div>
+      <div
+        aria-label="Ver dados do grupo"
+        role="button"
+        class="group-card-dropdown-item"
+      >
+        Ver dados do grupo
+      </div>
     </div>
   </div>
 </template>
@@ -107,35 +125,40 @@ export default Vue.extend({
   padding: 0.5rem 1rem;
   background: color("secondary", "lighter");
   display: grid;
-  grid-template-columns: 3rem 1fr auto;
-  grid-template-rows: 3rem;
-  gap: 0.5rem;
+  grid-template-columns: 1fr auto;
   align-items: center;
-  transition: all 0.15s linear;
   &:hover {
     background: color("secondary", "lightest");
   }
-  .cover {
-    height: 100%;
-    width: 100%;
-    border-radius: 100%;
-  }
-  .title {
-    width: 100%;
-    .skeleton-text {
-      width: 60%;
-      height: 1rem;
-      margin-bottom: 0.25rem;
-      border-radius: 0.125rem;
+  .data-container {
+    display: grid;
+    grid-template-columns: 3rem 1fr auto;
+    grid-template-rows: 3rem;
+    gap: 0.5rem;
+    align-items: center;
+    transition: all 0.15s linear;
+    .cover {
+      height: 100%;
+      width: 100%;
+      border-radius: 100%;
     }
-  }
-  .latest-message {
-    width: 100%;
-    .skeleton-text {
-      width: 70%;
-      height: 1rem;
-      margin-bottom: 0.25rem;
-      border-radius: 0.125rem;
+    .title {
+      width: 100%;
+      .skeleton-text {
+        width: 60%;
+        height: 1rem;
+        margin-bottom: 0.25rem;
+        border-radius: 0.125rem;
+      }
+    }
+    .latest-message {
+      width: 100%;
+      .skeleton-text {
+        width: 70%;
+        height: 1rem;
+        margin-bottom: 0.25rem;
+        border-radius: 0.125rem;
+      }
     }
   }
   .options {

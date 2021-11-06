@@ -6,7 +6,12 @@
         <div class="skeleton skeleton-text"></div>
       </div>
     </div>
-    <div class="options" @click="toggleDropdown">
+    <div
+      class="options"
+      aria-label="Opções"
+      role="button"
+      @click="toggleDropdown"
+    >
       <div class="wrapper">
         <div class="dot"></div>
         <div class="dot"></div>
@@ -14,8 +19,20 @@
       </div>
     </div>
     <div class="friend-card-dropdown">
-      <div class="friend-card-dropdown-item">Conversar com zezin</div>
-      <div class="friend-card-dropdown-item danger">Desfazer amizade</div>
+      <div
+        class="friend-card-dropdown-item"
+        role="button"
+        aria-label="Conversar com <username>"
+      >
+        Conversar com zezin
+      </div>
+      <div
+        class="friend-card-dropdown-item danger"
+        role="button"
+        aria-label="Desfazer amizade com <username>"
+      >
+        Desfazer amizade
+      </div>
     </div>
   </div>
 </template>

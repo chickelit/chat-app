@@ -11,6 +11,7 @@
       <ul>
         <li
           :class="['friends-navigation-item', 'active']"
+          aria-label="Ir para a listagem de todos os amigos"
           @click="
             setView($event);
             $emit('changeView', 'Friends');
@@ -20,6 +21,7 @@
         </li>
         <li
           class="friends-navigation-item"
+          aria-label="Ir para a listagem de pedidos de amizade"
           @click="
             setView($event);
             $emit('changeView', 'FriendshipRequests');

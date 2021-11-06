@@ -1,7 +1,7 @@
 <template>
   <div class="group-chat">
     <ChatHeader class="chat-header">
-      <div class="back" @click="$emit('changeView', 'Groups')">
+      <div aria-label="Voltar para a lista de grupos" class="back" @click="$emit('changeView', 'Groups')">
         <img src="@/assets/img/arrow-left.svg" alt="Arrow left" />
       </div>
       <div class="avatar skeleton"></div>
@@ -20,11 +20,11 @@
     </div>
     <div class="message-engine">
       <form>
-        <BaseInput placeholder="Mensagem" />
-        <button type="submit" class="form-button">
+        <BaseInput aria-label="Escrever mensagem" placeholder="Mensagem" />
+        <button aria-label="Enviar mensagem" type="submit" class="form-button">
           <img src="@/assets/img/send.svg" alt="Paper plane" />
         </button>
-        <label for="file-upload" :class="['file-upload', 'form-button']">
+        <label aria-label="Fazer upload de mídia" for="file-upload" :class="['file-upload', 'form-button']">
           <img src="@/assets/img/arrow-up.svg" alt="Arrow up" />
         </label>
         <input

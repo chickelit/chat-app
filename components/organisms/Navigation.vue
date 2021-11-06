@@ -3,6 +3,7 @@
     <ul class="navigation-items">
       <li
         :class="['navigation-item', 'active']"
+        aria-label="Ir para a listagem de conversas"
         @click="
           setView($event);
           $emit('changeView', 'Conversations');
@@ -12,6 +13,7 @@
       </li>
       <li
         class="navigation-item"
+        aria-label="Ir para a listagem de grupos"
         @click="
           setView($event);
           $emit('changeView', 'Groups');
@@ -21,6 +23,7 @@
       </li>
       <li
         class="navigation-item"
+        aria-label="Ir para a listagem de amigos"
         @click="
           setView($event);
           $emit('changeView', 'Friends');

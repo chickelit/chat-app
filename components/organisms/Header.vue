@@ -1,8 +1,8 @@
 <template>
   <header class="header">
-    <h1 class="title">ChatApp</h1>
-    <div class="container">
-      <div class="avatar skeleton"></div>
+    <h1 class="title" role="button">ChatApp</h1>
+    <div aria-label="Ir para o meu perfil" role="button" class="container">
+      <div class="avatar skeleton" role="img"></div>
     </div>
   </header>
 </template>
@@ -17,6 +17,7 @@
   grid-template-columns: 1fr auto;
   align-items: center;
   .title {
+    width: max-content;
     font-family: "Tahoma";
     color: color("light", "darkest");
     font-weight: 500;
