@@ -1,7 +1,7 @@
 <template>
   <div class="home-template">
     <Header />
-    <Navigation :active="view" @changeView="changeView($event)" />
+    <Navigation @changeView="changeView($event)" />
     <main class="main">
       <component :is="view" @changeView="changeView($event)" />
     </main>

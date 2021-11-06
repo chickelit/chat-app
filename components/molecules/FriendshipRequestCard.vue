@@ -117,7 +117,7 @@ export default Vue.extend({
   cursor: pointer;
   width: 2.4rem;
   height: 2.4rem;
-  background: color("secondary", "darker");
+  background: color("primary", "lightest");
   border-radius: 100%;
   display: grid;
   align-items: center;

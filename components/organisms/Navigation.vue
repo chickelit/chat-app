@@ -22,7 +22,7 @@
         Grupos
       </li>
       <li
-        :class="['navigation-item', {'active': active === 'Friends'}]"
+        class="navigation-item"
         aria-label="Ir para a listagem de amigos"
         @click="
           setView($event);
@@ -32,14 +32,14 @@
         Amigos
       </li>
       <li
-        :class="['navigation-item', {'active': active === 'FriendshipRequests'}]"
+        class="navigation-item"
         aria-label="Ir para a listagem de pedidos de amizade"
         @click="
           setView($event);
           $emit('changeView', 'FriendshipRequests');
         "
       >
-        Pedidos de amizade
+        Pendentes
       </li>
     </ul>
   </nav>
@@ -48,12 +48,6 @@
 <script lang="ts">
 import Vue from "vue";
 export default Vue.extend({
-  props: {
-    active: {
-      type: String,
-      default: "",
-    },
-  },
   methods: {
     setView({ target }: Event) {
       const element = target as Element;
@@ -100,11 +94,6 @@ export default Vue.extend({
       display: grid;
       align-items: center;
       justify-items: center;
-      &:nth-last-child(1) {
-        @include screen("small") {
-          display: none;
-        }
-      }
       &:hover {
         background: color("primary", "lightest");
         color: color("light");

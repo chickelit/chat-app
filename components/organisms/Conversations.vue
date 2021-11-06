@@ -37,10 +37,6 @@ export default Vue.extend({
   background: color("secondary");
   display: grid;
   .conversations-list {
-    @include screen("infinity") {
-      width: 60%;
-      margin: 0 auto;
-    }
     position: absolute;
     inset: 0;
     overflow-y: scroll;

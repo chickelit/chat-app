@@ -48,10 +48,6 @@ export default Vue.extend({
   inset: 0;
   background: color("secondary");
   .groups-list {
-    @include screen("infinity") {
-      width: 60%;
-      margin: 0 auto;
-    }
     position: absolute;
     inset: 0;
     overflow-y: scroll;
