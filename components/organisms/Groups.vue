@@ -1,6 +1,6 @@
 <template>
-  <div class="groups-list">
-    <ul class="groups">
+  <div class="groups">
+    <ul class="groups-list">
       <li v-for="(group, index) of groups" :key="index" class="group">
         <GroupCard
           :index="index"
@@ -43,11 +43,15 @@ export default Vue.extend({
 ::-webkit-scrollbar {
   width: 0px;
 }
-.groups-list {
+.groups {
   position: absolute;
   inset: 0;
   background: color("secondary");
-  .groups {
+  .groups-list {
+    @include screen("infinity") {
+      width: 60%;
+      margin: 0 auto;
+    }
     position: absolute;
     inset: 0;
     overflow-y: scroll;

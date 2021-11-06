@@ -6,7 +6,11 @@
         :key="index"
         class="conversation"
       >
-        <ConversationCard aria-label="Conversar com <username>" :index="index" @click="$emit('changeView', 'ConversationChat')" />
+        <ConversationCard
+          aria-label="Conversar com <username>"
+          :index="index"
+          @click="$emit('changeView', 'ConversationChat')"
+        />
       </li>
     </ul>
   </div>
@@ -31,7 +35,12 @@ export default Vue.extend({
   position: absolute;
   inset: 0;
   background: color("secondary");
+  display: grid;
   .conversations-list {
+    @include screen("infinity") {
+      width: 60%;
+      margin: 0 auto;
+    }
     position: absolute;
     inset: 0;
     overflow-y: scroll;

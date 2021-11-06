@@ -1,7 +1,7 @@
 <template>
   <div class="home-template">
     <Header />
-    <Navigation @changeView="changeView($event)" />
+    <Navigation :active="view" @changeView="changeView($event)" />
     <main class="main">
       <component :is="view" @changeView="changeView($event)" />
     </main>
@@ -31,7 +31,7 @@ export default Vue.extend({
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: max-content max-content 1fr max-content;
-  //user-select: none;
+  user-select: none;
   .main {
     position: relative;
   }

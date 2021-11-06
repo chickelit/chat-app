@@ -77,6 +77,12 @@ export default Vue.extend({
   overflow-y: scroll;
   display: grid;
   grid-template-rows: 1fr 2.5rem;
+  @include screen("small") {
+    grid-template-rows: 1fr;
+    .friendship-requests-navigation {
+      display: grid !important;
+    }
+  }
   .friendship-requests-navigation {
     position: absolute;
     bottom: 0;
@@ -85,7 +91,7 @@ export default Vue.extend({
     background: color("primary", "lightest");
     height: 2.5rem;
     box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
-    display: grid;
+    display: none;
     grid-template-rows: 1fr;
     ul {
       height: 100%;
@@ -122,10 +128,17 @@ export default Vue.extend({
   .container {
     position: absolute;
     top: 0;
-    bottom: 2.5rem;
+    bottom: 0;
     left: 0;
     right: 0;
+    @include screen("small") {
+      bottom: 2.5rem;
+    }
     .friendship-requests-list {
+      @include screen("infinity") {
+        width: 60%;
+        margin: 0 auto;
+      }
       position: absolute;
       inset: 0;
       overflow-y: scroll;

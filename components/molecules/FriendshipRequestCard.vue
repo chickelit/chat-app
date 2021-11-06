@@ -143,8 +143,7 @@ export default Vue.extend({
   width: 100;
   .skeleton-text {
     width: 75%;
-    height: 1rem;
-    margin-bottom: 0.25rem;
+    height: 1.125rem;
     border-radius: 0.125rem;
   }
 }
