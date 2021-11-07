@@ -12,6 +12,17 @@
 	🚧  Em desenvolvimento...  🚧
 </h4>
 
+<table>
+  <tr>
+    <td align="center" style="padding=0;width=50%;">
+      <img src="https://github.com/jose13162/chatApp/blob/main/docs/mobileHome.jpg?raw=true" heigth="180em" title="mobile home">
+    </td>
+    <td align="center" style="padding=0;width=50%;">
+      <img src="https://github.com/jose13162/chatApp/blob/main/docs/desktopHome.jpg?raw=true" heigth="180em" title="desktop home">
+    </td>
+  </tr>
+</table>
+
 ### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
