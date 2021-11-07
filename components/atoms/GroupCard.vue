@@ -1,39 +1,41 @@
 <template>
-  <div 
+  <div
     :class="['group-card', { mine }]"
     aria-label="Conversar no grupo <title>"
     @mouseleave="disableDropdown"
   >
-    <a href="/chat/group/1" class="data-container">
-      <div class="cover skeleton" />
-      <div class="container">
-        <div class="title">
-          <div class="skeleton skeleton-text"></div>
+    <div class="group-card-wrapper">
+      <a href="/chat/group/1" class="data-container">
+        <div class="cover skeleton" />
+        <div class="container">
+          <div class="title">
+            <div class="skeleton skeleton-text"></div>
+          </div>
+          <div class="latest-message">
+            <div class="skeleton skeleton-text"></div>
+          </div>
         </div>
-        <div class="latest-message">
-          <div class="skeleton skeleton-text"></div>
-        </div>
-      </div>
-    </a>
-    <div
-      class="options"
-      aria-label="Opções do grupo"
-      role="button"
-      @click="toggleDropdown"
-    >
-      <div class="wrapper">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
-    </div>
-    <div class="group-card-dropdown">
+      </a>
       <div
-        aria-label="Ver dados do grupo"
+        class="options"
+        aria-label="Opções do grupo"
         role="button"
-        class="group-card-dropdown-item"
+        @click="toggleDropdown"
       >
-        Ver dados do grupo
+        <div class="wrapper">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+      <div class="group-card-dropdown">
+        <div
+          aria-label="Ver dados do grupo"
+          role="button"
+          class="group-card-dropdown-item"
+        >
+          Ver dados do grupo
+        </div>
       </div>
     </div>
   </div>
@@ -79,9 +81,8 @@ export default Vue.extend({
   opacity: 0;
   pointer-events: none;
   padding: 0.3125rem;
-  z-index: 1;
   position: absolute;
-  right: 3rem;
+  right: 2.25rem;
   top: 1.5rem;
   background: color("dark", "lightest");
   border-radius: 0.3125rem;
@@ -120,23 +121,29 @@ export default Vue.extend({
 }
 .group-card {
   cursor: pointer;
-  position: relative;
   padding: 0.5rem 1rem;
   background: color("secondary", "lighter");
   display: grid;
   grid-template-columns: 1fr auto;
-  align-items: center;
+  justify-items: center;
   transition: all 0.15s linear;
   &:hover {
     background: color("secondary", "lightest");
   }
+  .group-card-wrapper {
+    position: relative;
+    width: 60%;
+    max-width: 48rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
   .data-container {
     display: grid;
-    grid-template-columns: 3rem 1fr auto;
+    grid-template-columns: 3rem 1fr;
     grid-template-rows: 3rem;
     gap: 0.5rem;
     align-items: center;
-    transition: all 0.15s linear;
     .cover {
       height: 100%;
       width: 100%;
@@ -163,8 +170,8 @@ export default Vue.extend({
   .options {
     box-shadow: -2px 0 5px 0 rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 2.4375rem;
+    height: 2.4375rem;
     background: color("primary", "lightest");
     border-radius: 100%;
     display: grid;

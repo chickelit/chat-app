@@ -1,37 +1,37 @@
 <template>
   <div class="friend-card" @mouseleave="disableDropdown">
-    <div class="avatar skeleton"></div>
-    <div class="container">
+    <div class="friend-card-wrapper">
+      <div class="avatar skeleton"></div>
       <div class="username">
         <div class="skeleton skeleton-text"></div>
       </div>
-    </div>
-    <div
-      class="options"
-      aria-label="Opções"
-      role="button"
-      @click="toggleDropdown"
-    >
-      <div class="wrapper">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
-    </div>
-    <div class="friend-card-dropdown">
       <div
-        class="friend-card-dropdown-item"
+        class="options"
+        aria-label="Opções"
         role="button"
-        aria-label="Conversar com <username>"
+        @click="toggleDropdown"
       >
-        Conversar com zezin
+        <div class="wrapper">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
       </div>
-      <div
-        class="friend-card-dropdown-item danger"
-        role="button"
-        aria-label="Desfazer amizade com <username>"
-      >
-        Desfazer amizade
+      <div class="friend-card-dropdown">
+        <div
+          class="friend-card-dropdown-item"
+          role="button"
+          aria-label="Conversar com <username>"
+        >
+          Conversar com zezin
+        </div>
+        <div
+          class="friend-card-dropdown-item danger"
+          role="button"
+          aria-label="Desfazer amizade com <username>"
+        >
+          Desfazer amizade
+        </div>
       </div>
     </div>
   </div>
@@ -73,9 +73,8 @@ export default Vue.extend({
   opacity: 0;
   pointer-events: none;
   padding: 0.3125rem;
-  z-index: 1;
   position: absolute;
-  right: 3rem;
+  right: 2.25rem;
   top: 1.5rem;
   background: color("light", "darkest");
   border-radius: 0.3125rem;
@@ -115,9 +114,9 @@ export default Vue.extend({
 .options {
   box-shadow: -2px 0 5px 0 rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  width: 2.4rem;
-  height: 2.4rem;
-  background: color("secondary", "darker");
+  width: 2.4375rem;
+  height: 2.4375rem;
+  background: color("primary", "lightest");
   border-radius: 100%;
   display: grid;
   align-items: center;
@@ -149,15 +148,24 @@ export default Vue.extend({
 }
 .friend-card {
   cursor: pointer;
-  position: relative;
   padding: 0.5rem 1rem;
   background: color("secondary", "lighter");
   display: grid;
-  grid-template-columns: 3rem 1fr auto;
+  grid-template-columns: 1fr;
   grid-template-rows: 3rem;
   gap: 0.5rem;
-  align-items: center;
+  justify-items: center;
   transition: all 0.15s linear;
+  .friend-card-wrapper {
+    position: relative;
+    width: 60%;
+    max-width: 48rem;
+    display: grid;
+    grid-template-columns: 3rem 1fr auto;
+    grid-template-rows: 3rem;
+    gap: 0.5rem;
+    align-items: center;
+  }
   &:hover {
     background: color("secondary", "lightest");
   }

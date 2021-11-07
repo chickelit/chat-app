@@ -1,37 +1,37 @@
 <template>
   <div class="friendship-request-card" @mouseleave="disableDropdown">
-    <div class="avatar skeleton"></div>
-    <div class="container">
+    <div class="friendship-request-card-wrapper">
+      <div class="avatar skeleton"></div>
       <div class="username">
         <div class="skeleton skeleton-text"></div>
       </div>
-    </div>
-    <div
-      class="options"
-      role="button"
-      aria-label="Opções"
-      @click="toggleDropdown"
-    >
-      <div class="wrapper">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
-    </div>
-    <div class="friendship-request-card-dropdown">
       <div
-        class="friendship-request-card-dropdown-item danger"
-        aria-label="Recusar pedido de amizade de <username>"
+        class="options"
         role="button"
+        aria-label="Opções"
+        @click="toggleDropdown"
       >
-        Recusar o pedido
+        <div class="wrapper">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
       </div>
-      <div
-        class="friendship-request-card-dropdown-item"
-        aria-label="Aceitar pedido de amizade de <username>"
-        role="button"
-      >
-        Aceitar o pedido
+      <div class="friendship-request-card-dropdown">
+        <div
+          class="friendship-request-card-dropdown-item danger"
+          aria-label="Recusar pedido de amizade de <username>"
+          role="button"
+        >
+          Recusar o pedido
+        </div>
+        <div
+          class="friendship-request-card-dropdown-item"
+          aria-label="Aceitar pedido de amizade de <username>"
+          role="button"
+        >
+          Aceitar o pedido
+        </div>
       </div>
     </div>
   </div>
@@ -73,10 +73,9 @@ export default Vue.extend({
   opacity: 0;
   pointer-events: none;
   padding: 0.3125rem;
-  z-index: 1;
   position: absolute;
-  right: 2.4rem;
-  top: 2.5rem;
+  right: 2.25rem;
+  top: 1.5rem;
   background: color("light", "darkest");
   border-radius: 0.3125rem;
   box-shadow: -2px 0 5px 0 rgba(0, 0, 0, 0.1);
@@ -115,8 +114,8 @@ export default Vue.extend({
 .options {
   box-shadow: -2px 0 5px 0 rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 2.4375rem;
+  height: 2.4375rem;
   background: color("primary", "lightest");
   border-radius: 100%;
   display: grid;
@@ -148,15 +147,24 @@ export default Vue.extend({
   }
 }
 .friendship-request-card {
-  position: relative;
   padding: 0.5rem 1rem;
   background: color("secondary", "lighter");
   display: grid;
-  grid-template-columns: 3rem 1fr auto;
+  grid-template-columns: 1fr;
   grid-template-rows: 3rem;
   gap: 0.5rem;
-  align-items: center;
+  justify-items: center;
   transition: all 0.15s linear;
+  .friendship-request-card-wrapper {
+    position: relative;
+    width: 60%;
+    max-width: 48rem;
+    display: grid;
+    grid-template-columns: 3rem 1fr auto;
+    grid-template-rows: 3rem;
+    gap: 0.5rem;
+    align-items: center;
+  }
   &:hover {
     background: color("secondary", "lightest");
   }
