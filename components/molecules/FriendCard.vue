@@ -165,6 +165,9 @@ export default Vue.extend({
     grid-template-rows: 3rem;
     gap: 0.5rem;
     align-items: center;
+    @include screen("medium") {
+      width: 100%;
+    }
   }
   &:hover {
     background: color("secondary", "lightest");

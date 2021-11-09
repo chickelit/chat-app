@@ -2,10 +2,11 @@
   <div
     :class="['group-card', { mine }]"
     aria-label="Conversar no grupo <title>"
+    role="link"
     @mouseleave="disableDropdown"
   >
     <div class="group-card-wrapper">
-      <a href="/chat/group/1" class="data-container">
+      <div class="data-container" @click="$emit('click')">
         <div class="cover skeleton" />
         <div class="container">
           <div class="title">
@@ -15,7 +16,7 @@
             <div class="skeleton skeleton-text"></div>
           </div>
         </div>
-      </a>
+      </div>
       <div
         class="options"
         aria-label="Opções do grupo"
@@ -137,6 +138,9 @@ export default Vue.extend({
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
+    @include screen("medium") {
+      width: 100%;
+    }
   }
   .data-container {
     display: grid;
@@ -161,7 +165,7 @@ export default Vue.extend({
     .latest-message {
       width: 100%;
       .skeleton-text {
-        width: 70%;
+        width: 75%;
         height: 1rem;
         border-radius: 0.125rem;
       }

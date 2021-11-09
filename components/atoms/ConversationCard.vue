@@ -1,5 +1,5 @@
 <template>
-  <a href="/chat/conversation/1" class="conversation-card" role="link">
+  <div class="conversation-card" role="link" @click="$emit('click')">
     <div class="wrapper">
       <div class="avatar skeleton" />
       <div class="container">
@@ -11,7 +11,7 @@
         </div>
       </div>
     </div>
-  </a>
+  </div>
 </template>
 
 <script lang="ts">
@@ -58,7 +58,7 @@ export default Vue.extend({
     .username {
       width: 100%;
       .skeleton-text {
-        width: 100%;
+        width: 60%;
         height: 1.125rem;
         margin-bottom: 0.25rem;
         border-radius: 0.125rem;
@@ -67,7 +67,7 @@ export default Vue.extend({
     .latest-message {
       width: 100%;
       .skeleton-text {
-        width: 100%;
+        width: 75%;
         height: 1rem;
         border-radius: 0.125rem;
       }
