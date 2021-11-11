@@ -19,18 +19,18 @@
       </div>
       <div class="friendship-request-card-dropdown">
         <div
-          class="friendship-request-card-dropdown-item danger"
-          aria-label="Recusar pedido de amizade de <username>"
-          role="button"
-        >
-          Recusar o pedido
-        </div>
-        <div
           class="friendship-request-card-dropdown-item"
           aria-label="Aceitar pedido de amizade de <username>"
           role="button"
         >
           Aceitar o pedido
+        </div>
+        <div
+          class="friendship-request-card-dropdown-item danger"
+          aria-label="Recusar pedido de amizade de <username>"
+          role="button"
+        >
+          Recusar o pedido
         </div>
       </div>
     </div>
@@ -90,6 +90,10 @@ export default Vue.extend({
     position: relative;
     font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
     color: color("dark", "darkest");
+    transition: all 0.15s linear;
+    &:hover {
+      color: color("dark", "darker");
+    }
     &:nth-last-child(1) {
       &:after {
         height: 0;

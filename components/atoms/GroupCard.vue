@@ -85,7 +85,7 @@ export default Vue.extend({
   position: absolute;
   right: 2.25rem;
   top: 1.5rem;
-  background: color("dark", "lightest");
+  background: color("light", "darkest");
   border-radius: 0.3125rem;
   box-shadow: -2px 0 5px 0 rgba(0, 0, 0, 0.1);
   min-width: 12rem;
@@ -99,6 +99,10 @@ export default Vue.extend({
     position: relative;
     font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
     color: color("dark", "darkest");
+    transition: all 0.15s linear;
+    &:hover {
+      color: color("dark", "darker");
+    }
     &:nth-last-child(1) {
       &:after {
         height: 0;

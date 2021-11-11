@@ -90,6 +90,10 @@ export default Vue.extend({
     position: relative;
     font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
     color: color("dark", "darkest");
+    transition: all 0.15s linear;
+    &:hover {
+      color: color("dark", "darker");
+    }
     &:nth-last-child(1) {
       &:after {
         height: 0;

@@ -67,7 +67,7 @@ export default Vue.extend({
     .latest-message {
       width: 100%;
       .skeleton-text {
-        width: 75%;
+        width: 100%;
         height: 1rem;
         border-radius: 0.125rem;
       }
