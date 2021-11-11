@@ -1,7 +1,11 @@
 <template>
   <div class="group-chat">
     <ChatHeader class="chat-header">
-      <div aria-label="Voltar para a lista de grupos" class="back" @click="$emit('changeView', 'Groups')">
+      <div
+        aria-label="Voltar para a lista de grupos"
+        class="back"
+        @click="$emit('changeView', 'Groups')"
+      >
         <img src="@/assets/img/arrow-left.svg" alt="Arrow left" />
       </div>
       <div class="avatar skeleton"></div>
@@ -24,7 +28,11 @@
         <button aria-label="Enviar mensagem" type="submit" class="form-button">
           <img src="@/assets/img/send.svg" alt="Paper plane" />
         </button>
-        <label aria-label="Fazer upload de mídia" for="file-upload" :class="['file-upload', 'form-button']">
+        <label
+          aria-label="Fazer upload de mídia"
+          for="file-upload"
+          :class="['file-upload', 'form-button']"
+        >
           <img src="@/assets/img/arrow-up.svg" alt="Arrow up" />
         </label>
         <input
@@ -71,6 +79,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .group-chat {
+  z-index: 5000;
   position: fixed;
   top: 0;
   bottom: 0;

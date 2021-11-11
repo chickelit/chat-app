@@ -71,6 +71,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .conversation-chat {
+  z-index: 5000;
   position: fixed;
   top: 0;
   bottom: 0;
