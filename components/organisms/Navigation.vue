@@ -2,32 +2,67 @@
   <nav class="navigation">
     <ul class="navigation-items">
       <li
-        :class="['navigation-item', 'active']"
+        :class="['navigation-item', 'active', 'conversations-anchor']"
         aria-label="Ir para a listagem de conversas"
         @click="
-          setView($event);
+          setView('conversations-anchor');
           $emit('changeView', 'Conversations');
         "
       >
         Conversas
       </li>
       <li
-        class="navigation-item"
-        aria-label="Ir para a listagem de grupos"
-        @click="
-          setView($event);
-          $emit('changeView', 'Groups');
-        "
+        :class="[
+          'navigation-item',
+          'dropdown-button',
+          'groups-dropdown-button',
+        ]"
+        aria-label="Abrir menu dos grupos"
+        @mouseleave="disableDropdown('groups-dropdown')"
       >
-        Grupos
+        <div
+          class="dropdown-button-text"
+          @click="toggleDropdown('groups-dropdown')"
+        >
+          Grupos
+        </div>
+        <div :class="['groups-dropdown', 'dropdown']">
+          <nav>
+            <ul>
+              <li>
+                <div
+                  class="dropdown-item"
+                  @click="
+                    $emit('changeView', 'Groups');
+                    setView('groups-dropdown-button');
+                  "
+                >
+                  Todos
+                </div>
+              </li>
+              <li>
+                <div class="dropdown-item">Criar grupo</div>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </li>
       <li
-        :class="['navigation-item', 'dropdown-button']"
+        :class="[
+          'navigation-item',
+          'dropdown-button',
+          'friends-dropdown-button',
+        ]"
         aria-label="Ir para a listagem de amigos"
-        @mouseleave="disableDropdown"
+        @mouseleave="disableDropdown('friends-dropdown')"
       >
-        <div class="dropdown-button-text" @click="toggleDropdown">Amigos</div>
-        <div class="dropdown">
+        <div
+          class="dropdown-button-text"
+          @click="toggleDropdown('friends-dropdown')"
+        >
+          Amigos
+        </div>
+        <div :class="['friends-dropdown', 'dropdown']">
           <nav>
             <ul>
               <li>
@@ -35,7 +70,7 @@
                   class="dropdown-item"
                   @click="
                     $emit('changeView', 'Friends');
-                    setView($event);
+                    setView('friends-dropdown-button');
                   "
                 >
                   Todos
@@ -46,22 +81,14 @@
                   class="dropdown-item"
                   @click="
                     $emit('changeView', 'FriendshipRequests');
-                    setView($event);
+                    setView('friends-dropdown-button');
                   "
                 >
                   Pendentes
                 </div>
               </li>
               <li>
-                <div
-                  class="dropdown-item"
-                  @click="
-                    $emit('changeView', 'UserSearch');
-                    setView($event);
-                  "
-                >
-                  Adicionar
-                </div>
+                <div class="dropdown-item">Adicionar</div>
               </li>
             </ul>
           </nav>
@@ -75,33 +102,25 @@
 import Vue from "vue";
 export default Vue.extend({
   methods: {
-    setView({ target }: Event) {
-      const element = target as Element;
+    setView(elementClass: string) {
+      const element = document.querySelector(`.${elementClass}`);
       const navigationItems = document.querySelectorAll(".navigation-item")!;
 
       navigationItems.forEach((item) => {
-        if (item.classList.contains("active")) {
-          item.classList.remove("active");
-        }
+        item.classList.remove("active");
       });
 
-      if (!element.classList.contains("active")) {
-        element.classList.add("active");
-      }
-
-      if (element.classList.contains("dropdown-item")) {
-        const dropdownButton = document.querySelector(".dropdown-button")!;
-
-        dropdownButton.classList.add("active");
+      if (!element?.classList.contains("active")) {
+        element?.classList.add("active");
       }
     },
-    toggleDropdown() {
-      const dropdown = document.querySelector(".dropdown")!;
+    toggleDropdown(elementClass: string) {
+      const dropdown = document.querySelector(`.${elementClass}`)!;
 
       dropdown.classList.toggle("active");
     },
-    disableDropdown() {
-      const dropdown = document.querySelector(".dropdown")!;
+    disableDropdown(elementClass: string) {
+      const dropdown = document.querySelector(`.${elementClass}`)!;
 
       dropdown.classList.remove("active");
     },
