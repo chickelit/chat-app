@@ -115,7 +115,7 @@ export default Vue.extend({
     height: 2.5rem;
     padding: 0.5rem;
     background: color("primary");
-    box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
     border-radius: 0 0 0.3125rem 0.3125rem;
     display: grid;
     grid-template-columns: 1fr;

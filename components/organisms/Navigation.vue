@@ -41,7 +41,12 @@
                 </div>
               </li>
               <li>
-                <div class="dropdown-item">Criar grupo</div>
+                <div
+                  class="dropdown-item"
+                  @click="$emit('changeView', 'CreateGroup')"
+                >
+                  Criar grupo
+                </div>
               </li>
             </ul>
           </nav>

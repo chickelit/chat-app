@@ -27,7 +27,7 @@ export default Vue.extend({
   background: color("secondary");
   padding: 0.5rem;
   border-radius: 0.3125rem;
-  box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr auto;

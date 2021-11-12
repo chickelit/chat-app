@@ -37,13 +37,13 @@ export default Vue.extend({
   border-radius: 0.3rem;
   font-size: 1.0625rem;
   transition: all 0.15s linear;
-  box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
   &:focus {
     background: color("primary", "lightest");
     color: color("light");
   }
   &::placeholder {
-    color: color("light", "darkest");
+    color: color("dark", "lighter");
   }
 }
 </style>

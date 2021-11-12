@@ -13,7 +13,7 @@
 .header {
   background: color("primary");
   height: 3.6rem;
-  box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
   padding: 0 1rem;
   display: grid;
   justify-items: center;
