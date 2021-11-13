@@ -23,7 +23,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .form-button {
   border-radius: 0.3125rem;
-  width: 5rem;
+  padding: 0 1rem;
   background: color("primary");
   height: 1.6rem;
   justify-self: center;
