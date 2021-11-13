@@ -4,25 +4,39 @@
       <div
         aria-label="Voltar para a lista de grupos"
         class="back"
-        @click="$emit('changeView', 'Groups')"
+        @click="
+          setView({
+            newView: 'Groups',
+            activeClass: 'groups-anchor',
+          })
+        "
       >
         <img src="@/assets/img/arrow-left.svg" alt="Arrow left" />
       </div>
       <h1 class="title">Criar grupo</h1>
     </header>
     <div class="form">
+      <div class="input-wrapper">
         <label for="title-input" class="label">Título do grupo</label>
-        <BaseInput
-          id="title-input"
-          class="form-input"
-          placeholder="Título"
-          :max-length="30"
-        />
-      <FormButton type="submit" text="Criar" />
+        <BaseInput id="title-input" class="form-input" :max-length="30" />
+      </div>
+      <FormButton type="submit" text="Criar" aria-label="Criar grupo" />
     </div>
     <Footer />
   </div>
 </template>
+
+<script lang="ts">
+import Vue from "vue";
+import { setView } from "@/utils";
+export default Vue.extend({
+  data() {
+    return {
+      setView,
+    };
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 .create-group {
@@ -70,17 +84,21 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-auto-rows: auto;
-    .form-input {
-      background: color("secondary");
-      margin-bottom: 2rem;
-      &:focus {
-        background: color("secondary", "lighter");
+    gap: 1.25rem;
+    .input-wrapper {
+      display: grid;
+      grid-template-rows: auto auto;
+      .form-input {
+        background: color("secondary");
+        &:focus {
+          background: color("secondary", "lighter");
+        }
       }
-    }
-    .label {
-      margin-bottom: 0.3125rem;
-      color: color("light", "darkest");
-      font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
+      .label {
+        margin-bottom: 0.3125rem;
+        color: color("light", "darkest");
+        font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
+      }
     }
   }
 }
