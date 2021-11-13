@@ -13,7 +13,8 @@
   "dependencies": {
     "core-js": "^3.15.1",
     "normalize.css": "^8.0.1",
-    "nuxt": "^2.15.7"
+    "nuxt": "^2.15.7",
+    "vuex-module-decorators": "^1.0.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",

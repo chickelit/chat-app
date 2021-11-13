@@ -1,7 +1,16 @@
 <template>
   <div class="conversation-chat">
     <ChatHeader class="chat-header">
-      <div aria-label="Voltar para a lista de conversas" class="back" @click="$emit('changeView', 'Conversations')">
+      <div
+        aria-label="Voltar para a lista de conversas"
+        class="back"
+        @click="
+          setView({
+            newView: 'Conversations',
+            activeClass: 'conversations-anchor',
+          })
+        "
+      >
         <img src="@/assets/img/arrow-left.svg" alt="Arrow left" />
       </div>
       <div class="avatar skeleton"></div>
@@ -24,7 +33,11 @@
         <button aria-label="Enviar mensagem" type="submit" class="form-button">
           <img src="@/assets/img/send.svg" alt="Paper plane" />
         </button>
-        <label aria-label="Fazer upload de mídia" for="file-upload" :class="['file-upload', 'form-button']">
+        <label
+          aria-label="Fazer upload de mídia"
+          for="file-upload"
+          :class="['file-upload', 'form-button']"
+        >
           <img src="@/assets/img/arrow-up.svg" alt="Arrow up" />
         </label>
         <input
@@ -40,9 +53,11 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { setView } from "@/utils";
 export default Vue.extend({
   data() {
     return {
+      setView,
       messages: [
         { mine: true },
         { mine: true },

@@ -1,9 +1,9 @@
 <template>
   <div class="home-template">
     <Header />
-    <Navigation @changeView="changeView($event)" />
+    <Navigation />
     <main class="main">
-      <component :is="view" @changeView="changeView($event)" />
+      <component :is="$view" />
     </main>
     <Footer />
   </div>
@@ -11,15 +11,11 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { view } from "@/store";
 export default Vue.extend({
-  data() {
-    return {
-      view: "Conversations",
-    };
-  },
-  methods: {
-    changeView(view: string) {
-      this.view = view;
+  computed: {
+    $view() {
+      return view.$view;
     },
   },
 });

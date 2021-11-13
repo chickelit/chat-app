@@ -2,11 +2,17 @@
   <nav class="navigation">
     <ul class="navigation-items">
       <li
-        :class="['navigation-item', 'active', 'conversations-anchor']"
+        :class="[
+          'navigation-item',
+          'conversations-anchor',
+          { active: $activeClass === 'conversations-anchor' },
+        ]"
         aria-label="Ir para a listagem de conversas"
         @click="
-          setView('conversations-anchor');
-          $emit('changeView', 'Conversations');
+          setView({
+            newView: 'Conversations',
+            activeClass: 'conversations-anchor',
+          })
         "
       >
         Conversas
@@ -16,6 +22,8 @@
           'navigation-item',
           'dropdown-button',
           'groups-dropdown-button',
+          'groups-anchor',
+          { active: $activeClass === 'groups-anchor' },
         ]"
         aria-label="Abrir menu dos grupos"
         @mouseleave="disableDropdown('groups-dropdown')"
@@ -32,9 +40,12 @@
               <li>
                 <div
                   class="dropdown-item"
+                  aria-label="Ir para a listagem de grupos"
                   @click="
-                    $emit('changeView', 'Groups');
-                    setView('groups-dropdown-button');
+                    setView({
+                      newView: 'Groups',
+                      activeClass: 'groups-anchor',
+                    })
                   "
                 >
                   Todos
@@ -43,7 +54,13 @@
               <li>
                 <div
                   class="dropdown-item"
-                  @click="$emit('changeView', 'CreateGroup')"
+                  aria-label="Criar grupo"
+                  @click="
+                    setView({
+                      newView: 'CreateGroup',
+                      activeClass: 'groups-anchor',
+                    })
+                  "
                 >
                   Criar grupo
                 </div>
@@ -57,8 +74,10 @@
           'navigation-item',
           'dropdown-button',
           'friends-dropdown-button',
+          'friends-anchor',
+          { active: $activeClass === 'friends-anchor' },
         ]"
-        aria-label="Ir para a listagem de amigos"
+        aria-label="Abrir menu de amigos"
         @mouseleave="disableDropdown('friends-dropdown')"
       >
         <div
@@ -73,9 +92,12 @@
               <li>
                 <div
                   class="dropdown-item"
+                  aria-label="Ir para a listagem de amigos"
                   @click="
-                    $emit('changeView', 'Friends');
-                    setView('friends-dropdown-button');
+                    setView({
+                      newView: 'Friends',
+                      activeClass: 'friends-anchor',
+                    })
                   "
                 >
                   Todos
@@ -84,16 +106,30 @@
               <li>
                 <div
                   class="dropdown-item"
+                  aria-label="Ir para a listagem de pedidos de amizade pendentes"
                   @click="
-                    $emit('changeView', 'FriendshipRequests');
-                    setView('friends-dropdown-button');
+                    setView({
+                      newView: 'FriendshipRequests',
+                      activeClass: 'friends-anchor',
+                    })
                   "
                 >
                   Pendentes
                 </div>
               </li>
               <li>
-                <div class="dropdown-item">Adicionar</div>
+                <div
+                  class="dropdown-item"
+                  aria-label="Ir para a pesquisa de usuário"
+                  @click="
+                    setView({
+                      newView: 'UserSearch',
+                      activeClass: 'friends-anchor',
+                    })
+                  "
+                >
+                  Adicionar
+                </div>
               </li>
             </ul>
           </nav>
@@ -105,20 +141,20 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { setView } from "@/utils";
+import { view } from "@/store";
 export default Vue.extend({
-  methods: {
-    setView(elementClass: string) {
-      const element = document.querySelector(`.${elementClass}`);
-      const navigationItems = document.querySelectorAll(".navigation-item")!;
-
-      navigationItems.forEach((item) => {
-        item.classList.remove("active");
-      });
-
-      if (!element?.classList.contains("active")) {
-        element?.classList.add("active");
-      }
+  data() {
+    return {
+      setView,
+    };
+  },
+  computed: {
+    $activeClass() {
+      return view.$navigationActiveClass;
     },
+  },
+  methods: {
     toggleDropdown(elementClass: string) {
       const dropdown = document.querySelector(`.${elementClass}`)!;
 

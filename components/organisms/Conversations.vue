@@ -9,7 +9,11 @@
         <ConversationCard
           aria-label="Conversar com <username>"
           :index="index"
-          @click="$emit('changeView', 'ConversationChat')"
+          @click="
+            setView({
+              newView: 'ConversationChat',
+            })
+          "
         />
       </li>
     </ul>
@@ -18,10 +22,12 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { setView } from "@/utils";
 export default Vue.extend({
   data() {
     return {
       conversations: Array(15).fill(false),
+      setView,
     };
   },
 });

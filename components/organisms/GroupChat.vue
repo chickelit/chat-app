@@ -4,7 +4,12 @@
       <div
         aria-label="Voltar para a lista de grupos"
         class="back"
-        @click="$emit('changeView', 'Groups')"
+        @click="
+          setView({
+            newView: 'Groups',
+            activeClass: 'groups-anchor',
+          })
+        "
       >
         <img src="@/assets/img/arrow-left.svg" alt="Arrow left" />
       </div>
@@ -48,9 +53,11 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { setView } from "@/utils";
 export default Vue.extend({
   data() {
     return {
+      setView,
       messages: [
         { mine: true },
         { mine: true },
