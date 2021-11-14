@@ -2,14 +2,14 @@ import { view } from "~/store";
 
 interface View {
   newView?: string;
-  activeClass?: string;
+  navigationActiveClass?: string;
 }
 
-export default ({newView, activeClass}: View) => {
+export default ({newView, navigationActiveClass}: View) => {
   if (newView) {
     view.setView(newView);
   }
-  if (activeClass) {
-    view.setNavigationActiveClass(activeClass);
+  if (navigationActiveClass) {
+    view.setNavigationActiveClass(navigationActiveClass);
   }
 }
