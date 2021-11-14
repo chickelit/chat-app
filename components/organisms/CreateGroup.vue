@@ -1,30 +1,23 @@
 <template>
   <div class="create-group">
     <header class="create-group-header">
-      <div class="header-wrapper">
-        <div
-          aria-label="Voltar para a lista de grupos"
-          class="back"
-          @click="
-            setView({
-              newView: 'Groups',
-              activeClass: 'groups-anchor',
-            })
-          "
-        >
-          <img src="@/assets/img/arrow-left.svg" alt="Arrow left" />
-        </div>
+      <Wrapper class="header-wrapper">
+        <BackButton
+          label="Voltar para a lista de grupos"
+          new-view="Groups"
+          navigation-active-class="groups-anchor"
+        />
         <h1 class="title">Criar grupo</h1>
-      </div>
+      </Wrapper>
     </header>
-    <form class="form">
-      <div class="form-wrapper">
+    <form class="form" autocomplete="off">
+      <Wrapper class="form-wrapper">
         <div class="input-wrapper">
           <label for="title-input" class="label">Título do grupo</label>
           <BaseInput id="title-input" class="form-input" :max-length="30" />
         </div>
-        <FormButton type="submit" text="Criar" aria-label="Criar grupo" />
-      </div>
+        <BaseButton type="submit" text="Criar" aria-label="Criar grupo" />
+      </Wrapper>
     </form>
     <Footer />
   </div>
@@ -56,38 +49,20 @@ export default Vue.extend({
   .create-group-header {
     width: 100%;
     display: grid;
+    padding: 0.75rem 0;
+    background: color("primary");
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
     .header-wrapper {
-      width: 60%;
-      max-width: 48rem;
       justify-self: center;
       display: grid;
       grid-template-columns: auto 1fr;
       grid-template-rows: 3.4rem;
       align-items: center;
       gap: 1rem;
-      @include screen("medium") {
-        width: 100%;
-      }
     }
-    padding: 0.75rem;
-    background: color("primary");
-    border-radius: 0.3125rem 0.3125rem 0 0;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
     .title {
       color: color("light", "darkest");
       font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
-    }
-    .back {
-      cursor: pointer;
-      &:hover {
-        img {
-          filter: invert(0.75);
-        }
-      }
-      img {
-        filter: invert(0.65);
-        transition: all 0.15s linear;
-      }
     }
   }
   .form {
@@ -102,16 +77,12 @@ export default Vue.extend({
       width: auto;
     }
     .form-wrapper {
-      width: 60%;
-      max-width: 48rem;
+      height: auto;
       padding: 2rem;
       display: grid;
       grid-template-columns: 1fr;
       grid-auto-rows: auto;
       gap: 1.25rem;
-      @include screen("medium") {
-        width: 100%;
-      }
       .input-wrapper {
         display: grid;
         grid-template-rows: auto auto;

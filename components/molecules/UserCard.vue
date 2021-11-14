@@ -1,32 +1,20 @@
 <template>
   <div class="user-card" @mouseleave="disableDropdown">
-    <div class="user-card-wrapper">
+    <Wrapper class="user-card-wrapper">
       <div class="avatar skeleton"></div>
       <div class="username">
         <div class="skeleton skeleton-text"></div>
       </div>
-      <div
-        class="options"
-        aria-label="Opções"
-        role="button"
-        @click="toggleDropdown"
-      >
-        <div class="wrapper">
-          <div class="dot"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
-        </div>
-      </div>
-      <div class="user-card-dropdown">
+      <OptionsButton @click="toggleDropdown" />
+      <Dropdown class="user-card-dropdown">
         <div
-          class="user-card-dropdown-item"
           role="button"
-          aria-label="Conversar com <username>"
+          aria-label="Enviar pedido de amizade para <username>"
         >
-          Enviar pedido de amizade para zezin
+          Enviar pedido de amizade
         </div>
-      </div>
-    </div>
+      </Dropdown>
+    </Wrapper>
   </div>
 </template>
 
@@ -41,16 +29,16 @@ export default Vue.extend({
   },
   methods: {
     toggleDropdown() {
-      const userCardDropdown = document.querySelectorAll(
-        ".user-card-dropdown"
-      )[this.index] as Element;
+      const userCardDropdown = document.querySelectorAll(".user-card-dropdown")[
+        this.index
+      ] as Element;
 
       userCardDropdown.classList.toggle("active");
     },
     disableDropdown() {
-      const userCardDropdown = document.querySelectorAll(
-        ".user-card-dropdown"
-      )[this.index] as Element;
+      const userCardDropdown = document.querySelectorAll(".user-card-dropdown")[
+        this.index
+      ] as Element;
 
       userCardDropdown.classList.remove("active");
     },
@@ -108,33 +96,6 @@ export default Vue.extend({
     transform: translateX(0);
   }
 }
-.options {
-  box-shadow: -2px 0 5px 0 rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  width: 2.4375rem;
-  height: 2.4375rem;
-  background: color("primary", "lightest");
-  border-radius: 100%;
-  display: grid;
-  align-items: center;
-  transition: all 0.15s linear;
-  &:hover {
-    background: color("secondary");
-  }
-  .wrapper {
-    display: grid;
-    grid-auto-rows: max-content;
-    align-items: center;
-    justify-items: center;
-    gap: 0.125rem;
-    .dot {
-      width: 0.3125rem;
-      height: 0.3125rem;
-      background: color("dark", "lightest");
-      border-radius: 100%;
-    }
-  }
-}
 .username {
   width: 100%;
   .skeleton-text {
@@ -153,18 +114,13 @@ export default Vue.extend({
   gap: 0.5rem;
   justify-items: center;
   transition: all 0.15s linear;
-  .user-card-wrapper {
+  .wrapper {
     position: relative;
-    width: 60%;
-    max-width: 48rem;
     display: grid;
     grid-template-columns: 3rem 1fr auto;
     grid-template-rows: 3rem;
     gap: 0.5rem;
     align-items: center;
-    @include screen("medium") {
-      width: 100%;
-    }
   }
   &:hover {
     background: color("secondary", "lightest");

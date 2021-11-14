@@ -1,31 +1,24 @@
 <template>
   <div class="user-search">
     <header class="user-search-header">
-      <div class="header-wrapper">
-        <div
-          aria-label="Voltar para a lista de amigos"
-          class="back"
-          @click="
-            setView({
-              newView: 'Friends',
-              activeClass: 'friends-anchor',
-            })
-          "
-        >
-          <img src="@/assets/img/arrow-left.svg" alt="Arrow left" />
-        </div>
+      <Wrapper class="header-wrapper">
+        <BackButton
+          label="Voltar para a lista de amigos"
+          new-view="Friends"
+          navigation-active-class="friends-anchor"
+        />
         <h1 class="title">Adicionar amigo</h1>
-      </div>
+      </Wrapper>
     </header>
-    <div class="form">
-      <div class="form-wrapper">
+    <form class="form" autocomplete="off">
+      <Wrapper class="form-wrapper">
         <div class="input-wrapper">
           <label for="username-input" class="label">Nome do usuário</label>
           <BaseInput id="username-input" class="form-input" :max-length="30" />
         </div>
-        <FormButton type="submit" text="Pesquisar" aria-label="Pesquisar" />
-      </div>
-    </div>
+        <BaseButton type="submit" text="Pesquisar" aria-label="Pesquisar" />
+      </Wrapper>
+    </form>
     <div class="result-list">
       <ul>
         <li>
@@ -75,23 +68,17 @@ export default Vue.extend({
   }
   .user-search-header {
     width: 100%;
-    padding: 0.75rem;
+    padding: 0.75rem 0;
     background: color("primary");
-    border-radius: 0.3125rem 0.3125rem 0 0;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
     display: grid;
     justify-items: center;
     .header-wrapper {
-      width: 60%;
-      max-width: 48rem;
       display: grid;
       grid-template-columns: auto 1fr;
       grid-template-rows: 3.4rem;
       gap: 1rem;
       align-items: center;
-      @include screen("medium") {
-        width: 100%;
-      }
       .title {
         color: color("light", "darkest");
         font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
@@ -111,15 +98,19 @@ export default Vue.extend({
     }
   }
   .form {
-    padding: 2rem;
+    width: 100%;
     background: color("secondary", "darker");
     height: max-content;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
     display: grid;
     justify-items: center;
+    @include screen("medium") {
+      padding: 0 2rem;
+      width: auto;
+    }
     .form-wrapper {
-      width: 60%;
-      max-width: 48rem;
+      height: auto;
+      padding: 2rem;
       display: grid;
       grid-template-columns: 1fr;
       grid-auto-rows: auto;

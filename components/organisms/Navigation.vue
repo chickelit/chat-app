@@ -1,141 +1,143 @@
 <template>
   <nav class="navigation">
-    <ul class="navigation-items">
-      <li
-        :class="[
-          'navigation-item',
-          'conversations-anchor',
-          { active: $activeClass === 'conversations-anchor' },
-        ]"
-        aria-label="Ir para a listagem de conversas"
-        @click="
-          setView({
-            newView: 'Conversations',
-            activeClass: 'conversations-anchor',
-          })
-        "
-      >
-        Conversas
-      </li>
-      <li
-        :class="[
-          'navigation-item',
-          'dropdown-button',
-          'groups-dropdown-button',
-          'groups-anchor',
-          { active: $activeClass === 'groups-anchor' },
-        ]"
-        aria-label="Abrir menu dos grupos"
-        @mouseleave="disableDropdown('groups-dropdown')"
-      >
-        <div
-          class="dropdown-button-text"
-          @click="toggleDropdown('groups-dropdown')"
+    <Wrapper>
+      <ul class="navigation-items">
+        <li
+          :class="[
+            'navigation-item',
+            'conversations-anchor',
+            { active: $navigationActiveClass === 'conversations-anchor' },
+          ]"
+          aria-label="Ir para a listagem de conversas"
+          @click="
+            setView({
+              newView: 'Conversations',
+              navigationActiveClass: 'conversations-anchor',
+            })
+          "
         >
-          Grupos
-        </div>
-        <div :class="['groups-dropdown', 'dropdown']">
-          <nav>
-            <ul>
-              <li>
-                <div
-                  class="dropdown-item"
-                  aria-label="Ir para a listagem de grupos"
-                  @click="
-                    setView({
-                      newView: 'Groups',
-                      activeClass: 'groups-anchor',
-                    })
-                  "
-                >
-                  Todos
-                </div>
-              </li>
-              <li>
-                <div
-                  class="dropdown-item"
-                  aria-label="Criar grupo"
-                  @click="
-                    setView({
-                      newView: 'CreateGroup',
-                      activeClass: 'groups-anchor',
-                    })
-                  "
-                >
-                  Criar grupo
-                </div>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </li>
-      <li
-        :class="[
-          'navigation-item',
-          'dropdown-button',
-          'friends-dropdown-button',
-          'friends-anchor',
-          { active: $activeClass === 'friends-anchor' },
-        ]"
-        aria-label="Abrir menu de amigos"
-        @mouseleave="disableDropdown('friends-dropdown')"
-      >
-        <div
-          class="dropdown-button-text"
-          @click="toggleDropdown('friends-dropdown')"
+          Conversas
+        </li>
+        <li
+          :class="[
+            'navigation-item',
+            'dropdown-button',
+            'groups-dropdown-button',
+            'groups-anchor',
+            { active: $navigationActiveClass === 'groups-anchor' },
+          ]"
+          aria-label="Abrir menu dos grupos"
+          @mouseleave="disableDropdown('groups-dropdown')"
         >
-          Amigos
-        </div>
-        <div :class="['friends-dropdown', 'dropdown']">
-          <nav>
-            <ul>
-              <li>
-                <div
-                  class="dropdown-item"
-                  aria-label="Ir para a listagem de amigos"
-                  @click="
-                    setView({
-                      newView: 'Friends',
-                      activeClass: 'friends-anchor',
-                    })
-                  "
-                >
-                  Todos
-                </div>
-              </li>
-              <li>
-                <div
-                  class="dropdown-item"
-                  aria-label="Ir para a listagem de pedidos de amizade pendentes"
-                  @click="
-                    setView({
-                      newView: 'FriendshipRequests',
-                      activeClass: 'friends-anchor',
-                    })
-                  "
-                >
-                  Pendentes
-                </div>
-              </li>
-              <li>
-                <div
-                  class="dropdown-item"
-                  aria-label="Ir para a pesquisa de usuário"
-                  @click="
-                    setView({
-                      newView: 'UserSearch',
-                      activeClass: 'friends-anchor',
-                    })
-                  "
-                >
-                  Adicionar
-                </div>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </li>
-    </ul>
+          <div
+            class="dropdown-button-text"
+            @click="toggleDropdown('groups-dropdown')"
+          >
+            Grupos
+          </div>
+          <div :class="['groups-dropdown', 'dropdown']">
+            <nav>
+              <ul>
+                <li>
+                  <div
+                    class="dropdown-item"
+                    aria-label="Ir para a listagem de grupos"
+                    @click="
+                      setView({
+                        newView: 'Groups',
+                        navigationActiveClass: 'groups-anchor',
+                      })
+                    "
+                  >
+                    Todos
+                  </div>
+                </li>
+                <li>
+                  <div
+                    class="dropdown-item"
+                    aria-label="Criar grupo"
+                    @click="
+                      setView({
+                        newView: 'CreateGroup',
+                        navigationActiveClass: 'groups-anchor',
+                      })
+                    "
+                  >
+                    Criar grupo
+                  </div>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </li>
+        <li
+          :class="[
+            'navigation-item',
+            'dropdown-button',
+            'friends-dropdown-button',
+            'friends-anchor',
+            { active: $navigationActiveClass === 'friends-anchor' },
+          ]"
+          aria-label="Abrir menu de amigos"
+          @mouseleave="disableDropdown('friends-dropdown')"
+        >
+          <div
+            class="dropdown-button-text"
+            @click="toggleDropdown('friends-dropdown')"
+          >
+            Amigos
+          </div>
+          <div :class="['friends-dropdown', 'dropdown']">
+            <nav>
+              <ul>
+                <li>
+                  <div
+                    class="dropdown-item"
+                    aria-label="Ir para a listagem de amigos"
+                    @click="
+                      setView({
+                        newView: 'Friends',
+                        navigationActiveClass: 'friends-anchor',
+                      })
+                    "
+                  >
+                    Todos
+                  </div>
+                </li>
+                <li>
+                  <div
+                    class="dropdown-item"
+                    aria-label="Ir para a listagem de pedidos de amizade pendentes"
+                    @click="
+                      setView({
+                        newView: 'FriendshipRequests',
+                        navigationActiveClass: 'friends-anchor',
+                      })
+                    "
+                  >
+                    Pendentes
+                  </div>
+                </li>
+                <li>
+                  <div
+                    class="dropdown-item"
+                    aria-label="Ir para a pesquisa de usuário"
+                    @click="
+                      setView({
+                        newView: 'UserSearch',
+                        navigationActiveClass: 'friends-anchor',
+                      })
+                    "
+                  >
+                    Adicionar
+                  </div>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </li>
+      </ul>
+    </Wrapper>
   </nav>
 </template>
 
@@ -150,7 +152,7 @@ export default Vue.extend({
     };
   },
   computed: {
-    $activeClass() {
+    $navigationActiveClass() {
       return view.$navigationActiveClass;
     },
   },
@@ -180,8 +182,6 @@ export default Vue.extend({
   align-items: center;
   justify-items: center;
   .navigation-items {
-    width: 60%;
-    max-width: 48rem;
     height: 100%;
     display: grid;
     grid-auto-columns: max-content;
@@ -189,9 +189,6 @@ export default Vue.extend({
     align-items: center;
     grid-auto-columns: 1fr;
     justify-content: space-between;
-    @include screen("medium") {
-      width: 100%;
-    }
     .navigation-item {
       height: 100%;
       width: 100%;

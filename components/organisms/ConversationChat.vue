@@ -1,18 +1,7 @@
 <template>
   <div class="conversation-chat">
     <ChatHeader class="chat-header">
-      <div
-        aria-label="Voltar para a lista de conversas"
-        class="back"
-        @click="
-          setView({
-            newView: 'Conversations',
-            activeClass: 'conversations-anchor',
-          })
-        "
-      >
-        <img src="@/assets/img/arrow-left.svg" alt="Arrow left" />
-      </div>
+      <BackButton label="Voltar para a lista de conversas" new-view="Conversations" navigation-active-class="conversations-anchor" />
       <div class="avatar skeleton"></div>
       <div class="username">
         <div class="skeleton skeleton-text"></div>
@@ -96,18 +85,6 @@ export default Vue.extend({
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
   .chat-header {
-    .back {
-      cursor: pointer;
-      &:hover {
-        img {
-          filter: invert(0.75);
-        }
-      }
-      img {
-        filter: invert(0.65);
-        transition: all 0.15s linear;
-      }
-    }
     .avatar {
       width: 100%;
       height: 100%;

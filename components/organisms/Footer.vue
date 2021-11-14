@@ -1,8 +1,8 @@
 <template>
   <footer class="footer">
-    <div class="wrapper">
+    <Wrapper class="wrapper">
       <p>Copyright &copy; {{ currentYear }}</p>
-    </div>
+    </Wrapper>
   </footer>
 </template>
 
@@ -22,16 +22,9 @@ export default Vue.extend({
   background: color("primary");
   height: 4rem;
   padding: 0 1rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
-  justify-items: center;
   .wrapper {
-    width: 60%;
-    max-width: 48rem;
-    @include screen("medium") {
-      width: 100%;
-    }
+    display: grid;
+    align-items: center;
   }
   p {
     font-family: "Acumin Regular";

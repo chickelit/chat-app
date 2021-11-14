@@ -7,7 +7,7 @@
         @click="
           setView({
             newView: 'Groups',
-            activeClass: 'groups-anchor',
+            navigationActiveClass: 'groups-anchor',
           })
         "
       >

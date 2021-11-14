@@ -1,11 +1,11 @@
 <template>
   <header class="header">
-    <div class="wrapper">
+    <Wrapper class="wrapper">
       <h1 class="title" role="button">ChatApp</h1>
       <div aria-label="Ir para o meu perfil" role="button" class="container">
         <div class="avatar skeleton" role="img"></div>
       </div>
-    </div>
+    </Wrapper>
   </header>
 </template>
 
@@ -18,15 +18,9 @@
   display: grid;
   justify-items: center;
   .wrapper {
-    height: 100%;
-    width: 60%;
-    max-width: 48rem;
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
-    @include screen("medium") {
-      width: 100%;
-    }
     .title {
       width: max-content;
       font-family: "Tahoma";

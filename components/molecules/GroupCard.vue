@@ -17,27 +17,12 @@
           </div>
         </div>
       </div>
-      <div
-        class="options"
-        aria-label="Opções do grupo"
-        role="button"
-        @click="toggleDropdown"
-      >
-        <div class="wrapper">
-          <div class="dot"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
-        </div>
-      </div>
-      <div class="group-card-dropdown">
-        <div
-          aria-label="Ver dados do grupo"
-          role="button"
-          class="group-card-dropdown-item"
-        >
+      <OptionsButton @click="toggleDropdown" />
+      <Dropdown class="group-card-dropdown">
+        <div role="button" aria-label="Ver dados do grupo">
           Ver dados do grupo
         </div>
-      </div>
+      </Dropdown>
     </div>
   </div>
 </template>
