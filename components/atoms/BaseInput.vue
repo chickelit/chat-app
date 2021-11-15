@@ -30,20 +30,28 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .base-input {
-  background: color("primary", "lighter");
+  position: relative;
   font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
   color: color("light", "darkest");
-  padding: 0.25rem 0.75rem;
+  padding: 0.125rem;
   border-radius: 0.3rem;
   font-size: 1.0625rem;
   transition: all 0.15s linear;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  border: 1px solid color("light", "darkest");
+  border-width: 0 0 2px 0;
+  &:after {
+    content: "a";
+  }
   &:focus {
-    background: color("primary", "lightest");
     color: color("light");
+    &::placeholder {
+    color: color("light", "darker");
+  }
   }
   &::placeholder {
-    color: color("dark", "lighter");
+    transition: all 0.15s linear;
+    color: color("light", "darkest");
   }
 }
 </style>

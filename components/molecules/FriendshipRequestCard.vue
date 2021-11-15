@@ -65,7 +65,7 @@ export default Vue.extend({
 .friendship-request-card {
   cursor: pointer;
   padding: 0.5rem 1rem;
-  background: color("secondary", "lighter");
+  background: color("dark", "lighter");
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 3rem;
@@ -79,9 +79,13 @@ export default Vue.extend({
     grid-template-rows: 3rem;
     gap: 0.5rem;
     align-items: center;
+    .friendship-request-card-dropdown {
+      right: 2.125rem;
+      top: 1.6rem;
+    }
   }
   &:hover {
-    background: color("secondary", "lightest");
+    background: color("dark", "lightest");
   }
   .avatar {
     height: 100%;

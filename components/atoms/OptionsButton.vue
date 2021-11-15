@@ -14,13 +14,13 @@
   cursor: pointer;
   width: 2.4375rem;
   height: 2.4375rem;
-  background: color("primary", "lightest");
+  background: color("dark");
   border-radius: 100%;
   display: grid;
   align-items: center;
   transition: all 0.15s linear;
   &:hover {
-    background: color("secondary");
+    background: color("dark", "lighter");
   }
   .wrapper {
     display: grid;

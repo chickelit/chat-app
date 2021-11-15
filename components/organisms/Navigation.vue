@@ -176,7 +176,7 @@ export default Vue.extend({
   z-index: 1;
   position: relative;
   display: grid;
-  background: color("primary", "lighter");
+  background: color("dark", "darker");
   height: 2.5rem;
   box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
   align-items: center;
@@ -203,7 +203,7 @@ export default Vue.extend({
       align-items: center;
       justify-items: center;
       &:hover {
-        background: color("primary", "lightest");
+        background: color("dark");
         color: color("light");
       }
       &:after {
@@ -212,7 +212,7 @@ export default Vue.extend({
         opacity: 0;
         width: 100%;
         height: 0.1875rem;
-        background: color("light", "darkest");
+        background: color("secondary");
         bottom: 0;
         left: 0;
         border-radius: 0.5rem;
@@ -220,6 +220,7 @@ export default Vue.extend({
         transition: opacity 0.15s linear;
       }
       &.active {
+        color: color("secondary");
         &:after {
           opacity: 1;
         }
@@ -242,7 +243,7 @@ export default Vue.extend({
   transform: translateX(-10px);
   pointer-events: none;
   z-index: -1;
-  background: color("light", "darkest");
+  background: color("dark");
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
   border-radius: 0 0 0.3125rem 0.3125rem;
   top: 100%;
@@ -266,12 +267,12 @@ export default Vue.extend({
     cursor: pointer;
     position: relative;
     font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
-    color: color("dark", "darkest");
+    color: color("light", "darkest");
     padding: 0.375rem;
     transition: all 0.15s linear;
     font-weight: 500;
     &:hover {
-      color: color("dark", "darker");
+    color: color("light", "darker");
     }
   }
 }

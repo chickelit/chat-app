@@ -19,7 +19,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .footer {
-  background: color("primary");
+  background: color("dark", "darkest");
   height: 4rem;
   padding: 0 1rem;
   .wrapper {
@@ -29,10 +29,6 @@ export default Vue.extend({
   p {
     font-family: "Acumin Regular";
     color: color("light", "darkest");
-    margin-block-start: 0;
-    margin-block-end: 0;
-    margin-inline-start: 0;
-    margin-inline-end: 0;
   }
 }
 </style>

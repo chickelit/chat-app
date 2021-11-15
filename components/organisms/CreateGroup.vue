@@ -12,10 +12,12 @@
     </header>
     <form class="form" autocomplete="off">
       <Wrapper class="form-wrapper">
-        <div class="input-wrapper">
-          <label for="title-input" class="label">Título do grupo</label>
-          <BaseInput id="title-input" class="form-input" :max-length="30" />
-        </div>
+        <BaseInput
+          id="title-input"
+          class="form-input"
+          placeholder="Título do grupo..."
+          :max-length="30"
+        />
         <BaseButton type="submit" text="Criar" aria-label="Criar grupo" />
       </Wrapper>
     </form>
@@ -42,56 +44,49 @@ export default Vue.extend({
   position: fixed;
   top: 0;
   z-index: 5000;
-  background: color("secondary");
+  background: color("dark", "darker");
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 4.5rem 1fr auto;
   .create-group-header {
-    width: 100%;
-    display: grid;
-    padding: 0.75rem 0;
-    background: color("primary");
+    height: 100%;
+    padding: 0 1rem;
+    background: color("dark", "darkest");
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+    display: grid;
+    align-content: center;
     .header-wrapper {
       justify-self: center;
       display: grid;
       grid-template-columns: auto 1fr;
-      grid-template-rows: 3.4rem;
+      grid-template-rows: 1fr;
       align-items: center;
       gap: 1rem;
     }
     .title {
+      font-size: 1.5rem;
+      width: max-content;
+      font-family: "Tahoma";
       color: color("light", "darkest");
-      font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s linear;
     }
   }
   .form {
-    width: 100%;
-    background: color("secondary", "darker");
     height: max-content;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+    padding: 2rem;
     display: grid;
     justify-items: center;
-    @include screen("medium") {
-      padding: 0 2rem;
-      width: auto;
-    }
     .form-wrapper {
-      height: auto;
-      padding: 2rem;
+      height: 100%;
       display: grid;
       grid-template-columns: 1fr;
-      grid-auto-rows: auto;
+      grid-auto-rows: auto auto auto;
       gap: 1.25rem;
       .input-wrapper {
         display: grid;
         grid-template-rows: auto auto;
-        .form-input {
-          background: color("secondary");
-          &:focus {
-            background: color("secondary", "lighter");
-          }
-        }
         .label {
           margin-bottom: 0.3125rem;
           color: color("light", "darkest");

@@ -49,7 +49,7 @@ export default Vue.extend({
 }
 .friendship-requests {
   height: 100%;
-  background: color("secondary");
+  background: color("dark");
   position: absolute;
   inset: 0;
   overflow-y: scroll;
@@ -71,7 +71,7 @@ export default Vue.extend({
         &:nth-last-child(1) {
           ::v-deep.friendship-request-card {
             .friendship-request-card-dropdown {
-              top: -0.8rem;
+              top: -1.6rem;
             }
           }
         }

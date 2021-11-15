@@ -45,7 +45,7 @@ export default Vue.extend({
 }
 .friends {
   height: 100%;
-  background: color("secondary");
+  background: color("dark");
   position: absolute;
   inset: 0;
   overflow-y: scroll;
@@ -67,7 +67,7 @@ export default Vue.extend({
         &:nth-last-child(1) {
           ::v-deep.friend-card {
             .friend-card-dropdown {
-              top: -0.8rem;
+              top: -1.6rem;
             }
           }
         }

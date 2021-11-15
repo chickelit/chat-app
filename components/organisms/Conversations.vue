@@ -40,8 +40,7 @@ export default Vue.extend({
 .conversations {
   position: absolute;
   inset: 0;
-  background: color("secondary");
-  display: grid;
+  background: color("dark");
   .conversations-list {
     position: absolute;
     inset: 0;

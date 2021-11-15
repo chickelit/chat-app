@@ -48,7 +48,7 @@ export default Vue.extend({
 .groups {
   position: absolute;
   inset: 0;
-  background: color("secondary");
+  background: color("dark");
   .groups-list {
     position: absolute;
     inset: 0;
@@ -58,15 +58,15 @@ export default Vue.extend({
     grid-auto-rows: max-content;
     grid-auto-flow: row;
     gap: 0.125rem;
-    .group {
-      &:nth-last-child(1) {
-        ::v-deep.group-card {
-          .group-card-dropdown {
-            top: 0.8rem;
+     .group {
+        &:nth-last-child(1) {
+          ::v-deep.group-card {
+            .group-card-dropdown {
+              top: -0.375rem;
+            }
           }
         }
       }
-    }
   }
 }
 </style>

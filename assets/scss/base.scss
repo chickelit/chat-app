@@ -18,6 +18,10 @@
   font-family: "Acumin Bold Italic";
   src: url("../fonts/AcuminPro/AcuminBoldItalic.otf");
 }
+body {
+  font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
+  user-select: none;
+}
 li {
   list-style-type: none;
 }

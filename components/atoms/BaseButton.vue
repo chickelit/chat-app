@@ -24,16 +24,15 @@ export default Vue.extend({
 .form-button {
   border-radius: 0.3125rem;
   padding: 0 1rem;
-  background: color("primary");
+  background: color("dark", "lighter");
   height: 1.6rem;
   justify-self: center;
   transition: all 0.15s linear;
   color: color("light", "darkest");
-  font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
   font-weight: 600;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
   &:hover {
-    background: color("secondary", "darkest");
+  background: color("dark", "lightest");
   }
 }
 </style>

@@ -42,6 +42,8 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .back-button {
   cursor: pointer;
+  display: grid;
+  align-items: center;
   &:hover {
     img {
       filter: invert(0.75);

@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <Wrapper class="wrapper">
-      <h1 class="title" role="button">ChatApp</h1>
+      <h1 class="title">ChatApp</h1>
       <div aria-label="Ir para o meu perfil" role="button" class="container">
         <div class="avatar skeleton" role="img"></div>
       </div>
@@ -11,8 +11,8 @@
 
 <style lang="scss" scoped>
 .header {
-  background: color("primary");
-  height: 3.6rem;
+  background: color("dark", "darkest");
+  height: 4.5rem;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
   padding: 0 1rem;
   display: grid;
@@ -29,11 +29,11 @@
       cursor: pointer;
       transition: all 0.15s linear;
       &:hover {
-        color: color("light");
+        color: color("light", "darker");
       }
     }
     .container {
-      height: 75%;
+      height: 62.5%;
       aspect-ratio: 1 / 1;
       border-radius: 100%;
       cursor: pointer;
