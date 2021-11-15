@@ -15,10 +15,21 @@
 <table>
   <tr>
     <td align="center" style="padding=0;width=50%;">
-      <img src="https://github.com/jose13162/chatApp/blob/main/docs/mobileHome.jpg?raw=true" heigth="180em" title="mobile home">
+      <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-Home.jpg?raw=true" heigth="180em" title="Mobile home">
     </td>
     <td align="center" style="padding=0;width=50%;">
-      <img src="https://github.com/jose13162/chatApp/blob/main/docs/desktopHome.jpg?raw=true" heigth="180em" title="desktop home">
+      <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-CreateGroup.jpg?raw=true" heigth="180em" title="Mobile create group form">
+    </td>
+    <td align="center" style="padding=0;width=50%;">
+      <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-SearchUser.jpg?raw=true" heigth="180em" title="Mobile user search">
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td align="center" style="padding=0;width=50%;">
+      <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-Home.png?raw=true" heigth="180em" title="Desktop home">
     </td>
   </tr>
 </table>
