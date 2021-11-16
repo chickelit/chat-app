@@ -23,6 +23,9 @@
     <td align="center" style="padding=0;width=50%;">
       <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-SearchUser.jpg?raw=true" heigth="180em" title="Mobile user search">
     </td>
+    <td align="center" style="padding=0;width=50%;">
+      <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-GroupChat.jpg?raw=true" heigth="180em" title="Mobile group chat">
+    </td>
   </tr>
 </table>
 
@@ -30,6 +33,11 @@
   <tr>
     <td align="center" style="padding=0;width=50%;">
       <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-Home.png?raw=true" heigth="180em" title="Desktop home">
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="padding=0;width=50%;">
+      <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-ConversationChat.png?raw=true" heigth="180em" title="Desktop conversation chat">
     </td>
   </tr>
 </table>
