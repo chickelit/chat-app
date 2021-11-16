@@ -28,9 +28,10 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .group-message {
+  user-select: all;
   height: max-content;
   width: 60%;
-  background: color("secondary");
+  background: color("dark", "lighter");
   padding: 0.5rem;
   border-radius: 0.3125rem;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
@@ -59,16 +60,14 @@ export default Vue.extend({
     width: 2rem;
     justify-self: end;
     border-radius: 0.125rem;
-    font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
-    color: color("dark", "lightest");
+    color: color("light", "darkest");
     font-size: 0.875rem;
   }
   .username {
     height: 0.75rem;
     width: 6rem;
     border-radius: 0.125rem;
-    font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
-    color: color("dark", "lightest");
+    color: color("light", "darkest");
     font-size: 0.875rem;
     .skeleton-text {
       border-radius: 0.125rem;
@@ -82,5 +81,6 @@ export default Vue.extend({
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
+  background: color("primary", "lighter");
 }
 </style>

@@ -1,18 +1,11 @@
 <template>
   <div class="group-chat">
     <ChatHeader class="chat-header">
-      <div
-        aria-label="Voltar para a lista de grupos"
-        class="back"
-        @click="
-          setView({
-            newView: 'Groups',
-            navigationActiveClass: 'groups-anchor',
-          })
-        "
-      >
-        <img src="@/assets/img/arrow-left.svg" alt="Arrow left" />
-      </div>
+      <BackButton
+        label="Voltar para a lista de grupos"
+        new-view="Groups"
+        navigation-active-class="groups-anchor"
+      />
       <div class="avatar skeleton"></div>
       <div class="username">
         <div class="skeleton skeleton-text"></div>
@@ -29,7 +22,9 @@
     </div>
     <div class="message-engine">
       <form>
-        <BaseInput aria-label="Escrever mensagem" placeholder="Mensagem" />
+        <AutoExpandingInput
+          @keydown="handleKeydown($event)"
+        ></AutoExpandingInput>
         <button aria-label="Enviar mensagem" type="submit" class="form-button">
           <img src="@/assets/img/send.svg" alt="Paper plane" />
         </button>
@@ -81,6 +76,14 @@ export default Vue.extend({
       ],
     };
   },
+  methods: {
+    handleKeydown(event: KeyboardEvent) {
+      if (event.shiftKey && event.key === "Enter") {
+        const form = document.querySelector(".message-engine form") as any;
+        form?.submit();
+      }
+    },
+  },
 });
 </script>
 
@@ -92,22 +95,10 @@ export default Vue.extend({
   bottom: 0;
   width: 100%;
   display: grid;
-  background: color("primary", "lighter");
+  background: color("dark");
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
   .chat-header {
-    .back {
-      cursor: pointer;
-      &:hover {
-        img {
-          filter: invert(0.75);
-        }
-      }
-      img {
-        filter: invert(0.65);
-        transition: all 0.15s linear;
-      }
-    }
     .avatar {
       width: 100%;
       height: 100%;
@@ -127,26 +118,26 @@ export default Vue.extend({
   }
   .message-engine {
     align-self: end;
-    height: 2.5rem;
+    height: max-content;
     padding: 0.5rem;
-    background: color("primary");
+    background: color("dark", "darkest");
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
-    border-radius: 0 0 0.3125rem 0.3125rem;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     form {
       display: grid;
       grid-template-columns: 1fr auto auto;
-      gap: 1rem;
+      gap: 0.5rem;
       .form-button {
         cursor: pointer;
         position: relative;
         width: 2.5rem;
         height: 2.5rem;
         border-radius: 100%;
-        background: color("primary", "lighter");
+        background: color("dark");
         transition: all 0.15s linear;
+        align-self: center;
         display: grid;
         align-items: center;
         justify-items: center;
@@ -156,7 +147,7 @@ export default Vue.extend({
           transition: all 0.15s linear;
         }
         &:hover {
-          background: color("primary", "lightest");
+          background: color("dark", "lighter");
           img {
             filter: invert(0.75);
           }
