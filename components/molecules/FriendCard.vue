@@ -49,6 +49,9 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .danger {
   color: color("danger") !important;
+  &:hover {
+    color: color("danger", "lighter") !important;
+  }
 }
 .username {
   width: 100%;
