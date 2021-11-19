@@ -1,68 +1,88 @@
-<h1 align="center">chatApp</h1>
-<p align="center">Client para a API de conversas em tempo real</p>
-<div align="center">
-  <img src="https://img.shields.io/badge/npm-v7.19.1-brightgreen" />
-  <img src="https://img.shields.io/badge/node-v14.16.1-brightgreen" />
-  <img src="https://img.shields.io/badge/Typescript-v4.2-blue">
-  <img src="https://img.shields.io/badge/VueJS-v3-brightgreen">
-  <img src="https://img.shields.io/badge/NuxtJS-v2.15.7-darkgreen">
-  <img src="https://img.shields.io/badge/Scss-v10.1.1-ff69b4">
+<div id="sobre">
+  <h1 align="center">chatApp</h1>
+  <p align="center">Client para a API de conversas em tempo real</p>
+  <div align="center">
+    <img src="https://img.shields.io/badge/npm-v7.19.1-brightgreen" />
+    <img src="https://img.shields.io/badge/node-v14.16.1-brightgreen" />
+    <img src="https://img.shields.io/badge/Typescript-v4.2-blue">
+    <img src="https://img.shields.io/badge/VueJS-v3-brightgreen">
+    <img src="https://img.shields.io/badge/NuxtJS-v2.15.7-darkgreen">
+    <img src="https://img.shields.io/badge/Scss-v10.1.1-ff69b4">
+  </div>
 </div>
 <h4 align="center"> 
 	🚧  Em desenvolvimento...  🚧
 </h4>
 
-<table>
-  <tr>
-    <td align="center" style="padding=0;width=50%;">
-      <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-Home.jpg?raw=true" heigth="180em" title="Mobile home">
-    </td>
-    <td align="center" style="padding=0;width=50%;">
-      <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-GroupChat.jpg?raw=true" heigth="180em" title="Mobile group chat">
-    </td>
-  </tr>
-</table>
+<div id="tabela-de-conteudos"></div>
 
-<table>
-  <tr>
-    <td align="center" style="padding=0;width=50%;">
-      <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-Home.png?raw=true" heigth="180em" title="Desktop home">
-    </td>
-  </tr>
-  <tr>
-    <td align="center" style="padding=0;width=50%;">
-      <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-ConversationChat.png?raw=true" heigth="180em" title="Desktop conversation chat">
-    </td>
-  </tr>
-</table>
+Tabela de conteúdos
+=================
+<!--ts-->
+  * [Sobre](#sobre)
+  * [Tabela de conteúdo](#tabela-de-conteudos)
+  * [Imagens](#imagens)
+  * [Pré-requesitos](#pre-requesitos)
+  * [Instalação](#instalacao)
+  * [Tecnologias](#tecnologias)
+<!--te-->
 
-<table>
-  <tr>
-    <td align="center" style="padding=0;width=50%;">
-      <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-CreateGroup.jpg?raw=true" heigth="180em" title="Mobile create group form">
-    </td>
-    <td align="center" style="padding=0;width=50%;">
-      <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-SearchUser.jpg?raw=true" heigth="180em" title="Mobile user search">
-    </td>
-    <td align="center" style="padding=0;width=50%;">
-      <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-Profile.jpg?raw=true" heigth="180em" title="Mobile profile">
-    </td>
-  </tr>
-</table>
+<div id="imagens">
+  <table>
+    <tr>
+      <td align="center" style="padding=0;width=50%;">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-Home.jpg?raw=true" heigth="180em" title="Mobile home">
+      </td>
+      <td align="center" style="padding=0;width=50%;">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-GroupChat.jpg?raw=true" heigth="180em" title="Mobile group chat">
+      </td>
+    </tr>
+  </table>
 
-<table>
-  <tr>
-    <td align="center" style="padding=0;width=50%;">
-      <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-GroupDetails.png?raw=true" heigth="180em" title="Desktop group details">
-    </td>
-  </tr>
-</table>
+  <table>
+    <tr>
+      <td align="center" style="padding=0;width=50%;">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-Home.png?raw=true" heigth="180em" title="Desktop home">
+      </td>
+    </tr>
+    <tr>
+      <td align="center" style="padding=0;width=50%;">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-ConversationChat.png?raw=true" heigth="180em" title="Desktop conversation chat">
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td align="center" style="padding=0;width=50%;">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-CreateGroup.jpg?raw=true" heigth="180em" title="Mobile create group form">
+      </td>
+      <td align="center" style="padding=0;width=50%;">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-SearchUser.jpg?raw=true" heigth="180em" title="Mobile user search">
+      </td>
+      <td align="center" style="padding=0;width=50%;">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-Profile.jpg?raw=true" heigth="180em" title="Mobile profile">
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td align="center" style="padding=0;width=50%;">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-GroupDetails.png?raw=true" heigth="180em" title="Desktop group details">
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div id="pre-requesitos"></div>
 
 ### Pré-requisitos
-
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), [Npm](https://npmjs.com).
 Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+
+<div id="instalacao"></div>
 
 ### 🎲 Rodando o Front End
 
@@ -81,6 +101,8 @@ $ npm run dev
 
 # O servidor iniciará na porta:3000 - acesse http://localhost:3000
 ```
+
+<div id="tecnologias"></div>
 
 ### 🛠 Tecnologias
 
