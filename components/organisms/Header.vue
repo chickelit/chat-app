@@ -2,12 +2,33 @@
   <header class="header">
     <Wrapper class="wrapper">
       <h1 class="title">ChatApp</h1>
-      <div aria-label="Ir para o meu perfil" role="button" class="container">
+      <div
+        aria-label="Ir para o meu perfil"
+        role="button"
+        class="container"
+        @click="
+          setView({
+            newView: 'Profile',
+          })
+        "
+      >
         <div class="avatar skeleton" role="img"></div>
       </div>
     </Wrapper>
   </header>
 </template>
+
+<script lang="ts">
+import Vue from "vue";
+import { setView } from "@/utils";
+export default Vue.extend({
+  data() {
+    return {
+      setView,
+    };
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 .header {

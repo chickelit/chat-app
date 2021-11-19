@@ -19,7 +19,16 @@
       </div>
       <OptionsButton @click="toggleDropdown" />
       <Dropdown class="group-card-dropdown">
-        <div role="button" aria-label="Ver dados do grupo">
+        <div
+          role="button"
+          aria-label="Ver dados do grupo"
+          @click="
+            setView({
+              newView: 'GroupDetails',
+              navigationActiveClass: 'groups-anchor',
+            })
+          "
+        >
           Ver dados do grupo
         </div>
       </Dropdown>
@@ -29,6 +38,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { setView } from "@/utils";
 export default Vue.extend({
   props: {
     mine: {
@@ -39,6 +49,11 @@ export default Vue.extend({
       type: Number,
       required: true,
     },
+  },
+  data() {
+    return {
+      setView,
+    };
   },
   methods: {
     toggleDropdown() {

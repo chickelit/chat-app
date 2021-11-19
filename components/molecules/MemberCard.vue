@@ -1,30 +1,18 @@
 <template>
-  <div class="friend-card" @mouseleave="disableDropdown">
-    <Wrapper class="wrapper">
+  <div class="member-card" @mouseleave="disableDropdown">
+    <Wrapper class="member-card-wrapper">
       <div class="avatar skeleton"></div>
       <div class="username">
         <div class="skeleton skeleton-text"></div>
       </div>
-      <OptionsButton @click="toggleDropdown" />
-      <Dropdown class="friend-card-dropdown">
+      <OptionsButton v-if="showOptions" @click="toggleDropdown" />
+      <Dropdown class="member-card-dropdown">
         <div
           role="button"
-          aria-label="Conversar com <username>"
-          @click="
-            setView({
-              newView: 'ConversationChat',
-              navigationActiveClass: 'friends-anchor',
-            })
-          "
-        >
-          Conversar com zezin
-        </div>
-        <div
+          aria-label="Remover <username> do grupo"
           class="danger"
-          role="button"
-          aria-label="Desfazer amizade com <username>"
         >
-          Desfazer amizade
+          Remover zezin do grupo
         </div>
       </Dropdown>
     </Wrapper>
@@ -33,33 +21,31 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { setView } from "@/utils";
 export default Vue.extend({
   props: {
     index: {
       type: Number,
       required: true,
     },
-  },
-  data() {
-    return {
-      setView,
-    };
+    showOptions: {
+      type: Boolean,
+      default: false,
+    },
   },
   methods: {
     toggleDropdown() {
-      const friendCardDropdown = document.querySelectorAll(
-        ".friend-card-dropdown"
+      const memberCardDropdown = document.querySelectorAll(
+        ".member-card-dropdown"
       )[this.index] as Element;
 
-      friendCardDropdown.classList.toggle("active");
+      memberCardDropdown.classList.toggle("active");
     },
     disableDropdown() {
-      const friendCardDropdown = document.querySelectorAll(
-        ".friend-card-dropdown"
+      const memberCardDropdown = document.querySelectorAll(
+        ".member-card-dropdown"
       )[this.index] as Element;
 
-      friendCardDropdown.classList.remove("active");
+      memberCardDropdown.classList.remove("active");
     },
   },
 });
@@ -68,6 +54,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .danger {
   color: color("danger") !important;
+  transition: all 0.15s linear;
   &:hover {
     color: color("danger", "lighter") !important;
   }
@@ -80,7 +67,7 @@ export default Vue.extend({
     border-radius: 0.125rem;
   }
 }
-.friend-card {
+.member-card {
   cursor: pointer;
   padding: 0.5rem 1rem;
   background: color("dark", "lighter");
@@ -97,8 +84,8 @@ export default Vue.extend({
     grid-template-rows: 3rem;
     gap: 0.5rem;
     align-items: center;
-    .friend-card-dropdown {
-      right: 2.125rem;
+    .member-card-dropdown {
+      right: 2.25rem;
       top: 1.6rem;
     }
   }

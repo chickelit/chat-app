@@ -1,5 +1,5 @@
 <template>
-  <div class="create-group">
+  <div class="user-search">
     <FullScreenView
       label="Voltar para a lista de amigos"
       new-view="Friends"
@@ -53,7 +53,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.create-group {
+.user-search {
   .title {
     font-size: 1.5rem;
     width: max-content;
@@ -61,7 +61,13 @@ export default Vue.extend({
     color: color("light", "darkest");
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.15s linear;
+  }
+  .result-list {
+    ul {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.125rem;
+    }
   }
   .form {
     height: max-content;
