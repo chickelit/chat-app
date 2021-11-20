@@ -13,8 +13,22 @@
         <div class="main">
           <div class="cover skeleton"></div>
           <div class="group-title skeleton skeleton-text"></div>
-          <div class="button" role="button" aria-label="Sair do grupo">
-            Sair do grupo
+          <div class="buttons">
+            <div class="button danger" role="button" aria-label="Sair do grupo">
+              Sair do grupo
+            </div>
+            <div
+              class="button"
+              role="button"
+              aria-label="Ver membros do grupo"
+              @click="
+                setView({
+                  newView: 'GroupMembers',
+                })
+              "
+            >
+              Ver membros do grupo
+            </div>
           </div>
         </div>
       </template>
@@ -22,7 +36,25 @@
   </div>
 </template>
 
+<script lang="ts">
+import Vue from "vue";
+import { setView } from "@/utils";
+export default Vue.extend({
+  data() {
+    return {
+      setView,
+    };
+  },
+});
+</script>
+
 <style lang="scss" scoped>
+.danger {
+  color: color("danger") !important;
+  &:hover {
+    color: color("danger", "lighter") !important;
+  }
+}
 .title {
   font-size: 1.5rem;
   width: max-content;
@@ -39,6 +71,13 @@
   justify-items: center;
   gap: 1.5rem;
   background: color("dark", "darker");
+  .buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: max-content;
+    gap: 0.25rem;
+    justify-items: center;
+  }
   .cover {
     margin-top: 1rem;
     width: 10rem;
@@ -47,11 +86,11 @@
   }
   .button {
     cursor: pointer;
-    color: color("danger");
+    color: color("light", "darkest");
     transition: all 0.15s linear;
     text-decoration: underline;
     &:hover {
-      color: color("danger", "lighter");
+      color: color("light", "darker");
     }
   }
   .group-title {

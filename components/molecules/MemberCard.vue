@@ -70,6 +70,7 @@ export default Vue.extend({
 .member-card {
   cursor: pointer;
   padding: 0.5rem 1rem;
+  background: color("dark");
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 3rem;

@@ -59,7 +59,7 @@ export default Vue.extend({
   .header-wrapper {
     justify-self: center;
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr auto;
     grid-template-rows: 1fr;
     align-items: center;
     gap: 1rem;
