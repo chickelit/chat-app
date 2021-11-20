@@ -60,14 +60,14 @@ export default Vue.extend({
     width: 2rem;
     justify-self: end;
     border-radius: 0.125rem;
-    color: color("light", "darkest");
+    color: color("light", "darker");
     font-size: 0.875rem;
   }
   .username {
     height: 0.75rem;
     width: 6rem;
     border-radius: 0.125rem;
-    color: color("light", "darkest");
+    color: color("light", "darker");
     font-size: 0.875rem;
     .skeleton-text {
       border-radius: 0.125rem;

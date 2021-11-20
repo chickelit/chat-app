@@ -31,7 +31,7 @@ export default Vue.extend({
   cursor: pointer;
   position: relative;
   padding: 0.5rem 1rem;
-  background: color("dark", "lighter");
+  background: color("dark");
   transition: all 0.15s linear;
   .wrapper {
     display: grid;
@@ -41,7 +41,7 @@ export default Vue.extend({
     align-items: center;
   }
   &:hover {
-  background: color("dark", "lightest");
+  background: color("dark", "lighter");
   }
   .avatar {
     height: 100%;

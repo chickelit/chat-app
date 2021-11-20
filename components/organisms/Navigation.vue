@@ -243,7 +243,7 @@ export default Vue.extend({
   transform: translateX(-10px);
   pointer-events: none;
   z-index: -1;
-  background: color("dark");
+  background: color("dark", "lighter");
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
   border-radius: 0 0 0.3125rem 0.3125rem;
   top: 100%;

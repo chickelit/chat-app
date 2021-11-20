@@ -95,7 +95,7 @@ export default Vue.extend({
   bottom: 0;
   width: 100%;
   display: grid;
-  background: color("dark");
+  background: color("dark", "darker");
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
   .chat-header {

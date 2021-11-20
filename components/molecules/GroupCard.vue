@@ -81,13 +81,13 @@ export default Vue.extend({
 .group-card {
   cursor: pointer;
   padding: 0.5rem 1rem;
-  background: color("dark", "lighter");
+  background: color("dark");
   display: grid;
   grid-template-columns: 1fr auto;
   justify-items: center;
   transition: all 0.15s linear;
   &:hover {
-    background: color("dark", "lightest");
+    background: color("dark", "lighter");
   }
   .group-card-wrapper {
     position: relative;

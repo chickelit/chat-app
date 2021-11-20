@@ -1,5 +1,5 @@
 <template>
-  <div class="options" aria-label="Opções" role="button"  @click="$emit('click')">
+  <div class="options-button" aria-label="Opções" role="button"  @click="$emit('click')">
     <div class="wrapper">
       <div class="dot"></div>
       <div class="dot"></div>
@@ -9,18 +9,18 @@
 </template>
 
 <style lang="scss" scoped>
-.options {
+.options-button {
   box-shadow: -2px 0 5px 0 rgba(0, 0, 0, 0.1);
   cursor: pointer;
   width: 2.4375rem;
   height: 2.4375rem;
-  background: color("dark");
+  background: color("dark", "darker");
   border-radius: 100%;
   display: grid;
   align-items: center;
   transition: all 0.15s linear;
   &:hover {
-    background: color("dark", "lighter");
+    background: color("dark");
   }
   .wrapper {
     display: grid;
