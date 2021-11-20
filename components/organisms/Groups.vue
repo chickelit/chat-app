@@ -1,14 +1,16 @@
 <template>
   <div class="groups">
-    <ul class="groups-list">
-      <li v-for="(group, index) of groups" :key="index" class="group">
-        <GroupCard
-          :index="index"
-          :mine="group.mine"
-          @click="setView({ newView: 'GroupChat' })"
-        />
-      </li>
-    </ul>
+    <Wrapper>
+      <ul class="groups-list">
+        <li v-for="(group, index) of groups" :key="index" class="group">
+          <GroupCard
+            :index="index"
+            :mine="group.mine"
+            @click="setView({ newView: 'GroupChat' })"
+          />
+        </li>
+      </ul>
+    </Wrapper>
   </div>
 </template>
 
@@ -50,6 +52,7 @@ export default Vue.extend({
   inset: 0;
   background: color("dark");
   .groups-list {
+    background: color("dark", "darker");
     position: absolute;
     inset: 0;
     overflow-y: scroll;
@@ -58,15 +61,15 @@ export default Vue.extend({
     grid-auto-rows: max-content;
     grid-auto-flow: row;
     gap: 0.125rem;
-     .group {
-        &:nth-last-child(1) {
-          ::v-deep.group-card {
-            .group-card-dropdown {
-              top: -0.375rem;
-            }
+    .group {
+      &:nth-last-child(1) {
+        ::v-deep.group-card {
+          .group-card-dropdown {
+            top: -0.375rem;
           }
         }
       }
+    }
   }
 }
 </style>

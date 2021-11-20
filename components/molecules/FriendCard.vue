@@ -1,6 +1,6 @@
 <template>
   <div class="friend-card" @mouseleave="disableDropdown">
-    <Wrapper class="wrapper">
+    <div class="wrapper">
       <div class="avatar skeleton"></div>
       <div class="username">
         <div class="skeleton skeleton-text"></div>
@@ -27,7 +27,7 @@
           Desfazer amizade
         </div>
       </Dropdown>
-    </Wrapper>
+    </div>
   </div>
 </template>
 
@@ -91,6 +91,7 @@ export default Vue.extend({
   justify-items: center;
   transition: all 0.15s linear;
   .wrapper {
+    width: 100%;
     position: relative;
     display: grid;
     grid-template-columns: 3rem 1fr auto;

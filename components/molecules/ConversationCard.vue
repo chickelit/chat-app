@@ -1,6 +1,6 @@
 <template>
   <div class="conversation-card" role="link" @click="$emit('click')">
-    <Wrapper class="wrapper">
+    <div class="wrapper">
       <div class="avatar skeleton" />
       <div class="container">
         <div class="username">
@@ -10,7 +10,7 @@
           <div class="skeleton skeleton-text"></div>
         </div>
       </div>
-    </Wrapper>
+    </div>
   </div>
 </template>
 

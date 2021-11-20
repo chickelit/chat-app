@@ -203,7 +203,6 @@ export default Vue.extend({
       align-items: center;
       justify-items: center;
       &:hover {
-        background: color("dark");
         color: color("light");
       }
       &:after {

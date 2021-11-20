@@ -91,16 +91,12 @@ export default Vue.extend({
   }
   .group-card-wrapper {
     position: relative;
-    width: 60%;
-    max-width: 48rem;
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
-    @include screen("medium") {
-      width: 100%;
-    }
     .group-card-dropdown {
-      right: 2.25rem;
+      right: 2rem;
       top: 1.6rem;
     }
   }

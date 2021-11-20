@@ -1,6 +1,6 @@
 <template>
   <div class="member-card" @mouseleave="disableDropdown">
-    <Wrapper class="member-card-wrapper">
+    <div class="member-card-wrapper">
       <div class="avatar skeleton"></div>
       <div class="username">
         <div class="skeleton skeleton-text"></div>
@@ -15,7 +15,7 @@
           Remover zezin do grupo
         </div>
       </Dropdown>
-    </Wrapper>
+    </div>
   </div>
 </template>
 
@@ -77,7 +77,8 @@ export default Vue.extend({
   gap: 0.5rem;
   justify-items: center;
   transition: all 0.15s linear;
-  .wrapper {
+  .member-card-wrapper {
+    width: 100%;
     position: relative;
     display: grid;
     grid-template-columns: 3rem 1fr auto;

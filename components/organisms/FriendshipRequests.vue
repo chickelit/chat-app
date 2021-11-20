@@ -1,16 +1,18 @@
 <template>
   <div class="friendship-requests">
-    <div class="container">
-      <ul class="friendship-requests-list">
-        <li
-          v-for="(friend, index) of friends"
-          :key="index"
-          class="friendship-request"
-        >
-          <FriendshipRequestCard :index="index" />
-        </li>
-      </ul>
-    </div>
+    <Wrapper>
+      <div class="container">
+        <ul class="friendship-requests-list">
+          <li
+            v-for="(friend, index) of friends"
+            :key="index"
+            class="friendship-request"
+          >
+            <FriendshipRequestCard :index="index" />
+          </li>
+        </ul>
+      </div>
+    </Wrapper>
   </div>
 </template>
 
@@ -59,6 +61,7 @@ export default Vue.extend({
     position: absolute;
     inset: 0;
     .friendship-requests-list {
+      background: color("dark", "darker");
       position: absolute;
       inset: 0;
       overflow-y: scroll;

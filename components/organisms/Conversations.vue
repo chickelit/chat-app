@@ -1,22 +1,24 @@
 <template>
   <div class="conversations">
-    <ul class="conversations-list">
-      <li
-        v-for="(conversation, index) of conversations"
-        :key="index"
-        class="conversation"
-      >
-        <ConversationCard
-          aria-label="Conversar com <username>"
-          :index="index"
-          @click="
-            setView({
-              newView: 'ConversationChat',
-            })
-          "
-        />
-      </li>
-    </ul>
+    <Wrapper>
+      <ul class="conversations-list">
+        <li
+          v-for="(conversation, index) of conversations"
+          :key="index"
+          class="conversation"
+        >
+          <ConversationCard
+            aria-label="Conversar com <username>"
+            :index="index"
+            @click="
+              setView({
+                newView: 'ConversationChat',
+              })
+            "
+          />
+        </li>
+      </ul>
+    </Wrapper>
   </div>
 </template>
 
@@ -42,6 +44,7 @@ export default Vue.extend({
   inset: 0;
   background: color("dark");
   .conversations-list {
+    background: color("dark", "darker");
     position: absolute;
     inset: 0;
     overflow-y: scroll;
