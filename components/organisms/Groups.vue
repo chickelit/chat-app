@@ -21,23 +21,7 @@ export default Vue.extend({
   data() {
     return {
       setView,
-      groups: [
-        { mine: false },
-        { mine: false },
-        { mine: true },
-        { mine: false },
-        { mine: true },
-        { mine: false },
-        { mine: false },
-        { mine: false },
-        { mine: false },
-        { mine: false },
-        { mine: false },
-        { mine: false },
-        { mine: true },
-        { mine: false },
-        { mine: false },
-      ],
+      groups: Array(15).fill(false),
     };
   },
 });

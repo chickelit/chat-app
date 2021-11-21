@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="['group-card', { mine }]"
+    class="group-card"
     aria-label="Conversar no grupo <title>"
     role="link"
     @mouseleave="disableDropdown"
@@ -41,10 +41,6 @@ import Vue from "vue";
 import { setView } from "@/utils";
 export default Vue.extend({
   props: {
-    mine: {
-      type: Boolean,
-      default: false,
-    },
     index: {
       type: Number,
       required: true,
