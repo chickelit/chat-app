@@ -69,7 +69,7 @@ Tabela de conteúdos
         <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-CreateGroup.jpg?raw=true" heigth="180em" title="Mobile create group form">
       </td>
       <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-SearchUser.jpg?raw=true" heigth="180em" title="Mobile user search">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-UserSearch.jpg?raw=true" heigth="180em" title="Mobile user search">
       </td>
       <td align="center" style="padding=0;width=50%;">
         <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-Profile.jpg?raw=true" heigth="180em" title="Mobile profile">
