@@ -13,7 +13,7 @@
     </ChatHeader>
     <div class="scroll-wrapper">
       <MessageList>
-        <GroupMessage
+        <Message
           v-for="(message, index) in messages"
           :key="index"
           :mine="message.mine"
@@ -55,7 +55,7 @@ export default Vue.extend({
       setView,
       messages: [
         { mine: true },
-        { mine: true },
+        { mine: false },
         { mine: false },
         { mine: true },
         { mine: false },

@@ -13,7 +13,7 @@
     </ChatHeader>
     <div class="scroll-wrapper">
       <MessageList>
-        <ConversationMessage
+        <Message
           v-for="(message, index) in messages"
           :key="index"
           :mine="message.mine"

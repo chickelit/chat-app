@@ -1,15 +1,17 @@
 <template>
-  <Message :mine="mine">
-    <template #content>
-      <div class="content">
-        <div class="skeleton skeleton-text"></div>
-        <div class="skeleton skeleton-text"></div>
+  <div :class="['message', { 'my-message': mine }]">
+    <div class="container">
+      <div class="username">
+        <div v-if="!mine" class="skeleton skeleton-text"></div>
+        <div v-else>Você</div>
       </div>
-    </template>
-    <template #before>
       <div class="sent-in">03:33</div>
-    </template>
-  </Message>
+    </div>
+    <div class="content">
+      <div class="skeleton skeleton-text"></div>
+      <div class="skeleton skeleton-text"></div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -25,7 +27,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.conversation-message {
+.message {
   user-select: all;
   height: max-content;
   width: 60%;
@@ -34,8 +36,8 @@ export default Vue.extend({
   border-radius: 0.3125rem;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: auto 1fr;
+  gap: 0.5rem;
   .content {
     display: grid;
     gap: 0.25rem;
@@ -48,13 +50,28 @@ export default Vue.extend({
       }
     }
   }
+  .container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
   .sent-in {
     height: 0.75rem;
-    width: 2rem;
     justify-self: end;
     border-radius: 0.125rem;
     color: color("light", "darker");
     font-size: 0.875rem;
+  }
+  .username {
+    height: 0.75rem;
+    width: 6rem;
+    border-radius: 0.125rem;
+    color: color("light", "darker");
+    font-size: 0.875rem;
+    .skeleton-text {
+      border-radius: 0.125rem;
+      width: 100%;
+      height: 1rem;
+    }
   }
 }
 .my-message {
