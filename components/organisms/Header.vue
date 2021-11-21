@@ -34,7 +34,6 @@ export default Vue.extend({
 .header {
   background: color("dark", "darkest");
   height: 4.5rem;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
   padding: 0 1rem;
   display: grid;
   justify-items: center;

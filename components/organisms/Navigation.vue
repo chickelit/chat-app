@@ -176,9 +176,9 @@ export default Vue.extend({
   z-index: 1;
   position: relative;
   display: grid;
-  background: color("dark", "darker");
+  background: color("dark", "darkest");
   height: 2.5rem;
-  box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
   align-items: center;
   justify-items: center;
   .navigation-items {
@@ -203,6 +203,7 @@ export default Vue.extend({
       align-items: center;
       justify-items: center;
       &:hover {
+        background: color("dark", "darker");
         color: color("light");
       }
       &:after {
