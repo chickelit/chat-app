@@ -61,7 +61,7 @@ export default Vue.extend({
 .user-card {
   cursor: pointer;
   padding: 0.5rem 1rem;
-  background: color("dark", "lighter");
+  background: color("dark");
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 3rem;
@@ -81,7 +81,7 @@ export default Vue.extend({
     }
   }
   &:hover {
-    background: color("dark", "lightest");
+    background: color("dark", "lighter");
   }
   .avatar {
     height: 100%;

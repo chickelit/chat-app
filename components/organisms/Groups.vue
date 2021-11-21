@@ -50,9 +50,8 @@ export default Vue.extend({
 .groups {
   position: absolute;
   inset: 0;
-  background: color("dark");
+  background: color("dark", "darker");
   .groups-list {
-    background: color("dark", "darker");
     position: absolute;
     inset: 0;
     overflow-y: scroll;

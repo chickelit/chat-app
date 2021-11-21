@@ -41,7 +41,6 @@
   position: relative;
 }
 .member-list {
-  background: color("dark", "darker");
   position: absolute;
   inset: 0;
   overflow-y: scroll;
@@ -50,11 +49,6 @@
   gap: 0.125rem;
   &::-webkit-scrollbar {
     width: 0px;
-  }
-  .full-screen-view {
-    &:after {
-      content: "a";
-    }
   }
 }
 .title {

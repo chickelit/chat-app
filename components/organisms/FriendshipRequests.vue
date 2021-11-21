@@ -51,7 +51,7 @@ export default Vue.extend({
 }
 .friendship-requests {
   height: 100%;
-  background: color("dark");
+  background: color("dark", "darker");
   position: absolute;
   inset: 0;
   overflow-y: scroll;
@@ -61,7 +61,6 @@ export default Vue.extend({
     position: absolute;
     inset: 0;
     .friendship-requests-list {
-      background: color("dark", "darker");
       position: absolute;
       inset: 0;
       overflow-y: scroll;

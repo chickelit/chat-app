@@ -47,7 +47,7 @@ export default Vue.extend({
 }
 .friends {
   height: 100%;
-  background: color("dark");
+  background: color("dark", "darker");
   position: absolute;
   inset: 0;
   overflow-y: scroll;
@@ -57,7 +57,6 @@ export default Vue.extend({
     position: absolute;
     inset: 0;
     .friends-list {
-      background: color("dark", "darker");
       position: absolute;
       inset: 0;
       overflow-y: scroll;

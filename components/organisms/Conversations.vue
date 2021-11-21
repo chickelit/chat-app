@@ -42,9 +42,8 @@ export default Vue.extend({
 .conversations {
   position: absolute;
   inset: 0;
-  background: color("dark");
+  background: color("dark", "darker");
   .conversations-list {
-    background: color("dark", "darker");
     position: absolute;
     inset: 0;
     overflow-y: scroll;
