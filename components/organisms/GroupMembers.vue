@@ -58,6 +58,7 @@
   }
 }
 .wrapper {
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-rows: max-content;
@@ -75,7 +76,7 @@
   &:hover {
     background: color("dark", "lighter");
     .line {
-      background: color("success", "lighter");
+      background: color("primary", "lighter");
     }
   }
 }
@@ -86,7 +87,7 @@
   width: 60%;
   height: 0.15625rem;
   border-radius: 1rem;
-  background: color("success");
+  background: color("primary");
   transition: all 0.15s linear;
   &.vertical {
     transform: rotate(90deg);
