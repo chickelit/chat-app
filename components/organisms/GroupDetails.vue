@@ -14,9 +14,6 @@
           <div class="cover skeleton"></div>
           <div class="group-title skeleton skeleton-text"></div>
           <div class="buttons">
-            <div class="button danger" role="button" aria-label="Sair do grupo">
-              Sair do grupo
-            </div>
             <div
               class="button"
               role="button"
@@ -28,6 +25,9 @@
               "
             >
               Ver membros do grupo
+            </div>
+            <div class="button danger" role="button" aria-label="Sair do grupo">
+              Sair do grupo
             </div>
           </div>
         </div>

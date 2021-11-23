@@ -7,7 +7,13 @@
       class="full-screen-view"
     >
       <template #header-slot>
-        <h1 class="title">Membros do grupo</h1>
+        <div class="wrapper">
+          <h1 class="title">Membros do grupo</h1>
+          <div class="button" role="button">
+            <div class="line"></div>
+            <div class="line vertical"></div>
+          </div>
+        </div>
       </template>
       <template #main-slot>
         <div class="scroll-wrapper">
@@ -51,8 +57,44 @@
     width: 0px;
   }
 }
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: max-content;
+  align-items: center;
+}
+.button {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+  cursor: pointer;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 100%;
+  background: color("dark");
+  transition: all 0.15s linear;
+  &:hover {
+    background: color("dark", "lighter");
+    .line {
+      background: color("success", "lighter");
+    }
+  }
+}
+.line {
+  position: absolute;
+  top: 1.125rem;
+  left: 0.5rem;
+  width: 60%;
+  height: 0.15625rem;
+  border-radius: 1rem;
+  background: color("success");
+  transition: all 0.15s linear;
+  &.vertical {
+    transform: rotate(90deg);
+  }
+}
 .title {
   font-size: 1.5rem;
+  text-justify: center;
   width: max-content;
   font-family: "Tahoma";
   color: color("light", "darkest");

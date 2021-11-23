@@ -6,6 +6,7 @@
 
 <style lang="scss" scoped>
 .dropdown {
+  z-index: 5000;
   opacity: 0;
   pointer-events: none;
   transform: translateX(-10px);
