@@ -1,7 +1,7 @@
 <template>
   <div class="user-search">
     <FullScreenView
-      label="Voltar para a lista de amigos"
+      label="Voltar"
       new-view="Friends"
       navigation-active-class="friends-anchor"
       class="full-screen-view"

@@ -25,6 +25,7 @@
           @click="
             setView({
               newView: 'GroupDetails',
+              previousView: 'Groups',
               navigationActiveClass: 'groups-anchor',
             })
           "

@@ -1,9 +1,9 @@
 <template>
   <div class="group-details">
     <FullScreenView
-      label="Voltar para a lista de converrsas"
-      new-view="Conversations"
-      navigation-active-class="conversations-anchor"
+      label="Voltar"
+      :new-view="$previousView"
+      :navigation-active-class="$previousNavigationActiveClass"
       class="full-screen-view"
     >
       <template #header-slot>
@@ -24,6 +24,21 @@
     </FullScreenView>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from "vue";
+import { view } from "~/store";
+export default Vue.extend({
+  computed: {
+    $previousView() {
+      return view.$previousView;
+    },
+    $previousVpreviousNavigationActiveClassiew() {
+      return view.$previousNavigationActiveClass;
+    },
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 .title {

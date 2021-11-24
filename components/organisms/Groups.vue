@@ -6,7 +6,7 @@
           <GroupCard
             :index="index"
             :mine="group.mine"
-            @click="setView({ newView: 'GroupChat' })"
+            @click="setView({ newView: 'GroupChat', previousView: $view })"
           />
         </li>
       </ul>
@@ -17,12 +17,18 @@
 <script lang="ts">
 import Vue from "vue";
 import { setView } from "@/utils";
+import { view } from "~/store";
 export default Vue.extend({
   data() {
     return {
       setView,
       groups: Array(15).fill(false),
     };
+  },
+  computed: {
+    $view() {
+      return view.$view;
+    },
   },
 });
 </script>

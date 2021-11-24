@@ -9,6 +9,8 @@
         @click="
           setView({
             newView: 'Profile',
+            previousView: $view,
+            previousNavigationActiveClass: $navigationActiveClass
           })
         "
       >
@@ -21,11 +23,20 @@
 <script lang="ts">
 import Vue from "vue";
 import { setView } from "@/utils";
+import { view } from "~/store";
 export default Vue.extend({
   data() {
     return {
       setView,
     };
+  },
+  computed: {
+    $view() {
+      return view.$view;
+    },
+    $navigationActiveClass() {
+      return view.$navigationActiveClass;
+    },
   },
 });
 </script>

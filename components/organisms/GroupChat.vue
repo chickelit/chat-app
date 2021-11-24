@@ -2,8 +2,8 @@
   <div class="group-chat">
     <ChatHeader class="chat-header">
       <BackButton
-        label="Voltar para a lista de grupos"
-        new-view="Groups"
+        label="Voltar"
+        :new-view="$previousView"
         navigation-active-class="groups-anchor"
       />
       <div class="avatar skeleton"></div>
@@ -49,6 +49,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { setView } from "@/utils";
+import { view } from "~/store";
 export default Vue.extend({
   data() {
     return {
@@ -75,6 +76,11 @@ export default Vue.extend({
         { mine: false },
       ],
     };
+  },
+  computed: {
+    $previousView() {
+      return view.$previousView;
+    },
   },
   methods: {
     handleKeydown(event: KeyboardEvent) {

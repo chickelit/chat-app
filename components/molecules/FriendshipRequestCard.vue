@@ -1,11 +1,10 @@
 <template>
-  <div class="friendship-request-card" @mouseleave="disableDropdown">
+  <div class="friendship-request-card" @mouseleave="disableDropdown" @click="toggleDropdown">
     <div class="wrapper">
       <div class="avatar skeleton"></div>
       <div class="username">
         <div class="skeleton skeleton-text"></div>
       </div>
-      <OptionsButton @click="toggleDropdown" />
       <Dropdown class="friendship-request-card-dropdown">
         <div role="button" aria-label="Aceitar pedido de amizade de <username>">
           Aceitar o pedido
@@ -79,13 +78,13 @@ export default Vue.extend({
     width: 100%;
     position: relative;
     display: grid;
-    grid-template-columns: 3rem 1fr auto;
+    grid-template-columns: 3rem 1fr;
     grid-template-rows: 3rem;
     gap: 0.5rem;
     align-items: center;
     .friendship-request-card-dropdown {
-      right: 2.125rem;
-      top: 1.6rem;
+      right: 1rem;
+      top: 1.5rem;
     }
   }
   &:hover {

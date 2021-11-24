@@ -13,6 +13,7 @@
             @click="
               setView({
                 newView: 'ConversationChat',
+                previousView: $view,
               })
             "
           />
@@ -25,12 +26,18 @@
 <script lang="ts">
 import Vue from "vue";
 import { setView } from "@/utils";
+import { view } from "~/store";
 export default Vue.extend({
   data() {
     return {
       conversations: Array(15).fill(false),
       setView,
     };
+  },
+  computed: {
+    $view() {
+      return view.$view;
+    },
   },
 });
 </script>

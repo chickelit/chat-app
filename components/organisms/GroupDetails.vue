@@ -1,7 +1,7 @@
 <template>
   <div class="group-details">
     <FullScreenView
-      label="Voltar para a lista de grupos"
+      label="Voltar"
       new-view="Groups"
       navigation-active-class="groups-anchor"
       class="full-screen-view"
@@ -21,6 +21,7 @@
               @click="
                 setView({
                   newView: 'GroupMembers',
+                  previousView: 'GroupDetails',
                 })
               "
             >

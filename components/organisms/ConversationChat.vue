@@ -2,9 +2,9 @@
   <div class="conversation-chat">
     <ChatHeader class="chat-header">
       <BackButton
-        label="Voltar para a lista de conversas"
-        new-view="Conversations"
-        navigation-active-class="conversations-anchor"
+        label="Voltar"
+        :new-view="$previousView"
+        :navigation-active-class="$previousNavigationActiveClass"
       />
       <div class="avatar skeleton"></div>
       <div class="username">
@@ -22,7 +22,9 @@
     </div>
     <div class="message-engine">
       <form>
-        <AutoExpandingInput @keydown="handleKeydown($event)"></AutoExpandingInput>
+        <AutoExpandingInput
+          @keydown="handleKeydown($event)"
+        ></AutoExpandingInput>
         <button aria-label="Enviar mensagem" type="submit" class="form-button">
           <img src="@/assets/img/send.svg" alt="Paper plane" />
         </button>
@@ -48,6 +50,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { setView } from "@/utils";
+import { view } from "~/store";
 export default Vue.extend({
   data() {
     return {
@@ -74,6 +77,14 @@ export default Vue.extend({
         { mine: false },
       ],
     };
+  },
+  computed: {
+    $previousView() {
+      return view.$previousView;
+    },
+    $previousNavigationActiveClass() {
+      return view.$previousNavigationActiveClass;
+    },
   },
   methods: {
     handleKeydown(event: KeyboardEvent) {

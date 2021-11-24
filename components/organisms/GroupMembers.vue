@@ -1,19 +1,13 @@
 <template>
   <div class="group-members">
     <FullScreenView
-      label="Voltar para os dados do grupo"
-      new-view="GroupDetails"
+      label="Voltar"
+      :new-view="$previousView"
       navigation-active-class="groups-anchor"
       class="full-screen-view"
     >
       <template #header-slot>
-        <div class="wrapper">
-          <h1 class="title">Membros do grupo</h1>
-          <div class="button" role="button">
-            <div class="line"></div>
-            <div class="line vertical"></div>
-          </div>
-        </div>
+        <h1 class="title">Membros do grupo</h1>
       </template>
       <template #main-slot>
         <div class="scroll-wrapper">
@@ -41,6 +35,18 @@
   </div>
 </template>
 
+<script lang="ts">
+import Vue from "vue";
+import { view } from "~/store";
+export default Vue.extend({
+  computed: {
+    $previousView() {
+      return view.$previousView;
+    },
+  },
+});
+</script>
+
 <style lang="scss" scoped>
 .scroll-wrapper {
   height: 100%;
@@ -55,42 +61,6 @@
   gap: 0.125rem;
   &::-webkit-scrollbar {
     width: 0px;
-  }
-}
-.wrapper {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: max-content;
-  align-items: center;
-}
-.button {
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
-  position: relative;
-  cursor: pointer;
-  height: 2.5rem;
-  width: 2.5rem;
-  border-radius: 100%;
-  background: color("dark");
-  transition: all 0.15s linear;
-  &:hover {
-    background: color("dark", "lighter");
-    .line {
-      background: color("primary", "lighter");
-    }
-  }
-}
-.line {
-  position: absolute;
-  top: 1.125rem;
-  left: 0.5rem;
-  width: 60%;
-  height: 0.15625rem;
-  border-radius: 1rem;
-  background: color("primary");
-  transition: all 0.15s linear;
-  &.vertical {
-    transform: rotate(90deg);
   }
 }
 .title {

@@ -1,11 +1,12 @@
 <template>
   <div class="friend-card" @mouseleave="disableDropdown">
     <div class="wrapper">
-      <div class="avatar skeleton"></div>
-      <div class="username">
-        <div class="skeleton skeleton-text"></div>
+      <div class="container" @click="toggleDropdown">
+        <div class="avatar skeleton"></div>
+        <div class="username">
+          <div class="skeleton skeleton-text"></div>
+        </div>
       </div>
-      <OptionsButton @click="toggleDropdown" />
       <Dropdown class="friend-card-dropdown">
         <div
           role="button"
@@ -13,7 +14,8 @@
           @click="
             setView({
               newView: 'ConversationChat',
-              navigationActiveClass: 'friends-anchor',
+              previousView: $view,
+              previousNavigationActiveClass: $navigationActiveClass,
             })
           "
         >
@@ -34,6 +36,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { setView } from "@/utils";
+import { view } from "~/store";
 export default Vue.extend({
   props: {
     index: {
@@ -45,6 +48,14 @@ export default Vue.extend({
     return {
       setView,
     };
+  },
+  computed: {
+    $view() {
+      return view.$view;
+    },
+    $navigationActiveClass() {
+      return view.$navigationActiveClass;
+    },
   },
   methods: {
     toggleDropdown() {
@@ -82,25 +93,28 @@ export default Vue.extend({
 }
 .friend-card {
   cursor: pointer;
-  padding: 0.5rem 1rem;
   background: color("dark");
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 3rem;
+  grid-template-rows: max-content;
   gap: 0.5rem;
   justify-items: center;
   transition: all 0.15s linear;
   .wrapper {
     width: 100%;
+    height: max-content;
     position: relative;
-    display: grid;
-    grid-template-columns: 3rem 1fr auto;
-    grid-template-rows: 3rem;
-    gap: 0.5rem;
-    align-items: center;
+    .container {
+      padding: 0.5rem 1rem;
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      grid-template-rows: 3rem;
+      gap: 0.5rem;
+      align-items: center;
+    }
     .friend-card-dropdown {
-      right: 2.125rem;
-      top: 1.6rem;
+      right: 1rem;
+      top: 1.75rem;
     }
   }
   &:hover {
