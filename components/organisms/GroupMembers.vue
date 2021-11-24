@@ -59,6 +59,18 @@ export default Vue.extend({
     width: 0px;
   }
 }
+.button {
+  width: 100%;
+  height: 3rem;
+  font-size: 1.125rem;
+  background: color("primary");
+  transition: all 0.15s linear;
+  color: color("light", "darker");
+  &:hover {
+    color: color("light");
+    background: color("primary", "lighter");
+  }
+}
 .title {
   font-size: 1.5rem;
   text-justify: center;
