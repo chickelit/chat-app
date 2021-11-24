@@ -1,5 +1,5 @@
 <template>
-  <button class="form-button" :type="type" @click="$emit('click', $event)">
+  <button class="base-button" :type="type" @click="$emit('click', $event)">
     {{ text }}
   </button>
 </template>
@@ -21,7 +21,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.form-button {
+.base-button {
   border-radius: 0.3125rem;
   padding: 0 1rem;
   background: color("dark", "lighter");

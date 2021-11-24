@@ -1,21 +1,22 @@
 <template>
-  <div class="friendship-request-card" @mouseleave="disableDropdown" @click="toggleDropdown">
+  <div class="friendship-request-card" @mouseleave="disableDropdown">
     <div class="wrapper">
-      <div class="avatar skeleton"></div>
-      <div class="username">
-        <div class="skeleton skeleton-text"></div>
+      <div class="container" @click="toggleDropdown">
+        <div class="avatar skeleton"></div>
+        <div class="username">
+          <div class="skeleton skeleton-text"></div>
+        </div>
       </div>
       <Dropdown class="friendship-request-card-dropdown">
-        <div role="button" aria-label="Aceitar pedido de amizade de <username>">
+        <button aria-label="Aceitar pedido de amizade de <username>">
           Aceitar o pedido
-        </div>
-        <div
+        </button>
+        <button
           class="danger"
-          role="button"
           aria-label="Recusar pedido de amizade de <username>"
         >
           Recusar o pedido
-        </div>
+        </button>
       </Dropdown>
     </div>
   </div>
@@ -66,22 +67,25 @@ export default Vue.extend({
 }
 .friendship-request-card {
   cursor: pointer;
-  padding: 0.5rem 1rem;
   background: color("dark");
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 3rem;
+  grid-template-rows: max-content;
   gap: 0.5rem;
   justify-items: center;
   transition: all 0.15s linear;
   .wrapper {
     width: 100%;
+    height: max-content;
     position: relative;
-    display: grid;
-    grid-template-columns: 3rem 1fr;
-    grid-template-rows: 3rem;
-    gap: 0.5rem;
-    align-items: center;
+    .container {
+      padding: 0.5rem 1rem;
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      grid-template-rows: 3rem;
+      gap: 0.5rem;
+      align-items: center;
+    }
     .friendship-request-card-dropdown {
       right: 1rem;
       top: 1.5rem;

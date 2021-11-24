@@ -14,9 +14,8 @@
           <div class="cover skeleton"></div>
           <div class="group-title skeleton skeleton-text"></div>
           <div class="buttons">
-            <div
+            <button
               class="button"
-              role="button"
               aria-label="Ver membros do grupo"
               @click="
                 setView({
@@ -26,10 +25,10 @@
               "
             >
               Ver membros do grupo
-            </div>
-            <div class="button danger" role="button" aria-label="Sair do grupo">
+            </button>
+            <button class="button danger" aria-label="Sair do grupo">
               Sair do grupo
-            </div>
+            </button>
           </div>
         </div>
       </template>

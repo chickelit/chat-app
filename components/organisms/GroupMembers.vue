@@ -2,7 +2,7 @@
   <div class="group-members">
     <FullScreenView
       label="Voltar"
-      :new-view="$previousView"
+      new-view="GroupDetails"
       navigation-active-class="groups-anchor"
       class="full-screen-view"
     >
@@ -10,24 +10,15 @@
         <h1 class="title">Membros do grupo</h1>
       </template>
       <template #main-slot>
+        <button class="button">Adicionar membro</button>
         <div class="scroll-wrapper">
           <ul class="member-list">
-            <MemberCard :index="0" :show-options="true" />
-            <MemberCard :index="1" :show-options="true" />
-            <MemberCard :index="2" :show-options="true" />
-            <MemberCard :index="3" :show-options="true" />
-            <MemberCard :index="4" :show-options="true" />
-            <MemberCard :index="5" :show-options="true" />
-            <MemberCard :index="6" :show-options="true" />
-            <MemberCard :index="7" :show-options="true" />
-            <MemberCard :index="8" :show-options="true" />
-            <MemberCard :index="9" :show-options="true" />
-            <MemberCard :index="10" :show-options="true" />
-            <MemberCard :index="11" :show-options="true" />
-            <MemberCard :index="12" :show-options="true" />
-            <MemberCard :index="13" :show-options="true" />
-            <MemberCard :index="14" :show-options="true" />
-            <MemberCard :index="15" :show-options="true" />
+            <MemberCard
+              v-for="(member, index) in members"
+              :key="index"
+              :index="0"
+              :show-options="member.showOptions"
+            />
           </ul>
         </div>
       </template>
@@ -39,6 +30,11 @@
 import Vue from "vue";
 import { view } from "~/store";
 export default Vue.extend({
+  data() {
+    return {
+      members: Array(15).fill({ showOptions: true }),
+    };
+  },
   computed: {
     $previousView() {
       return view.$previousView;

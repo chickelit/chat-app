@@ -1,11 +1,11 @@
 <template>
-  <div class="options-button" aria-label="Opções" role="button"  @click="$emit('click')">
+  <button class="options-button" aria-label="Opções" role="button"  @click="$emit('click')">
     <div class="wrapper">
       <div class="dot"></div>
       <div class="dot"></div>
       <div class="dot"></div>
     </div>
-  </div>
+  </button>
 </template>
 
 <style lang="scss" scoped>

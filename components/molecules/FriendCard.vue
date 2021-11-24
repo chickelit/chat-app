@@ -8,8 +8,7 @@
         </div>
       </div>
       <Dropdown class="friend-card-dropdown">
-        <div
-          role="button"
+        <button
           aria-label="Conversar com <username>"
           @click="
             setView({
@@ -20,14 +19,13 @@
           "
         >
           Conversar com zezin
-        </div>
-        <div
+        </button>
+        <button
           class="danger"
-          role="button"
           aria-label="Desfazer amizade com <username>"
         >
           Desfazer amizade
-        </div>
+        </button>
       </Dropdown>
     </div>
   </div>

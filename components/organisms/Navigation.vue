@@ -8,6 +8,7 @@
             'conversations-anchor',
             { active: $navigationActiveClass === 'conversations-anchor' },
           ]"
+          role="link"
           aria-label="Ir para a listagem de conversas"
           @click="
             setView({
@@ -30,6 +31,7 @@
           @mouseleave="disableDropdown('groups-dropdown')"
         >
           <div
+            role="button"
             class="dropdown-button-text"
             @click="toggleDropdown('groups-dropdown')"
           >
@@ -42,6 +44,7 @@
                   <div
                     class="dropdown-item"
                     aria-label="Ir para a listagem de grupos"
+                    role="link"
                     @click="
                       setView({
                         newView: 'Groups',
@@ -56,6 +59,7 @@
                   <div
                     class="dropdown-item"
                     aria-label="Criar grupo"
+                    role="link"
                     @click="
                       setView({
                         newView: 'CreateGroup',
@@ -82,6 +86,7 @@
           @mouseleave="disableDropdown('friends-dropdown')"
         >
           <div
+            role="button"
             class="dropdown-button-text"
             @click="toggleDropdown('friends-dropdown')"
           >
@@ -94,6 +99,7 @@
                   <div
                     class="dropdown-item"
                     aria-label="Ir para a listagem de amigos"
+                    role="link"
                     @click="
                       setView({
                         newView: 'Friends',
@@ -108,6 +114,7 @@
                   <div
                     class="dropdown-item"
                     aria-label="Ir para a listagem de pedidos de amizade pendentes"
+                    role="link"
                     @click="
                       setView({
                         newView: 'FriendshipRequests',
@@ -122,6 +129,7 @@
                   <div
                     class="dropdown-item"
                     aria-label="Ir para a pesquisa de usuário"
+                    role="link"
                     @click="
                       setView({
                         newView: 'UserSearch',
@@ -272,7 +280,7 @@ export default Vue.extend({
     transition: all 0.15s linear;
     font-weight: 500;
     &:hover {
-    color: color("light", "darker");
+      color: color("light", "darker");
     }
   }
 }

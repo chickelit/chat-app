@@ -24,13 +24,13 @@
         <div class="result-list">
           <ul>
             <li>
-              <UserCard :index="0" />
+              <SearchUserCard :index="0" />
             </li>
             <li>
-              <UserCard :index="1" />
+              <SearchUserCard :index="1" />
             </li>
             <li>
-              <UserCard :index="2" />
+              <SearchUserCard :index="2" />
             </li>
           </ul>
         </div>

@@ -20,7 +20,8 @@
   grid-auto-rows: max-content;
   gap: 0.25rem;
   transition: all 0.15s linear;
-  div {
+  button {
+    width: max-content;
     cursor: pointer;
     position: relative;
     font-family: "Acumin Regular", Arial, Helvetica, sans-serif;

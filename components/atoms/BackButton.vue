@@ -1,5 +1,5 @@
 <template>
-  <div
+  <button
     :aria-label="label"
     class="back-button"
     @click="
@@ -10,7 +10,7 @@
     "
   >
     <img src="@/assets/img/arrow-left.svg" alt="Arrow left" />
-  </div>
+  </button>
 </template>
 
 <script lang="ts">

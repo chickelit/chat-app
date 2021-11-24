@@ -3,7 +3,7 @@
     <ChatHeader class="chat-header">
       <BackButton
         label="Voltar"
-        :new-view="$previousView"
+        new-view="Groups"
         navigation-active-class="groups-anchor"
       />
       <div class="avatar skeleton"></div>
@@ -11,7 +11,7 @@
         <div class="skeleton skeleton-text"></div>
       </div>
     </ChatHeader>
-    <div class="scroll-wrapper">
+    <ScrollWrapper>
       <MessageList>
         <Message
           v-for="(message, index) in messages"
@@ -19,7 +19,7 @@
           :mine="message.mine"
         />
       </MessageList>
-    </div>
+    </ScrollWrapper>
     <div class="message-engine">
       <form>
         <AutoExpandingInput

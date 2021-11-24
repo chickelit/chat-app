@@ -7,12 +7,11 @@
       </div>
       <OptionsButton @click="toggleDropdown" />
       <Dropdown class="user-card-dropdown">
-        <div
-          role="button"
+        <button
           aria-label="Enviar pedido de amizade para <username>"
         >
           Enviar pedido de amizade
-        </div>
+        </button>
       </Dropdown>
     </Wrapper>
   </div>

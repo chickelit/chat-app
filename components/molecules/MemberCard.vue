@@ -7,13 +7,9 @@
       </div>
       <OptionsButton v-if="showOptions" @click="toggleDropdown" />
       <Dropdown class="member-card-dropdown">
-        <div
-          role="button"
-          aria-label="Remover <username> do grupo"
-          class="danger"
-        >
+        <button aria-label="Remover <username> do grupo" class="danger">
           Remover zezin do grupo
-        </div>
+        </button>
       </Dropdown>
     </div>
   </div>

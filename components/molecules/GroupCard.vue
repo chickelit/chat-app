@@ -19,8 +19,7 @@
       </div>
       <OptionsButton @click="toggleDropdown" />
       <Dropdown class="group-card-dropdown">
-        <div
-          role="button"
+        <button
           aria-label="Ver dados do grupo"
           @click="
             setView({
@@ -31,7 +30,7 @@
           "
         >
           Ver dados do grupo
-        </div>
+        </button>
       </Dropdown>
     </div>
   </div>

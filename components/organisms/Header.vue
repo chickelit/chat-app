@@ -2,10 +2,9 @@
   <header class="header">
     <Wrapper class="wrapper">
       <h1 class="title">ChatApp</h1>
-      <div
+      <button
         aria-label="Ir para o meu perfil"
-        role="button"
-        class="container"
+        class="button"
         @click="
           setView({
             newView: 'Profile',
@@ -15,7 +14,7 @@
         "
       >
         <div class="avatar skeleton" role="img"></div>
-      </div>
+      </button>
     </Wrapper>
   </header>
 </template>
@@ -63,7 +62,7 @@ export default Vue.extend({
         color: color("light", "darker");
       }
     }
-    .container {
+    .button {
       height: 62.5%;
       aspect-ratio: 1 / 1;
       border-radius: 100%;
