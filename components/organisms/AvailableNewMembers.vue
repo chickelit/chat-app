@@ -1,37 +1,24 @@
 <template>
-  <div class="group-members">
+  <div class="available-new-members">
     <FullScreenView
       label="Voltar"
-      new-view="GroupDetails"
+      new-view="GroupMembers"
       navigation-active-class="groups-anchor"
       class="full-screen-view"
     >
       <template #header-slot>
-        <h1 class="title">Membros do grupo</h1>
+        <h1 class="title">Novo membro</h1>
       </template>
       <template #main-slot>
-        <div class="main-slot">
-          <button
-            class="button"
-            @click="
-              setView({
-                newView: 'AvailableNewMembers',
-              })
-            "
-          >
-            Adicionar membro
-          </button>
-          <div class="scroll-wrapper">
-            <ul class="member-list">
-              <MemberCard
-                v-for="(member, index) in members"
-                :key="index"
-                class="member-card"
-                :index="index"
-                :show-options="member.showOptions"
-              />
-            </ul>
-          </div>
+        <div class="scroll-wrapper">
+          <ul class="available-members-list">
+            <AvailableMemberCard
+              v-for="(availableMember, index) in availableMembers"
+              :key="index"
+              class="available-member-card"
+              :index="index"
+            />
+          </ul>
         </div>
       </template>
     </FullScreenView>
@@ -46,7 +33,8 @@ export default Vue.extend({
   data() {
     return {
       setView,
-      members: Array(15).fill({ showOptions: true }),
+      availableMembers: Array(15).fill(false),
+      selectedMemberIndex: null,
     };
   },
   computed: {
@@ -58,16 +46,11 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.main-slot {
-  height: 100%;
-  display: grid;
-  grid-template-rows: auto 1fr;
-}
 .scroll-wrapper {
   height: 100%;
   position: relative;
 }
-.member-list {
+.available-members-list {
   position: absolute;
   inset: 0;
   overflow-y: scroll;
@@ -77,9 +60,9 @@ export default Vue.extend({
   &::-webkit-scrollbar {
     width: 0px;
   }
-  .member-card {
+  .available-member-card {
     &:nth-last-child(1) {
-      ::v-deep.member-card-dropdown {
+      ::v-deep.available-member-card-dropdown {
         top: -0.375rem;
       }
     }
