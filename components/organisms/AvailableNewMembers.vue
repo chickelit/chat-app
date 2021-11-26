@@ -15,10 +15,19 @@
             <AvailableMemberCard
               v-for="(availableMember, index) in availableMembers"
               :key="index"
-              class="available-member-card"
-              :index="index"
+              :class="[
+                'available-member-card',
+                { selected: selectedMembers.find((item) => item === index) },
+              ]"
+              @click="toggleSelection(index)"
             />
           </ul>
+          <button class="continue">
+            <img
+              src="@/assets/img/arrow-left.svg"
+              alt="Seta apontada para a direita"
+            />
+          </button>
         </div>
       </template>
     </FullScreenView>
@@ -34,7 +43,7 @@ export default Vue.extend({
     return {
       setView,
       availableMembers: Array(15).fill(false),
-      selectedMemberIndex: null,
+      selectedMembers: [] as number[],
     };
   },
   computed: {
@@ -42,10 +51,47 @@ export default Vue.extend({
       return view.$previousView;
     },
   },
+  methods: {
+    toggleSelection(index: number) {
+      const card = document.querySelectorAll(".available-member-card")[
+        index
+      ] as Element;
+
+      card.classList.toggle("selected");
+
+      this.selectedMembers.push(index);
+    },
+  },
 });
 </script>
 
 <style lang="scss" scoped>
+.continue {
+  cursor: pointer;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  background: color("primary");
+  width: 2.75rem;
+  height: 2.75rem;
+  transition: all 0.15s linear;
+  border-radius: 100%;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  &:hover {
+    background: color("primary", "lighter");
+    img {
+      filter: invert(0.75);
+    }
+  }
+  img {
+    transform: rotate(180deg);
+    filter: invert(0.65);
+    transition: all 0.15s linear;
+  }
+}
 .scroll-wrapper {
   height: 100%;
   position: relative;

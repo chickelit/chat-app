@@ -1,16 +1,14 @@
 <template>
-  <div class="available-member-card" @mouseleave="disableDropdown" @click="$emit('click')">
+  <div
+    class="available-member-card"
+    @mouseleave="dropdownActive = false"
+    @click="$emit('click')"
+  >
     <div class="available-member-card-wrapper">
       <div class="avatar skeleton"></div>
       <div class="username">
         <div class="skeleton skeleton-text"></div>
       </div>
-      <OptionsButton @click="toggleDropdown" />
-      <Dropdown class="available-member-card-dropdown">
-        <button aria-label="Adicionar <username> ao grupo">
-          Adicionar zezin ao grupo
-        </button>
-      </Dropdown>
     </div>
   </div>
 </template>
@@ -18,28 +16,11 @@
 <script lang="ts">
 import Vue from "vue";
 export default Vue.extend({
-  props: {
-    index: {
-      type: Number,
-      required: true,
-    }
-  },
-  methods: {
-    toggleDropdown() {
-      const availableMemberCardDropdown = document.querySelectorAll(
-        ".available-member-card-dropdown"
-      )[this.index] as Element;
-
-      availableMemberCardDropdown.classList.toggle("active");
-    },
-    disableDropdown() {
-      const availableMemberCardDropdown = document.querySelectorAll(
-        ".available-member-card-dropdown"
-      )[this.index] as Element;
-
-      availableMemberCardDropdown.classList.remove("active");
-    },
-  },
+  data() {
+    return {
+      dropdownActive: false,
+    };
+  }
 });
 </script>
 
@@ -69,6 +50,9 @@ export default Vue.extend({
   gap: 0.5rem;
   justify-items: center;
   transition: all 0.15s linear;
+  &.selected {
+    background: color("dark", "lighter");
+  }
   .available-member-card-wrapper {
     width: 100%;
     position: relative;
