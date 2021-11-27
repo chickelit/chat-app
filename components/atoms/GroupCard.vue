@@ -6,7 +6,7 @@
     @mouseleave="disableDropdown"
   >
     <div class="group-card-wrapper">
-      <div class="data-container" @click="$emit('click')">
+      <div class="data-container" @click="setView({ newView: 'GroupChat' })">
         <div class="cover skeleton" />
         <div class="container">
           <div class="title">

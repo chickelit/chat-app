@@ -1,64 +1,24 @@
 <template>
   <div class="groups">
     <Wrapper>
-      <ul class="groups-list">
-        <li v-for="(group, index) of groups" :key="index" class="group">
-          <GroupCard
-            :index="index"
-            :mine="group.mine"
-            @click="setView({ newView: 'GroupChat', previousView: $view })"
-          />
-        </li>
-      </ul>
+      <GroupList class="group-list" />
     </Wrapper>
   </div>
 </template>
-
-<script lang="ts">
-import Vue from "vue";
-import { setView } from "@/utils";
-import { view } from "~/store";
-export default Vue.extend({
-  data() {
-    return {
-      setView,
-      groups: Array(15).fill(false),
-    };
-  },
-  computed: {
-    $view() {
-      return view.$view;
-    },
-  },
-});
-</script>
 
 <style lang="scss" scoped>
 ::-webkit-scrollbar {
   width: 0px;
 }
 .groups {
-  position: absolute;
-  inset: 0;
-  background: color("dark", "darker");
-  .groups-list {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: color("dark");
+  .group-list {
     position: absolute;
     inset: 0;
-    overflow-y: scroll;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-auto-rows: max-content;
-    grid-auto-flow: row;
-    gap: 0.125rem;
-    .group {
-      &:nth-last-child(1) {
-        ::v-deep.group-card {
-          .group-card-dropdown {
-            top: -0.375rem;
-          }
-        }
-      }
-    }
+    overflow-y: auto;
   }
 }
 </style>
