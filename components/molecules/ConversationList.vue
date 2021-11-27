@@ -44,6 +44,5 @@ export default Vue.extend({
   grid-template-columns: 1fr;
   grid-auto-rows: max-content;
   grid-auto-flow: row;
-  gap: 0.125rem;
 }
 </style>
