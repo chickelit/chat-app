@@ -22,13 +22,10 @@ export default Vue.extend({
   width: 0px;
 }
 .friendship-requests {
+  position: relative;
+  width: 100%;
   height: 100%;
-  background: color("dark", "darker");
-  position: absolute;
-  inset: 0;
-  overflow-y: scroll;
-  display: grid;
-  grid-template-rows: 1fr;
+  background: color("dark");
   .friendship-requests-list {
     position: absolute;
     inset: 0;

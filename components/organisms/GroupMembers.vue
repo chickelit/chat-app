@@ -15,7 +15,7 @@
             class="button"
             @click="
               setView({
-                newView: 'AvailableNewMembers',
+                newView: 'AvailableMembers',
               })
             "
           >
