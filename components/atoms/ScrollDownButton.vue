@@ -18,6 +18,11 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .scroll-down-button {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+}
+.scroll-down-button {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 100%;

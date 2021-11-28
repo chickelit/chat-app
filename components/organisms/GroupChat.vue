@@ -12,19 +12,25 @@
       </div>
     </ChatHeader>
     <ScrollWrapper>
-      <MessageList>
+      <MessageList
+        @fullScrolled="scrollDownButtonActive = false"
+        @notFullScrolled="scrollDownButtonActive = true"
+      >
         <Message
           v-for="(message, index) in messages"
           :key="index"
           :mine="message.mine"
         />
       </MessageList>
+      <ScrollDownButton
+        :active="scrollDownButtonActive"
+        class="scroll-down-button"
+        @click="scrollDown"
+      />
     </ScrollWrapper>
     <div class="message-engine">
       <form>
-        <AutoExpandingInput
-          @keydown="handleKeydown($event)"
-        ></AutoExpandingInput>
+        <AutoExpandingInput @keydown="handleKeydown($event)" />
         <button aria-label="Enviar mensagem" type="submit" class="form-button">
           <img src="@/assets/img/send.svg" alt="Paper plane" />
         </button>
@@ -53,6 +59,7 @@ import { view } from "~/store";
 export default Vue.extend({
   data() {
     return {
+      scrollDownButtonActive: false,
       setView,
       messages: [
         { mine: true },
@@ -88,6 +95,12 @@ export default Vue.extend({
         const form = document.querySelector(".message-engine form") as any;
         form?.submit();
       }
+    },
+    scrollDown() {
+      const messageList = document.querySelector(".message-list")!;
+      const latestMessage = messageList.lastChild as Element;
+
+      latestMessage?.scrollIntoView({ behavior: "smooth", block: "end" });
     },
   },
 });
