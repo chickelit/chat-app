@@ -1,5 +1,5 @@
 <template>
-  <div class="message-list">
+  <div class="message-list" @scroll="checkScroll">
     <slot />
   </div>
 </template>
@@ -12,6 +12,17 @@ export default Vue.extend({
     const latestMessage = messageList.lastChild as Element;
 
     latestMessage?.scrollIntoView({ behavior: "auto", block: "end" });
+  },
+  methods: {
+    checkScroll() {
+      const messageList = document.querySelector(".message-list")!;
+
+      if (messageList.scrollHeight === messageList.scrollTop + messageList.clientHeight) {
+        this.$emit("fullScrolled")
+      } else {
+        this.$emit("notFullScrolled")
+      }
+    },
   },
 });
 </script>
