@@ -33,7 +33,7 @@ export default Vue.extend({
     $previousView() {
       return view.$previousView;
     },
-    $previousVpreviousNavigationActiveClassiew() {
+    $previousNavigationActiveClass() {
       return view.$previousNavigationActiveClass;
     },
   },
@@ -65,7 +65,7 @@ export default Vue.extend({
   grid-template-rows: auto auto auto 1fr;
   justify-items: center;
   gap: 1.5rem;
-  background: color("dark", "darker");
+  background: color("dark");
   form {
     width: 100%;
     display: grid;

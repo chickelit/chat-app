@@ -70,7 +70,6 @@ export default Vue.extend({
   grid-template-rows: repeat(3, max-content);
   justify-items: center;
   gap: 1.5rem;
-  background: color("dark", "darker");
   .buttons {
     display: grid;
     grid-template-columns: 1fr;

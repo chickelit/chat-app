@@ -21,17 +21,9 @@
           >
             Adicionar membro
           </button>
-          <div class="scroll-wrapper">
-            <ul class="member-list">
-              <MemberCard
-                v-for="(member, index) in members"
-                :key="index"
-                class="member-card"
-                :index="index"
-                :show-options="member.showOptions"
-              />
-            </ul>
-          </div>
+          <ScrollWrapper>
+            <MemberList />
+          </ScrollWrapper>
         </div>
       </template>
     </FullScreenView>
@@ -46,7 +38,6 @@ export default Vue.extend({
   data() {
     return {
       setView,
-      members: Array(15).fill({ showOptions: true }),
     };
   },
   computed: {
@@ -62,28 +53,6 @@ export default Vue.extend({
   height: 100%;
   display: grid;
   grid-template-rows: auto 1fr;
-}
-.scroll-wrapper {
-  height: 100%;
-  position: relative;
-}
-.member-list {
-  position: absolute;
-  inset: 0;
-  overflow-y: scroll;
-  display: grid;
-  grid-auto-rows: max-content;
-  gap: 0.125rem;
-  &::-webkit-scrollbar {
-    width: 0px;
-  }
-  .member-card {
-    &:nth-last-child(1) {
-      ::v-deep.member-card-dropdown {
-        top: -0.375rem;
-      }
-    }
-  }
 }
 .button {
   width: 100%;

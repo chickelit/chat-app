@@ -44,7 +44,7 @@ export default Vue.extend({
   position: fixed;
   top: 0;
   z-index: 5000;
-  background: color("dark", "darker");
+  background: color("dark");
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 4.5rem 1fr auto;
