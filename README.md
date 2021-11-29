@@ -76,6 +76,36 @@ Tabela de conteúdos
       </td>
     </tr>
   </table>
+  
+  <table>
+    <tr>
+      <td align="center" style="padding=0;width=50%;">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-Login.png?raw=true" heigth="180em" title="Mobile create group form">
+      </td>
+    </tr>
+  </table>
+  
+   <table>
+    <tr>
+      <td align="center" style="padding=0;width=50%;">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-Register.jpg?raw=true" heigth="180em" title="Mobile create group form">
+      </td>
+      <td align="center" style="padding=0;width=50%;">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-CompleteRegister.jpg?raw=true" heigth="180em" title="Mobile user search">
+      </td>
+      <td align="center" style="padding=0;width=50%;">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-ForgotPassword.jpg?raw=true" heigth="180em" title="Mobile profile">
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <td align="center" style="padding=0;width=50%;">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-ChangePassword.png?raw=true" heigth="180em" title="Mobile create group form">
+      </td>
+    </tr>
+  </table>
 </div>
 
 <div id="pre-requesitos"></div>
