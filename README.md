@@ -61,7 +61,7 @@ Tabela de conteúdos
         <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-GroupMembers.png?raw=true" heigth="180em" title="Desktop group members">
       </td>
       <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-AddMember.png?raw=true" heigth="180em" title="Desktop available members">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-AddMember.jpg?raw=true" heigth="180em" title="Desktop available members">
       </td>
     </tr>
   </table>
