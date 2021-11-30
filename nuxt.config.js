@@ -18,7 +18,11 @@ export default {
   css: ["normalize.css/normalize.css", "@assets/scss/base.scss"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    "@/plugins/accessor",
+    "@/plugins/axios",
+    "@/plugins/notifications.client",
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: [{ path: "@/components/", pathPrefix: false }],
@@ -30,7 +34,15 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxtjs/style-resources"],
+  modules: [
+    "@nuxtjs/style-resources",
+    "@nuxtjs/axios",
+    "cookie-universal-nuxt",
+  ],
+
+  axios: {
+    baseUrl: "http://localhost:3333",
+  },
 
   styleResources: {
     scss: ["@/components/bosons/*.scss"],
@@ -41,6 +53,6 @@ export default {
 
   server: {
     port: 3000,
-    host: "0.0.0.0"
-  }
+    host: "0.0.0.0",
+  },
 };
