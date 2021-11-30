@@ -102,7 +102,6 @@ export default Vue.extend({
   overflow-y: scroll;
   display: grid;
   grid-auto-rows: max-content;
-  gap: 0.125rem;
   &::-webkit-scrollbar {
     width: 0px;
   }
