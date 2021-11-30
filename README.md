@@ -60,6 +60,9 @@ Tabela de conteúdos
       <td align="center" style="padding=0;width=50%;">
         <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-GroupMembers.png?raw=true" heigth="180em" title="Desktop group members">
       </td>
+      <td align="center" style="padding=0;width=50%;">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-AddMember.png?raw=true" heigth="180em" title="Desktop available members">
+      </td>
     </tr>
   </table>
 
@@ -80,7 +83,7 @@ Tabela de conteúdos
   <table>
     <tr>
       <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-Login.png?raw=true" heigth="180em" title="Mobile create group form">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-Login.png?raw=true" heigth="180em" title="Desktop login">
       </td>
     </tr>
   </table>
@@ -88,13 +91,13 @@ Tabela de conteúdos
    <table>
     <tr>
       <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-Register.jpg?raw=true" heigth="180em" title="Mobile create group form">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-Register.jpg?raw=true" heigth="180em" title="Mobile register">
       </td>
       <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-CompleteRegister.jpg?raw=true" heigth="180em" title="Mobile user search">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-CompleteRegister.jpg?raw=true" heigth="180em" title="Mobile complete register">
       </td>
       <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-ForgotPassword.jpg?raw=true" heigth="180em" title="Mobile profile">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-ForgotPassword.jpg?raw=true" heigth="180em" title="Mobile password recovery">
       </td>
     </tr>
   </table>
@@ -102,7 +105,7 @@ Tabela de conteúdos
   <table>
     <tr>
       <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-ChangePassword.png?raw=true" heigth="180em" title="Mobile create group form">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-ChangePassword.png?raw=true" heigth="180em" title="Desktop change password">
       </td>
     </tr>
   </table>
