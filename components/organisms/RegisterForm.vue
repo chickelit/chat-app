@@ -20,7 +20,6 @@
 
 <style lang="scss" scoped>
 .links {
-  margin-top: 0.5rem;
   width: 100%;
   display: grid;
   grid-template-columns: max-content max-content;

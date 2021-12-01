@@ -1,5 +1,5 @@
 <template>
-  <div class="group-details">
+  <div class="profile">
     <FullScreenView
       label="Voltar"
       :new-view="$previousView"
@@ -11,13 +11,22 @@
       </template>
       <template #main-slot>
         <div class="main">
+          <clientOnly>
+            <notifications position="bottom right" :max="1" />
+          </clientOnly>
           <div class="avatar skeleton"></div>
-          <form>
-            <BaseInput placeholder="E-mail" disabled />
-            <BaseInput placeholder="Nome" />
-            <BaseInput placeholder="Nome do usuário" />
+          <form @submit.prevent="updateProfile">
+            <BaseInput placeholder="E-mail" disabled :value="$user.email" />
+            <BaseInput v-model="user.name" placeholder="Nome" />
+            <BaseInput
+              v-model="user.username"
+              placeholder="Nome do usuário"
+              :max-length="32"
+            />
             <BaseButton type="submit" text="Salvar" />
-            <div class="form-link">Esqueci minha senha</div>
+            <NuxtLink to="/forgotPassword" class="form-link"
+              >Esqueci minha senha</NuxtLink
+            >
           </form>
         </div>
       </template>
@@ -27,8 +36,16 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { view } from "~/store";
+import { error, profile, view } from "~/store";
 export default Vue.extend({
+  data() {
+    return {
+      user: {
+        name: profile.$user.name,
+        username: profile.$user.username,
+      },
+    };
+  },
   computed: {
     $previousView() {
       return view.$previousView;
@@ -36,11 +53,61 @@ export default Vue.extend({
     $previousNavigationActiveClass() {
       return view.$previousNavigationActiveClass;
     },
+    $user() {
+      return profile.$user;
+    },
+  },
+  methods: {
+    async updateProfile() {
+      try {
+        if (this.user.username === this.$user.username) {
+          if (this.user.name === this.$user.name) return;
+          await profile.update({ name: this.user.name });
+        } else {
+          await profile.update(this.user);
+        }
+
+        this.$notify({
+          type: "success",
+          text: "Perfil atualizado...",
+        });
+      } catch (e) {
+        const err = error.$error;
+        if (err.field === "username" && err.rule === "unique") {
+          this.$notify({
+            type: "error",
+            title: "Ops...",
+            text: "O nome de usuário já está em uso",
+          });
+
+          this.user = {
+            name: this.$user.name,
+            username: this.$user.username,
+          };
+        }
+
+        if (err.field === "username" && err.rule === "alpha") {
+          this.$notify({
+            type: "error",
+            title: "Ops...",
+            text: "O nome de usuário é inválido",
+          });
+
+          this.user = {
+            name: this.$user.name,
+            username: this.$user.username,
+          };
+        }
+      }
+    },
   },
 });
 </script>
 
 <style lang="scss" scoped>
+.profile {
+  height: 100%;
+}
 .title {
   font-size: 1.5rem;
   width: max-content;
@@ -59,6 +126,7 @@ export default Vue.extend({
   }
 }
 .main {
+  position: relative;
   height: 100%;
   display: grid;
   grid-template-columns: 1fr;

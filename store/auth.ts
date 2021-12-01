@@ -1,12 +1,16 @@
 import { Action, Module, Mutation, VuexModule } from "vuex-module-decorators";
 import { $axios, $cookies } from "~/utils/nuxt-instance";
 
+type Token = string | null;
+
 interface CreatePayload {
   email: string;
   password: string;
 }
 
-type Token = string | null;
+interface UpdatePayload {
+  token?: string;
+}
 
 @Module({ name: "auth", stateFactory: true, namespaced: true })
 export default class Auth extends VuexModule {
@@ -31,5 +35,21 @@ export default class Auth extends VuexModule {
     });
 
     this.context.commit("UPDATE_TOKEN", token);
+  }
+
+  @Action({ rawError: true })
+  public update(payload: UpdatePayload) {
+    const token = payload?.token ? payload.token : $cookies.get("token");
+
+    this.context.commit("UPDATE_TOKEN", token || null);
+  }
+
+  @Action({ rawError: true })
+  public async destroy() {
+    await $axios.delete("/auth");
+
+    $cookies.remove("token");
+
+    this.context.commit("UPDATE_TOKEN", null);
   }
 }
