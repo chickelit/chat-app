@@ -71,3 +71,50 @@ textarea {
     background-color: hsl(200, 20%, 95%);
   }
 }
+@keyframes bounce {
+  0% {
+    transform: translateX(0px);
+    timing-function: ease-in;
+  }
+  37% {
+    transform: translateX(5px);
+    timing-function: ease-out;
+  }
+  55% {
+    transform: translateX(-5px);
+    timing-function: ease-in;
+  }
+  73% {
+    transform: translateX(4px);
+    timing-function: ease-out;
+  }
+  82% {
+    transform: translateX(-4px);
+    timing-function: ease-in;
+  }
+  91% {
+    transform: translateX(2px);
+    timing-function: ease-out;
+  }
+  96% {
+    transform: translateX(-2px);
+    timing-function: ease-in;
+  }
+  100% {
+    transform: translateX(0px);
+    timing-function: ease-in;
+  }
+}
+.custom-notification {
+  background: color("dark", "darker") !important;
+  border-radius: 0.3125rem;
+  padding: 0.5rem;
+  color: color("light", "darker");
+  border: 1px solid color("dark", "darker");
+  &.error {
+    border: 1px solid color("danger", "lighter");
+  }
+  &.success {
+    border: 1px solid color("success", "lighter");
+  }
+}

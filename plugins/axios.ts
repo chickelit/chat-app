@@ -19,9 +19,7 @@ const axiosPlugin: Plugin = ({ app, store, redirect }) => {
       return redirect("/login");
     }
 
-    if (error.response?.status === 422) {
-      store.dispatch("error/update", error.response.data.errors[0]);
-    }
+    store.dispatch("error/update", error.response?.data.errors[0]);
   });
 };
 

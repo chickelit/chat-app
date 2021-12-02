@@ -3,6 +3,9 @@ interface User {
   email: string;
   name: string;
   username: string;
+  avatar?: {
+    url: string;
+  };
 }
 
 export default User;

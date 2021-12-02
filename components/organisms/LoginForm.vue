@@ -1,9 +1,9 @@
 <template>
   <div class="login-form">
     <clientOnly>
-      <notifications position="bottom right" :max="1" />
+      <notifications position="bottom right" classes="custom-notification" style="bottom: 1rem; right: 1rem;" :max="1" />
     </clientOnly>
-    <form @submit.prevent="login">
+    <form name="login-form" @submit.prevent="login">
       <h1 class="title">Login</h1>
       <BaseInput
         v-model="form.email"
@@ -32,7 +32,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { auth } from "~/store";
+import { auth, error, profile } from "~/store";
 
 export default Vue.extend({
   data() {
@@ -44,13 +44,25 @@ export default Vue.extend({
     };
   },
   methods: {
-    async login() {
+    async login(event: any) {
       try {
         await auth.create(this.form);
+        await profile.show();
 
         this.$router.push("/");
       } catch (e) {
-        this.$notify({ type: "error", text: "Ops... Algo deu errado!" });
+        const err = error.$error;
+
+        if (err.message === "Invalid user credentials") {
+          this.form.email = "";
+          this.form.password = "";
+          event.target.reset();
+          this.$notify({
+            type: "error",
+            title: "Credenciais inválidas",
+            text: "Tente novamente...",
+          });
+        }
       }
     },
   },
