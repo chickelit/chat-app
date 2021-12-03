@@ -1,7 +1,12 @@
 <template>
   <div class="login-form">
     <clientOnly>
-      <notifications position="bottom right" classes="custom-notification" style="bottom: 1rem; right: 1rem;" :max="1" />
+      <notifications
+        position="bottom right"
+        classes="custom-notification"
+        style="bottom: 0.5rem; right: 0.5rem"
+        :max="1"
+      />
     </clientOnly>
     <form name="login-form" @submit.prevent="login">
       <h1 class="title">Login</h1>
@@ -20,13 +25,11 @@
         required
       />
       <div class="links">
-        <NuxtLink class="link" to="/forgotPassword"
-          >Esqueci minha senha</NuxtLink
-        >
-        <NuxtLink class="link" to="/register">Cadastrar-se</NuxtLink>
+        <NuxtLink class="link" to="/forgotPassword">Esqueceu a senha?</NuxtLink>
       </div>
       <BaseButton type="submit" text="Entrar" aria-label="Entrar" />
     </form>
+    <NuxtLink class="link register-link" to="/register">Não tem uma conta?</NuxtLink>
   </div>
 </template>
 
@@ -75,14 +78,19 @@ export default Vue.extend({
   display: grid;
   grid-template-columns: max-content max-content;
   justify-content: space-between;
-  .link {
-    color: color("light", "darkest");
-    transition: all 0.15s linear;
-    &:hover {
-      text-decoration: underline;
-      color: color("light", "darker");
-    }
+}
+.link {
+  color: color("light", "darkest");
+  transition: all 0.15s linear;
+  &:hover {
+    text-decoration: underline;
+    color: color("light", "darker");
   }
+}
+.register-link {
+  position: absolute;
+  bottom: 0.25rem;
+  right: 0.5rem;
 }
 .login-form {
   position: relative;

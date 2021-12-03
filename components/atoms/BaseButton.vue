@@ -22,7 +22,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .base-button {
-  border-radius: 0.3125rem;
+  border-radius: 0.25rem;
   padding: 0 1rem;
   background: color("primary");
   height: 1.6rem;
