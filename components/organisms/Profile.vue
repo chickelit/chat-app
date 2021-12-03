@@ -10,15 +10,15 @@
         <h1 class="title">Meu perfil</h1>
       </template>
       <template #main-slot>
+        <clientOnly>
+          <notifications
+            :max="1"
+            classes="custom-notification"
+            position="bottom right"
+            style="bottom: 1rem"
+          />
+        </clientOnly>
         <div class="main">
-          <clientOnly>
-            <notifications
-              position="bottom right"
-              :max="1"
-              classes="custom-notification"
-              style="bottom: 5rem; right: 1rem"
-            />
-          </clientOnly>
           <label id="avatar-input-label" for="avatar-input">
             <div class="avatar">
               <div v-if="$user.avatar">
