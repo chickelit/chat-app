@@ -7,7 +7,7 @@ interface UpdatePayload {
   username?: string;
 }
 
-@Module({ name: "profile", stateFactory: true, namespaced: true })
+@Module({ name: "users/profile", stateFactory: true, namespaced: true })
 export default class Profile extends VuexModule {
   user = {} as User;
 

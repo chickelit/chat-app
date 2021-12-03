@@ -5,7 +5,7 @@ interface UpdatePayload {
   file: Blob;
 }
 
-@Module({ name: "avatar", stateFactory: true, namespaced: true })
+@Module({ name: "users/avatar", stateFactory: true, namespaced: true })
 export default class Profile extends VuexModule {
   @Action({ rawError: true })
   public async update({ file }: UpdatePayload) {
