@@ -122,14 +122,14 @@ export default Vue.extend({
             this.$notify({
               type: "error",
               title: "Ops...",
-              text: "O nome de usuário já está em uso",
+              text: "O nome de usuário já está em uso...",
             });
           }
           if (err.rule === "alpha") {
             this.$notify({
               type: "error",
               title: "Ops...",
-              text: "O nome de usuário é inválido",
+              text: "O nome de usuário é inválido...",
             });
           }
         }

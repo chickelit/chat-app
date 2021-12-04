@@ -29,7 +29,9 @@
       </div>
       <BaseButton type="submit" text="Entrar" aria-label="Entrar" />
     </form>
-    <NuxtLink class="link register-link" to="/register">Não tem uma conta?</NuxtLink>
+    <NuxtLink class="link register-link" to="/register"
+      >Não tem uma conta?</NuxtLink
+    >
   </div>
 </template>
 
@@ -54,18 +56,14 @@ export default Vue.extend({
 
         this.$router.push("/");
       } catch (e) {
-        const err = error.$error;
-
-        if (err.message === "Invalid user credentials") {
-          this.form.email = "";
-          this.form.password = "";
-          event.target.reset();
-          this.$notify({
-            type: "error",
-            title: "Credenciais inválidas",
-            text: "Tente novamente...",
-          });
-        }
+        this.form.email = "";
+        this.form.password = "";
+        event.target.reset();
+        this.$notify({
+          type: "error",
+          title: "Credenciais inválidas",
+          text: "Tente novamente...",
+        });
       }
     },
   },
