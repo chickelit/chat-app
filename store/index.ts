@@ -13,6 +13,6 @@ type RootState = ReturnType<typeof state>;
 export const actions: ActionTree<RootState, RootState> = {
   async nuxtServerInit({ dispatch }) {
     dispatch("auth/update");
-    await dispatch("profile/show");
+    await dispatch("users/profile/show");
   },
 };
