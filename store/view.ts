@@ -6,10 +6,10 @@ import { Module, VuexModule, Mutation, Action } from "vuex-module-decorators";
   namespaced: true,
 })
 export default class View extends VuexModule {
-  public view = "Conversations";
-  public previousView = "Conversations";
-  public navigationActiveClass = "conversations-anchor";
-  public previousNavigationActiveClass = "conversations-anchor";
+  private view = "Conversations";
+  private previousView = "Conversations";
+  private navigationActiveClass = "conversations-anchor";
+  private previousNavigationActiveClass = "conversations-anchor";
 
   @Mutation
   private SET_VIEW(view: string) {

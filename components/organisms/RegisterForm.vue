@@ -39,7 +39,7 @@ export default Vue.extend({
       try {
         await register.create({
           email: this.email,
-          redirectUrl: "http://0.0.0.0:3000",
+          redirectUrl: "http://192.168.0.103:3000",
         });
 
         this.$notify({
@@ -56,7 +56,7 @@ export default Vue.extend({
         if (err.rule === "unique" && err.field === "email") {
           this.$notify({
             type: "error",
-            title: "Houve um erro ao enviar o email!",
+            title: "Ops...",
             text: "O email já está em uso...",
           });
         }

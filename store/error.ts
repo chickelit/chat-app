@@ -2,14 +2,14 @@ import { Action, Module, Mutation, VuexModule } from "vuex-module-decorators";
 
 @Module({ name: "error", stateFactory: true, namespaced: true })
 export default class Error extends VuexModule {
-  error = {} as any;
+  private error = {} as any;
 
-  get $error() {
+  public get $error() {
     return this.error;
   }
 
   @Mutation
-  UPDATE_ERROR(error: any) {
+  private UPDATE_ERROR(error: any) {
     this.error = error;
   }
 

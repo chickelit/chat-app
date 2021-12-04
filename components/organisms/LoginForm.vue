@@ -25,7 +25,7 @@
         required
       />
       <div class="links">
-        <NuxtLink class="link" to="/forgotPassword">Esqueceu a senha?</NuxtLink>
+        <NuxtLink class="link" to="/forgot-password">Esqueceu a senha?</NuxtLink>
       </div>
       <BaseButton type="submit" text="Entrar" aria-label="Entrar" />
     </form>
@@ -37,7 +37,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { auth, error, profile } from "~/store";
+import { auth, profile } from "~/store";
 
 export default Vue.extend({
   data() {

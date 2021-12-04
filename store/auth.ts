@@ -16,12 +16,12 @@ interface UpdatePayload {
 export default class Auth extends VuexModule {
   private token = null as Token;
 
-  get $token() {
+  public get $token() {
     return this.token;
   }
 
   @Mutation
-  UPDATE_TOKEN(token: Token) {
+  private UPDATE_TOKEN(token: Token) {
     this.token = token;
   }
 

@@ -7,6 +7,7 @@ import Profile from "~/store/users/profile";
 import Error from "~/store/error";
 import Avatar from "~/store/users/avatar";
 import Register from "~/store/register";
+import ForgotPassword from "~/store/forgotPassword";
 
 let view: View;
 let auth: Auth;
@@ -14,6 +15,7 @@ let profile: Profile;
 let error: Error;
 let avatar: Avatar;
 let register: Register;
+let forgotPassword: ForgotPassword;
 
 const initializeStores = (store: Store<any>): void => {
   view = getModule(View, store);
@@ -22,6 +24,16 @@ const initializeStores = (store: Store<any>): void => {
   error = getModule(Error, store);
   avatar = getModule(Avatar, store);
   register = getModule(Register, store);
+  forgotPassword = getModule(ForgotPassword, store);
 };
 
-export { initializeStores, view, auth, profile, error, avatar, register };
+export {
+  initializeStores,
+  view,
+  auth,
+  profile,
+  error,
+  avatar,
+  register,
+  forgotPassword,
+};
