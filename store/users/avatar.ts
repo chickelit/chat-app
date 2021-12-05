@@ -16,7 +16,7 @@ export default class Profile extends VuexModule {
       headers: { "Content-Type": "multipart/form-data" },
     });
 
-    this.context.commit("profile/SET_USER_AVATAR", avatar, {
+    this.context.commit("users/profile/SET_USER_AVATAR", avatar, {
       root: true,
     });
   }

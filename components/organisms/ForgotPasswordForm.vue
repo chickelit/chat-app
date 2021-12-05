@@ -8,7 +8,8 @@
         :max="1"
       />
     </clientOnly>
-    <form @submit.prevent="onSubmit">
+    <div></div>
+    <form name="forgot-password-form" @submit.prevent="onSubmit">
       <h1 class="title">Esqueceu a senha</h1>
       <BaseInput
         v-model="email"
@@ -25,6 +26,9 @@
     <NuxtLink class="link register-link" to="/register"
       >Não tem uma conta?</NuxtLink
     >
+    <div v-show="loading" class="loading-wrapper">
+      <Loading class="loading" :active="loading" />
+    </div>
   </div>
 </template>
 
@@ -34,16 +38,23 @@ import { forgotPassword } from "~/store";
 export default Vue.extend({
   data() {
     return {
+      loading: false,
       email: "",
     };
   },
   methods: {
     async onSubmit() {
       try {
+        this.loading = true;
+
         await forgotPassword.create({
           email: this.email,
           redirectUrl: "http://192.168.0.103:3000",
         });
+
+        this.loading = false;
+        this.email = "";
+        document.forms.namedItem("forgot-password-form")?.reset();
 
         this.$notify({
           type: "success",
@@ -63,6 +74,13 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.loading-wrapper {
+  height: 5rem;
+  width: 5rem;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
 .register-link {
   position: absolute;
   bottom: 0.25rem;
@@ -82,7 +100,7 @@ export default Vue.extend({
   background: color("dark", "darker");
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
+  grid-template-rows: 1fr max-content 1fr;
   align-items: center;
   justify-items: center;
   .links {

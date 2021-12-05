@@ -8,6 +8,7 @@
         style="bottom: 0.5rem; right: 0.5rem"
       />
     </clientOnly>
+    <div></div>
     <form @submit.prevent="onSubmit">
       <h1 class="title">Esqueceu a senha</h1>
       <BaseInput
@@ -32,6 +33,9 @@
       />
       <BaseButton type="submit" text="Concluir" aria-label="Concluir" />
     </form>
+    <div v-show="loading" class="loading-wrapper">
+      <Loading class="loading" :active="loading" />
+    </div>
   </div>
 </template>
 
@@ -42,6 +46,7 @@ import { $axios } from "~/utils/nuxt-instance";
 export default Vue.extend({
   data() {
     return {
+      loading: false,
       form: {
         password: "",
         passwordConfirmation: "",
@@ -63,10 +68,14 @@ export default Vue.extend({
   methods: {
     async onSubmit() {
       try {
+        this.loading = true;
+
         await $axios.put("/forgot-password", {
           key: this.$route.params.key,
           ...this.form,
         });
+
+        this.loading = false;
 
         this.$router.push("/login");
       } catch (e) {
@@ -92,13 +101,20 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.loading-wrapper {
+  height: 5rem;
+  width: 5rem;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
 .change-password-form {
   min-width: 24rem;
   width: 100%;
   background: color("dark", "darker");
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
+  grid-template-rows: 1fr max-content 1fr;
   align-items: center;
   justify-items: center;
   .title {

@@ -8,6 +8,7 @@
         :max="1"
       />
     </clientOnly>
+    <div></div>
     <form name="login-form" @submit.prevent="login">
       <h1 class="title">Login</h1>
       <BaseInput
@@ -25,13 +26,18 @@
         required
       />
       <div class="links">
-        <NuxtLink class="link" to="/forgot-password">Esqueceu a senha?</NuxtLink>
+        <NuxtLink class="link" to="/forgot-password"
+          >Esqueceu a senha?</NuxtLink
+        >
       </div>
       <BaseButton type="submit" text="Entrar" aria-label="Entrar" />
     </form>
     <NuxtLink class="link register-link" to="/register"
       >Não tem uma conta?</NuxtLink
     >
+    <div v-show="loading" class="loading-wrapper">
+      <Loading class="loading" :active="loading" />
+    </div>
   </div>
 </template>
 
@@ -42,6 +48,7 @@ import { auth, profile } from "~/store";
 export default Vue.extend({
   data() {
     return {
+      loading: false,
       form: {
         email: "",
         password: "",
@@ -51,6 +58,8 @@ export default Vue.extend({
   methods: {
     async login(event: any) {
       try {
+        this.loading = true;
+
         await auth.create(this.form);
         await profile.show();
 
@@ -71,6 +80,13 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.loading-wrapper {
+  height: 5rem;
+  width: 5rem;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
 .links {
   width: 100%;
   display: grid;
@@ -97,7 +113,7 @@ export default Vue.extend({
   background: color("dark", "darker");
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
+  grid-template-rows: 1fr max-content 1fr;
   align-items: center;
   justify-items: center;
   .title {

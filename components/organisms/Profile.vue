@@ -36,6 +36,7 @@
             id="avatar-input"
             type="file"
             style="display: none"
+            accept=".jpg,.jpeg,.png"
             @input="updateAvatar"
           />
           <form id="profile-form" @submit.prevent="updateProfile">
@@ -52,10 +53,13 @@
               :max-length="32"
             />
             <BaseButton type="submit" text="Salvar" />
-            <NuxtLink to="/forgotPassword" class="form-link"
+            <NuxtLink to="/forgot-password" class="form-link"
               >Esqueci minha senha</NuxtLink
             >
           </form>
+          <div v-show="loading" class="loading-wrapper">
+            <Loading :active="loading" />
+          </div>
         </div>
       </template>
     </FullScreenView>
@@ -68,6 +72,7 @@ import { error, profile, view, avatar } from "~/store";
 export default Vue.extend({
   data() {
     return {
+      loading: false,
       user: {
         name: profile.$user.name,
         username: profile.$user.username,
@@ -88,12 +93,15 @@ export default Vue.extend({
   methods: {
     async updateProfile(event: any) {
       try {
+        this.loading = true;
         if (this.user.username === this.$user.username) {
           if (this.user.name === this.$user.name) return;
           await profile.update({ name: this.user.name });
         } else {
           await profile.update(this.user);
         }
+
+        this.loading = false;
 
         this.$notify({
           type: "success",
@@ -137,14 +145,18 @@ export default Vue.extend({
     },
     async updateAvatar(event: any) {
       try {
+        this.loading = true;
+
         const file = event.target.files[0];
+        await avatar.update({ file });
+
+        this.loading = false;
+
         const imageElement = document
           .getElementById("avatar-input-label")
           ?.querySelector(".avatar div img") as HTMLImageElement;
 
         imageElement.src = URL.createObjectURL(file);
-
-        await avatar.update({ file });
 
         this.$notify({
           type: "success",
@@ -163,6 +175,13 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.loading-wrapper {
+  height: 5rem;
+  width: 5rem;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
 .profile {
   height: 100%;
 }
