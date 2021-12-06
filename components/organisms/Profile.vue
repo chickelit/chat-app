@@ -158,6 +158,11 @@ export default Vue.extend({
 
         imageElement.src = URL.createObjectURL(file);
 
+        const headerAvatar = document.querySelector(
+          ".header .wrapper .button .avatar img"
+        ) as HTMLImageElement;
+        headerAvatar.src = URL.createObjectURL(file);
+
         this.$notify({
           type: "success",
           text: "Avatar atualizado...",

@@ -9,11 +9,14 @@
           setView({
             newView: 'Profile',
             previousView: $view,
-            previousNavigationActiveClass: $navigationActiveClass
+            previousNavigationActiveClass: $navigationActiveClass,
           })
         "
       >
-        <div class="avatar skeleton" role="img"></div>
+        <div v-if="$user.avatar" class="avatar">
+          <img :src="$user.avatar.url" alt="" />
+        </div>
+        <div v-else class="avatar skeleton" role="img"></div>
       </button>
     </Wrapper>
   </header>
@@ -22,7 +25,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { setView } from "@/utils";
-import { view } from "~/store";
+import { profile, view } from "~/store";
 export default Vue.extend({
   data() {
     return {
@@ -35,6 +38,9 @@ export default Vue.extend({
     },
     $navigationActiveClass() {
       return view.$navigationActiveClass;
+    },
+    $user() {
+      return profile.$user;
     },
   },
 });
@@ -71,6 +77,12 @@ export default Vue.extend({
         height: 100%;
         width: 100%;
         border-radius: 100%;
+        img {
+          height: 100%;
+          width: 100%;
+          border-radius: 100%;
+          object-fit: cover;
+        }
       }
     }
   }

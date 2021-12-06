@@ -1,6 +1,26 @@
 <template>
   <div class="conversation-card" role="link" @click="$emit('click')">
-    <div class="wrapper">
+    <div v-if="conversation" class="wrapper">
+      <div v-if="conversation.user.avatar" class="avatar">
+        <img
+          :src="conversation.user.avatar.url"
+          :alt="`Avatar de ${conversation.user.username}`"
+        />
+      </div>
+      <div v-else class="avatar skeleton"></div>
+      <div class="container">
+        <div class="username">
+          {{ conversation.user.username }}
+        </div>
+        <div class="latest-message">
+          <div v-if="conversation.latestMessage">
+            {{ conversation.latestMessage }}
+          </div>
+          <div v-else>A conversa ainda não tem mensagens...</div>
+        </div>
+      </div>
+    </div>
+    <div v-else class="wrapper">
       <div class="avatar skeleton" />
       <div class="container">
         <div class="username">
@@ -15,13 +35,20 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+/* eslint-disable vue/require-default-prop */
+// eslint-disable-next-line import/named
+import Vue, { PropOptions } from "vue";
+import { Conversation } from "@/models";
 export default Vue.extend({
   props: {
     index: {
       type: Number,
       required: true,
     },
+    conversation: {
+      type: Object,
+      required: false,
+    } as PropOptions<Conversation>,
   },
 });
 </script>
@@ -46,9 +73,17 @@ export default Vue.extend({
     height: 100%;
     width: 100%;
     border-radius: 100%;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 100%;
+    }
   }
   .username {
     width: 100%;
+    color: color("light", "darker");
+    font-size: 1.125rem;
     .skeleton-text {
       width: 60%;
       height: 1.125rem;
@@ -58,6 +93,7 @@ export default Vue.extend({
   }
   .latest-message {
     width: 100%;
+    color: color("light", "darkest");
     .skeleton-text {
       width: 100%;
       height: 1rem;

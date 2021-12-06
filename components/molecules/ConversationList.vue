@@ -5,9 +5,11 @@
       :key="index"
       class="conversation"
     >
+      <ConversationCard v-if="!conversation" :index="index" />
       <ConversationCard
-        aria-label="Conversar com <username>"
+        v-else
         :index="index"
+        :conversation="conversation"
         @click="
           setView({
             newView: 'ConversationChat',
@@ -22,11 +24,11 @@
 <script lang="ts">
 import Vue from "vue";
 import { setView } from "@/utils";
-import { view } from "~/store";
+import { conversation, view } from "~/store";
 export default Vue.extend({
   data() {
     return {
-      conversations: Array(15).fill(false),
+      conversations: Array(20).fill(false),
       setView,
     };
   },
@@ -34,6 +36,15 @@ export default Vue.extend({
     $view() {
       return view.$view;
     },
+  },
+  async mounted() {
+    try {
+      await conversation.index({ page: 1, perPage: 20 });
+
+      const conversations = await conversation.$all;
+
+      this.conversations = conversations;
+    } catch (e) {}
   },
 });
 </script>
