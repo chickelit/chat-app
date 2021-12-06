@@ -24,7 +24,9 @@ Tabela de conteúdos
   * [Imagens](#imagens)
   * [Pré-requesitos](#pre-requesitos)
   * [Instalação](#instalacao)
-  * [Tecnologias](#tecnologias)
+  * [Tecnologias](#tecnologias)  
+  * [Autor](#autor)
+
 <!--te-->
 
 <div id="imagens">
@@ -149,6 +151,9 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [VueJS](https://v3.vuejs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Scss](https://www.sass-lang.com/)
+- [Vue Notification](https://www.npmjs.com/package/vue-notification/)
+
+<div id="autor"></div>
 
 ### Autor
 
