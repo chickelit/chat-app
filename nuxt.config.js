@@ -41,7 +41,7 @@ export default {
   ],
 
   axios: {
-    baseUrl: "http://localhost:3333",
+    baseUrl: "http://192.168.0.103:3333",
   },
 
   styleResources: {

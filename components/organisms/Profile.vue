@@ -15,17 +15,17 @@
             :max="1"
             classes="custom-notification"
             position="bottom right"
-            style="bottom: 1rem"
+            style="bottom: 0.5rem; right: 0.5rem"
           />
         </clientOnly>
         <div class="main">
           <label id="avatar-input-label" for="avatar-input">
             <div class="avatar">
-              <div v-if="$user.avatar">
-                <img
-                  :src="$user.avatar.url"
-                  :alt="`Avatar de ${$user.username}`"
-                />
+              <div v-if="$blob">
+                <img :src="$blob" alt="Meu avatar" />
+              </div>
+              <div v-else-if="$user.avatar">
+                <img :src="$user.avatar.url" alt="Meu avatar" />
               </div>
               <div v-else>
                 <div class="avatar-skeleton skeleton"></div>
@@ -89,13 +89,19 @@ export default Vue.extend({
     $user() {
       return profile.$user;
     },
+    $blob() {
+      return avatar.$blob;
+    },
   },
   methods: {
     async updateProfile(event: any) {
       try {
         this.loading = true;
         if (this.user.username === this.$user.username) {
-          if (this.user.name === this.$user.name) return;
+          if (this.user.name === this.$user.name) {
+            this.loading = false;
+            return;
+          }
           await profile.update({ name: this.user.name });
         } else {
           await profile.update(this.user);
@@ -151,17 +157,6 @@ export default Vue.extend({
         await avatar.update({ file });
 
         this.loading = false;
-
-        const imageElement = document
-          .getElementById("avatar-input-label")
-          ?.querySelector(".avatar div img") as HTMLImageElement;
-
-        imageElement.src = URL.createObjectURL(file);
-
-        const headerAvatar = document.querySelector(
-          ".header .wrapper .button .avatar img"
-        ) as HTMLImageElement;
-        headerAvatar.src = URL.createObjectURL(file);
 
         this.$notify({
           type: "success",

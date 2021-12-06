@@ -13,8 +13,11 @@
           })
         "
       >
-        <div v-if="$user.avatar" class="avatar">
-          <img :src="$user.avatar.url" alt="" />
+        <div v-if="$blob" class="avatar">
+          <img :src="$blob" alt="Meu avatar" />
+        </div>
+        <div v-else-if="$user.avatar" class="avatar">
+          <img :src="$user.avatar.url" alt="Meu avatar" />
         </div>
         <div v-else class="avatar skeleton" role="img"></div>
       </button>
@@ -25,7 +28,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { setView } from "@/utils";
-import { profile, view } from "~/store";
+import { avatar, profile, view } from "~/store";
 export default Vue.extend({
   data() {
     return {
@@ -41,6 +44,9 @@ export default Vue.extend({
     },
     $user() {
       return profile.$user;
+    },
+    $blob() {
+      return avatar.$blob;
     },
   },
 });
