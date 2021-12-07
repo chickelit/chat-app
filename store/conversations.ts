@@ -30,7 +30,7 @@ export default class Conversation extends VuexModule {
 
   @Mutation
   UPDATE_CONVERSATIONS(conversations: Conversation[]) {
-    this.conversations = conversations;
+    this.conversations.push(...conversations);
   }
 
   @Mutation

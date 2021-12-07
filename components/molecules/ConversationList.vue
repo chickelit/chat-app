@@ -1,5 +1,5 @@
 <template>
-  <div class="conversations-list">
+  <div class="conversations-list" @scroll="checkScroll">
     <div
       v-for="(conversation, index) of conversations"
       :key="index"
@@ -18,6 +18,9 @@
         "
       />
     </div>
+    <div v-show="conversations.length < $meta.total" class="loading-wrapper">
+      <Loading :active="loading" />
+    </div>
   </div>
 </template>
 
@@ -29,6 +32,8 @@ export default Vue.extend({
   data() {
     return {
       conversations: Array(20).fill(false),
+      loading: false,
+      page: 1,
       setView,
     };
   },
@@ -36,20 +41,58 @@ export default Vue.extend({
     $view() {
       return view.$view;
     },
+    $meta() {
+      return conversation.$meta;
+    },
   },
   async mounted() {
     try {
-      await conversation.index({ page: 1, perPage: 20 });
+      await conversation.index({ page: this.page, perPage: 20 });
 
-      const conversations = await conversation.$all;
+      const conversations = conversation.$all;
 
       this.conversations = conversations;
-    } catch (e) {}
+    } catch (e) {
+      this.$notify({
+        type: "error",
+        title: "Ops...",
+        text: "Houve um erro ao carregar as conversas...",
+      });
+    }
+  },
+  methods: {
+    async checkScroll(event: any) {
+      const target = event.target as HTMLElement;
+
+      if (target.scrollHeight === target.scrollTop + target.clientHeight && !this.loading) {
+        if (this.page < conversation.$meta.last_page) {
+          this.page += 1;
+          this.loading = true;
+
+          await conversation.index({ page: this.page, perPage: 20 });
+
+          const conversations = conversation.$all;
+
+          this.conversations = conversations;
+          this.loading = false;
+        }
+      } else {
+        this.$emit("notFullScrolled");
+      }
+    },
   },
 });
 </script>
 
 <style lang="scss" scoped>
+.loading-wrapper {
+  height: 5rem;
+  width: 5rem;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  justify-self: center;
+}
 .conversations-list {
   display: grid;
   grid-template-columns: 1fr;
