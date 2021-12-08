@@ -1,6 +1,6 @@
 <template>
   <div class="groups-list">
-    <div v-for="(group, index) of groups" :key="index">
+    <div v-for="(group, index) of groups" :key="index" class="group-card">
       <GroupCard :index="index" />
     </div>
   </div>
@@ -31,7 +31,7 @@ export default Vue.extend({
   grid-template-columns: 1fr;
   grid-auto-rows: max-content;
   grid-auto-flow: row;
-  div {
+  .group-card {
     &:nth-last-child(1) {
       ::v-deep.group-card {
         .group-card-dropdown {

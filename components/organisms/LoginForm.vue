@@ -68,6 +68,7 @@ export default Vue.extend({
         this.form.email = "";
         this.form.password = "";
         event.target.reset();
+        this.loading = false;
         this.$notify({
           type: "error",
           title: "Credenciais inválidas",

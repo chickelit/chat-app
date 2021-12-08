@@ -46,25 +46,34 @@ export default Vue.extend({
     },
   },
   async mounted() {
-    try {
-      await conversation.index({ page: this.page, perPage: 20 });
-
+    if (conversation.$all.length > 0) {
       const conversations = conversation.$all;
 
       this.conversations = conversations;
-    } catch (e) {
-      this.$notify({
-        type: "error",
-        title: "Ops...",
-        text: "Houve um erro ao carregar as conversas...",
-      });
+    } else {
+      try {
+        await conversation.index({ page: this.page, perPage: 20 });
+
+        const conversations = conversation.$all;
+
+        this.conversations = conversations;
+      } catch (e) {
+        this.$notify({
+          type: "error",
+          title: "Ops...",
+          text: "Houve um erro ao carregar as conversas...",
+        });
+      }
     }
   },
   methods: {
     async checkScroll(event: any) {
       const target = event.target as HTMLElement;
 
-      if (target.scrollHeight === target.scrollTop + target.clientHeight && !this.loading) {
+      if (
+        target.scrollHeight - 200 <= target.scrollTop + target.clientHeight &&
+        !this.loading
+      ) {
         if (this.page < conversation.$meta.last_page) {
           this.page += 1;
           this.loading = true;

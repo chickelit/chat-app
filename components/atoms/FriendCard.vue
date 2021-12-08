@@ -1,15 +1,18 @@
 <template>
   <div class="friend-card" @mouseleave="disableDropdown">
-    <div class="wrapper">
+    <div v-if="friend" class="wrapper">
       <div class="container" @click="toggleDropdown">
-        <div class="avatar skeleton"></div>
+        <div v-if="friend.avatar" class="avatar">
+          <img :src="friend.avatar.url" :alt="`Avatar de ${friend.username}`" />
+        </div>
+        <div v-else class="avatar skeleton"></div>
         <div class="username">
-          <div class="skeleton skeleton-text"></div>
+          {{ friend.username }}
         </div>
       </div>
       <Dropdown class="friend-card-dropdown">
         <button
-          aria-label="Conversar com <username>"
+          :aria-label="`Conversar com ${friend.username}`"
           @click="
             setView({
               newView: 'ConversationChat',
@@ -18,29 +21,44 @@
             })
           "
         >
-          Conversar com zezin
+          Conversar com {{ friend.username }}
         </button>
         <button
           class="danger"
-          aria-label="Desfazer amizade com <username>"
+          :aria-label="`Desfazer amizade com ${friend.username}`"
         >
           Desfazer amizade
         </button>
       </Dropdown>
     </div>
+    <div v-else class="wrapper">
+      <div class="container">
+        <div class="avatar skeleton"></div>
+        <div class="username">
+          <div class="skeleton skeleton-text"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+/* eslint-disable vue/require-default-prop */
+// eslint-disable-next-line import/named
+import Vue, { PropOptions } from "vue";
 import { setView } from "@/utils";
 import { view } from "~/store";
+import { User } from "~/models";
 export default Vue.extend({
   props: {
     index: {
       type: Number,
       required: true,
     },
+    friend: {
+      type: Object,
+      required: false,
+    } as PropOptions<User>,
   },
   data() {
     return {
@@ -64,11 +82,13 @@ export default Vue.extend({
       friendCardDropdown.classList.toggle("active");
     },
     disableDropdown() {
-      const friendCardDropdown = document.querySelectorAll(
-        ".friend-card-dropdown"
-      )[this.index] as Element;
+      if (this.friend) {
+        const friendCardDropdown = document.querySelectorAll(
+          ".friend-card-dropdown"
+        )[this.index] as Element;
 
-      friendCardDropdown.classList.remove("active");
+        friendCardDropdown.classList.remove("active");
+      }
     },
   },
 });
@@ -83,6 +103,8 @@ export default Vue.extend({
 }
 .username {
   width: 100%;
+  font-size: 1.125rem;
+  color: color("light", "darker");
   .skeleton-text {
     width: 75%;
     height: 1.125rem;
@@ -122,6 +144,12 @@ export default Vue.extend({
     height: 100%;
     width: 100%;
     border-radius: 100%;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 100%;
+    }
   }
 }
 </style>
