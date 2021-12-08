@@ -43,7 +43,7 @@ export default Vue.extend({
       return view.$navigationActiveClass;
     },
     $user() {
-      return profile.$user;
+      return profile.$single;
     },
     $blob() {
       return avatar.$blob;

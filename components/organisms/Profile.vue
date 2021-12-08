@@ -74,8 +74,8 @@ export default Vue.extend({
     return {
       loading: false,
       user: {
-        name: profile.$user.name,
-        username: profile.$user.username,
+        name: profile.$single.name,
+        username: profile.$single.username,
       },
     };
   },
@@ -87,7 +87,7 @@ export default Vue.extend({
       return view.$previousNavigationActiveClass;
     },
     $user() {
-      return profile.$user;
+      return profile.$single;
     },
     $blob() {
       return avatar.$blob;

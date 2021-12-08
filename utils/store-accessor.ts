@@ -9,6 +9,7 @@ import Avatar from "~/store/users/avatar";
 import Register from "~/store/register";
 import ForgotPassword from "~/store/forgotPassword";
 import Conversation from "~/store/conversations";
+import Friend from "~/store/friends/main";
 
 let view: View;
 let auth: Auth;
@@ -18,6 +19,7 @@ let avatar: Avatar;
 let register: Register;
 let forgotPassword: ForgotPassword;
 let conversation: Conversation;
+let friend: Friend;
 
 const initializeStores = (store: Store<any>): void => {
   view = getModule(View, store);
@@ -28,6 +30,7 @@ const initializeStores = (store: Store<any>): void => {
   register = getModule(Register, store);
   forgotPassword = getModule(ForgotPassword, store);
   conversation = getModule(Conversation, store);
+  friend = getModule(Friend, store);
 };
 
 export {
@@ -40,4 +43,5 @@ export {
   register,
   forgotPassword,
   conversation,
+  friend,
 };

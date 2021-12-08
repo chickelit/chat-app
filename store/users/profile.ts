@@ -11,7 +11,7 @@ interface UpdatePayload {
 export default class Profile extends VuexModule {
   user = {} as User;
 
-  get $user() {
+  get $single() {
     return this.user;
   }
 
