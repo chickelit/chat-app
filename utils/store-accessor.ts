@@ -10,6 +10,7 @@ import Register from "~/store/register";
 import ForgotPassword from "~/store/forgotPassword";
 import Conversation from "~/store/conversations";
 import Friend from "~/store/friends/main";
+import Group from "~/store/groups/main";
 
 let view: View;
 let auth: Auth;
@@ -20,6 +21,7 @@ let register: Register;
 let forgotPassword: ForgotPassword;
 let conversation: Conversation;
 let friend: Friend;
+let group: Group;
 
 const initializeStores = (store: Store<any>): void => {
   view = getModule(View, store);
@@ -31,6 +33,7 @@ const initializeStores = (store: Store<any>): void => {
   forgotPassword = getModule(ForgotPassword, store);
   conversation = getModule(Conversation, store);
   friend = getModule(Friend, store);
+  group = getModule(Group, store);
 };
 
 export {
@@ -44,4 +47,5 @@ export {
   forgotPassword,
   conversation,
   friend,
+  group,
 };

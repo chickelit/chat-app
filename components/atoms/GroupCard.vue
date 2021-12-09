@@ -5,15 +5,22 @@
     role="link"
     @mouseleave="disableDropdown"
   >
-    <div class="group-card-wrapper">
-      <div class="data-container" @click="setView({ newView: 'GroupChat' })">
-        <div class="cover skeleton" />
+    <div v-if="group" class="group-card-wrapper">
+      <div class="data-container" @click="$emit('click')">
+        <div v-if="group.groupCover" class="cover">
+          <img
+            :src="group.groupCover.url"
+            :alt="`Imagem do grupo ${group.title}`"
+          />
+        </div>
+        <div v-else class="cover skeleton"></div>
         <div class="container">
           <div class="title">
-            <div class="skeleton skeleton-text"></div>
+            {{ group.title }}
           </div>
-          <div class="latest-message">
-            <div class="skeleton skeleton-text"></div>
+          <div v-if="group.latestMessage" class="latest-message"></div>
+          <div v-else class="latest-message">
+            O grupo ainda não tem mensagens...
           </div>
         </div>
       </div>
@@ -33,18 +40,39 @@
         </button>
       </Dropdown>
     </div>
+    <div v-else class="group-card-wrapper">
+      <div class="data-container">
+        <div class="cover skeleton" />
+        <div class="container">
+          <div class="title">
+            <div class="skeleton skeleton-text"></div>
+          </div>
+          <div class="latest-message">
+            <div class="skeleton skeleton-text"></div>
+          </div>
+        </div>
+      </div>
+      <OptionsButton />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+/* eslint-disable vue/require-default-prop */
+// eslint-disable-next-line import/named
+import Vue, { PropOptions } from "vue";
 import { setView } from "@/utils";
+import { Group } from "~/models";
 export default Vue.extend({
   props: {
     index: {
       type: Number,
       required: true,
     },
+    group: {
+      type: Object,
+      required: false,
+    } as PropOptions<Group>,
   },
   data() {
     return {
@@ -53,18 +81,22 @@ export default Vue.extend({
   },
   methods: {
     toggleDropdown() {
-      const groupCardDropdown = document.querySelectorAll(
-        ".group-card-dropdown"
-      )[this.index] as Element;
+      if (this.group) {
+        const groupCardDropdown = document.querySelectorAll(
+          ".group-card-dropdown"
+        )[this.index] as Element;
 
-      groupCardDropdown.classList.toggle("active");
+        groupCardDropdown.classList.toggle("active");
+      }
     },
     disableDropdown() {
-      const groupCardDropdown = document.querySelectorAll(
-        ".group-card-dropdown"
-      )[this.index] as Element;
+      if (this.group) {
+        const groupCardDropdown = document.querySelectorAll(
+          ".group-card-dropdown"
+        )[this.index] as Element;
 
-      groupCardDropdown.classList.remove("active");
+        groupCardDropdown.classList.remove("active");
+      }
     },
   },
 });
@@ -106,9 +138,17 @@ export default Vue.extend({
       height: 100%;
       width: 100%;
       border-radius: 100%;
+      img {
+        height: 100%;
+        width: 100%;
+        border-radius: 100%;
+        object-fit: cover;
+      }
     }
     .title {
       width: 100%;
+      font-size: 1.125rem;
+      color: color("light", "darker");
       .skeleton-text {
         width: 60%;
         height: 1.125rem;
@@ -118,6 +158,7 @@ export default Vue.extend({
     }
     .latest-message {
       width: 100%;
+      color: color("light", "darkest");
       .skeleton-text {
         width: 75%;
         height: 1rem;
