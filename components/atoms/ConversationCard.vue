@@ -1,6 +1,10 @@
 <template>
   <div class="conversation-card" role="link" @click="$emit('click')">
-    <div v-if="conversation" class="wrapper">
+    <div
+      v-if="conversation"
+      :aria-label="`Conversar com ${conversation.user.username}`"
+      class="wrapper"
+    >
       <div v-if="conversation.user.avatar" class="avatar">
         <img
           :src="conversation.user.avatar.url"

@@ -70,8 +70,6 @@ export default Vue.extend({
           this.friends = friends;
           this.loading = false;
         }
-      } else {
-        this.$emit("notFullScrolled");
       }
     },
   },

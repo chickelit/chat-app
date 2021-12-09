@@ -5,9 +5,8 @@
       :key="index"
       class="conversation"
     >
-      <ConversationCard v-if="!conversation" :index="index" />
       <ConversationCard
-        v-else
+        v-if="conversation"
         :index="index"
         :conversation="conversation"
         @click="
@@ -17,6 +16,7 @@
           })
         "
       />
+      <ConversationCard v-else :index="index" />
     </div>
     <div v-show="conversations.length < $meta.total" class="loading-wrapper">
       <Loading :active="loading" />
@@ -85,8 +85,6 @@ export default Vue.extend({
           this.conversations = conversations;
           this.loading = false;
         }
-      } else {
-        this.$emit("notFullScrolled");
       }
     },
   },

@@ -1,16 +1,16 @@
 import { Action, Module, Mutation, VuexModule } from "vuex-module-decorators";
-import { User } from "~/models";
+import { Meta, User } from "~/models";
 import { $axios } from "~/utils/nuxt-instance";
 
 interface IndexPayload {
   page?: number;
-  perPage?: number;
+  perPage: number;
 }
 
 @Module({ name: "friends/main", stateFactory: true, namespaced: true })
 export default class Friend extends VuexModule {
   private friends = [] as User[];
-  private meta = {} as any;
+  private meta = {} as Meta;
 
   public get $all() {
     return this.friends;
@@ -26,7 +26,7 @@ export default class Friend extends VuexModule {
   }
 
   @Mutation
-  UPDATE_META(meta: any) {
+  UPDATE_META(meta: Meta) {
     this.meta = meta;
   }
 

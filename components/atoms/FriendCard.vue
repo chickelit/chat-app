@@ -75,11 +75,13 @@ export default Vue.extend({
   },
   methods: {
     toggleDropdown() {
-      const friendCardDropdown = document.querySelectorAll(
-        ".friend-card-dropdown"
-      )[this.index] as Element;
+      if (this.friend) {
+        const friendCardDropdown = document.querySelectorAll(
+          ".friend-card-dropdown"
+        )[this.index] as Element;
 
-      friendCardDropdown.classList.toggle("active");
+        friendCardDropdown.classList.toggle("active");
+      }
     },
     disableDropdown() {
       if (this.friend) {

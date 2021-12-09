@@ -1,4 +1,5 @@
 import { Action, Module, Mutation, VuexModule } from "vuex-module-decorators";
+import { Meta } from "~/models";
 import { $axios } from "~/utils/nuxt-instance";
 
 interface ShowPayload {
@@ -7,14 +8,14 @@ interface ShowPayload {
 
 interface IndexPayload {
   page?: number;
-  perPage?: number;
+  perPage: number;
 }
 
 @Module({ name: "conversations", stateFactory: true, namespaced: true })
 export default class Conversation extends VuexModule {
   private conversation = {} as Conversation;
   private conversations = [] as Conversation[];
-  private meta = {} as any;
+  private meta = {} as Meta;
 
   public get $single() {
     return this.conversation;
@@ -39,7 +40,7 @@ export default class Conversation extends VuexModule {
   }
 
   @Mutation
-  UPDATE_META(meta: any) {
+  UPDATE_META(meta: Meta) {
     this.meta = meta;
   }
 
