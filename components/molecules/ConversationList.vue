@@ -101,6 +101,7 @@ export default Vue.extend({
   justify-self: center;
 }
 .conversations-list {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: max-content;

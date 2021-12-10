@@ -1,10 +1,16 @@
 <template>
   <div class="friendship-request-card" @mouseleave="disableDropdown">
-    <div class="wrapper">
+    <div v-if="friendshipRequest" class="wrapper">
       <div class="container" @click="toggleDropdown">
-        <div class="avatar skeleton"></div>
+        <div v-if="friendshipRequest.avatar" class="avatar">
+          <img
+            :src="friendshipRequest.avatar.url"
+            :alt="`Avatar de ${friendshipRequest.username}`"
+          />
+        </div>
+        <div v-else class="avatar skeleton"></div>
         <div class="username">
-          <div class="skeleton skeleton-text"></div>
+          {{ friendshipRequest.username }}
         </div>
       </div>
       <Dropdown class="friendship-request-card-dropdown">
@@ -19,32 +25,51 @@
         </button>
       </Dropdown>
     </div>
+    <div v-else class="wrapper">
+      <div class="container">
+        <div class="avatar skeleton"></div>
+        <div class="username">
+          <div class="skeleton skeleton-text"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+/* eslint-disable vue/require-default-prop */
+// eslint-disable-next-line import/named
+import Vue, { PropOptions } from "vue";
+import { User } from "~/models";
 export default Vue.extend({
   props: {
     index: {
       type: Number,
       required: true,
     },
+    friendshipRequest: {
+      type: Object,
+      required: false,
+    } as PropOptions<User>,
   },
   methods: {
     toggleDropdown() {
-      const friendshipRequestCardDropdown = document.querySelectorAll(
-        ".friendship-request-card-dropdown"
-      )[this.index] as Element;
+      if (this.friendshipRequest) {
+        const friendshipRequestCardDropdown = document.querySelectorAll(
+          ".friendship-request-card-dropdown"
+        )[this.index] as Element;
 
-      friendshipRequestCardDropdown.classList.toggle("active");
+        friendshipRequestCardDropdown.classList.toggle("active");
+      }
     },
     disableDropdown() {
-      const friendshipRequestCardDropdown = document.querySelectorAll(
-        ".friendship-request-card-dropdown"
-      )[this.index] as Element;
+      if (this.friendshipRequest) {
+        const friendshipRequestCardDropdown = document.querySelectorAll(
+          ".friendship-request-card-dropdown"
+        )[this.index] as Element;
 
-      friendshipRequestCardDropdown.classList.remove("active");
+        friendshipRequestCardDropdown.classList.remove("active");
+      }
     },
   },
 });
@@ -59,6 +84,8 @@ export default Vue.extend({
 }
 .username {
   width: 100;
+  font-size: 1.125rem;
+  color: color("light", "darker");
   .skeleton-text {
     width: 75%;
     height: 1.125rem;

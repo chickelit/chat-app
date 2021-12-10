@@ -2,20 +2,17 @@
   <div class="friendship-requests">
     <Wrapper>
       <FriendshipRequestList />
+      <clientOnly>
+        <notifications
+          :max="1"
+          classes="custom-notification"
+          position="bottom right"
+          style="bottom: 0.5rem; right: 0.5rem"
+        />
+      </clientOnly>
     </Wrapper>
   </div>
 </template>
-
-<script lang="ts">
-import Vue from "vue";
-export default Vue.extend({
-  data() {
-    return {
-      friends: Array(15).fill(false),
-    };
-  },
-});
-</script>
 
 <style lang="scss" scoped>
 ::-webkit-scrollbar {

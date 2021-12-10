@@ -11,6 +11,7 @@ import ForgotPassword from "~/store/forgotPassword";
 import Conversation from "~/store/conversations";
 import Friend from "~/store/friends/main";
 import Group from "~/store/groups/main";
+import FriendshipRequest from "~/store/friends/requests";
 
 let view: View;
 let auth: Auth;
@@ -22,6 +23,7 @@ let forgotPassword: ForgotPassword;
 let conversation: Conversation;
 let friend: Friend;
 let group: Group;
+let friendshipRequest: FriendshipRequest;
 
 const initializeStores = (store: Store<any>): void => {
   view = getModule(View, store);
@@ -34,6 +36,7 @@ const initializeStores = (store: Store<any>): void => {
   conversation = getModule(Conversation, store);
   friend = getModule(Friend, store);
   group = getModule(Group, store);
+  friendshipRequest = getModule(FriendshipRequest, store);
 };
 
 export {
@@ -48,4 +51,5 @@ export {
   conversation,
   friend,
   group,
+  friendshipRequest,
 };

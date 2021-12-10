@@ -2,6 +2,14 @@
   <div class="conversations">
     <Wrapper>
       <ConversationList class="conversation-list" />
+      <clientOnly>
+        <notifications
+          :max="1"
+          classes="custom-notification"
+          position="bottom right"
+          style="bottom: 0.5rem; right: 0.5rem"
+        />
+      </clientOnly>
     </Wrapper>
   </div>
 </template>

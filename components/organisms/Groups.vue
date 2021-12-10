@@ -2,6 +2,14 @@
   <div class="groups">
     <Wrapper>
       <GroupList class="group-list" />
+      <clientOnly>
+        <notifications
+          :max="1"
+          classes="custom-notification"
+          position="bottom right"
+          style="bottom: 0.5rem; right: 0.5rem"
+        />
+      </clientOnly>
     </Wrapper>
   </div>
 </template>
