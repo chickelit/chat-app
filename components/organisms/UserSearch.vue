@@ -10,30 +10,35 @@
         <h1 class="title">Adicionar amigo</h1>
       </template>
       <template #main-slot>
-        <form class="form" autocomplete="off">
+        <form
+          name="user-search-form"
+          class="form"
+          autocomplete="off"
+          @submit.prevent="onSubmit"
+        >
           <Wrapper class="form-wrapper">
             <BaseInput
               id="username-input"
+              v-model="form.username"
               placeholder="Nome do usuário..."
               class="form-input"
-              :max-length="30"
+              :max-length="32"
             />
             <BaseButton type="submit" text="Pesquisar" aria-label="Pesquisar" />
           </Wrapper>
         </form>
-        <div class="result-list">
-          <ul>
-            <li>
-              <SearchUserCard :index="0" />
-            </li>
-            <li>
-              <SearchUserCard :index="1" />
-            </li>
-            <li>
-              <SearchUserCard :index="2" />
-            </li>
-          </ul>
+        <div v-show="loading" class="loading-wrapper">
+          <Loading :active="loading" />
         </div>
+        <SearchUserCard v-if="$searchUser.id" :user="$searchUser" />
+        <clientOnly>
+          <notifications
+            :max="1"
+            classes="custom-notification"
+            position="bottom right"
+            style="bottom: 0.5rem; right: 0.5rem"
+          />
+        </clientOnly>
       </template>
     </FullScreenView>
     <Footer />
@@ -43,16 +48,59 @@
 <script lang="ts">
 import Vue from "vue";
 import { setView } from "@/utils";
+import { userSearch } from "~/store";
 export default Vue.extend({
   data() {
     return {
       setView,
+      form: {
+        username: "",
+      },
+      loading: false,
     };
+  },
+  computed: {
+    $searchUser() {
+      return userSearch.$single;
+    },
+  },
+  methods: {
+    async onSubmit() {
+      try {
+        this.loading = true;
+
+        await userSearch.show(this.form);
+
+        this.form.username = "";
+        document.forms.namedItem("user-search-form")?.reset();
+
+        this.loading = false;
+      } catch (e) {
+        this.$notify({
+          type: "error",
+          title: "Ops...",
+          text: "Usuário não encontrado...",
+        });
+
+        this.form.username = "";
+        document.forms.namedItem("user-search-form")?.reset();
+
+        this.loading = false;
+      }
+    },
   },
 });
 </script>
 
 <style lang="scss" scoped>
+.loading-wrapper {
+  height: 5rem;
+  width: 100%;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  justify-self: center;
+}
 .user-search {
   .title {
     font-size: 1.5rem;

@@ -1,43 +1,44 @@
 <template>
   <div class="user-card" @mouseleave="disableDropdown">
-    <Wrapper class="user-card-wrapper">
-      <div class="avatar skeleton"></div>
+    <div class="wrapper">
+      <div v-if="user.avatar" class="avatar"></div>
+      <div v-else class="avatar skeleton"></div>
       <div class="username">
-        <div class="skeleton skeleton-text"></div>
+        {{ user.username }}
       </div>
       <OptionsButton @click="toggleDropdown" />
       <Dropdown class="user-card-dropdown">
-        <button
-          aria-label="Enviar pedido de amizade para <username>"
-        >
+        <button :aria-label="`Enviar pedido de amizade para ${user.username}`">
           Enviar pedido de amizade
         </button>
       </Dropdown>
-    </Wrapper>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+// eslint-disable-next-line import/named
+import Vue, { PropOptions } from "vue";
+import { User } from "~/models";
 export default Vue.extend({
   props: {
-    index: {
-      type: Number,
+    user: {
+      type: Object,
       required: true,
-    },
+    } as PropOptions<User>,
   },
   methods: {
     toggleDropdown() {
-      const userCardDropdown = document.querySelectorAll(".user-card-dropdown")[
-        this.index
-      ] as Element;
+      const userCardDropdown = document.querySelector(
+        ".user-card-dropdown"
+      ) as Element;
 
       userCardDropdown.classList.toggle("active");
     },
     disableDropdown() {
-      const userCardDropdown = document.querySelectorAll(".user-card-dropdown")[
-        this.index
-      ] as Element;
+      const userCardDropdown = document.querySelector(
+        ".user-card-dropdown"
+      ) as Element;
 
       userCardDropdown.classList.remove("active");
     },
@@ -51,6 +52,8 @@ export default Vue.extend({
 }
 .username {
   width: 100%;
+  font-size: 1.125rem;
+  color: color("light", "darker");
   .skeleton-text {
     width: 75%;
     height: 1.125rem;
@@ -68,6 +71,7 @@ export default Vue.extend({
   justify-items: center;
   transition: all 0.15s linear;
   .wrapper {
+    width: 100%;
     position: relative;
     display: grid;
     grid-template-columns: 3rem 1fr auto;
