@@ -7,6 +7,14 @@ interface IndexPayload {
   perPage: number;
 }
 
+interface CreatePayload {
+  userId: number;
+}
+
+interface DeletePayload {
+  userId: number;
+}
+
 @Module({ name: "friends/requests", stateFactory: true, namespaced: true })
 export default class FriendshipRequestStore extends VuexModule {
   private friendshipRequests = [] as User[];
@@ -38,5 +46,15 @@ export default class FriendshipRequestStore extends VuexModule {
 
     this.context.commit("UPDATE_FRIENDSHIP_REQUESTS", friendshipRequests);
     this.context.commit("UPDATE_META", meta);
+  }
+
+  @Action({ rawError: true })
+  public async create(payload: CreatePayload) {
+    await $axios.post(`/friendships/requests`, payload);
+  }
+
+  @Action({ rawError: true })
+  public async delete({ userId }: DeletePayload) {
+    await $axios.delete(`/friendships/requests/${userId}`);
   }
 }

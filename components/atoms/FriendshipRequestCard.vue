@@ -14,12 +14,16 @@
         </div>
       </div>
       <Dropdown class="friendship-request-card-dropdown">
-        <button aria-label="Aceitar pedido de amizade de <username>">
+        <button
+          aria-label="Aceitar pedido de amizade de <username>"
+          @click="acceptFriendshipRequest"
+        >
           Aceitar o pedido
         </button>
         <button
           class="danger"
           aria-label="Recusar pedido de amizade de <username>"
+          @click="refuseFriendshipRequest"
         >
           Recusar o pedido
         </button>
@@ -41,6 +45,7 @@
 // eslint-disable-next-line import/named
 import Vue, { PropOptions } from "vue";
 import { User } from "~/models";
+import { friend, friendshipRequest } from "~/store";
 export default Vue.extend({
   props: {
     index: {
@@ -69,6 +74,28 @@ export default Vue.extend({
         )[this.index] as Element;
 
         friendshipRequestCardDropdown.classList.remove("active");
+      }
+    },
+    async acceptFriendshipRequest() {
+      try {
+        await friend.create({ userId: this.friendshipRequest.id });
+      } catch (e) {
+        this.$notify({
+          type: "error",
+          title: "Ops...",
+          text: "Houve um erro ao aceitar o pedido...",
+        });
+      }
+    },
+    async refuseFriendshipRequest() {
+      try {
+        await friendshipRequest.delete({ userId: this.friendshipRequest.id });
+      } catch (e) {
+        this.$notify({
+          type: "error",
+          title: "Ops...",
+          text: "Houve um erro ao recusar o pedido...",
+        });
       }
     },
   },

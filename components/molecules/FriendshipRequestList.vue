@@ -3,7 +3,11 @@
     <div
       v-for="(friendshipRequest, index) of friendshipRequests"
       :key="index"
-      :class="{ last: index === friendshipRequests.length - 1 }"
+      :class="{
+        last:
+          index === friendshipRequests.length - 1 &&
+          friendshipRequests.length > 1,
+      }"
     >
       <FriendshipRequestCard
         v-if="friendshipRequest"

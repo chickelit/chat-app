@@ -7,6 +7,10 @@ interface IndexPayload {
   perPage: number;
 }
 
+interface CreatePayload {
+  userId: number;
+}
+
 @Module({ name: "friends/main", stateFactory: true, namespaced: true })
 export default class Friend extends VuexModule {
   private friends = [] as User[];
@@ -38,5 +42,10 @@ export default class Friend extends VuexModule {
 
     this.context.commit("UPDATE_FRIENDS", friends);
     this.context.commit("UPDATE_META", meta);
+  }
+
+  @Action({ rawError: true })
+  public async create(payload: CreatePayload) {
+    await $axios.post("/friendships", payload);
   }
 }

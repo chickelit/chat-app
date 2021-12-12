@@ -8,7 +8,10 @@
       </div>
       <OptionsButton @click="toggleDropdown" />
       <Dropdown class="user-card-dropdown">
-        <button :aria-label="`Enviar pedido de amizade para ${user.username}`">
+        <button
+          :aria-label="`Enviar pedido de amizade para ${user.username}`"
+          @click="sendFriendshipRequest"
+        >
           Enviar pedido de amizade
         </button>
       </Dropdown>
@@ -20,6 +23,7 @@
 // eslint-disable-next-line import/named
 import Vue, { PropOptions } from "vue";
 import { User } from "~/models";
+import { friendshipRequest } from "~/store";
 export default Vue.extend({
   props: {
     user: {
@@ -41,6 +45,22 @@ export default Vue.extend({
       ) as Element;
 
       userCardDropdown.classList.remove("active");
+    },
+    async sendFriendshipRequest() {
+      try {
+        await friendshipRequest.create({ userId: this.user.id });
+
+        this.$notify({
+          type: "success",
+          title: "Pedido enviado!",
+        });
+      } catch (e) {
+        this.$notify({
+          type: "error",
+          title: "Ops...",
+          text: "Houve um erro ao enviar o pedido...",
+        });
+      }
     },
   },
 });

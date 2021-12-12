@@ -3,7 +3,7 @@
     <div
       v-for="(group, index) of groups"
       :key="index"
-      :class="{ last: index === groups.length - 1 }"
+      :class="{ last: index === groups.length - 1 && groups.length > 1 }"
     >
       <GroupCard
         v-if="group"
