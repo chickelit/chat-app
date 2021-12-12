@@ -22,6 +22,7 @@ export default {
     "@/plugins/accessor",
     "@/plugins/axios",
     "@/plugins/notifications.client",
+    "@/plugins/socket.client"
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -38,6 +39,7 @@ export default {
     "@nuxtjs/style-resources",
     "@nuxtjs/axios",
     "cookie-universal-nuxt",
+    "socket.io-client",
   ],
 
   axios: {

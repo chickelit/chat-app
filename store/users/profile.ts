@@ -9,19 +9,19 @@ interface UpdatePayload {
 
 @Module({ name: "users/profile", stateFactory: true, namespaced: true })
 export default class Profile extends VuexModule {
-  user = {} as User;
+  private user = {} as User;
 
-  get $single() {
+  public get $single() {
     return this.user;
   }
 
   @Mutation
-  UPDATE_USER(user: User) {
+  private UPDATE_USER(user: User) {
     this.user = user;
   }
 
   @Mutation
-  SET_USER_AVATAR(avatar: User["avatar"]) {
+  private SET_USER_AVATAR(avatar: User["avatar"]) {
     this.user.avatar = avatar;
   }
 

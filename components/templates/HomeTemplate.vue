@@ -11,12 +11,18 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { socket } from "~/plugins/socket.client";
 import { view } from "@/store";
 export default Vue.extend({
   computed: {
     $view() {
       return view.$view;
     },
+  },
+  mounted() {
+    socket.on("newFriendshipRequest", (data) => {
+      console.log(data);
+    });
   },
 });
 </script>
