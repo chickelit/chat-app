@@ -152,6 +152,8 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [TypeScript](https://www.typescriptlang.org/)
 - [Scss](https://www.sass-lang.com/)
 - [Vue Notification](https://www.npmjs.com/package/vue-notification/)
+- [Socket.io Client](https://socket.io/docs/v4/client-api/)
+
 
 <div id="autor"></div>
 
