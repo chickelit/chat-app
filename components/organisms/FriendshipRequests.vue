@@ -23,7 +23,7 @@
   width: 100%;
   height: 100%;
   background: color("dark");
-  .friendship-requests-list {
+  .friendship-request-list {
     position: absolute;
     inset: 0;
     overflow-y: scroll;

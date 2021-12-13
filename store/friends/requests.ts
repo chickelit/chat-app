@@ -29,8 +29,22 @@ export default class FriendshipRequestStore extends VuexModule {
   }
 
   @Mutation
+  private DELETE_FRIENDSHIP_REQUEST(userId: User["id"]) {
+    const index = this.friendshipRequests.findIndex(
+      (request) => request.id === userId
+    );
+
+    this.friendshipRequests.splice(index, 1);
+  }
+
+  @Mutation
   private UPDATE_FRIENDSHIP_REQUESTS(friendshipRequests: User[]) {
     this.friendshipRequests.push(...friendshipRequests);
+  }
+
+  @Mutation
+  private UPDATE_FRIENDSHIP_REQUESTS_REVERSE(friendshipRequests: User[]) {
+    this.friendshipRequests.unshift(...friendshipRequests);
   }
 
   @Mutation
@@ -55,6 +69,15 @@ export default class FriendshipRequestStore extends VuexModule {
 
   @Action({ rawError: true })
   public async delete({ userId }: DeletePayload) {
+    this.context.commit("DELETE_FRIENDSHIP_REQUEST", userId);
     await $axios.delete(`/friendships/requests/${userId}`);
+  }
+
+  @Action({ rawError: true })
+  public update(friendshipRequests: User[]) {
+    this.context.commit(
+      "UPDATE_FRIENDSHIP_REQUESTS_REVERSE",
+      friendshipRequests
+    );
   }
 }

@@ -117,6 +117,9 @@ textarea {
   &.success {
     border: 1px solid color("success", "lighter");
   }
+  &.primary {
+    border: 1px solid color("primary", "lighter");
+  }
 }
 .vue-notification-group {
   position: absolute !important;

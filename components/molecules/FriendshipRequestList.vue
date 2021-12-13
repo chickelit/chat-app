@@ -1,21 +1,21 @@
 <template>
-  <div class="friendship-requests-list" @scroll="checkScroll">
-    <div
-      v-for="(friendshipRequest, index) of friendshipRequests"
-      :key="index"
-      :class="{
-        last:
-          index === friendshipRequests.length - 1 &&
-          friendshipRequests.length > 1,
-      }"
-    >
-      <FriendshipRequestCard
-        v-if="friendshipRequest"
-        :index="index"
-        :friendship-request="friendshipRequest"
-      />
-      <FriendshipRequestCard v-else :index="index" />
-    </div>
+  <div class="friendship-request-list" @scroll="checkScroll">
+      <div
+        v-for="(friendshipRequest, index) of friendshipRequests"
+        :key="index"
+        :class="{
+          last:
+            index === friendshipRequests.length - 1 &&
+            friendshipRequests.length > 1,
+        }"
+      >
+        <FriendshipRequestCard
+          v-if="friendshipRequest"
+          :index="index"
+          :friendship-request="friendshipRequest"
+        />
+        <FriendshipRequestCard v-else :index="index" />
+      </div>
     <div
       v-show="friendshipRequests.length < $meta.total"
       class="loading-wrapper"
@@ -27,6 +27,8 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { User } from "~/models";
+import { socket } from "~/plugins/socket.client";
 import { friendshipRequest } from "~/store";
 export default Vue.extend({
   data() {
@@ -42,6 +44,16 @@ export default Vue.extend({
     },
   },
   async mounted() {
+    socket.on("newFriendshipRequest", (user: User) => {
+      this.$notify({
+        type: "primary",
+        title: "Pedido de amizade",
+        text: `Você tem um novo pedido de amizade de ${user.username}...`,
+      });
+
+      friendshipRequest.update([user]);
+    });
+
     if (friendshipRequest.$all.length > 0) {
       const friendshipRequests = friendshipRequest.$all;
 
@@ -56,6 +68,10 @@ export default Vue.extend({
         const friendshipRequests = friendshipRequest.$all;
 
         this.friendshipRequests = friendshipRequests;
+
+        document
+          .getElementById("friendship-requests-list")
+          ?.setAttribute("name", "friendship-request-list-move");
       } catch (e) {
         this.$notify({
           type: "error",
@@ -91,6 +107,9 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.friendship-request-list-move {
+  transition: transform 0.5s;
+}
 .loading-wrapper {
   height: 5rem;
   width: 5rem;
@@ -99,7 +118,7 @@ export default Vue.extend({
   align-items: center;
   justify-self: center;
 }
-.friendship-requests-list {
+#friendship-request-list {
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: max-content;

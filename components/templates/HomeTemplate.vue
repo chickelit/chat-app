@@ -11,8 +11,9 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { socket } from "~/plugins/socket.client";
 import { view } from "@/store";
+import { socket } from "~/plugins/socket.client";
+import { User } from "~/models";
 export default Vue.extend({
   computed: {
     $view() {
@@ -20,8 +21,12 @@ export default Vue.extend({
     },
   },
   mounted() {
-    socket.on("newFriendshipRequest", (data) => {
-      console.log(data);
+    socket.on("newFriendshipRequest", (user: User) => {
+      this.$notify({
+        type: "primary",
+        title: "Pedido de amizade",
+        text: `Você tem um novo pedido de amizade de ${user.username}...`,
+      });
     });
   },
 });
