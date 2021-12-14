@@ -13,16 +13,21 @@
           {{ friendshipRequest.username }}
         </div>
       </div>
-      <Dropdown class="friendship-request-card-dropdown">
+      <Dropdown
+        :class="[
+          'friendship-request-card-dropdown',
+          { active: dropdownActive },
+        ]"
+      >
         <button
-          aria-label="Aceitar pedido de amizade de <username>"
+          :aria-label="`Aceitar pedido de amizade de ${friendshipRequest.username}`"
           @click="acceptFriendshipRequest"
         >
           Aceitar o pedido
         </button>
         <button
           class="danger"
-          aria-label="Recusar pedido de amizade de <username>"
+          :aria-label="`Recusar pedido de amizade de ${friendshipRequest.username}`"
           @click="refuseFriendshipRequest"
         >
           Recusar o pedido
@@ -57,28 +62,27 @@ export default Vue.extend({
       required: false,
     } as PropOptions<User>,
   },
+  data() {
+    return {
+      dropdownActive: false,
+    };
+  },
   methods: {
     toggleDropdown() {
       if (this.friendshipRequest) {
-        const friendshipRequestCardDropdown = document.querySelectorAll(
-          ".friendship-request-card-dropdown"
-        )[this.index] as Element;
-
-        friendshipRequestCardDropdown.classList.toggle("active");
+        this.dropdownActive = !this.dropdownActive;
       }
     },
     disableDropdown() {
       if (this.friendshipRequest) {
-        const friendshipRequestCardDropdown = document.querySelectorAll(
-          ".friendship-request-card-dropdown"
-        )[this.index] as Element;
-
-        friendshipRequestCardDropdown.classList.remove("active");
+        this.dropdownActive = false;
       }
     },
     async acceptFriendshipRequest() {
       try {
         await friend.create({ userId: this.friendshipRequest.id });
+
+        this.dropdownActive = false;
       } catch (e) {
         this.$notify({
           type: "error",
@@ -90,6 +94,8 @@ export default Vue.extend({
     async refuseFriendshipRequest() {
       try {
         await friendshipRequest.delete({ userId: this.friendshipRequest.id });
+
+        this.dropdownActive = false;
       } catch (e) {
         this.$notify({
           type: "error",

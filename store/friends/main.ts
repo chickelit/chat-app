@@ -25,6 +25,11 @@ export default class Friend extends VuexModule {
   }
 
   @Mutation
+  UPDATE_FRIENDS_REVERSE(friends: User[]) {
+    this.friends.unshift(...friends);
+  }
+
+  @Mutation
   UPDATE_FRIENDS(friends: User[]) {
     this.friends.push(...friends);
   }
@@ -46,6 +51,15 @@ export default class Friend extends VuexModule {
 
   @Action({ rawError: true })
   public async create(payload: CreatePayload) {
-    await $axios.post("/friendships", payload);
+    const friend = await $axios.$post("/friendships", payload);
+
+    this.context.commit("UPDATE_FRIENDS_REVERSE", [friend]);
+    this.context.commit(
+      "friends/requests/DELETE_FRIENDSHIP_REQUEST",
+      payload.userId,
+      {
+        root: true,
+      }
+    );
   }
 }

@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { view } from "@/store";
+import { friendshipRequest, view } from "@/store";
 import { socket } from "~/plugins/socket.client";
 import { User } from "~/models";
 export default Vue.extend({
@@ -22,6 +22,8 @@ export default Vue.extend({
   },
   mounted() {
     socket.on("newFriendshipRequest", (user: User) => {
+      friendshipRequest.update([user]);
+
       this.$notify({
         type: "primary",
         title: "Pedido de amizade",
