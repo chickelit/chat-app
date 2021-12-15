@@ -50,13 +50,15 @@ export default Vue.extend({
       try {
         await friendshipRequest.create({ userId: this.user.id });
 
-        this.$notify({
+        Vue.notify({
           type: "success",
+          group: "global",
           title: "Pedido enviado!",
         });
       } catch (e) {
-        this.$notify({
+        Vue.notify({
           type: "error",
+          group: "global",
           title: "Ops...",
           text: "Houve um erro ao enviar o pedido...",
         });

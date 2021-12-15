@@ -29,6 +29,15 @@
             />
           </button>
         </div>
+        <clientOnly>
+          <notifications
+            :max="1"
+            group="global"
+            classes="custom-notification"
+            position="bottom right"
+            style="bottom: 0.5rem; right: 0.5rem"
+          />
+        </clientOnly>
       </template>
     </FullScreenView>
   </div>

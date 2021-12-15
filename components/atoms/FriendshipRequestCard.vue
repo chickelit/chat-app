@@ -84,8 +84,9 @@ export default Vue.extend({
 
         this.dropdownActive = false;
       } catch (e) {
-        this.$notify({
+        Vue.notify({
           type: "error",
+          group: "global",
           title: "Ops...",
           text: "Houve um erro ao aceitar o pedido...",
         });
@@ -97,8 +98,9 @@ export default Vue.extend({
 
         this.dropdownActive = false;
       } catch (e) {
-        this.$notify({
+        Vue.notify({
           type: "error",
+          group: "global",
           title: "Ops...",
           text: "Houve um erro ao recusar o pedido...",
         });

@@ -12,6 +12,15 @@
     </header>
     <Wrapper class="main-wrapper">
       <slot name="main-slot" />
+      <clientOnly>
+        <notifications
+          :max="1"
+          group="global"
+          classes="custom-notification"
+          position="bottom right"
+          style="bottom: 0.5rem; right: 0.5rem"
+        />
+      </clientOnly>
     </Wrapper>
     <Footer />
   </div>
