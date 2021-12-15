@@ -74,7 +74,7 @@ export default class FriendshipRequestStore extends VuexModule {
   }
 
   @Action({ rawError: true })
-  public update(friendshipRequests: User[]) {
+  public updateFriendshipRequests(friendshipRequests: User[]) {
     this.context.commit(
       "UPDATE_FRIENDSHIP_REQUESTS_REVERSE",
       friendshipRequests

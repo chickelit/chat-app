@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { friendshipRequest, profile, view } from "@/store";
+import { friendship, friendshipRequest, profile, view } from "@/store";
 import socket from "~/plugins/socket.client";
 import { User } from "~/models";
 export default Vue.extend({
@@ -24,17 +24,27 @@ export default Vue.extend({
     socket.emit("create", `user-${profile.$single.id}`);
 
     socket.on("newFriendshipRequest", (user: User) => {
-      friendshipRequest.update([user]);
+      friendshipRequest.updateFriendshipRequests([user]);
 
       Vue.notify({
         type: "primary",
+        group: "global",
         title: "Você tem um novo pedido de amizade!",
         text: `${user.username} pediu para ser seu amigo!`,
       });
     });
 
-    socket.on("newFriend", (data: any) => {
-      console.log(data);
+    socket.on("friendshipRequestAccepted", (user: User) => {
+      Vue.notify({
+        type: "primary",
+        group: "global",
+        title: "Pedido de amizade aceito!",
+        text: `${user.username} aceitou seu pedido de amizade!`,
+      });
+    });
+
+    socket.on("newFriend", (user: User) => {
+      friendship.updateFriends([user]);
     });
   },
 });
