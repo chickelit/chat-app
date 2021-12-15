@@ -1,9 +1,14 @@
 <template>
   <div class="friendship-request-list" @scroll="checkScroll">
-    <transition-group tag="div" class="list" name="friendship-request-list">
+    <transition-group
+      v-if="populated"
+      tag="div"
+      class="list"
+      name="friendship-request-list"
+    >
       <div
         v-for="(friendshipRequest, index) of friendshipRequests"
-        :key="index"
+        :key="friendshipRequest.id"
         :class="{
           last:
             index === friendshipRequests.length - 1 &&
@@ -15,9 +20,16 @@
           :index="index"
           :friendship-request="friendshipRequest"
         />
-        <FriendshipRequestCard v-else :index="index" />
       </div>
     </transition-group>
+    <div v-else class="list">
+      <div
+        v-for="(friendshipRequest, index) of friendshipRequests"
+        :key="index"
+      >
+        <FriendshipRequestCard :index="index" />
+      </div>
+    </div>
     <div
       v-show="friendshipRequests.length < $meta.total"
       class="loading-wrapper"
@@ -36,6 +48,7 @@ export default Vue.extend({
       friendshipRequests: Array(20).fill(false),
       page: 1,
       loading: false,
+      populated: false,
     };
   },
   computed: {
@@ -48,6 +61,7 @@ export default Vue.extend({
       const friendshipRequests = friendshipRequest.$all;
 
       this.friendshipRequests = friendshipRequests;
+      this.populated = true;
     } else {
       try {
         await friendshipRequest.index({
@@ -58,6 +72,7 @@ export default Vue.extend({
         const friendshipRequests = friendshipRequest.$all;
 
         this.friendshipRequests = friendshipRequests;
+        this.populated = true;
       } catch (e) {
         this.$notify({
           type: "error",
@@ -95,12 +110,11 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .friendship-request-list-enter-active,
 .friendship-request-list-leave-active {
-  transition: all 1s ease;
+  transition: all 0.25s ease;
 }
 .friendship-request-list-enter-from,
 .friendship-request-list-leave-to {
   opacity: 0;
-  transform: translateY(30px);
 }
 .loading-wrapper {
   height: 5rem;

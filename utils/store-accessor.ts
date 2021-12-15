@@ -22,7 +22,7 @@ let avatar: Avatar;
 let register: Register;
 let forgotPassword: ForgotPassword;
 let conversation: Conversation;
-let friend: Friend;
+let friendship: Friend;
 let group: Group;
 let friendshipRequest: FriendshipRequest;
 let userSearch: UserSearch;
@@ -36,7 +36,7 @@ const initializeStores = (store: Store<any>): void => {
   register = getModule(Register, store);
   forgotPassword = getModule(ForgotPassword, store);
   conversation = getModule(Conversation, store);
-  friend = getModule(Friend, store);
+  friendship = getModule(Friend, store);
   group = getModule(Group, store);
   friendshipRequest = getModule(FriendshipRequest, store);
   userSearch = getModule(UserSearch, store);
@@ -52,7 +52,7 @@ export {
   register,
   forgotPassword,
   conversation,
-  friend,
+  friendship,
   group,
   friendshipRequest,
   userSearch,

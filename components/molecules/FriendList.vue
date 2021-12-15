@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { friend } from "~/store";
+import { friendship } from "~/store";
 export default Vue.extend({
   data() {
     return {
@@ -27,19 +27,19 @@ export default Vue.extend({
   },
   computed: {
     $meta() {
-      return friend.$meta;
+      return friendship.$meta;
     },
   },
   async mounted() {
-    if (friend.$all.length > 0) {
-      const friends = friend.$all;
+    if (friendship.$all.length > 0) {
+      const friends = friendship.$all;
 
       this.friends = friends;
     } else {
       try {
-        await friend.index({ page: this.page, perPage: 20 });
+        await friendship.index({ page: this.page, perPage: 20 });
 
-        const friends = friend.$all;
+        const friends = friendship.$all;
 
         this.friends = friends;
       } catch (e) {
@@ -59,13 +59,13 @@ export default Vue.extend({
         target.scrollHeight - 200 <= target.scrollTop + target.clientHeight &&
         !this.loading
       ) {
-        if (this.page < friend.$meta.last_page) {
+        if (this.page < friendship.$meta.last_page) {
           this.page += 1;
           this.loading = true;
 
-          await friend.index({ page: this.page, perPage: 20 });
+          await friendship.index({ page: this.page, perPage: 20 });
 
-          const friends = friend.$all;
+          const friends = friendship.$all;
 
           this.friends = friends;
           this.loading = false;

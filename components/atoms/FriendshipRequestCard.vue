@@ -50,7 +50,7 @@
 // eslint-disable-next-line import/named
 import Vue, { PropOptions } from "vue";
 import { User } from "~/models";
-import { friend, friendshipRequest } from "~/store";
+import { friendship, friendshipRequest } from "~/store";
 export default Vue.extend({
   props: {
     index: {
@@ -80,7 +80,7 @@ export default Vue.extend({
     },
     async acceptFriendshipRequest() {
       try {
-        await friend.create({ userId: this.friendshipRequest.id });
+        await friendship.create({ userId: this.friendshipRequest.id });
 
         this.dropdownActive = false;
       } catch (e) {
