@@ -69,8 +69,8 @@ export default class FriendshipRequestStore extends VuexModule {
 
   @Action({ rawError: true })
   public async delete({ userId }: DeletePayload) {
-    this.context.commit("DELETE_FRIENDSHIP_REQUEST", userId);
     await $axios.delete(`/friendships/requests/${userId}`);
+    this.context.commit("DELETE_FRIENDSHIP_REQUEST", userId);
   }
 
   @Action({ rawError: true })

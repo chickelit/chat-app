@@ -22,7 +22,7 @@ export default {
     "@/plugins/accessor",
     "@/plugins/axios",
     "@/plugins/notifications.client",
-    "@/plugins/socket.client"
+    "@/plugins/socket.client",
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -39,11 +39,10 @@ export default {
     "@nuxtjs/style-resources",
     "@nuxtjs/axios",
     "cookie-universal-nuxt",
-    "socket.io-client",
   ],
 
   axios: {
-    baseUrl: "http://192.168.0.103:3333",
+    baseUrl: "http://127.0.0.1:3333",
   },
 
   styleResources: {
@@ -55,6 +54,6 @@ export default {
 
   server: {
     port: 3000,
-    host: "0.0.0.0",
+    host: "127.0.0.1",
   },
 };

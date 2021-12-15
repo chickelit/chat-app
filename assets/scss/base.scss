@@ -106,6 +106,7 @@ textarea {
   }
 }
 .custom-notification {
+  z-index: 5000;
   background: color("dark", "darker") !important;
   border-radius: 0.3125rem;
   padding: 0.5rem;
