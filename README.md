@@ -21,6 +21,7 @@ Tabela de conteúdos
 <!--ts-->
   * [Sobre](#sobre)
   * [Tabela de conteúdo](#tabela-de-conteudos)
+  * [Features](#features)
   * [Imagens](#imagens)
   * [Pré-requesitos](#pre-requesitos)
   * [Instalação](#instalacao)
@@ -28,6 +29,25 @@ Tabela de conteúdos
   * [Autor](#autor)
 
 <!--te-->
+
+<div id="features"></div>
+
+<h3>Features</h3>
+
+- [x] Cadastro de usuário
+- [x] Autenticação
+- [x] Recuperação de senha
+- [x] Upload de avatar
+- [x] Atualização do perfil
+- [x] Pedidos de amizade
+- [x] Amizades
+- [ ] Conversas privadas
+- [ ] Grupos
+- [ ] Membros do grupo
+- [ ] Imagem do grupo
+- [ ] Mensagens privadas
+- [ ] Mensagens em grupo
+- [x] Socket.io
 
 <div id="imagens">
   <table>
