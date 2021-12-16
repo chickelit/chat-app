@@ -1,12 +1,12 @@
 <template>
   <div class="available-new-members">
-    <FullScreenView
-      label="Voltar"
-      new-view="GroupMembers"
-      navigation-active-class="groups-anchor"
-      class="full-screen-view"
-    >
-      <template #header-slot>
+    <FullScreenView class="full-screen-view">
+      <template #header-slot class="header-slot">
+        <BackButton
+          label="Voltar"
+          new-view="GroupMembers"
+          navigation-active-class="groups-anchor"
+        />
         <h1 class="title">Novo membro</h1>
       </template>
       <template #main-slot>
@@ -75,6 +75,13 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.header-slot {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+  align-items: center;
+  gap: 1rem;
+}
 .continue {
   cursor: pointer;
   display: grid;

@@ -1,13 +1,15 @@
 <template>
   <div class="user-search">
-    <FullScreenView
-      label="Voltar"
-      new-view="Friends"
-      navigation-active-class="friends-anchor"
-      class="full-screen-view"
-    >
+    <FullScreenView class="full-screen-view">
       <template #header-slot>
-        <h1 class="title">Adicionar amigo</h1>
+        <div class="header-slot">
+          <BackButton
+            label="Voltar"
+            new-view="Friends"
+            navigation-active-class="friends-anchor"
+          />
+          <h1 class="title">Adicionar amigo</h1>
+        </div>
       </template>
       <template #main-slot>
         <form
@@ -94,6 +96,13 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.header-slot {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+  align-items: center;
+  gap: 1rem;
+}
 .loading-wrapper {
   height: 5rem;
   width: 100%;

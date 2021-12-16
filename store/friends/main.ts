@@ -11,6 +11,10 @@ interface CreatePayload {
   userId: number;
 }
 
+interface DestroyPayload {
+  userId: number;
+}
+
 @Module({ name: "friends/main", stateFactory: true, namespaced: true })
 export default class Friend extends VuexModule {
   private friends = [] as User[];
@@ -39,6 +43,13 @@ export default class Friend extends VuexModule {
     this.meta = meta;
   }
 
+  @Mutation
+  DELETE_FRIEND(userId: User["id"]) {
+    const index = this.friends.findIndex((friend) => friend.id === userId);
+
+    this.friends.splice(index, 1);
+  }
+
   @Action({ rawError: true })
   public async index({ page, perPage }: IndexPayload) {
     const { data: friends, meta } = await $axios.$get(
@@ -60,6 +71,13 @@ export default class Friend extends VuexModule {
         root: true,
       }
     );
+  }
+
+  @Action({ rawError: true })
+  public async destroy({ userId }: DestroyPayload) {
+    await $axios.delete(`/friendships/${userId}`);
+
+    this.context.commit("DELETE_FRIEND", userId);
   }
 
   @Action({ rawError: true })

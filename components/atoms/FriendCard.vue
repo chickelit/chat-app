@@ -26,6 +26,7 @@
         <button
           class="danger"
           :aria-label="`Desfazer amizade com ${friend.username}`"
+          @click="deleteFriendship"
         >
           Desfazer amizade
         </button>
@@ -47,7 +48,7 @@
 // eslint-disable-next-line import/named
 import Vue, { PropOptions } from "vue";
 import { setView } from "@/utils";
-import { view } from "~/store";
+import { friendship, view } from "~/store";
 import { User } from "~/models";
 export default Vue.extend({
   props: {
@@ -90,6 +91,17 @@ export default Vue.extend({
         )[this.index] as Element;
 
         friendCardDropdown.classList.remove("active");
+      }
+    },
+    async deleteFriendship() {
+      try {
+        await friendship.destroy({ userId: this.friend.id });
+      } catch (e) {
+        Vue.notify({
+          type: "error",
+          title: "Ops...",
+          text: "Houve um erro ao desfazer a amizade..."
+        })
       }
     },
   },

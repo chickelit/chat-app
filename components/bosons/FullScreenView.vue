@@ -2,11 +2,6 @@
   <div class="full-screen-view">
     <header class="header">
       <Wrapper class="header-wrapper">
-        <BackButton
-          :label="label"
-          :new-view="newView"
-          :navigation-active-class="navigationActiveClass"
-        />
         <slot name="header-slot" />
       </Wrapper>
     </header>
@@ -25,26 +20,6 @@
     <Footer />
   </div>
 </template>
-
-<script lang="ts">
-import Vue from "vue";
-export default Vue.extend({
-  props: {
-    label: {
-      type: String,
-      required: true,
-    },
-    newView: {
-      type: String,
-      required: true,
-    },
-    navigationActiveClass: {
-      type: String,
-      required: true,
-    },
-  },
-});
-</script>
 
 <style lang="scss" scoped>
 .full-screen-view {
@@ -67,11 +42,6 @@ export default Vue.extend({
   align-content: center;
   .header-wrapper {
     justify-self: center;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: 1fr;
-    align-items: center;
-    gap: 1rem;
   }
   .title {
     font-size: 1.5rem;

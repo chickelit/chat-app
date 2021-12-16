@@ -1,12 +1,25 @@
 <template>
   <div class="friend-list" @scroll="checkScroll">
-    <div
-      v-for="(friend, index) of friends"
-      :key="index"
-      :class="{ last: index === friends.length - 1 && friends.length > 1 }"
+    <transition-group
+      v-if="populated"
+      tag="div"
+      class="list"
+      name="friend-list"
     >
-      <FriendCard v-if="!friend" :index="index" />
-      <FriendCard v-else :index="index" :friend="friend" />
+      <div
+        v-for="(friend, index) of friends"
+        :key="friend.id"
+        :class="{
+          last: index === friends.length - 1 && friends.length > 1,
+        }"
+      >
+        <FriendCard v-if="friend" :index="index" :friend="friend" />
+      </div>
+    </transition-group>
+    <div v-else class="list">
+      <div v-for="(friend, index) of friends" :key="index">
+        <FriendCard :index="index" />
+      </div>
     </div>
     <div v-show="friends.length < $meta.total" class="loading-wrapper">
       <Loading :active="loading" />
@@ -23,6 +36,7 @@ export default Vue.extend({
       friends: Array(20).fill(false),
       page: 1,
       loading: false,
+      populated: false,
     };
   },
   computed: {
@@ -35,6 +49,7 @@ export default Vue.extend({
       const friends = friendship.$all;
 
       this.friends = friends;
+      this.populated = true;
     } else {
       try {
         await friendship.index({ page: this.page, perPage: 20 });
@@ -42,6 +57,7 @@ export default Vue.extend({
         const friends = friendship.$all;
 
         this.friends = friends;
+        this.populated = true;
       } catch (e) {
         this.$notify({
           type: "error",
@@ -77,6 +93,14 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.friend-list-enter-active,
+.friend-list-leave-active {
+  transition: all 0.25s ease;
+}
+.friend-list-enter-from,
+.friend-list-leave-to {
+  opacity: 0;
+}
 .loading-wrapper {
   height: 5rem;
   width: 5rem;
