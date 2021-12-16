@@ -46,6 +46,10 @@ export default Vue.extend({
     socket.on("newFriend", (user: User) => {
       friendship.updateFriends([user]);
     });
+
+    socket.on("deleteFriend", (userId: number) => {
+      friendship.deleteFriend(userId);
+    });
   },
 });
 </script>

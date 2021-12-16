@@ -29,22 +29,22 @@ export default class Friend extends VuexModule {
   }
 
   @Mutation
-  UPDATE_FRIENDS_REVERSE(friends: User[]) {
+  private UPDATE_FRIENDS_REVERSE(friends: User[]) {
     this.friends.unshift(...friends);
   }
 
   @Mutation
-  UPDATE_FRIENDS(friends: User[]) {
+  private UPDATE_FRIENDS(friends: User[]) {
     this.friends.push(...friends);
   }
 
   @Mutation
-  UPDATE_META(meta: Meta) {
+  private UPDATE_META(meta: Meta) {
     this.meta = meta;
   }
 
   @Mutation
-  DELETE_FRIEND(userId: User["id"]) {
+  private DELETE_FRIEND(userId: User["id"]) {
     const index = this.friends.findIndex((friend) => friend.id === userId);
 
     this.friends.splice(index, 1);
@@ -83,5 +83,10 @@ export default class Friend extends VuexModule {
   @Action({ rawError: true })
   public updateFriends(friends: User[]) {
     this.context.commit("UPDATE_FRIENDS_REVERSE", friends);
+  }
+
+  @Action({ rawError: true })
+  public deleteFriend(userId: User["id"]) {
+    this.context.commit("DELETE_FRIEND", userId);
   }
 }
