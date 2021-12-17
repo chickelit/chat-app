@@ -1,22 +1,33 @@
 <template>
   <div class="conversations-list" @scroll="checkScroll">
-    <div
-      v-for="(conversation, index) of conversations"
-      :key="index"
-      class="conversation"
+    <transition-group
+      v-if="populated"
+      tag="div"
+      class="list"
+      name="conversation-list"
     >
-      <ConversationCard
-        v-if="conversation"
-        :index="index"
-        :conversation="conversation"
-        @click="
-          setView({
-            newView: 'ConversationChat',
-            previousView: $view,
-          })
-        "
-      />
-      <ConversationCard v-else :index="index" />
+      <div
+        v-for="(conversation, index) of conversations"
+        :key="conversation.id"
+        class="conversation"
+      >
+        <ConversationCard
+          v-if="conversation"
+          :index="index"
+          :conversation="conversation"
+          @click="
+            setView({
+              newView: 'ConversationChat',
+              previousView: $view,
+            })
+          "
+        />
+      </div>
+    </transition-group>
+    <div v-else class="list">
+      <div v-for="(conversation, index) of conversations" :key="index">
+        <ConversationCard />
+      </div>
     </div>
     <div v-show="conversations.length < $meta.total" class="loading-wrapper">
       <Loading :active="loading" />
@@ -35,6 +46,7 @@ export default Vue.extend({
       loading: false,
       page: 1,
       setView,
+      populated: false,
     };
   },
   computed: {
@@ -50,6 +62,7 @@ export default Vue.extend({
       const conversations = conversation.$all;
 
       this.conversations = conversations;
+      this.populated = true;
     } else {
       try {
         await conversation.index({ page: this.page, perPage: 20 });
@@ -57,6 +70,7 @@ export default Vue.extend({
         const conversations = conversation.$all;
 
         this.conversations = conversations;
+        this.populated = true;
       } catch (e) {
         this.$notify({
           type: "error",
@@ -92,6 +106,14 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.conversation-list-enter-active,
+.conversation-list-leave-active {
+  transition: all 0.25s ease;
+}
+.conversation-list-enter-from,
+.conversation-list-leave-to {
+  opacity: 0;
+}
 .loading-wrapper {
   height: 5rem;
   width: 5rem;
@@ -101,10 +123,12 @@ export default Vue.extend({
   justify-self: center;
 }
 .conversations-list {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: max-content;
-  grid-auto-flow: row;
+  .list {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: max-content;
+    grid-auto-flow: row;
+  }
 }
 </style>

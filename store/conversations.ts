@@ -1,5 +1,5 @@
 import { Action, Module, Mutation, VuexModule } from "vuex-module-decorators";
-import { Meta } from "~/models";
+import { Conversation, Meta } from "~/models";
 import { $axios } from "~/utils/nuxt-instance";
 
 interface ShowPayload {
@@ -11,8 +11,12 @@ interface IndexPayload {
   perPage: number;
 }
 
+interface CreatePayload {
+  userId: number;
+}
+
 @Module({ name: "conversations", stateFactory: true, namespaced: true })
-export default class Conversation extends VuexModule {
+export default class ConversationStore extends VuexModule {
   private conversation = {} as Conversation;
   private conversations = [] as Conversation[];
   private meta = {} as Meta;
@@ -30,17 +34,22 @@ export default class Conversation extends VuexModule {
   }
 
   @Mutation
-  UPDATE_CONVERSATIONS(conversations: Conversation[]) {
+  private UPDATE_CONVERSATIONS_REVERSE(conversations: Conversation[]) {
+    this.conversations.unshift(...conversations);
+  }
+
+  @Mutation
+  private UPDATE_CONVERSATIONS(conversations: Conversation[]) {
     this.conversations.push(...conversations);
   }
 
   @Mutation
-  UPDATE_CONVERSATION(conversation: Conversation) {
+  private UPDATE_CONVERSATION(conversation: Conversation) {
     this.conversation = conversation;
   }
 
   @Mutation
-  UPDATE_META(meta: Meta) {
+  private UPDATE_META(meta: Meta) {
     this.meta = meta;
   }
 
@@ -59,5 +68,17 @@ export default class Conversation extends VuexModule {
     const conversation = await $axios.$get(`/conversations/${id}`);
 
     this.context.commit("UPDATE_CONVERSATION", conversation);
+  }
+
+  @Action({ rawError: true })
+  public async create(payload: CreatePayload) {
+    const conversation = await $axios.$post("/conversations", payload);
+
+    this.context.commit("UPDATE_CONVERSATION", conversation);
+  }
+
+  @Action({ rawError: true })
+  public updateConversations(conversations: Conversation[]) {
+    this.context.commit("UPDATE_CONVERSATIONS_REVERSE", conversations);
   }
 }

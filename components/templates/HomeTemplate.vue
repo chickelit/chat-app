@@ -11,9 +11,15 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { friendship, friendshipRequest, profile, view } from "@/store";
+import {
+  conversation,
+  friendship,
+  friendshipRequest,
+  profile,
+  view,
+} from "@/store";
 import socket from "~/plugins/socket.client";
-import { User } from "~/models";
+import { Conversation, User } from "~/models";
 export default Vue.extend({
   computed: {
     $view() {
@@ -49,6 +55,10 @@ export default Vue.extend({
 
     socket.on("deleteFriend", (userId: number) => {
       friendship.deleteFriend(userId);
+    });
+
+    socket.on("newConversation", (newConversation: Conversation) => {
+      conversation.updateConversations([newConversation]);
     });
   },
 });

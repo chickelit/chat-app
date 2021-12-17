@@ -45,10 +45,6 @@ import Vue, { PropOptions } from "vue";
 import { Conversation } from "@/models";
 export default Vue.extend({
   props: {
-    index: {
-      type: Number,
-      required: true,
-    },
     conversation: {
       type: Object,
       required: false,

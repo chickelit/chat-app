@@ -13,13 +13,7 @@
       <Dropdown class="friend-card-dropdown">
         <button
           :aria-label="`Conversar com ${friend.username}`"
-          @click="
-            setView({
-              newView: 'ConversationChat',
-              previousView: $view,
-              previousNavigationActiveClass: $navigationActiveClass,
-            })
-          "
+          @click="handleConversationTransition"
         >
           Conversar com {{ friend.username }}
         </button>
@@ -48,7 +42,7 @@
 // eslint-disable-next-line import/named
 import Vue, { PropOptions } from "vue";
 import { setView } from "@/utils";
-import { friendship, view } from "~/store";
+import { conversation, error, friendship, view } from "~/store";
 import { User } from "~/models";
 export default Vue.extend({
   props: {
@@ -65,14 +59,6 @@ export default Vue.extend({
     return {
       setView,
     };
-  },
-  computed: {
-    $view() {
-      return view.$view;
-    },
-    $navigationActiveClass() {
-      return view.$navigationActiveClass;
-    },
   },
   methods: {
     toggleDropdown() {
@@ -100,8 +86,37 @@ export default Vue.extend({
         Vue.notify({
           type: "error",
           title: "Ops...",
-          text: "Houve um erro ao desfazer a amizade..."
-        })
+          text: "Houve um erro ao desfazer a amizade...",
+        });
+      }
+    },
+    async handleConversationTransition() {
+      try {
+        await conversation.create({ userId: this.friend.id });
+
+        this.setView({
+          newView: "ConversationChat",
+          previousView: view.$view,
+          previousNavigationActiveClass: view.$navigationActiveClass,
+        });
+      } catch (e) {
+        const err = error.$error;
+
+        if (err.rule === "unique" && err.target === "conversation") {
+          this.setView({
+            newView: "ConversationChat",
+            previousView: view.$view,
+            previousNavigationActiveClass: view.$navigationActiveClass,
+          });
+
+          await conversation.show({ id: err.conversationId });
+        } else if (err.rule === "exists" && err.target === "friendship") {
+          Vue.notify({
+            type: "error",
+            title: "Ops...",
+            text: `Você precisa ser amigo de ${this.friend.username} para iniciar uma conversa...`,
+          });
+        }
       }
     },
   },
