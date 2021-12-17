@@ -41,7 +41,7 @@ Tabela de conteúdos
 - [x] Atualização do perfil
 - [x] Pedidos de amizade
 - [x] Amizades
-- [ ] Conversas privadas
+- [x] Conversas privadas
 - [ ] Grupos
 - [ ] Membros do grupo
 - [ ] Imagem do grupo
