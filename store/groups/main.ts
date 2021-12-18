@@ -68,6 +68,11 @@ export default class GroupStore extends VuexModule {
     this.members.push(...members);
   }
 
+  @Mutation
+  private UPDATE_ALL_MEMBERS(members: User[]) {
+    this.members = members;
+  }
+
   @Action({ rawError: true })
   public async index({ page, perPage }: IndexPayload) {
     const { data: groups, meta } = await $axios.$get(
@@ -89,5 +94,6 @@ export default class GroupStore extends VuexModule {
     const group = await $axios.$get(`/groups/${groupId}`);
 
     this.context.commit("UPDATE_GROUP", group);
+    this.context.commit("UPDATE_ALL_MEMBERS", []);
   }
 }
