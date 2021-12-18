@@ -26,16 +26,7 @@
       </div>
       <OptionsButton @click="toggleDropdown" />
       <Dropdown class="group-card-dropdown">
-        <button
-          aria-label="Ver dados do grupo"
-          @click="
-            setView({
-              newView: 'GroupDetails',
-              previousView: 'Groups',
-              navigationActiveClass: 'groups-anchor',
-            })
-          "
-        >
+        <button aria-label="Ver dados do grupo" @click="handleGroupDetails">
           Ver dados do grupo
         </button>
       </Dropdown>
@@ -63,6 +54,7 @@
 import Vue, { PropOptions } from "vue";
 import { setView } from "@/utils";
 import { Group } from "~/models";
+import { group } from "~/store";
 export default Vue.extend({
   props: {
     index: {
@@ -97,6 +89,17 @@ export default Vue.extend({
 
         groupCardDropdown.classList.remove("active");
       }
+    },
+    async handleGroupDetails() {
+      try {
+        await group.show({ groupId: this.group.id });
+        
+        setView({
+          newView: "GroupDetails",
+          previousView: "Groups",
+          navigationActiveClass: "groups-anchor",
+        });
+      } catch (error) {}
     },
   },
 });

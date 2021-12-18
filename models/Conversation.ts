@@ -6,6 +6,7 @@ interface Conversation {
   userIdTwo?: number;
   user: User;
   latestMessage?: object;
+  messages: any[];
 }
 
 export default Conversation;

@@ -7,12 +7,27 @@
       class="full-screen-view"
     >
       <template #header-slot>
-        <h1 class="title">Dados do grupo</h1>
+        <div class="header-slot">
+          <BackButton
+            label="Voltar"
+            new-view="Groups"
+            navigation-active-class="groups-anchor"
+          />
+          <h1 class="title">Dados do grupo</h1>
+        </div>
       </template>
       <template #main-slot>
         <div class="main">
-          <div class="cover skeleton"></div>
-          <div class="group-title skeleton skeleton-text"></div>
+          <div v-if="$group.groupCover" class="cover">
+            <img
+              :src="$group.groupCover.url"
+              :alt="`Imagem do grupo ${$group.title}`"
+            />
+          </div>
+          <div v-else class="cover skeleton"></div>
+          <div class="group-title">
+            {{ $group.title }}
+          </div>
           <div class="buttons">
             <button
               class="button"
@@ -48,16 +63,29 @@
 <script lang="ts">
 import Vue from "vue";
 import { setView } from "@/utils";
+import { group } from "~/store";
 export default Vue.extend({
   data() {
     return {
       setView,
     };
   },
+  computed: {
+    $group() {
+      return group.$single;
+    },
+  },
 });
 </script>
 
 <style lang="scss" scoped>
+.header-slot {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+  align-items: center;
+  gap: 1rem;
+}
 .danger {
   color: color("danger") !important;
   &:hover {
@@ -102,10 +130,8 @@ export default Vue.extend({
     }
   }
   .group-title {
-    height: 1.5rem;
-    width: 80%;
-    max-width: 20rem;
-    border-radius: 0.3125rem;
+    font-size: 1.5rem;
+    color: color("light", "darker");
   }
 }
 </style>

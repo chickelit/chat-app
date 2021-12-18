@@ -6,11 +6,13 @@ interface Group {
   title: number;
   createdAt: string;
   updatedAt: string;
+  owner?: User;
+  members?: User[];
+  messages: any[];
+  latestMessage?: object;
   groupCover?: {
     url: string;
   };
-  owner?: User;
-  latestMessage?: object;
 }
 
 export default Group;
