@@ -42,7 +42,7 @@ Tabela de conteúdos
 - [x] Pedidos de amizade
 - [x] Amizades
 - [x] Conversas privadas
-- [ ] Grupos
+- [x] Grupos
 - [ ] Membros do grupo
 - [ ] Imagem do grupo
 - [ ] Mensagens privadas
