@@ -7,8 +7,6 @@ interface Group {
   createdAt: string;
   updatedAt: string;
   owner?: User;
-  members?: User[];
-  messages: any[];
   latestMessage?: object;
   groupCover?: {
     url: string;

@@ -1,25 +1,27 @@
 <template>
   <div class="group-members">
-    <FullScreenView
-      label="Voltar"
-      new-view="GroupDetails"
-      navigation-active-class="groups-anchor"
-      class="full-screen-view"
-    >
+    <FullScreenView class="full-screen-view">
       <template #header-slot>
-        <h1 class="title">Membros do grupo</h1>
+        <div class="header-slot">
+          <BackButton
+            label="Voltar"
+            new-view="GroupDetails"
+            navigation-active-class="groups-anchor"
+          />
+          <h1 class="title">Membros do grupo</h1>
+        </div>
       </template>
       <template #main-slot>
         <div class="main-slot">
           <button
-            class="button"
+            class="add-member"
             @click="
               setView({
                 newView: 'AvailableMembers',
               })
             "
           >
-            Adicionar membro
+            <img src="@/assets/img/add.svg" alt="Sinal de adição" />
           </button>
           <ScrollWrapper>
             <MemberList />
@@ -41,12 +43,13 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { view } from "~/store";
+import { member, view } from "~/store";
 import { setView } from "~/utils";
 export default Vue.extend({
   data() {
     return {
       setView,
+      page: 1,
     };
   },
   computed: {
@@ -54,25 +57,50 @@ export default Vue.extend({
       return view.$previousView;
     },
   },
+  async mounted() {
+    await member.index({ page: this.page, perPage: 20 });
+  },
 });
 </script>
 
 <style lang="scss" scoped>
+.header-slot {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+  align-items: center;
+  gap: 1rem;
+}
 .main-slot {
   height: 100%;
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: 1fr;
 }
-.button {
-  width: 100%;
+.add-member {
+  z-index: 5000;
   height: 3rem;
-  font-size: 1.125rem;
+  width: 3rem;
   background: color("primary");
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  border-radius: 100%;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
   transition: all 0.15s linear;
-  color: color("light", "darker");
   &:hover {
-    color: color("light");
     background: color("primary", "lighter");
+    img {
+      filter: invert(0.75);
+    }
+  }
+  img {
+    height: 50%;
+    aspect-ratio: 1 / 1;
+    filter: invert(0.65);
+    transition: all 0.15s linear;
   }
 }
 .title {

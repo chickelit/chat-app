@@ -39,6 +39,10 @@ export default class GroupStore extends VuexModule {
     return this.wasLoaded;
   }
 
+  public get $members() {
+    return this.members;
+  }
+
   @Mutation
   private UPDATE_GROUPS(groups: Group[]) {
     this.groups.push(...groups);

@@ -1,13 +1,15 @@
 <template>
   <div class="available-new-members">
     <FullScreenView class="full-screen-view">
-      <template #header-slot class="header-slot">
-        <BackButton
-          label="Voltar"
-          new-view="GroupMembers"
-          navigation-active-class="groups-anchor"
-        />
-        <h1 class="title">Novo membro</h1>
+      <template #header-slot>
+        <div class="header-slot">
+          <BackButton
+            label="Voltar"
+            new-view="GroupMembers"
+            navigation-active-class="groups-anchor"
+          />
+          <h1 class="title">Novo membro</h1>
+        </div>
       </template>
       <template #main-slot>
         <div class="scroll-wrapper">
@@ -88,11 +90,11 @@ export default Vue.extend({
   align-items: center;
   justify-items: center;
   position: absolute;
-  bottom: 0.75rem;
-  right: 0.75rem;
+  bottom: 0.5rem;
+  right: 0.5rem;
   background: color("primary");
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 3rem;
+  height: 3rem;
   transition: all 0.15s linear;
   border-radius: 100%;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
