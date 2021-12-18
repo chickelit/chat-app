@@ -1,22 +1,31 @@
 <template>
   <div class="create-group">
-    <FullScreenView
-      label="Voltar"
-      new-view="Groups"
-      navigation-active-class="groups-anchor"
-      class="full-screen-view"
-    >
+    <FullScreenView label="Voltar">
       <template #header-slot>
-        <h1 class="title">Criar grupo</h1>
+        <div class="header-slot">
+          <BackButton
+            label="Voltar"
+            new-view="Groups"
+            navigation-active-class="groups-anchor"
+          />
+          <h1 class="title">Criar grupo</h1>
+        </div>
       </template>
       <template #main-slot>
-        <form class="form" autocomplete="off">
+        <form
+          name="create-group-form"
+          class="form"
+          autocomplete="off"
+          @submit.prevent="onSubmit"
+        >
           <Wrapper class="form-wrapper">
             <BaseInput
               id="title-input"
+              v-model="form.title"
               class="form-input"
               placeholder="Título do grupo..."
               :max-length="30"
+              required
             />
             <BaseButton type="submit" text="Criar" aria-label="Criar grupo" />
           </Wrapper>
@@ -39,16 +48,46 @@
 <script lang="ts">
 import Vue from "vue";
 import { setView } from "@/utils";
+import { group, view } from "~/store";
 export default Vue.extend({
   data() {
     return {
       setView,
+      form: {
+        title: "",
+      },
     };
+  },
+  methods: {
+    async onSubmit() {
+      try {
+        await group.create(this.form);
+
+        this.setView({
+          newView: "Groups",
+          previousView: view.$view,
+          navigationActiveClass: "groups-anchor",
+        });
+      } catch (e) {
+        Vue.notify({
+          type: "error",
+          title: "Ops...",
+          text: "Houve um erro ao criar o grupo...",
+        });
+      }
+    },
   },
 });
 </script>
 
 <style lang="scss" scoped>
+.header-slot {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+  align-items: center;
+  gap: 1rem;
+}
 .create-group {
   .title {
     font-size: 1.5rem;

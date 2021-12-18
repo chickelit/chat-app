@@ -7,11 +7,16 @@ interface IndexPayload {
   perPage: number;
 }
 
+interface CreatePayload {
+  title: string;
+}
+
 @Module({ name: "groups/main", stateFactory: true, namespaced: true })
 export default class GroupStore extends VuexModule {
   private groups = [] as Group[];
   private group = {} as Group;
   private meta = {} as Meta;
+  private wasLoaded = false as Boolean;
 
   public get $all() {
     return this.groups;
@@ -25,19 +30,28 @@ export default class GroupStore extends VuexModule {
     return this.meta;
   }
 
+  public get $wasLoaded() {
+    return this.wasLoaded;
+  }
+
   @Mutation
-  UPDATE_GROUPS(groups: Group[]) {
+  private UPDATE_GROUPS(groups: Group[]) {
     this.groups.push(...groups);
   }
 
   @Mutation
-  UPDATE_GROUP(group: Group) {
+  private UPDATE_GROUP(group: Group) {
     this.group = group;
   }
 
   @Mutation
-  UPDATE_META(meta: Meta) {
+  private UPDATE_META(meta: Meta) {
     this.meta = meta;
+  }
+
+  @Mutation
+  private UPDATE_STATUS(wasLoaded: Boolean) {
+    this.wasLoaded = wasLoaded;
   }
 
   @Action({ rawError: true })
@@ -48,5 +62,11 @@ export default class GroupStore extends VuexModule {
 
     this.context.commit("UPDATE_GROUPS", groups);
     this.context.commit("UPDATE_META", meta);
+    this.context.commit("UPDATE_STATUS", true);
+  }
+
+  @Action({ rawError: true })
+  public async create(payload: CreatePayload) {
+    await $axios.$post("/groups", payload);
   }
 }

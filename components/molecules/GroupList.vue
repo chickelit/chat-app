@@ -41,7 +41,7 @@ export default Vue.extend({
     },
   },
   async mounted() {
-    if (group.$all.length > 0) {
+    if (group.$wasLoaded) {
       const groups = group.$all;
 
       this.groups = groups;
