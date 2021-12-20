@@ -93,7 +93,7 @@ export default Vue.extend({
     async handleGroupDetails() {
       try {
         await group.show({ groupId: this.group.id });
-        
+
         setView({
           newView: "GroupDetails",
           previousView: "Groups",

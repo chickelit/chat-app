@@ -1,5 +1,5 @@
 import { Action, Module, Mutation, VuexModule } from "vuex-module-decorators";
-import { Group, Meta, User } from "@/models";
+import { Group, Meta } from "@/models";
 import { $axios } from "~/utils/nuxt-instance";
 
 interface IndexPayload {
@@ -19,7 +19,6 @@ interface ShowPayload {
 export default class GroupStore extends VuexModule {
   private groups = [] as Group[];
   private group = {} as Group;
-  private members = [] as User[];
   private meta = {} as Meta;
   private wasLoaded = false as Boolean;
 
@@ -37,10 +36,6 @@ export default class GroupStore extends VuexModule {
 
   public get $wasLoaded() {
     return this.wasLoaded;
-  }
-
-  public get $members() {
-    return this.members;
   }
 
   @Mutation
@@ -61,16 +56,6 @@ export default class GroupStore extends VuexModule {
   @Mutation
   private UPDATE_STATUS(wasLoaded: Boolean) {
     this.wasLoaded = wasLoaded;
-  }
-
-  @Mutation
-  private UPDATE_MEMBERS(members: User[]) {
-    this.members.push(...members);
-  }
-
-  @Mutation
-  private UPDATE_ALL_MEMBERS(members: User[]) {
-    this.members = members;
   }
 
   @Action({ rawError: true })
@@ -94,6 +79,8 @@ export default class GroupStore extends VuexModule {
     const group = await $axios.$get(`/groups/${groupId}`);
 
     this.context.commit("UPDATE_GROUP", group);
-    this.context.commit("UPDATE_ALL_MEMBERS", []);
+    this.context.commit("groups/members/UPDATE_ALL_MEMBERS", [], {
+      root: true,
+    });
   }
 }

@@ -1,22 +1,38 @@
 <template>
   <div class="member-card" @mouseleave="disableDropdown">
-    <div class="member-card-wrapper">
+    <div v-if="member" class="member-card-wrapper">
+      <div v-if="member.avatar" class="avatar">
+        <img :src="member.avatar.url" :alt="`Avatar de ${member.username}`" />
+      </div>
+      <div v-else class="avatar skeleton"></div>
+      <div class="username">
+        {{ member.username }}
+      </div>
+      <OptionsButton v-if="showOptions" @click="toggleDropdown" />
+      <Dropdown :class="['member-card-dropdown', { active: dropdownActive }]">
+        <button
+          :aria-label="`Remover ${member.username} do grupo`"
+          class="danger"
+        >
+          Remover {{ member.username }} do grupo
+        </button>
+      </Dropdown>
+    </div>
+    <div v-else class="member-card-wrapper">
       <div class="avatar skeleton"></div>
       <div class="username">
         <div class="skeleton skeleton-text"></div>
       </div>
       <OptionsButton v-if="showOptions" @click="toggleDropdown" />
-      <Dropdown class="member-card-dropdown">
-        <button aria-label="Remover <username> do grupo" class="danger">
-          Remover zezin do grupo
-        </button>
-      </Dropdown>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+/* eslint-disable vue/require-default-prop */
+// eslint-disable-next-line import/named
+import Vue, { PropOptions } from "vue";
+import { User } from "~/models";
 export default Vue.extend({
   props: {
     index: {
@@ -27,21 +43,26 @@ export default Vue.extend({
       type: Boolean,
       default: false,
     },
+    member: {
+      type: Object,
+      required: false,
+    } as PropOptions<User>,
+  },
+  data() {
+    return {
+      dropdownActive: false,
+    };
   },
   methods: {
     toggleDropdown() {
-      const memberCardDropdown = document.querySelectorAll(
-        ".member-card-dropdown"
-      )[this.index] as Element;
-
-      memberCardDropdown.classList.toggle("active");
+      if (this.member) {
+        this.dropdownActive = !this.dropdownActive;
+      }
     },
     disableDropdown() {
-      const memberCardDropdown = document.querySelectorAll(
-        ".member-card-dropdown"
-      )[this.index] as Element;
-
-      memberCardDropdown.classList.remove("active");
+      if (this.member) {
+        this.dropdownActive = false;
+      }
     },
   },
 });
@@ -57,6 +78,8 @@ export default Vue.extend({
 }
 .username {
   width: 100%;
+  font-size: 1.125rem;
+  color: color("light", "darker");
   .skeleton-text {
     width: 75%;
     height: 1.125rem;
@@ -93,6 +116,12 @@ export default Vue.extend({
     height: 100%;
     width: 100%;
     border-radius: 100%;
+    img {
+      height: 100%;
+      width: 100%;
+      border-radius: 100%;
+      object-fit: cover;
+    }
   }
 }
 </style>

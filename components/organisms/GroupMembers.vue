@@ -43,7 +43,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { member, view } from "~/store";
+import { view } from "~/store";
 import { setView } from "~/utils";
 export default Vue.extend({
   data() {
@@ -56,10 +56,7 @@ export default Vue.extend({
     $previousView() {
       return view.$previousView;
     },
-  },
-  async mounted() {
-    await member.index({ page: this.page, perPage: 20 });
-  },
+  }
 });
 </script>
 
