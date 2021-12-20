@@ -1,10 +1,21 @@
 <template>
   <div
     class="available-member-card"
-    @mouseleave="dropdownActive = false"
-    @click="$emit('click')"
+    @click="toggleSelection"
   >
-    <div class="available-member-card-wrapper">
+    <div v-if="availableMember" class="available-member-card-wrapper">
+      <div v-if="availableMember.avatar" class="avatar">
+        <img
+          :src="availableMember.avatar.url"
+          :alt="`Avatar de ${availableMember.username}`"
+        />
+      </div>
+      <div v-else class="avatar skeleton"></div>
+      <div class="username">
+        {{ availableMember.username }}
+      </div>
+    </div>
+    <div v-else class="available-member-card-wrapper">
       <div class="avatar skeleton"></div>
       <div class="username">
         <div class="skeleton skeleton-text"></div>
@@ -14,13 +25,35 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+/* eslint-disable vue/require-default-prop */
+// eslint-disable-next-line import/named
+import Vue, { PropOptions } from "vue";
+import { User } from "~/models";
 export default Vue.extend({
+  props: {
+    availableMember: {
+      type: Object,
+      required: false,
+    } as PropOptions<User>,
+  },
   data() {
     return {
-      dropdownActive: false,
+      selected: false,
     };
-  }
+  },
+  methods: {
+    toggleSelection() {
+      if (this.availableMember) {
+        this.selected = !this.selected;
+
+        if (this.selected) {
+          this.$emit("selected");
+        } else {
+          this.$emit("unselected");
+        }
+      }
+    },
+  },
 });
 </script>
 
@@ -34,6 +67,8 @@ export default Vue.extend({
 }
 .username {
   width: 100%;
+  font-size: 1.125rem;
+  color: color("light", "darker");
   .skeleton-text {
     width: 75%;
     height: 1.125rem;

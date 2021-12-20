@@ -13,24 +13,14 @@
       </template>
       <template #main-slot>
         <div class="scroll-wrapper">
-          <ul class="available-members-list">
-            <AvailableMemberCard
-              v-for="(availableMember, index) in availableMembers"
-              :key="index"
-              :class="[
-                'available-member-card',
-                { selected: selectedMembers.find((item) => item === index) },
-              ]"
-              @click="toggleSelection(index)"
-            />
-          </ul>
-          <button class="continue">
-            <img
-              src="@/assets/img/arrow-left.svg"
-              alt="Seta apontada para a direita"
-            />
-          </button>
+          <AvailableMemberList />
         </div>
+        <button class="continue">
+          <img
+            src="@/assets/img/arrow-left.svg"
+            alt="Seta apontada para a direita"
+          />
+        </button>
         <clientOnly>
           <notifications
             :max="1"
@@ -45,38 +35,10 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
-import { view } from "~/store";
-import { setView } from "~/utils";
-export default Vue.extend({
-  data() {
-    return {
-      setView,
-      availableMembers: Array(15).fill(false),
-      selectedMembers: [] as number[],
-    };
-  },
-  computed: {
-    $previousView() {
-      return view.$previousView;
-    },
-  },
-  methods: {
-    toggleSelection(index: number) {
-      const card = document.querySelectorAll(".available-member-card")[
-        index
-      ] as Element;
-
-      card.classList.toggle("selected");
-
-      this.selectedMembers.push(index);
-    },
-  },
-});
-</script>
-
 <style lang="scss" scoped>
+::-webkit-scrollbar {
+  width: 0px;
+}
 .header-slot {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -110,27 +72,6 @@ export default Vue.extend({
     transition: all 0.15s linear;
   }
 }
-.scroll-wrapper {
-  height: 100%;
-  position: relative;
-}
-.available-members-list {
-  position: absolute;
-  inset: 0;
-  overflow-y: scroll;
-  display: grid;
-  grid-auto-rows: max-content;
-  &::-webkit-scrollbar {
-    width: 0px;
-  }
-  .available-member-card {
-    &:nth-last-child(1) {
-      ::v-deep.available-member-card-dropdown {
-        top: -0.375rem;
-      }
-    }
-  }
-}
 .button {
   width: 100%;
   height: 3rem;
@@ -151,5 +92,10 @@ export default Vue.extend({
   color: color("light", "darkest");
   font-weight: 500;
   cursor: pointer;
+}
+.scroll-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow-y: scroll;
 }
 </style>

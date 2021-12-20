@@ -11,6 +11,7 @@
   position: relative;
   display: grid;
   grid-template-columns: 1fr;
+  height: 100%;
   ::-webkit-scrollbar {
     width: 0px;
   }
