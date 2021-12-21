@@ -1,6 +1,11 @@
 <template>
   <div
-    class="available-member-card"
+    :class="[
+      'available-member-card',
+      {
+        'selected': selected,
+      },
+    ]"
     @click="toggleSelection"
   >
     <div v-if="availableMember" class="available-member-card-wrapper">

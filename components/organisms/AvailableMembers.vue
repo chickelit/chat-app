@@ -13,9 +13,12 @@
       </template>
       <template #main-slot>
         <div class="scroll-wrapper">
-          <AvailableMemberList />
+          <AvailableMemberList
+            @selectMember="select($event)"
+            @unselectMember="unselect($event)"
+          />
         </div>
-        <button class="continue">
+        <button class="continue" @click.prevent="addMembers">
           <img
             src="@/assets/img/arrow-left.svg"
             alt="Seta apontada para a direita"
@@ -34,6 +37,59 @@
     </FullScreenView>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from "vue";
+import { User } from "~/models";
+import { group, member } from "~/store";
+import { setView } from "~/utils";
+export default Vue.extend({
+  data() {
+    return {
+      selectedMembers: [] as number[],
+    };
+  },
+  computed: {
+    $group() {
+      return group.$single;
+    },
+  },
+  methods: {
+    select(id: User["id"]) {
+      if (!this.selectedMembers.includes(id)) {
+        this.selectedMembers.push(id);
+      }
+    },
+    unselect(id: User["id"]) {
+      const index = this.selectedMembers.findIndex(
+        (selectedMemberId) => selectedMemberId === id
+      );
+
+      this.selectedMembers.splice(index, 1);
+    },
+    async addMembers() {
+      try {
+        const queries = this.selectedMembers.map(async (memberId) => {
+          await member.create({ userId: memberId, groupId: this.$group.id });
+        });
+
+        await Promise.all(queries);
+
+        setView({
+          newView: "GroupMembers",
+          navigationActiveClass: "groups-anchor",
+        });
+      } catch (e) {
+        Vue.notify({
+          type: "error",
+          title: "Ops...",
+          text: "Houve um erro ao adicionar os novos membros...",
+        });
+      }
+    },
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 ::-webkit-scrollbar {

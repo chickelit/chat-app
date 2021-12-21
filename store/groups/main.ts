@@ -1,6 +1,7 @@
 import { Action, Module, Mutation, VuexModule } from "vuex-module-decorators";
 import { Group, Meta } from "@/models";
 import { $axios } from "~/utils/nuxt-instance";
+import socket from "~/plugins/socket.client";
 
 interface IndexPayload {
   page?: number;
@@ -63,6 +64,10 @@ export default class GroupStore extends VuexModule {
     const { data: groups, meta } = await $axios.$get(
       `/groups?page=${page}&perPage=${perPage}`
     );
+
+    groups.forEach((group: Group) => {
+      socket.emit("create", `group-${group.id}`);
+    });
 
     this.context.commit("UPDATE_GROUPS", groups);
     this.context.commit("UPDATE_META", meta);

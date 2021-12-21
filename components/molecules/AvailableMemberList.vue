@@ -31,7 +31,6 @@ export default Vue.extend({
   data() {
     return {
       availableMembers: Array(20).fill(false),
-      selectedMembers: [] as number[],
       populated: false,
       page: 1,
       loading: false,
@@ -66,16 +65,6 @@ export default Vue.extend({
     }
   },
   methods: {
-    select(id: User["id"]) {
-      this.selectedMembers.push(id);
-    },
-    unselect(id: User["id"]) {
-      const index = this.selectedMembers.findIndex(
-        (selectedMemberId) => selectedMemberId === id
-      );
-
-      this.selectedMembers.splice(index, 1);
-    },
     async checkScroll(event: any) {
       const target = event.target as HTMLElement;
 
@@ -95,6 +84,12 @@ export default Vue.extend({
           this.loading = false;
         }
       }
+    },
+    select(id: User["id"]) {
+      this.$emit("selectMember", id);
+    },
+    unselect(id: User["id"]) {
+      this.$emit("unselectMember", id);
     },
   },
 });

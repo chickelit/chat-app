@@ -9,6 +9,11 @@ interface IndexPayload {
   perPage: number;
 }
 
+interface CreatePayload {
+  userId: number;
+  groupId: number;
+}
+
 @Module({ name: "groups/members", stateFactory: true, namespaced: true })
 export default class MembersStore extends VuexModule {
   private members = [] as User[];
@@ -48,5 +53,10 @@ export default class MembersStore extends VuexModule {
     updateAll
       ? this.context.commit("UPDATE_ALL_MEMBERS", members)
       : this.context.commit("UPDATE_MEMBERS", members);
+  }
+
+  @Action({ rawError: true })
+  public async create(payload: CreatePayload) {
+    await $axios.post("/members", payload);
   }
 }

@@ -60,6 +60,14 @@ export default Vue.extend({
     socket.on("newConversation", (newConversation: Conversation) => {
       conversation.updateConversations([newConversation]);
     });
+
+    socket.on("newGroup", (data) => {
+      console.log(data);
+    });
+
+    socket.on("newMember", (data) => {
+      console.log(data);
+    });
   },
 });
 </script>
