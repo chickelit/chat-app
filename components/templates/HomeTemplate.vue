@@ -15,6 +15,8 @@ import {
   conversation,
   friendship,
   friendshipRequest,
+  group,
+  member,
   profile,
   view,
 } from "@/store";
@@ -62,11 +64,20 @@ export default Vue.extend({
     });
 
     socket.on("newGroup", (data) => {
-      console.log(data);
+      group.updateGroups([data.group]);
+
+      Vue.notify({
+        type: "primary",
+        group: "global",
+        title: "Você foi adicionado a um grupo!",
+        text: `${data.user.username} te adicionou ao grupo ${data.group.title}`,
+      });
     });
 
     socket.on("newMember", (data) => {
-      console.log(data);
+      if (group.$single.id === data.groupId) {
+        member.updateMembers([data.user]);
+      }
     });
   },
 });

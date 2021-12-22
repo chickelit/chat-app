@@ -59,4 +59,9 @@ export default class MembersStore extends VuexModule {
   public async create(payload: CreatePayload) {
     await $axios.post("/members", payload);
   }
+
+  @Action({ rawError: true })
+  public updateMembers(members: User[]) {
+    this.context.commit("UPDATE_MEMBERS", members);
+  }
 }

@@ -65,10 +65,6 @@ export default class GroupStore extends VuexModule {
       `/groups?page=${page}&perPage=${perPage}`
     );
 
-    groups.forEach((group: Group) => {
-      socket.emit("create", `group-${group.id}`);
-    });
-
     this.context.commit("UPDATE_GROUPS", groups);
     this.context.commit("UPDATE_META", meta);
     this.context.commit("UPDATE_STATUS", true);
@@ -83,9 +79,16 @@ export default class GroupStore extends VuexModule {
   public async show({ groupId }: ShowPayload) {
     const group = await $axios.$get(`/groups/${groupId}`);
 
+    socket.emit("create", `group-${group.id}`);
+
     this.context.commit("UPDATE_GROUP", group);
     this.context.commit("groups/members/UPDATE_ALL_MEMBERS", [], {
       root: true,
     });
+  }
+
+  @Action({ rawError: true })
+  public updateGroups(groups: Group[]) {
+    this.context.commit("UPDATE_GROUPS", groups);
   }
 }
