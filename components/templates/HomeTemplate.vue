@@ -4,6 +4,15 @@
     <Navigation />
     <main class="main">
       <component :is="$view" />
+      <clientOnly>
+        <notifications
+          :max="1"
+          group="global"
+          classes="custom-notification"
+          position="bottom right"
+          style="bottom: 0.5rem; right: 0.5rem"
+        />
+      </clientOnly>
     </main>
     <Footer />
   </div>
@@ -78,6 +87,14 @@ export default Vue.extend({
       if (group.$single.id === data.groupId) {
         member.updateMembers([data.user]);
       }
+    });
+
+    socket.on("deleteGroup", ({ groupId }) => {
+      group.deleteGroup(groupId);
+    });
+
+    socket.on("deleteMember", ({ memberId }) => {
+      member.deleteMember(memberId);
     });
   },
 });

@@ -40,6 +40,13 @@ export default class GroupStore extends VuexModule {
   }
 
   @Mutation
+  private DELETE_GROUP(groupId: number) {
+    const index = this.groups.findIndex((group) => group.id === groupId);
+
+    this.groups.splice(index, 1);
+  }
+
+  @Mutation
   private UPDATE_GROUPS(groups: Group[]) {
     this.groups.push(...groups);
   }
@@ -90,5 +97,10 @@ export default class GroupStore extends VuexModule {
   @Action({ rawError: true })
   public updateGroups(groups: Group[]) {
     this.context.commit("UPDATE_GROUPS", groups);
+  }
+
+  @Action({ rawError: true })
+  public deleteGroup(groupId: number) {
+    this.context.commit("DELETE_GROUP", groupId);
   }
 }

@@ -14,6 +14,11 @@ interface CreatePayload {
   groupId: number;
 }
 
+interface DestroyPayload {
+  userId: number;
+  groupId: number;
+}
+
 @Module({ name: "groups/members", stateFactory: true, namespaced: true })
 export default class MembersStore extends VuexModule {
   private members = [] as User[];
@@ -25,6 +30,13 @@ export default class MembersStore extends VuexModule {
 
   public get $meta() {
     return this.meta;
+  }
+
+  @Mutation
+  private DELETE_MEMBER(memberId: number) {
+    const index = this.members.findIndex((member) => member.id === memberId);
+
+    this.members.splice(index, 1);
   }
 
   @Mutation
@@ -61,7 +73,17 @@ export default class MembersStore extends VuexModule {
   }
 
   @Action({ rawError: true })
+  public async destroy({ userId, groupId }: DestroyPayload) {
+    await $axios.delete(`/members?userId=${userId}&groupId=${groupId}`);
+  }
+
+  @Action({ rawError: true })
   public updateMembers(members: User[]) {
     this.context.commit("UPDATE_MEMBERS", members);
+  }
+
+  @Action({ rawError: true })
+  public deleteMember(memberId: number) {
+    this.context.commit("DELETE_MEMBER", memberId);
   }
 }

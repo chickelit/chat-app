@@ -13,6 +13,7 @@
         <button
           :aria-label="`Remover ${member.username} do grupo`"
           class="danger"
+          @click.prevent="removeMember"
         >
           Remover {{ member.username }} do grupo
         </button>
@@ -33,6 +34,7 @@
 // eslint-disable-next-line import/named
 import Vue, { PropOptions } from "vue";
 import { User } from "~/models";
+import { group, member } from "~/store";
 export default Vue.extend({
   props: {
     index: {
@@ -62,6 +64,20 @@ export default Vue.extend({
     disableDropdown() {
       if (this.member) {
         this.dropdownActive = false;
+      }
+    },
+    async removeMember() {
+      try {
+        await member.destroy({
+          userId: this.member.id,
+          groupId: group.$single.id,
+        });
+      } catch (e) {
+        Vue.notify({
+          type: "error",
+          title: "Ops...",
+          text: "Houve um erro ao remover um membro do grupo..."
+        })
       }
     },
   },

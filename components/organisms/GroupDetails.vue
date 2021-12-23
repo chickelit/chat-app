@@ -41,7 +41,12 @@
             >
               Ver membros do grupo
             </button>
-            <button class="button danger" aria-label="Sair do grupo">
+            <button
+              v-if="$group.userId !== $user.id"
+              class="button danger"
+              aria-label="Sair do grupo"
+              @click.prevent="leaveGroup"
+            >
               Sair do grupo
             </button>
           </div>
@@ -63,7 +68,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { setView } from "@/utils";
-import { group } from "~/store";
+import { group, member, profile } from "~/store";
 export default Vue.extend({
   data() {
     return {
@@ -73,6 +78,30 @@ export default Vue.extend({
   computed: {
     $group() {
       return group.$single;
+    },
+    $user() {
+      return profile.$single;
+    },
+  },
+  methods: {
+    async leaveGroup() {
+      try {
+        await member.destroy({
+          userId: this.$user.id,
+          groupId: this.$group.id,
+        });
+
+        setView({
+          newView: "Groups",
+          navigationActiveClass: "groups-anchor",
+        });
+      } catch (e) {
+        Vue.notify({
+          type: "error",
+          title: "Ops...",
+          text: "Houve um erro ao sair do grupo...",
+        });
+      }
     },
   },
 });
