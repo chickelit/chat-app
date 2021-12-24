@@ -44,7 +44,7 @@ Tabela de conteúdos
 - [x] Conversas privadas
 - [x] Grupos
 - [x] Membros do grupo
-- [ ] Imagem do grupo
+- [x] Imagem do grupo
 - [ ] Mensagens privadas
 - [ ] Mensagens em grupo
 - [x] Socket.io
