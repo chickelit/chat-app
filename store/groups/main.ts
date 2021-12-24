@@ -16,6 +16,11 @@ interface ShowPayload {
   groupId: number;
 }
 
+interface UpdatePayload {
+  groupId: number;
+  title: string;
+}
+
 @Module({ name: "groups/main", stateFactory: true, namespaced: true })
 export default class GroupStore extends VuexModule {
   private groups = [] as Group[];
@@ -37,6 +42,11 @@ export default class GroupStore extends VuexModule {
 
   public get $wasLoaded() {
     return this.wasLoaded;
+  }
+
+  @Mutation
+  private UPDATE_COVER(groupCover: { url: string }) {
+    this.group.groupCover = groupCover;
   }
 
   @Mutation
@@ -80,6 +90,11 @@ export default class GroupStore extends VuexModule {
   @Action({ rawError: true })
   public async create(payload: CreatePayload) {
     await $axios.$post("/groups", payload);
+  }
+
+  @Action({ rawError: true })
+  public async update(payload: UpdatePayload) {
+    await $axios.$put("/groups", payload);
   }
 
   @Action({ rawError: true })

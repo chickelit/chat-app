@@ -7,7 +7,10 @@
   >
     <div v-if="group" class="group-card-wrapper">
       <div class="data-container" @click="$emit('click')">
-        <div v-if="group.groupCover" class="cover">
+        <div v-if="group.id === $cover.$groupId && $cover.$blob" class="cover">
+          <img :src="$cover.$blob" :alt="`Imagem do grupo ${group.title}`" />
+        </div>
+        <div v-else-if="group.groupCover" class="cover">
           <img
             :src="group.groupCover.url"
             :alt="`Imagem do grupo ${group.title}`"
@@ -54,7 +57,7 @@
 import Vue, { PropOptions } from "vue";
 import { setView } from "@/utils";
 import { Group } from "~/models";
-import { group } from "~/store";
+import { group, groupCover } from "~/store";
 export default Vue.extend({
   props: {
     index: {
@@ -70,6 +73,11 @@ export default Vue.extend({
     return {
       setView,
     };
+  },
+  computed: {
+    $cover() {
+      return groupCover;
+    },
   },
   methods: {
     toggleDropdown() {
@@ -99,7 +107,7 @@ export default Vue.extend({
           previousView: "Groups",
           navigationActiveClass: "groups-anchor",
         });
-      } catch (error) {}
+      } catch (e) {}
     },
   },
 });

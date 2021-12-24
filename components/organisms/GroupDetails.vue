@@ -18,14 +18,46 @@
       </template>
       <template #main-slot>
         <div class="main">
-          <div v-if="$group.groupCover" class="cover">
-            <img
-              :src="$group.groupCover.url"
-              :alt="`Imagem do grupo ${$group.title}`"
+          <div v-if="$group.userId === $user.id" class="cover">
+            <label for="cover-input" style="cursor: pointer">
+              <img
+                v-if="$blob"
+                :src="$blob"
+                :alt="`Imagem do grupo ${$group.title}`"
+              />
+              <img
+                v-else-if="$group.groupCover"
+                :src="$group.groupCover.url"
+                :alt="`Imagem do grupo ${$group.title}`"
+              />
+              <div v-else class="cover skeleton"></div>
+            </label>
+            <input
+              id="cover-input"
+              type="file"
+              accept=".jpg,.jpeg,.png"
+              style="display: none"
+              @input="updateCover"
             />
           </div>
           <div v-else class="cover skeleton"></div>
-          <div class="group-title">
+          <form
+            v-if="$group.userId === $user.id"
+            class="group-form"
+            @submit.prevent="onSubmit"
+          >
+            <BaseInput
+              v-model="title"
+              :max-length="30"
+              type="text"
+              class="title-input"
+              :value="$group.title"
+              style="text-align: center"
+              required
+            />
+            <BaseButton type="submit" text="Salvar" />
+          </form>
+          <div v-else class="group-title">
             {{ $group.title }}
           </div>
           <div class="buttons">
@@ -53,12 +85,15 @@
           <clientOnly>
             <notifications
               :max="1"
-              group="global"
+              group="group-details"
               classes="custom-notification"
               position="bottom right"
               style="bottom: 0.5rem; right: 0.5rem"
             />
           </clientOnly>
+          <div v-show="loading" class="loading-wrapper">
+            <Loading :active="loading" />
+          </div>
         </div>
       </template>
     </FullScreenView>
@@ -68,11 +103,13 @@
 <script lang="ts">
 import Vue from "vue";
 import { setView } from "@/utils";
-import { group, member, profile } from "~/store";
+import { group, groupCover, member, profile } from "~/store";
 export default Vue.extend({
   data() {
     return {
       setView,
+      loading: false,
+      title: group.$single.title as unknown as string,
     };
   },
   computed: {
@@ -82,8 +119,29 @@ export default Vue.extend({
     $user() {
       return profile.$single;
     },
+    $blob() {
+      return groupCover.$blob;
+    },
   },
   methods: {
+    async onSubmit() {
+      try {
+        this.loading = true;
+
+        await group.update({ title: this.title, groupId: group.$single.id });
+
+        this.loading = false;
+      } catch (e) {
+        this.loading = false;
+
+        Vue.notify({
+          type: "error",
+          group: "group-details",
+          title: "Ops...",
+          text: "Houve um erro ao atualizar os dados do grupo...",
+        });
+      }
+    },
     async leaveGroup() {
       try {
         await member.destroy({
@@ -98,8 +156,23 @@ export default Vue.extend({
       } catch (e) {
         Vue.notify({
           type: "error",
+          group: "group-details",
           title: "Ops...",
           text: "Houve um erro ao sair do grupo...",
+        });
+      }
+    },
+    async updateCover(event: any) {
+      try {
+        const file = event.target.files[0];
+
+        await groupCover.update({ file });
+      } catch (e) {
+        Vue.notify({
+          type: "error",
+          group: "group-details",
+          title: "Ops...",
+          text: "Houve um erro ao atualizar a imagem do grupo...",
         });
       }
     },
@@ -108,6 +181,22 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.loading-wrapper {
+  height: 5rem;
+  width: 5rem;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+.group-form {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 1rem;
+}
+.title-input {
+  width: 18rem;
+  font-size: 1.125rem;
+}
 .header-slot {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -146,8 +235,14 @@ export default Vue.extend({
   .cover {
     margin-top: 1rem;
     width: 10rem;
-    aspect-ratio: 1 / 1;
+    height: 10rem;
     border-radius: 100%;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+    }
   }
   .button {
     cursor: pointer;
