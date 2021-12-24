@@ -43,7 +43,7 @@ Tabela de conteúdos
 - [x] Amizades
 - [x] Conversas privadas
 - [x] Grupos
-- [ ] Membros do grupo
+- [x] Membros do grupo
 - [ ] Imagem do grupo
 - [ ] Mensagens privadas
 - [ ] Mensagens em grupo
