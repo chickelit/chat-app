@@ -53,37 +53,12 @@ Tabela de conteúdos
   <table>
     <tr>
       <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-Home.png?raw=true" heigth="180em" title="Desktop home">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-Home.png?raw=true" title="Desktop home">
       </td>
     </tr>
     <tr>
       <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-ConversationChat.png?raw=true" heigth="180em" title="Desktop conversation chat">
-      </td>
-    </tr>
-  </table>
-
-  <table>
-    <tr>
-      <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-Home.jpg?raw=true" heigth="180em" title="Mobile home">
-      </td>
-      <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-GroupChat.jpg?raw=true" heigth="180em" title="Mobile group chat">
-      </td>
-      <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-GroupDetails.jpg?raw=true" heigth="180em" title="Mobile group details">
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-GroupMembers.png?raw=true" heigth="180em" title="Desktop group members">
-      </td>
-      <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-AddMember.png?raw=true" heigth="180em" title="Desktop available members">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-ConversationChat.png?raw=true" title="Desktop conversation chat">
       </td>
     </tr>
   </table>
@@ -91,13 +66,13 @@ Tabela de conteúdos
   <table>
     <tr>
       <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-CreateGroup.jpg?raw=true" heigth="180em" title="Mobile create group form">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-Home.jpg?raw=true" title="Mobile home">
       </td>
       <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-UserSearch.jpg?raw=true" heigth="180em" title="Mobile user search">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-GroupChat.jpg?raw=true" title="Mobile group chat">
       </td>
       <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-Profile.jpg?raw=true" heigth="180em" title="Mobile profile">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-GroupDetails.jpg?raw=true" title="Mobile group details">
       </td>
     </tr>
   </table>
@@ -105,7 +80,32 @@ Tabela de conteúdos
   <table>
     <tr>
       <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-Login.png?raw=true" heigth="180em" title="Desktop login">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-GroupMembers.png?raw=true" title="Desktop group members">
+      </td>
+      <td align="center" style="padding=0;width=50%;">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-AddMember.png?raw=true" title="Desktop available members">
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td align="center" style="padding=0;width=50%;">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-CreateGroup.jpg?raw=true" title="Mobile create group form">
+      </td>
+      <td align="center" style="padding=0;width=50%;">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-UserSearch.jpg?raw=true" title="Mobile user search">
+      </td>
+      <td align="center" style="padding=0;width=50%;">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-Profile.jpg?raw=true" title="Mobile profile">
+      </td>
+    </tr>
+  </table>
+  
+  <table>
+    <tr>
+      <td align="center" style="padding=0;width=50%;">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-Login.png?raw=true" title="Desktop login">
       </td>
     </tr>
   </table>
@@ -113,13 +113,13 @@ Tabela de conteúdos
    <table>
     <tr>
       <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-Register.jpg?raw=true" heigth="180em" title="Mobile register">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-Register.jpg?raw=true" title="Mobile register">
       </td>
       <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-CompleteRegister.jpg?raw=true" heigth="180em" title="Mobile complete register">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-CompleteRegister.jpg?raw=true" title="Mobile complete register">
       </td>
       <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-ForgotPassword.jpg?raw=true" heigth="180em" title="Mobile password recovery">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-ForgotPassword.jpg?raw=true" title="Mobile password recovery">
       </td>
     </tr>
   </table>
@@ -127,7 +127,7 @@ Tabela de conteúdos
   <table>
     <tr>
       <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-ChangePassword.png?raw=true" heigth="180em" title="Desktop change password">
+        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-ChangePassword.png?raw=true" title="Desktop change password">
       </td>
     </tr>
   </table>
