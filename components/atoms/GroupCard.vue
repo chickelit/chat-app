@@ -21,7 +21,9 @@
           <div class="title">
             {{ group.title }}
           </div>
-          <div v-if="group.latestMessage" class="latest-message"></div>
+          <div v-if="group.latestMessage" class="latest-message">
+            ...
+          </div>
           <div v-else class="latest-message">
             O grupo ainda não tem mensagens...
           </div>

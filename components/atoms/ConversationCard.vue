@@ -18,7 +18,7 @@
         </div>
         <div class="latest-message">
           <div v-if="conversation.latestMessage">
-            {{ conversation.latestMessage }}
+            ...
           </div>
           <div v-else>A conversa ainda não tem mensagens...</div>
         </div>

@@ -114,7 +114,7 @@ export default Vue.extend({
           Vue.notify({
             type: "error",
             title: "Ops...",
-            text: `Você precisa ser amigo de ${this.friend.username} para iniciar uma conversa...`,
+            text: "Houve um erro ao começar a conversa...",
           });
         }
       }
