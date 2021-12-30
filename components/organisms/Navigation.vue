@@ -82,7 +82,7 @@ export default Vue.extend({
           color: color("light");
         }
         &.nuxt-link-exact-active {
-          color: color("light");
+          color: color("primary", "lighter");
           &:after {
             content: "";
             position: absolute;
@@ -90,7 +90,7 @@ export default Vue.extend({
             bottom: 0;
             height: 0.3125rem;
             width: 100%;
-            background: color("light");
+            background: color("primary", "lighter");
             border-radius: 0.15625rem;
           }
         }
