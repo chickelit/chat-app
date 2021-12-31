@@ -67,7 +67,7 @@ export default Vue.extend({
     align-items: center;
   }
   &:hover {
-    background: color("dark", "lighter");
+    background: color("dark");
   }
   .avatar {
     height: 100%;

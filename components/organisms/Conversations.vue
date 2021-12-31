@@ -23,7 +23,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background: color("dark");
+  background: color("dark", "darker");
   .conversations-list {
     position: absolute;
     inset: 0;

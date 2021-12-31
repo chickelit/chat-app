@@ -38,6 +38,7 @@ export default Vue.extend({
 .hamburger-menu {
   background: color("dark", "darkest");
   position: fixed;
+  z-index: 5000;
   left: 0;
   width: 100%;
   height: 100vh;
