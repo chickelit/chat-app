@@ -1,5 +1,12 @@
 <template>
-  <div class="conversation-card" role="link" @click="$emit('click')">
+  <div
+    :class="[
+      'conversation-card',
+      { dark: $mode === 'dark', light: $mode === 'light' },
+    ]"
+    role="link"
+    @click="$emit('click')"
+  >
     <div
       v-if="conversation"
       :aria-label="`Conversar com ${conversation.user.username}`"
@@ -11,15 +18,22 @@
           :alt="`Avatar de ${conversation.user.username}`"
         />
       </div>
-      <div v-else class="avatar skeleton"></div>
+      <div
+        v-else
+        :class="[
+          'avatar',
+          {
+            'skeleton-dark': $mode === 'dark',
+            'skeleton-light': $mode === 'light',
+          },
+        ]"
+      ></div>
       <div class="container">
         <div class="username">
           {{ conversation.user.username }}
         </div>
         <div class="latest-message">
-          <div v-if="conversation.latestMessage">
-            ...
-          </div>
+          <div v-if="conversation.latestMessage">...</div>
           <div v-else>A conversa ainda não tem mensagens...</div>
         </div>
       </div>
@@ -43,12 +57,18 @@
 // eslint-disable-next-line import/named
 import Vue, { PropOptions } from "vue";
 import { Conversation } from "@/models";
+import { mode } from "~/store";
 export default Vue.extend({
   props: {
     conversation: {
       type: Object,
       required: false,
     } as PropOptions<Conversation>,
+  },
+  computed: {
+    $mode() {
+      return mode.$mode;
+    },
   },
 });
 </script>
@@ -98,6 +118,17 @@ export default Vue.extend({
       width: 100%;
       height: 1rem;
       border-radius: 0.125rem;
+    }
+  }
+  &.light {
+    &:hover {
+      background: color("light", "lighter");
+    }
+    .username {
+      color: color("dark");
+    }
+    .latest-message {
+      color: color("dark");
     }
   }
 }

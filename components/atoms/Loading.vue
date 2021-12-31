@@ -1,14 +1,25 @@
 <template>
-  <div :class="['loading', { active }]"></div>
+  <div
+    :class="[
+      'loading',
+      { active, dark: $mode === 'dark', light: $mode === 'light' },
+    ]"
+  ></div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import { mode } from "~/store";
 export default Vue.extend({
   props: {
     active: {
       type: Boolean,
       default: false,
+    },
+  },
+  computed: {
+    $mode() {
+      return mode.$mode;
     },
   },
 });
@@ -24,6 +35,10 @@ export default Vue.extend({
   height: 2rem;
   animation: spin 2s linear infinite;
   display: none;
+  &.light {
+    border: 0.5rem solid color("light", "darker");
+    border-top: 0.5rem solid color("primary");
+  }
   &.active {
     display: block;
   }

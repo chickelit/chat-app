@@ -15,6 +15,7 @@ import FriendshipRequest from "~/store/friends/requests";
 import UserSearch from "~/store/users/search";
 import MembersStore from "~/store/groups/members";
 import CoverStore from "~/store/groups/cover";
+import Mode from "~/store/mode";
 
 let view: View;
 let auth: Auth;
@@ -30,6 +31,7 @@ let friendshipRequest: FriendshipRequest;
 let userSearch: UserSearch;
 let member: MembersStore;
 let groupCover: CoverStore;
+let mode: Mode;
 
 const initializeStores = (store: Store<any>): void => {
   view = getModule(View, store);
@@ -46,6 +48,7 @@ const initializeStores = (store: Store<any>): void => {
   userSearch = getModule(UserSearch, store);
   member = getModule(MembersStore, store);
   groupCover = getModule(CoverStore, store);
+  mode = getModule(Mode, store);
 };
 
 export {
@@ -64,4 +67,5 @@ export {
   userSearch,
   member,
   groupCover,
+  mode,
 };

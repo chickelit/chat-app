@@ -1,17 +1,32 @@
 <template>
   <div class="avatar">
     <img v-if="src" :src="src" />
-    <div v-else class="avatar-skeleton skeleton"></div>
+    <div
+      v-else
+      :class="[
+        'avatar-skeleton',
+        {
+          'skeleton-dark': $mode === 'dark',
+          'skeleton-light': $mode === 'light',
+        },
+      ]"
+    ></div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import { mode } from "~/store";
 export default Vue.extend({
   props: {
     src: {
       type: String,
       default: "",
+    },
+  },
+  computed: {
+    $mode() {
+      return mode.$mode;
     },
   },
 });

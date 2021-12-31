@@ -123,6 +123,7 @@ export default Vue.extend({
   justify-self: center;
 }
 .conversations-list {
+  display: grid;
   .list {
     position: relative;
     display: grid;

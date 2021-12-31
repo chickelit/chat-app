@@ -1,5 +1,10 @@
 <template>
-  <nav class="navigation">
+  <nav
+    :class="[
+      'navigation',
+      { dark: $mode === 'dark', light: $mode === 'light' },
+    ]"
+  >
     <Wrapper class="wrapper">
       <NuxtLink class="profile" to="/profile">
         <Avatar :src="$url" />
@@ -28,7 +33,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { profile } from "~/store";
+import { mode, profile } from "~/store";
 export default Vue.extend({
   data() {
     return {
@@ -38,6 +43,9 @@ export default Vue.extend({
   computed: {
     $url() {
       return profile.$single.avatar ? profile.$single.avatar.url : "";
+    },
+    $mode() {
+      return mode.$mode;
     },
   },
   methods: {
@@ -53,6 +61,8 @@ export default Vue.extend({
   background: color("dark", "darkest");
   display: grid;
   padding: 0 0.75rem;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  z-index: 1;
   .wrapper {
     display: grid;
     grid-template-columns: 3rem auto;
@@ -148,6 +158,26 @@ export default Vue.extend({
       content: "";
       position: absolute;
       width: 100%;
+    }
+  }
+  &.light {
+    background: color("light", "lightest");
+    .navigation-items {
+      .navigation-item {
+        a {
+          color: color("dark", "darker");
+          &:hover {
+            color: color("dark");
+          }
+          &.nuxt-link-active {
+            color: color("primary", "lighter");
+            &:after {
+              content: "";
+              background: color("primary", "lighter");
+            }
+          }
+        }
+      }
     }
   }
 }
