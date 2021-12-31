@@ -24,10 +24,7 @@
         <div class="main">
           <label id="avatar-input-label" for="avatar-input">
             <div class="avatar">
-              <div v-if="$blob">
-                <img :src="$blob" alt="Meu avatar" />
-              </div>
-              <div v-else-if="$user.avatar">
+              <div v-if="$user.avatar">
                 <img :src="$user.avatar.url" alt="Meu avatar" />
               </div>
               <div v-else>
@@ -91,9 +88,6 @@ export default Vue.extend({
     },
     $user() {
       return profile.$single;
-    },
-    $blob() {
-      return avatar.$blob;
     },
   },
   methods: {

@@ -42,7 +42,7 @@ export default {
   ],
 
   axios: {
-    baseUrl: "http://127.0.0.1:3333",
+    baseUrl: "http://192.168.0.103:3333",
   },
 
   styleResources: {
@@ -54,6 +54,6 @@ export default {
 
   server: {
     port: 3000,
-    host: "127.0.0.1",
+    host: "0.0.0.0",
   },
 };

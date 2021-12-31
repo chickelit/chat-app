@@ -1,7 +1,7 @@
 <template>
   <nav class="navigation">
     <Wrapper class="wrapper">
-      <NuxtLink to="/profile">
+      <NuxtLink class="profile" to="/profile">
         <Avatar :src="$url" />
       </NuxtLink>
       <ul class="navigation-items">
@@ -19,6 +19,10 @@
         <div class="hamburger"></div>
       </div>
     </Wrapper>
+    <HamburgerMenu
+      :active="hamburgerMenuActive"
+      @leaveHamburgerMenu="toggleHamburgerMenu"
+    />
   </nav>
 </template>
 
@@ -48,17 +52,21 @@ export default Vue.extend({
 .navigation {
   background: color("dark", "darkest");
   display: grid;
-  padding: 0.5rem 0;
-  @include screen("medium") {
-    padding: 0.5rem;
-  }
+  padding: 0 0.75rem;
   .wrapper {
     display: grid;
     grid-template-columns: 3rem auto;
     align-items: center;
     justify-items: space-between;
+    gap: 3rem;
+    .profile {
+      width: 100%;
+      padding: 0.5rem 0;
+    }
   }
   .navigation-items {
+    width: max-content;
+    justify-self: end;
     height: 100%;
     display: grid;
     grid-auto-columns: max-content;
@@ -81,9 +89,10 @@ export default Vue.extend({
         &:hover {
           color: color("light");
         }
-        &.nuxt-link-exact-active {
+        &.nuxt-link-active {
           color: color("primary", "lighter");
           &:after {
+            pointer-events: none;
             content: "";
             position: absolute;
             left: 0;
