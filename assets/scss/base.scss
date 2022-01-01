@@ -59,20 +59,19 @@ textarea {
   background: inherit;
   outline: none;
 }
-.skeleton-dark {
-  opacity: 0.7;
-  animation: skeleton-loading-dark 1s linear infinite alternate;
-}
-.skeleton-light {
+.skeleton {
   opacity: 0.7;
   animation: skeleton-loading-light 1s linear infinite alternate;
+  &.dark {
+    animation: skeleton-loading-dark 1s linear infinite alternate;
+  }
 }
 @keyframes skeleton-loading-dark {
   0% {
-    background-color: hsl(200, 20%, 65%);
+    background-color: hsl(240, 11%, 19%);
   }
   100% {
-    background-color: hsl(200, 20%, 95%);
+    background-color: hsl(240, 5%, 49%);
   }
 }
 @keyframes skeleton-loading-light {

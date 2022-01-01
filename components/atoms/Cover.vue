@@ -1,10 +1,10 @@
 <template>
-  <div class="avatar">
+  <div class="cover">
     <img v-if="src" :src="src" />
     <div
       v-else
       :class="[
-        'avatar-skeleton',
+        'cover-skeleton',
         'skeleton',
         { dark: $mode === 'dark', light: $mode === 'light' },
       ]"
@@ -31,10 +31,10 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.avatar {
+.cover {
   display: grid;
   align-items: center;
-  .avatar-skeleton {
+  .cover-skeleton {
     width: 100%;
     aspect-ratio: 1 / 1;
     border-radius: 100%;

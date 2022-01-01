@@ -1,54 +1,56 @@
 <template>
   <div
-    class="group-card"
-    aria-label="Conversar no grupo <title>"
-    role="link"
+    :class="[
+      'group-card',
+      { dark: $mode === 'dark', light: $mode === 'light' },
+    ]"
     @mouseleave="disableDropdown"
   >
-    <div v-if="group" class="group-card-wrapper">
-      <div class="data-container" @click="$emit('click')">
-        <div v-if="group.id === $cover.$groupId && $cover.$blob" class="cover">
-          <img :src="$cover.$blob" :alt="`Imagem do grupo ${group.title}`" />
-        </div>
-        <div v-else-if="group.groupCover" class="cover">
-          <img
-            :src="group.groupCover.url"
-            :alt="`Imagem do grupo ${group.title}`"
-          />
-        </div>
-        <div v-else class="cover skeleton"></div>
-        <div class="container">
+    <div v-if="group" class="wrapper">
+      <NuxtLink :to="`/chat/group/${group.id}`" class="container">
+        <Cover :src="$src" />
+        <div class="secondary__container">
           <div class="title">
             {{ group.title }}
           </div>
-          <div v-if="group.latestMessage" class="latest-message">
-            ...
-          </div>
+          <div v-if="group.latestMessage" class="latest-message">...</div>
           <div v-else class="latest-message">
             O grupo ainda não tem mensagens...
           </div>
         </div>
-      </div>
+      </NuxtLink>
       <OptionsButton @click="toggleDropdown" />
-      <Dropdown class="group-card-dropdown">
-        <button aria-label="Ver dados do grupo" @click="handleGroupDetails">
+      <Dropdown :class="['group-card-dropdown', { active: dropdownActive }]">
+        <NuxtLink :to="`/groups/${group.id}/details`">
           Ver dados do grupo
-        </button>
+        </NuxtLink>
       </Dropdown>
     </div>
-    <div v-else class="group-card-wrapper">
-      <div class="data-container">
-        <div class="cover skeleton" />
-        <div class="container">
+    <div v-else class="wrapper">
+      <div class="container">
+        <Cover />
+        <div class="secondary__container">
           <div class="title">
-            <div class="skeleton skeleton-text"></div>
+            <div
+              :class="[
+                'skeleton',
+                'skeleton-text',
+                { dark: $mode === 'dark', light: $mode === 'light' },
+              ]"
+            ></div>
           </div>
           <div class="latest-message">
-            <div class="skeleton skeleton-text"></div>
+            <div
+              :class="[
+                'skeleton',
+                'skeleton-text',
+                { dark: $mode === 'dark', light: $mode === 'light' },
+              ]"
+            ></div>
           </div>
         </div>
       </div>
-      <OptionsButton />
+      <OptionsButton v-if="group" />
     </div>
   </div>
 </template>
@@ -59,7 +61,7 @@
 import Vue, { PropOptions } from "vue";
 import { setView } from "@/utils";
 import { Group } from "~/models";
-import { group, groupCover } from "~/store";
+import { group, groupCover, mode } from "~/store";
 export default Vue.extend({
   props: {
     index: {
@@ -74,30 +76,34 @@ export default Vue.extend({
   data() {
     return {
       setView,
+      dropdownActive: false,
     };
   },
   computed: {
     $cover() {
       return groupCover;
     },
+    $mode() {
+      return mode.$mode;
+    },
+    $src() {
+      if (this.group) {
+        const group = this.group as Group;
+        return group.groupCover?.url || "";
+      }
+
+      return "";
+    },
   },
   methods: {
     toggleDropdown() {
       if (this.group) {
-        const groupCardDropdown = document.querySelectorAll(
-          ".group-card-dropdown"
-        )[this.index] as Element;
-
-        groupCardDropdown.classList.toggle("active");
+        this.dropdownActive = !this.dropdownActive;
       }
     },
     disableDropdown() {
       if (this.group) {
-        const groupCardDropdown = document.querySelectorAll(
-          ".group-card-dropdown"
-        )[this.index] as Element;
-
-        groupCardDropdown.classList.remove("active");
+        this.dropdownActive = false;
       }
     },
     async handleGroupDetails() {
@@ -122,7 +128,6 @@ export default Vue.extend({
 .group-card {
   cursor: pointer;
   padding: 0.5rem 1rem;
-  background: color("dark");
   display: grid;
   grid-template-columns: 1fr auto;
   justify-items: center;
@@ -130,7 +135,7 @@ export default Vue.extend({
   &:hover {
     background: color("dark", "lighter");
   }
-  .group-card-wrapper {
+  .wrapper {
     position: relative;
     width: 100%;
     display: grid;
@@ -141,7 +146,7 @@ export default Vue.extend({
       top: 1.6rem;
     }
   }
-  .data-container {
+  .container {
     display: grid;
     grid-template-columns: 3rem 1fr;
     grid-template-rows: 3rem;
@@ -176,6 +181,32 @@ export default Vue.extend({
         width: 75%;
         height: 1rem;
         border-radius: 0.125rem;
+      }
+    }
+  }
+  &.dark {
+    &:hover {
+      background: color("dark");
+    }
+    .container {
+      .title {
+        color: color("light", "darker");
+      }
+      .latest-message {
+        color: color("light", "darkest");
+      }
+    }
+  }
+  &.light {
+    &:hover {
+      background: color("light", "lighter");
+    }
+    .container {
+      .title {
+        color: color("dark");
+      }
+      .latest-message {
+        color: color("dark");
       }
     }
   }

@@ -1,17 +1,23 @@
 <template>
   <div class="groups-list" @scroll="checkScroll">
-    <div
-      v-for="(group, index) of groups"
-      :key="index"
-      :class="{ last: index === groups.length - 1 && groups.length > 1 }"
-    >
-      <GroupCard
-        v-if="group"
-        :index="index"
-        :group="group"
-        @click="setView({ newView: 'GroupChat' })"
-      />
-      <GroupCard v-else :index="index" />
+    <transition-group v-if="populated" tag="div" class="list" name="group-list">
+      <div
+        v-for="(group, index) of groups"
+        :key="index"
+        :class="{ last: index === groups.length - 1 && groups.length > 1 }"
+      >
+        <GroupCard
+          v-if="group"
+          :index="index"
+          :group="group"
+          @click="setView({ newView: 'GroupChat' })"
+        />
+      </div>
+    </transition-group>
+    <div v-else class="list">
+      <div v-for="(group, index) of groups" :key="index">
+        <GroupCard :index="index" />
+      </div>
     </div>
     <div v-show="groups.length < $meta.total" class="loading-wrapper">
       <Loading :active="loading" />
@@ -30,6 +36,7 @@ export default Vue.extend({
       groups: Array(20).fill(false),
       page: 1,
       loading: false,
+      populated: false,
     };
   },
   computed: {
@@ -45,6 +52,7 @@ export default Vue.extend({
       const groups = group.$all;
 
       this.groups = groups;
+      this.populated = true;
     } else {
       try {
         await group.index({ page: this.page, perPage: 20 });
@@ -52,6 +60,7 @@ export default Vue.extend({
         const groups = group.$all;
 
         this.groups = groups;
+        this.populated = true;
       } catch (e) {
         this.$notify({
           type: "error",
@@ -87,6 +96,14 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.group-list-enter-active,
+.group-list-leave-active {
+  transition: all 0.25s ease;
+}
+.group-list-enter-from,
+.group-list-leave-to {
+  opacity: 0;
+}
 .loading-wrapper {
   height: 5rem;
   width: 5rem;

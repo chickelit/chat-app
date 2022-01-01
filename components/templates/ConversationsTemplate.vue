@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      'home-template',
+      'conversations-template',
       { dark: $mode === 'dark', light: $mode === 'light' },
     ]"
   >
@@ -23,7 +23,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.home-template {
+.conversations-template {
   height: 100vh;
   background: color("dark");
   display: grid;

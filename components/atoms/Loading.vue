@@ -27,14 +27,16 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .loading {
-  position: absolute;
-  border: 0.5rem solid color("light", "darker");
-  border-top: 0.5rem solid color("primary");
   border-radius: 100%;
+  position: absolute;
   width: 2rem;
   height: 2rem;
   animation: spin 2s linear infinite;
   display: none;
+  &.dark {
+    border: 0.5rem solid color("light", "darker");
+    border-top: 0.5rem solid color("primary");
+  }
   &.light {
     border: 0.5rem solid color("light", "darker");
     border-top: 0.5rem solid color("primary");

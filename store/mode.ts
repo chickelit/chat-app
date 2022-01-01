@@ -22,7 +22,7 @@ export default class Mode extends VuexModule {
   public show() {
     let mode = $cookies.get("mode") ? $cookies.get("mode") : "light";
 
-    if (!["light", "dark"].includes("mode")) {
+    if (!["light", "dark"].includes(mode)) {
       mode = "light";
     }
 

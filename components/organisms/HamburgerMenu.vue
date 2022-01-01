@@ -1,5 +1,10 @@
 <template>
-  <div :class="['hamburger-menu', { active }]">
+  <div
+    :class="[
+      'hamburger-menu',
+      { active, dark: $mode === 'dark', light: $mode === 'light' },
+    ]"
+  >
     <div class="leave" @click="$emit('leaveHamburgerMenu')">
       <div class="layer"></div>
     </div>
@@ -9,7 +14,7 @@
           <NuxtLink to="/profile">Meu perfil</NuxtLink>
         </li>
         <li class="navigation-item">
-          <NuxtLink to="/">Conversas</NuxtLink>
+          <NuxtLink to="/conversations">Conversas</NuxtLink>
         </li>
         <li class="navigation-item">
           <NuxtLink to="/groups">Grupos</NuxtLink>
@@ -24,13 +29,19 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { mode } from "~/store";
 export default Vue.extend({
   props: {
     active: {
       type: Boolean,
       default: false,
     },
-  }
+  },
+  computed: {
+    $mode() {
+      return mode.$mode;
+    },
+  },
 });
 </script>
 
@@ -74,6 +85,7 @@ export default Vue.extend({
             color: color("light");
           }
           &.nuxt-link-active {
+            position: relative;
             color: color("primary", "lighter");
           }
         }
@@ -96,6 +108,7 @@ export default Vue.extend({
     display: grid;
     align-items: center;
     justify-items: center;
+    transition: all 0.15s linear;
     .layer {
       position: relative;
       width: 60%;
@@ -113,6 +126,40 @@ export default Vue.extend({
         border-radius: 0.15625rem;
         transition: all 0.15s linear;
         transform: rotate(90deg);
+      }
+    }
+  }
+  &.light {
+    background: color("light", "lightest");
+    .navigation {
+      .navigation-items {
+        .navigation-item {
+          a {
+            color: color("dark");
+            &:hover {
+              color: color("dark", "lightest");
+            }
+            &.nuxt-link-active {
+              color: color("primary");
+            }
+          }
+        }
+      }
+    }
+    .leave {
+      .layer {
+        background: color("dark");
+        &:after {
+          background: color("dark");
+        }
+      }
+      &:hover {
+        .layer {
+          background: color("dark", "lightest");
+          &:after {
+            background: color("dark", "lightest");
+          }
+        }
       }
     }
   }

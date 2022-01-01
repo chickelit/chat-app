@@ -6,18 +6,18 @@
     ]"
   >
     <Wrapper class="wrapper">
-      <NuxtLink class="profile" to="/profile">
+      <NuxtLink class="profile" to="/profile" @click.native.prevent>
         <Avatar :src="$url" />
       </NuxtLink>
       <ul class="navigation-items">
         <li class="navigation-item">
-          <NuxtLink to="/">Conversas</NuxtLink>
+          <NuxtLink to="/conversations" @click.native.prevent>Conversas</NuxtLink>
         </li>
         <li class="navigation-item">
-          <NuxtLink to="/groups">Grupos</NuxtLink>
+          <NuxtLink to="/groups" @click.native.prevent>Grupos</NuxtLink>
         </li>
         <li class="navigation-item">
-          <NuxtLink to="/friends">Amigos</NuxtLink>
+          <NuxtLink to="/friends" @click.native.prevent>Amigos</NuxtLink>
         </li>
       </ul>
       <div class="hamburger-button" @click="toggleHamburgerMenu">
@@ -165,7 +165,7 @@ export default Vue.extend({
     .navigation-items {
       .navigation-item {
         a {
-          color: color("dark", "darker");
+          color: color("dark", "lightest");
           &:hover {
             color: color("dark");
           }
@@ -176,6 +176,20 @@ export default Vue.extend({
               background: color("primary", "lighter");
             }
           }
+        }
+      }
+    }
+    .hamburger-button {
+      .hamburger,
+      .hamburger::after,
+      .hamburger::before {
+        background: color("dark", "lightest");
+      }
+      &:hover {
+        .hamburger,
+        .hamburger::after,
+        .hamburger::before {
+          background: color("dark");
         }
       }
     }

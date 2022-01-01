@@ -1,12 +1,12 @@
 <template>
   <div
     :class="[
-      'home-template',
+      'groups-template',
       { dark: $mode === 'dark', light: $mode === 'light' },
     ]"
   >
     <Navigation />
-    <Conversations />
+    <Groups />
   </div>
 </template>
 
@@ -23,7 +23,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.home-template {
+.groups-template {
   height: 100vh;
   background: color("dark");
   display: grid;
