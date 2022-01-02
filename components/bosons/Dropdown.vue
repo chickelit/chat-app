@@ -24,9 +24,9 @@ export default Vue.extend({
   opacity: 0;
   pointer-events: none;
   transform: translateX(-10px);
+  box-shadow: -2px 0 5px 0 rgba(0, 0, 0, 0.1);
   padding: 0.3125rem;
   position: absolute;
-  background: color("dark", "darker");
   border-radius: 0.3125rem;
   min-width: 12rem;
   display: grid;
@@ -38,11 +38,7 @@ export default Vue.extend({
     cursor: pointer;
     position: relative;
     font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
-    color: color("light", "darker");
     transition: all 0.15s linear;
-    &:hover {
-      color: color("light");
-    }
   }
   &.active {
     opacity: 1;
@@ -50,9 +46,7 @@ export default Vue.extend({
     transform: translateX(0);
   }
   &.dark {
-      box-shadow: -1px 0 5px 0 rgba(255, 255, 255, 0.1);
-
-    background: color("dark", "darker");
+    background: color("dark");
     button {
       color: color("light", "darker");
       &:hover {
@@ -61,8 +55,6 @@ export default Vue.extend({
     }
   }
   &.light {
-      box-shadow: -2px 0 5px 0 rgba(0, 0, 0, 0.1);
-
     background: color("light", "lighter");
     button {
       color: color("dark", "darker");
