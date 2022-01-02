@@ -1,11 +1,14 @@
 <template>
-  <div class="friend-card" @mouseleave="disableDropdown">
+  <div
+    :class="[
+      'friend-card',
+      { dark: $mode === 'dark', light: $mode === 'light' },
+    ]"
+    @mouseleave="disableDropdown"
+  >
     <div v-if="friend" class="wrapper">
       <div class="container" @click="toggleDropdown">
-        <div v-if="friend.avatar" class="avatar">
-          <img :src="friend.avatar.url" :alt="`Avatar de ${friend.username}`" />
-        </div>
-        <div v-else class="avatar skeleton"></div>
+        <Avatar :src="$src" />
         <div class="username">
           {{ friend.username }}
         </div>
@@ -28,9 +31,15 @@
     </div>
     <div v-else class="wrapper">
       <div class="container">
-        <div class="avatar skeleton"></div>
+        <Avatar />
         <div class="username">
-          <div class="skeleton skeleton-text"></div>
+          <div
+            :class="[
+              'skeleton',
+              'skeleton-text',
+              { dark: $mode === 'dark', light: $mode === 'light' },
+            ]"
+          ></div>
         </div>
       </div>
     </div>
@@ -42,7 +51,7 @@
 // eslint-disable-next-line import/named
 import Vue, { PropOptions } from "vue";
 import { setView } from "@/utils";
-import { conversation, error, friendship, view } from "~/store";
+import { conversation, error, friendship, mode, view } from "~/store";
 import { User } from "~/models";
 export default Vue.extend({
   props: {
@@ -59,6 +68,19 @@ export default Vue.extend({
     return {
       setView,
     };
+  },
+  computed: {
+    $mode() {
+      return mode.$mode;
+    },
+    $src() {
+      if (this.friend) {
+        const friend = this.friend as User;
+        return friend.avatar?.url || "";
+      }
+
+      return "";
+    },
   },
   methods: {
     toggleDropdown() {
@@ -133,7 +155,6 @@ export default Vue.extend({
 .username {
   width: 100%;
   font-size: 1.125rem;
-  color: color("light", "darker");
   .skeleton-text {
     width: 75%;
     height: 1.125rem;
@@ -142,7 +163,6 @@ export default Vue.extend({
 }
 .friend-card {
   cursor: pointer;
-  background: color("dark");
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: max-content;
@@ -166,9 +186,6 @@ export default Vue.extend({
       top: 1.75rem;
     }
   }
-  &:hover {
-    background: color("dark", "lighter");
-  }
   .avatar {
     height: 100%;
     width: 100%;
@@ -178,6 +195,22 @@ export default Vue.extend({
       width: 100%;
       object-fit: cover;
       border-radius: 100%;
+    }
+  }
+  &.dark {
+    .username {
+      color: color("light", "darker");
+    }
+    &:hover {
+      background: color("dark");
+    }
+  }
+  &.light {
+    .username {
+      color: color("dark");
+    }
+    &:hover {
+      background: color("light", "lighter");
     }
   }
 }

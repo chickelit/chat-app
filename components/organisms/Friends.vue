@@ -1,19 +1,24 @@
 <template>
-  <div class="friends">
+  <div
+    :class="['friends', { dark: $mode === 'dark', light: $mode === 'light' }]"
+  >
     <Wrapper>
       <FriendList class="friend-list" />
-      <clientOnly>
-        <notifications
-          :max="1"
-          group="global"
-          classes="custom-notification"
-          position="bottom right"
-          style="bottom: 0.5rem; right: 0.5rem"
-        />
-      </clientOnly>
     </Wrapper>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from "vue";
+import { mode } from "~/store";
+export default Vue.extend({
+  computed: {
+    $mode() {
+      return mode.$mode;
+    },
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 ::-webkit-scrollbar {
@@ -23,7 +28,12 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background: color("dark");
+  &.dark {
+    background: color("dark", "darker");
+  }
+  &.light {
+    background: color("light", "lightest");
+  }
   .friend-list {
     position: absolute;
     inset: 0;

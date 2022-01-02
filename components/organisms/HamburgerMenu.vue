@@ -20,7 +20,7 @@
           <NuxtLink to="/groups">Grupos</NuxtLink>
         </li>
         <li class="navigation-item">
-          <NuxtLink to="/friends">Amigos</NuxtLink>
+          <NuxtLink to="/friendships">Amigos</NuxtLink>
         </li>
       </ul>
     </nav>
