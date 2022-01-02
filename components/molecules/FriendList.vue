@@ -110,15 +110,17 @@ export default Vue.extend({
   justify-self: center;
 }
 .friend-list {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: max-content;
-  grid-auto-flow: row;
-  .last {
-    ::v-deep.friend-card {
-      .wrapper {
-        .friend-card-dropdown {
-          top: -1rem;
+  .list {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: max-content;
+    grid-auto-flow: row;
+    .last {
+      ::v-deep.friend-card {
+        .wrapper {
+          .friend-card-dropdown {
+            top: -1rem;
+          }
         }
       }
     }

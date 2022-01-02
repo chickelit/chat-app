@@ -1,19 +1,27 @@
 <template>
-  <div class="friendship-requests">
+  <div
+    :class="[
+      'friendship-requests',
+      { dark: $mode === 'dark', light: $mode === 'light' },
+    ]"
+  >
     <Wrapper>
-      <FriendshipRequestList />
-      <clientOnly>
-        <notifications
-          :max="1"
-          group="global"
-          classes="custom-notification"
-          position="bottom right"
-          style="bottom: 0.5rem; right: 0.5rem"
-        />
-      </clientOnly>
+      <FriendshipRequestList class="friendship-request-list" />
     </Wrapper>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from "vue";
+import { mode } from "~/store";
+export default Vue.extend({
+  computed: {
+    $mode() {
+      return mode.$mode;
+    },
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 ::-webkit-scrollbar {
@@ -23,11 +31,16 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background: color("dark");
+  &.dark {
+    background: color("dark", "darker");
+  }
+  &.light {
+    background: color("light", "lightest");
+  }
   .friendship-request-list {
     position: absolute;
     inset: 0;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 }
 </style>

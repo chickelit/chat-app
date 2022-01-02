@@ -19,6 +19,9 @@
         <li class="navigation-item">
           <NuxtLink to="/friendships" @click.native.prevent>Amigos</NuxtLink>
         </li>
+         <li class="navigation-item">
+          <NuxtLink to="/friendships/requests" @click.native.prevent>Pendentes</NuxtLink>
+        </li>
       </ul>
       <div class="hamburger-button" @click="toggleHamburgerMenu">
         <div class="hamburger"></div>
@@ -99,7 +102,7 @@ export default Vue.extend({
         &:hover {
           color: color("light");
         }
-        &.nuxt-link-active {
+        &.nuxt-link-exact-active {
           color: color("primary", "lighter");
           &:after {
             pointer-events: none;
@@ -169,7 +172,7 @@ export default Vue.extend({
           &:hover {
             color: color("dark");
           }
-          &.nuxt-link-active {
+          &.nuxt-link-exact-active {
             color: color("primary", "lighter");
             &:after {
               content: "";

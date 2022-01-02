@@ -11,16 +11,19 @@
     <nav class="navigation">
       <ul class="navigation-items">
         <li class="navigation-item">
-          <NuxtLink to="/profile">Meu perfil</NuxtLink>
+          <NuxtLink to="/profile" @click.native.prevent>Meu perfil</NuxtLink>
         </li>
         <li class="navigation-item">
-          <NuxtLink to="/conversations">Conversas</NuxtLink>
+          <NuxtLink to="/conversations" @click.native.prevent>Conversas</NuxtLink>
         </li>
         <li class="navigation-item">
-          <NuxtLink to="/groups">Grupos</NuxtLink>
+          <NuxtLink to="/groups" @click.native.prevent>Grupos</NuxtLink>
         </li>
         <li class="navigation-item">
-          <NuxtLink to="/friendships">Amigos</NuxtLink>
+          <NuxtLink to="/friendships" @click.native.prevent>Amigos</NuxtLink>
+        </li>
+        <li class="navigation-item">
+          <NuxtLink to="/friendships/requests" @click.native.prevent>Pendentes</NuxtLink>
         </li>
       </ul>
     </nav>
@@ -84,7 +87,7 @@ export default Vue.extend({
           &:hover {
             color: color("light");
           }
-          &.nuxt-link-active {
+          &.nuxt-link-exact-active {
             position: relative;
             color: color("primary", "lighter");
           }
@@ -139,7 +142,7 @@ export default Vue.extend({
             &:hover {
               color: color("dark", "lightest");
             }
-            &.nuxt-link-active {
+            &.nuxt-link-exact-active {
               color: color("primary");
             }
           }

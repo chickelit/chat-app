@@ -1,12 +1,12 @@
 <template>
   <div
     :class="[
-      'friendships-template',
+      'friendship-requests-template',
       { dark: $mode === 'dark', light: $mode === 'light' },
     ]"
   >
     <Navigation />
-    <Friends />
+    <FriendshipRequests />
   </div>
 </template>
 
@@ -23,7 +23,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.friendships-template {
+.friendship-requests-template {
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr;

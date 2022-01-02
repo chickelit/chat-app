@@ -1,14 +1,14 @@
 <template>
-  <div class="friendship-request-card" @mouseleave="disableDropdown">
+  <div
+    :class="[
+      'friendship-request-card',
+      { dark: $mode === 'dark', light: $mode === 'light' },
+    ]"
+    @mouseleave="disableDropdown"
+  >
     <div v-if="friendshipRequest" class="wrapper">
       <div class="container" @click="toggleDropdown">
-        <div v-if="friendshipRequest.avatar" class="avatar">
-          <img
-            :src="friendshipRequest.avatar.url"
-            :alt="`Avatar de ${friendshipRequest.username}`"
-          />
-        </div>
-        <div v-else class="avatar skeleton"></div>
+        <Avatar :src="$src" />
         <div class="username">
           {{ friendshipRequest.username }}
         </div>
@@ -19,24 +19,15 @@
           { active: dropdownActive },
         ]"
       >
-        <button
-          :aria-label="`Aceitar pedido de amizade de ${friendshipRequest.username}`"
-          @click="acceptFriendshipRequest"
-        >
-          Aceitar o pedido
-        </button>
-        <button
-          class="danger"
-          :aria-label="`Recusar pedido de amizade de ${friendshipRequest.username}`"
-          @click="refuseFriendshipRequest"
-        >
+        <button @click="acceptFriendshipRequest">Aceitar o pedido</button>
+        <button class="danger" @click="refuseFriendshipRequest">
           Recusar o pedido
         </button>
       </Dropdown>
     </div>
     <div v-else class="wrapper">
       <div class="container">
-        <div class="avatar skeleton"></div>
+        <Avatar />
         <div class="username">
           <div class="skeleton skeleton-text"></div>
         </div>
@@ -50,7 +41,7 @@
 // eslint-disable-next-line import/named
 import Vue, { PropOptions } from "vue";
 import { User } from "~/models";
-import { friendship, friendshipRequest } from "~/store";
+import { friendship, friendshipRequest, mode } from "~/store";
 export default Vue.extend({
   props: {
     index: {
@@ -66,6 +57,20 @@ export default Vue.extend({
     return {
       dropdownActive: false,
     };
+  },
+  computed: {
+    $mode() {
+      return mode.$mode;
+    },
+    $src() {
+      if (this.friendshipRequest) {
+        const friendshipRequest = this.friendshipRequest as User;
+
+        return friendshipRequest.avatar?.url || "";
+      }
+
+      return "";
+    },
   },
   methods: {
     toggleDropdown() {
@@ -117,19 +122,8 @@ export default Vue.extend({
     color: color("danger", "lighter") !important;
   }
 }
-.username {
-  width: 100;
-  font-size: 1.125rem;
-  color: color("light", "darker");
-  .skeleton-text {
-    width: 75%;
-    height: 1.125rem;
-    border-radius: 0.125rem;
-  }
-}
 .friendship-request-card {
   cursor: pointer;
-  background: color("dark");
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: max-content;
@@ -147,19 +141,49 @@ export default Vue.extend({
       grid-template-rows: 3rem;
       gap: 0.5rem;
       align-items: center;
+      .username {
+        width: 100;
+        font-size: 1.125rem;
+        .skeleton-text {
+          width: 75%;
+          height: 1.125rem;
+          border-radius: 0.125rem;
+        }
+      }
     }
     .friendship-request-card-dropdown {
       right: 1rem;
       top: 1.5rem;
     }
   }
-  &:hover {
-    background: color("dark", "lighter");
-  }
   .avatar {
     height: 100%;
     width: 100%;
     border-radius: 100%;
+  }
+  &.dark {
+    .wrapper {
+      .container {
+        .username {
+          color: color("light", "darker");
+        }
+      }
+    }
+    &:hover {
+      background: color("dark");
+    }
+  }
+  &.light {
+    .wrapper {
+      .container {
+        .username {
+          color: color("dark");
+        }
+      }
+    }
+    &:hover {
+      background: color("light", "lighter");
+    }
   }
 }
 </style>
