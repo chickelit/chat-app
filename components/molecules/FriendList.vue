@@ -110,6 +110,7 @@ export default Vue.extend({
   justify-self: center;
 }
 .friend-list {
+  display: grid;
   .list {
     display: grid;
     grid-template-columns: 1fr;

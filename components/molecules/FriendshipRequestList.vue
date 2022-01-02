@@ -125,6 +125,7 @@ export default Vue.extend({
   justify-self: center;
 }
 .friendship-request-list {
+  display: grid;
   .list {
     display: grid;
     grid-template-columns: 1fr;

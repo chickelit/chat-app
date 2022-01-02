@@ -114,14 +114,17 @@ export default Vue.extend({
 }
 .groups-list {
   display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: max-content;
-  grid-auto-flow: row;
-  .last {
-    ::v-deep.group-card {
-      .group-card-wrapper {
-        .group-card-dropdown {
-          top: -0.375rem;
+  .list {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: max-content;
+    grid-auto-flow: row;
+    .last {
+      ::v-deep.group-card {
+        .group-card-wrapper {
+          .group-card-dropdown {
+            top: -0.375rem;
+          }
         }
       }
     }
