@@ -52,7 +52,6 @@ export default Vue.extend({
   bottom: calc(50% - 10rem);
   z-index: 4;
   transition: all 0.25s linear;
-  background: color("light", "lightest");
   border-radius: 1rem;
   .create-group {
     border-radius: 1rem;
@@ -62,17 +61,12 @@ export default Vue.extend({
     transform: translateY(0);
   }
   @include screen("small") {
-    opacity: 1;
     height: 50%;
     max-height: 24rem;
     width: 100vw;
     transform: translateY(100%);
-    position: fixed;
     bottom: 0;
     left: 0;
-    z-index: 4;
-    transition: all 0.25s linear;
-    background: color("light", "lightest");
     border-radius: 2rem 2rem 0 0;
     .create-group {
       border-radius: 2rem 2rem 0 0;
@@ -105,9 +99,15 @@ export default Vue.extend({
   height: 100%;
   &.dark {
     background: color("dark", "darker");
+    .form-wrapper {
+      background: color("dark");
+    }
   }
   &.light {
     background: color("light", "lightest");
+    .form-wrapper {
+      background: color("light", "lightest");
+    }
   }
   .group-list {
     position: absolute;

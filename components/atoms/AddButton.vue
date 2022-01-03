@@ -30,11 +30,20 @@ export default Vue.extend({
   transition: all 0.15s linear;
   img {
     width: 60%;
-    filter: invert(0.9);
     transition: all 0.15s linear;
   }
   &:hover {
     background: color("primary", "lighter");
+  }
+  &.dark {
+    img {
+      filter: invert(0.65);
+    }
+  }
+  &.light {
+    img {
+      filter: invert(0.9);
+    }
   }
 }
 </style>

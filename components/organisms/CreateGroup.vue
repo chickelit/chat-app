@@ -1,5 +1,5 @@
 <template>
-  <div class="create-group">
+  <div :class="['create-group', $modeClass]">
     <form @submit.prevent="onSubmit">
       <h2 class="form-title">Novo grupo</h2>
       <BaseInput
@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { group } from "~/store";
+import { group, mode } from "~/store";
 export default Vue.extend({
   data() {
     return {
@@ -29,6 +29,11 @@ export default Vue.extend({
         title: "",
       },
     };
+  },
+  computed: {
+    $modeClass() {
+      return mode.$mode;
+    },
   },
   methods: {
     async onSubmit() {
@@ -75,7 +80,6 @@ export default Vue.extend({
   justify-items: center;
   .form-title {
     margin-bottom: 0;
-    color: color("dark", "darkest");
   }
   form {
     width: 60%;
@@ -93,6 +97,16 @@ export default Vue.extend({
   @include screen("medium") {
     form {
       width: 80%;
+    }
+  }
+  &.dark {
+    .form-title {
+      color: color("light", "darkest");
+    }
+  }
+  &.light {
+    .form-title {
+      color: color("dark", "darkest");
     }
   }
 }
