@@ -1,58 +1,30 @@
 <template>
   <div class="create-group">
-    <FullScreenView label="Voltar">
-      <template #header-slot>
-        <div class="header-slot">
-          <BackButton
-            label="Voltar"
-            new-view="Groups"
-            navigation-active-class="groups-anchor"
-          />
-          <h1 class="title">Criar grupo</h1>
-        </div>
-      </template>
-      <template #main-slot>
-        <form
-          name="create-group-form"
-          class="form"
-          autocomplete="off"
-          @submit.prevent="onSubmit"
-        >
-          <Wrapper class="form-wrapper">
-            <BaseInput
-              id="title-input"
-              v-model="form.title"
-              class="form-input"
-              placeholder="Título do grupo..."
-              :max-length="30"
-              required
-            />
-            <BaseButton type="submit" text="Criar" aria-label="Criar grupo" />
-          </Wrapper>
-        </form>
-        <clientOnly>
-          <notifications
-            :max="1"
-            group="global"
-            classes="custom-notification"
-            position="bottom right"
-            style="bottom: 0.5rem; right: 0.5rem"
-          />
-        </clientOnly>
-      </template>
-    </FullScreenView>
-    <Footer />
+    <form @submit.prevent="onSubmit">
+      <h2 class="form-title">Novo grupo</h2>
+      <BaseInput
+        v-model="form.title"
+        :max-length="30"
+        required
+        type="text"
+        placeholder="Título do grupo..."
+      />
+      <BaseButton type="submit" :text="text" />
+    </form>
+    <div class="loading-wrapper">
+      <Loading :active="loading" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import { setView } from "@/utils";
-import { group, view } from "~/store";
+import { group } from "~/store";
 export default Vue.extend({
   data() {
     return {
-      setView,
+      loading: false,
+      text: "Criar",
       form: {
         title: "",
       },
@@ -61,14 +33,19 @@ export default Vue.extend({
   methods: {
     async onSubmit() {
       try {
+        this.loading = true;
+        this.text = "Criando...";
+
         await group.create(this.form);
 
-        this.setView({
-          newView: "Groups",
-          previousView: view.$view,
-          navigationActiveClass: "groups-anchor",
-        });
+        this.loading = false;
+        this.text = "Criar";
+
+        this.$emit("completed");
       } catch (e) {
+        this.loading = false;
+        this.text = "Criar";
+
         Vue.notify({
           type: "error",
           title: "Ops...",
@@ -81,47 +58,41 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.header-slot {
+.loading-wrapper {
+  height: 5rem;
+  width: 5rem;
   display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: 1fr;
   align-items: center;
-  gap: 1rem;
+  justify-items: center;
+  align-self: center;
 }
 .create-group {
-  .title {
-    font-size: 1.5rem;
-    width: max-content;
-    font-family: "Tahoma";
-    color: color("light", "darkest");
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.15s linear;
+  box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: max-content 1fr;
+  justify-items: center;
+  .form-title {
+    margin-bottom: 0;
+    color: color("dark", "darkest");
   }
-  .form {
-    height: max-content;
-    padding: 2rem 1rem;
+  form {
+    width: 60%;
     display: grid;
-    justify-items: center;
-    @include screen("medium") {
-      padding: 2rem 1rem;
-    }
-    .form-wrapper {
-      height: 100%;
+    grid-template-columns: 1fr;
+    grid-auto-rows: max-content;
+    gap: 1rem;
+    input {
       width: 100%;
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-auto-rows: auto auto auto;
-      gap: 1.25rem;
-      .input-wrapper {
-        display: grid;
-        grid-template-rows: auto auto;
-        .label {
-          margin-bottom: 0.3125rem;
-          color: color("light", "darkest");
-          font-family: "Acumin Regular", Arial, Helvetica, sans-serif;
-        }
-      }
+    }
+    button[type="submit"] {
+      width: 100%;
+    }
+  }
+  @include screen("medium") {
+    form {
+      width: 80%;
     }
   }
 }
