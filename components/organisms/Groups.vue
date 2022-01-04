@@ -53,12 +53,14 @@ export default Vue.extend({
   z-index: 4;
   transition: all 0.25s linear;
   border-radius: 1rem;
+  pointer-events: none;
   .create-group {
     border-radius: 1rem;
   }
   &.active {
     opacity: 1;
     transform: translateY(0);
+    pointer-events: auto;
   }
   @include screen("small") {
     height: 50%;

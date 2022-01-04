@@ -1,5 +1,5 @@
 <template>
-  <div class="user-card" @mouseleave="disableDropdown">
+  <div :class="['user-card', $modeClass]" @mouseleave="disableDropdown">
     <div class="wrapper">
       <div v-if="user.avatar" class="avatar"></div>
       <div v-else class="avatar skeleton"></div>
@@ -23,13 +23,18 @@
 // eslint-disable-next-line import/named
 import Vue, { PropOptions } from "vue";
 import { User } from "~/models";
-import { friendshipRequest } from "~/store";
+import { friendshipRequest, mode } from "~/store";
 export default Vue.extend({
   props: {
     user: {
       type: Object,
       required: true,
     } as PropOptions<User>,
+  },
+  computed: {
+    $modeClass() {
+      return mode.$mode;
+    },
   },
   methods: {
     toggleDropdown() {
@@ -72,16 +77,7 @@ export default Vue.extend({
 .danger {
   color: color("danger") !important;
 }
-.username {
-  width: 100%;
-  font-size: 1.125rem;
-  color: color("light", "darker");
-  .skeleton-text {
-    width: 75%;
-    height: 1.125rem;
-    border-radius: 0.125rem;
-  }
-}
+
 .user-card {
   cursor: pointer;
   padding: 0.5rem 1rem;
@@ -105,6 +101,16 @@ export default Vue.extend({
       top: 1.6rem;
     }
   }
+  .username {
+    width: 100%;
+    font-size: 1.125rem;
+    color: color("light", "darker");
+    .skeleton-text {
+      width: 75%;
+      height: 1.125rem;
+      border-radius: 0.125rem;
+    }
+  }
   &:hover {
     background: color("dark", "lighter");
   }
@@ -112,6 +118,24 @@ export default Vue.extend({
     height: 100%;
     width: 100%;
     border-radius: 100%;
+  }
+  &.dark {
+    background: color("dark");
+    .username {
+      color: color("light", "darker");
+    }
+    &:hover {
+      background: color("dark", "lighter");
+    }
+  }
+  &.light {
+    background: color("light", "lightest");
+    .username {
+      color: color("dark");
+    }
+    &:hover {
+      background: color("light", "lighter");
+    }
   }
 }
 </style>
