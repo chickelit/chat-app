@@ -10,7 +10,7 @@
         @click="closeForm"
       ></div>
       <div :class="['form-wrapper', { active: show }]">
-        <SearchUser class="search-user" @completed="closeForm" />
+        <SearchUser class="search-user" :clean="clean" @completed="closeForm" />
       </div>
     </Wrapper>
   </div>
@@ -23,6 +23,7 @@ export default Vue.extend({
   data() {
     return {
       show: false,
+      clean: false,
     };
   },
   computed: {
@@ -33,9 +34,11 @@ export default Vue.extend({
   methods: {
     openForm() {
       this.show = true;
+      this.clean = false;
     },
     closeForm() {
       this.show = false;
+      this.clean = true;
     },
   },
 });
@@ -43,13 +46,13 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .form-wrapper {
-  height: 20rem;
+  height: 18rem;
   width: 30rem;
   opacity: 0;
   transform: translateY(2rem);
   position: fixed;
   left: calc(50% - 15rem);
-  bottom: calc(50% - 10rem);
+  bottom: calc(50% - 9rem);
   z-index: 4;
   transition: all 0.25s linear;
   border-radius: 1rem;
@@ -64,7 +67,7 @@ export default Vue.extend({
   }
   @include screen("small") {
     height: 50%;
-    max-height: 24rem;
+    max-height: 18rem;
     width: 100vw;
     transform: translateY(100%);
     bottom: 0;

@@ -1,7 +1,6 @@
 <template>
   <div :class="['search-user', $modeClass]">
-    <form @submit.prevent="onSubmit">
-      <h2 class="form-title">Adicionar amigo</h2>
+    <form name="search-user-form" @submit.prevent="onSubmit">
       <BaseInput
         v-model="form.username"
         :max-length="32"
@@ -25,6 +24,12 @@ import Vue from "vue";
 import { User } from "~/models";
 import { mode, userSearch } from "~/store";
 export default Vue.extend({
+  props: {
+    clean: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       loading: false,
@@ -38,6 +43,19 @@ export default Vue.extend({
   computed: {
     $modeClass() {
       return mode.$mode;
+    },
+  },
+  watch: {
+    clean(_oldValue, newValue) {
+      if (newValue === false) {
+        setTimeout(() => {
+          this.form.username = "";
+
+          document.forms.namedItem("search-user-form")?.reset();
+
+          this.resultUser = {} as User;
+        }, 500);
+      }
     },
   },
   methods: {
@@ -91,11 +109,13 @@ export default Vue.extend({
   display: grid;
   grid-template-rows: max-content 1fr;
   justify-items: center;
+  align-items: center;
   .form-title {
     margin-bottom: 0;
   }
   form {
-    width: 60%;
+    padding-top: 2rem;
+    width: 80%;
     display: grid;
     grid-template-columns: 1fr;
     grid-auto-rows: max-content;

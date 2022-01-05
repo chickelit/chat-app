@@ -1,7 +1,6 @@
 <template>
   <div :class="['create-group', $modeClass]">
-    <form @submit.prevent="onSubmit">
-      <h2 class="form-title">Novo grupo</h2>
+    <form name="create-group-form" @submit.prevent="onSubmit">
       <BaseInput
         v-model="form.title"
         :max-length="30"
@@ -21,6 +20,12 @@
 import Vue from "vue";
 import { group, mode } from "~/store";
 export default Vue.extend({
+  props: {
+    clean: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       loading: false,
@@ -33,6 +38,17 @@ export default Vue.extend({
   computed: {
     $modeClass() {
       return mode.$mode;
+    },
+  },
+  watch: {
+    clean(_oldValue, newValue) {
+      if (newValue === false) {
+        setTimeout(() => {
+          this.form.title = "";
+
+          document.forms.namedItem("create-group-form")?.reset();
+        }, 500);
+      }
     },
   },
   methods: {
@@ -82,6 +98,7 @@ export default Vue.extend({
     margin-bottom: 0;
   }
   form {
+    padding-top: 2rem;
     width: 60%;
     display: grid;
     grid-template-columns: 1fr;
