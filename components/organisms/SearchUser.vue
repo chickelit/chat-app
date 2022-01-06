@@ -13,9 +13,6 @@
     <div v-show="loading" class="loading-wrapper">
       <Loading :active="loading" />
     </div>
-    <div v-if="resultUser.id" class="result">
-      <SearchUserCard :user="resultUser" />
-    </div>
   </div>
 </template>
 
@@ -34,7 +31,8 @@ export default Vue.extend({
     return {
       loading: false,
       text: "Pesquisar",
-      resultUser: {} as User,
+      result: [] as User[],
+      page: 1,
       form: {
         username: "",
       },
@@ -53,7 +51,7 @@ export default Vue.extend({
 
           document.forms.namedItem("search-user-form")?.reset();
 
-          this.resultUser = {} as User;
+          this.result = [] as User[];
         }, 500);
       }
     },
@@ -64,19 +62,23 @@ export default Vue.extend({
         this.loading = true;
         this.text = "Pesquisando...";
 
-        await userSearch.show(this.form);
+        await userSearch.show({
+          username: this.form.username,
+          page: this.page,
+          perPage: 20,
+        });
 
         this.loading = false;
         this.text = "Pesquisar";
 
-        const resultUser = userSearch.$single;
+        const result = userSearch.$all;
 
-        this.resultUser = resultUser;
+        this.result = result;
       } catch (e) {
         this.loading = false;
         this.text = "Pesquisar";
 
-        this.resultUser = {} as User;
+        this.result = [] as User[];
 
         Vue.notify({
           type: "error",
