@@ -54,6 +54,7 @@ export default Vue.extend({
   position: fixed;
   z-index: 5000;
   left: 0;
+  top: 0;
   width: 100%;
   height: 100vh;
   /* hiding the menu */

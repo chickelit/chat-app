@@ -1,78 +1,31 @@
 <template>
   <div class="profile">
-    <FullScreenView class="full-screen-view">
-      <template #header-slot>
-        <div class="header-slot">
-          <BackButton
-            label="Voltar"
-            :new-view="$previousView"
-            :navigation-active-class="$previousNavigationActiveClass"
-          />
-          <h1 class="title">Meu perfil</h1>
-        </div>
-      </template>
-      <template #main-slot>
-        <clientOnly>
-          <notifications
-            :max="1"
-            group="global"
-            classes="custom-notification"
-            position="bottom right"
-            style="bottom: 0.5rem; right: 0.5rem"
-          />
-        </clientOnly>
-        <div class="main">
-          <label id="avatar-input-label" for="avatar-input">
-            <div class="avatar">
-              <div v-if="$user.avatar">
-                <img :src="$user.avatar.url" alt="Meu avatar" />
-              </div>
-              <div v-else>
-                <div class="avatar-skeleton skeleton"></div>
-              </div>
-            </div>
-          </label>
-          <input
-            id="avatar-input"
-            type="file"
-            style="display: none"
-            accept=".jpg,.jpeg,.png"
-            @input="updateAvatar"
-          />
-          <form id="profile-form" @submit.prevent="updateProfile">
-            <BaseInput placeholder="E-mail" disabled :value="$user.email" />
-            <BaseInput
-              v-model="user.name"
-              class="name-input"
-              placeholder="Nome"
-            />
-            <BaseInput
-              v-model="user.username"
-              class="username-input"
-              placeholder="Nome do usuário"
-              :max-length="32"
-            />
-            <BaseButton type="submit" text="Salvar" />
-            <NuxtLink to="/forgot-password" class="form-link"
-              >Esqueci minha senha</NuxtLink
-            >
-          </form>
-          <div v-show="loading" class="loading-wrapper">
-            <Loading :active="loading" />
-          </div>
-        </div>
-      </template>
-    </FullScreenView>
+    <Wrapper class="wrapper">
+      <label class="avatar-input-label" for="avatar-input">
+        <Avatar :src="$src" />
+      </label>
+      <input id="avatar-input" type="file" accept=".jpg,.jpeg,.png" />
+      <form @submit.prevent="updateProfile">
+        <BaseInput :value="$user.email" disabled />
+        <BaseInput v-model="user.name" />
+        <BaseInput v-model="user.username" :max-length="32" />
+        <BaseButton type="submit" :text="text" />
+      </form>
+      <div v-show="loading" class="loading-wrapper">
+        <Loading :active="loading" />
+      </div>
+    </Wrapper>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import { error, profile, view, avatar } from "~/store";
+import { error, profile, avatar } from "~/store";
 export default Vue.extend({
   data() {
     return {
       loading: false,
+      text: "Salvar",
       user: {
         name: profile.$single.name,
         username: profile.$single.username,
@@ -80,20 +33,19 @@ export default Vue.extend({
     };
   },
   computed: {
-    $previousView() {
-      return view.$previousView;
-    },
-    $previousNavigationActiveClass() {
-      return view.$previousNavigationActiveClass;
-    },
     $user() {
       return profile.$single;
+    },
+    $src() {
+      return profile.$single.avatar ? profile.$single.avatar.url : "";
     },
   },
   methods: {
     async updateProfile(event: any) {
       try {
         this.loading = true;
+        this.text = "Salvando...";
+
         if (this.user.username === this.$user.username) {
           if (this.user.name === this.$user.name) {
             this.loading = false;
@@ -104,13 +56,12 @@ export default Vue.extend({
           await profile.update(this.user);
         }
 
+        this.text = "Salvar";
         this.loading = false;
-
-        this.$notify({
-          type: "success",
-          text: "Perfil atualizado...",
-        });
       } catch (e) {
+        this.loading = false;
+        this.text = "Salvar";
+
         const err = error.$error;
 
         if (err.field === "username") {
@@ -129,20 +80,6 @@ export default Vue.extend({
             this.user.username = this.$user.username;
             event.target.reset();
           }, 1000);
-          if (err.rule === "unique") {
-            this.$notify({
-              type: "error",
-              title: "Ops...",
-              text: "O nome de usuário já está em uso...",
-            });
-          }
-          if (err.rule === "alpha") {
-            this.$notify({
-              type: "error",
-              title: "Ops...",
-              text: "O nome de usuário é inválido...",
-            });
-          }
         }
       }
     },
@@ -154,17 +91,8 @@ export default Vue.extend({
         await avatar.update({ file });
 
         this.loading = false;
-
-        this.$notify({
-          type: "success",
-          text: "Avatar atualizado...",
-        });
       } catch (e) {
-        this.$notify({
-          type: "error",
-          title: "Ops...",
-          text: "Houve um erro ao tentar atualizar o avatar...",
-        });
+        this.loading = false;
       }
     },
   },
@@ -172,92 +100,40 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.header-slot {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: 1fr;
-  align-items: center;
-  gap: 1rem;
-}
-.loading-wrapper {
-  height: 5rem;
-  width: 5rem;
-  display: grid;
-  justify-items: center;
-  align-items: center;
-}
 .profile {
-  height: 100%;
-}
-.bounce {
-  outline: 0;
-  border-color: color("danger");
-  animation-name: bounce;
-  animation-duration: 0.5s;
-  animation-delay: 0.25s;
-  color: color("danger") !important;
-}
-.title {
-  font-size: 1.5rem;
-  width: max-content;
-  font-family: "Tahoma";
-  color: color("light", "darkest");
-  font-weight: 500;
-  cursor: pointer;
-}
-.form-link {
-  cursor: pointer;
-  color: color("light", "darkest");
-  text-decoration: underline;
-  transition: all 0.15s linear;
-  &:hover {
-    color: color("light", "darker");
-  }
-}
-.main {
-  padding: 1rem;
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto auto auto 1fr;
-  justify-items: center;
-  gap: 1.5rem;
-  background: color("dark");
-  form {
-    width: 100%;
+  .wrapper {
     display: grid;
     grid-template-columns: 1fr;
     grid-auto-rows: max-content;
-    gap: 0.75rem;
     justify-items: center;
-    input {
-      width: 100%;
-      max-width: 20rem;
+    gap: 2rem;
+    .loading-wrapper {
+      width: 5rem;
+      height: 5rem;
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      align-self: center;
     }
-  }
-  .avatar {
-    border: 1px solid color("dark", "darker");
-    cursor: pointer;
-    width: 10rem;
-    height: 10rem;
-    border-radius: 100%;
-    img {
-      object-fit: cover;
-      width: 10rem;
-      height: 10rem;
-      border-radius: 100%;
+    .avatar-input-label {
+      cursor: pointer;
+      width: 45%;
+      max-width: 12rem;
     }
-  }
-  .avatar-skeleton {
-    width: 10rem;
-    height: 10rem;
-    border-radius: 100%;
-  }
-  .username {
-    height: 1.5rem;
-    width: 80%;
-    max-width: 20rem;
-    border-radius: 0.3125rem;
+    input[type="file"] {
+      display: none;
+    }
+    form {
+      width: 65%;
+      max-width: 22.5rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-auto-rows: auto;
+      gap: 0.75rem;
+      button[type="submit"] {
+        width: 100%;
+      }
+    }
   }
 }
 </style>

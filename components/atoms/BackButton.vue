@@ -1,40 +1,22 @@
 <template>
-  <button
-    :aria-label="label"
-    class="back-button"
-    @click="
-      setView({
-        newView,
-        navigationActiveClass,
-      })
-    "
-  >
+  <button :class="['back-button', $modeClass]" @click="back">
     <img src="@/assets/img/arrow-left.svg" alt="Arrow left" />
   </button>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import { setView } from "@/utils";
+import { mode } from "~/store";
 export default Vue.extend({
-  props: {
-    label: {
-      type: String,
-      required: true,
-    },
-    newView: {
-      type: String,
-      required: true,
-    },
-    navigationActiveClass: {
-      type: String,
-      required: true,
+  computed: {
+    $modeClass() {
+      return mode.$mode;
     },
   },
-  data() {
-    return {
-      setView,
-    };
+  methods: {
+    back() {
+      this.$router.back();
+    },
   },
 });
 </script>
@@ -44,14 +26,28 @@ export default Vue.extend({
   cursor: pointer;
   display: grid;
   align-items: center;
-  &:hover {
+  img {
+    transition: all 0.15s linear;
+  }
+  &.dark {
+    &:hover {
+      img {
+        filter: invert(0.75);
+      }
+    }
     img {
-      filter: invert(0.75);
+      filter: invert(0.65);
     }
   }
-  img {
-    filter: invert(0.65);
-    transition: all 0.15s linear;
+  &.light {
+    &:hover {
+      img {
+        filter: invert(0.35);
+      }
+    }
+    img {
+      filter: invert(0.25);
+    }
   }
 }
 </style>
