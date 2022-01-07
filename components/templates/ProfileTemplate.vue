@@ -1,18 +1,10 @@
 <template>
-  <div class="profile-template">
+  <div :class="['profile-template', $modeClass]">
     <CustomHeader class="header">
       <Wrapper class="wrapper">
         <BackButton />
         <div class="title">Meu perfil</div>
-        <HamburgerButton
-          class="hamburger-button"
-          @click="toggleHamburgerMenu"
-        />
       </Wrapper>
-      <HamburgerMenu
-        :active="hamburgerMenuActive"
-        @leaveHamburgerMenu="toggleHamburgerMenu"
-      />
     </CustomHeader>
     <Profile />
   </div>
@@ -20,15 +12,11 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { mode } from "~/store";
 export default Vue.extend({
-  data() {
-    return {
-      hamburgerMenuActive: false,
-    };
-  },
-  methods: {
-    toggleHamburgerMenu() {
-      this.hamburgerMenuActive = !this.hamburgerMenuActive;
+  computed: {
+    $modeClass() {
+      return mode.$mode;
     },
   },
 });
@@ -36,6 +24,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .profile-template {
+  height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: max-content 1fr;
@@ -58,11 +47,22 @@ export default Vue.extend({
         width: 100%;
       }
       .title {
-        color: color("dark", "lighter");
         font-size: 1.5rem;
         line-height: 1.5rem;
         font-weight: 500;
       }
+    }
+  }
+  &.dark {
+    background: color("dark", "darker");
+    .title {
+      color: color("light", "darkest");
+    }
+  }
+  &.light {
+    background: color("light", "lightest");
+    .title {
+      color: color("dark", "lighter");
     }
   }
 }

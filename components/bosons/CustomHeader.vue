@@ -1,7 +1,7 @@
 <template>
-  <div :class="['custom-header', $modeClass]">
+  <header :class="['custom-header', $modeClass]">
     <slot />
-  </div>
+  </header>
 </template>
 
 <script lang="ts">

@@ -1,17 +1,17 @@
 <template>
-  <div class="groups-list" @scroll="checkScroll">
-    <transition-group v-if="populated" tag="div" class="list" name="group-list">
+  <div class="group-list" @scroll="checkScroll">
+    <transition-group
+      v-if="$populated"
+      tag="div"
+      class="list"
+      name="group-list"
+    >
       <div
-        v-for="(group, index) of groups"
+        v-for="(group, index) of $all"
         :key="index"
-        :class="{ last: index === groups.length - 1 && groups.length > 1 }"
+        :class="{ last: index === $all.length - 1 && $all.length > 1 }"
       >
-        <GroupCard
-          v-if="group"
-          :index="index"
-          :group="group"
-          @click="setView({ newView: 'GroupChat' })"
-        />
+        <GroupCard v-if="group" :index="index" :group="group" />
       </div>
     </transition-group>
     <div v-else class="list">
@@ -19,7 +19,7 @@
         <GroupCard :index="index" />
       </div>
     </div>
-    <div v-show="groups.length < $meta.total" class="loading-wrapper">
+    <div v-show="$all.length < $meta.total" class="loading-wrapper">
       <Loading :active="loading" />
     </div>
   </div>
@@ -36,7 +36,6 @@ export default Vue.extend({
       groups: Array(20).fill(false),
       page: 1,
       loading: false,
-      populated: false,
     };
   },
   computed: {
@@ -46,21 +45,17 @@ export default Vue.extend({
     $meta() {
       return group.$meta;
     },
+    $all() {
+      return group.$all;
+    },
+    $populated() {
+      return group.$wasLoaded;
+    },
   },
   async mounted() {
-    if (group.$wasLoaded) {
-      const groups = group.$all;
-
-      this.groups = groups;
-      this.populated = true;
-    } else {
+    if (!group.$wasLoaded) {
       try {
         await group.index({ page: this.page, perPage: 20 });
-
-        const groups = group.$all;
-
-        this.groups = groups;
-        this.populated = true;
       } catch (e) {
         this.$notify({
           type: "error",
@@ -84,9 +79,6 @@ export default Vue.extend({
 
           await group.index({ page: this.page, perPage: 20 });
 
-          const groups = group.$all;
-
-          this.groups = groups;
           this.loading = false;
         }
       }
@@ -112,7 +104,7 @@ export default Vue.extend({
   align-items: center;
   justify-self: center;
 }
-.groups-list {
+.group-list {
   display: grid;
   .list {
     display: grid;

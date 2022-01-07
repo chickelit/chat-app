@@ -62,6 +62,11 @@ export default class GroupStore extends VuexModule {
   }
 
   @Mutation
+  private UPDATE_GROUPS_REVERSE(groups: Group[]) {
+    this.groups.unshift(...groups);
+  }
+
+  @Mutation
   private UPDATE_GROUP(group: Group) {
     this.group = group;
   }
@@ -89,7 +94,9 @@ export default class GroupStore extends VuexModule {
 
   @Action({ rawError: true })
   public async create(payload: CreatePayload) {
-    await $axios.$post("/groups", payload);
+    const group = await $axios.$post("/groups", payload);
+
+    this.context.commit("UPDATE_GROUPS_REVERSE", [group]);
   }
 
   @Action({ rawError: true })

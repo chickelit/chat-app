@@ -4,11 +4,15 @@
       <label class="avatar-input-label" for="avatar-input">
         <Avatar :src="$src" />
       </label>
-      <input id="avatar-input" type="file" accept=".jpg,.jpeg,.png" />
-      <form @submit.prevent="updateProfile">
+      <input id="avatar-input" type="file" accept=".jpg,.jpeg,.png" @input="updateAvatar" />
+      <form id="profile-form" @submit.prevent="updateProfile">
         <BaseInput :value="$user.email" disabled />
         <BaseInput v-model="user.name" />
-        <BaseInput v-model="user.username" :max-length="32" />
+        <BaseInput
+          v-model="user.username"
+          class="username-input"
+          :max-length="32"
+        />
         <BaseButton type="submit" :text="text" />
       </form>
       <div v-show="loading" class="loading-wrapper">
@@ -49,7 +53,7 @@ export default Vue.extend({
         if (this.user.username === this.$user.username) {
           if (this.user.name === this.$user.name) {
             this.loading = false;
-            return;
+            this.text = "Salvar";
           }
           await profile.update({ name: this.user.name });
         } else {
@@ -134,6 +138,14 @@ export default Vue.extend({
         width: 100%;
       }
     }
+  }
+  .bounce {
+    outline: 0;
+    border-color: color("danger", "lighter");
+    animation-name: bounce;
+    animation-duration: 0.5s;
+    animation-delay: 0.25s;
+    color: color("danger", "lighter") !important;
   }
 }
 </style>

@@ -4,7 +4,9 @@
   >
     <Wrapper>
       <FriendList class="friend-list" />
-      <AddButton class="add-button" @click="openForm" />
+      <NuxtLink to="/search" @click.native.prevent>
+        <AddButton class="add-button" @click="openForm" />
+      </NuxtLink>
       <div
         :class="['background-cover', { active: show }]"
         @click="closeForm"
