@@ -32,6 +32,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/typescript
     "@nuxt/typescript-build",
+    "@nuxtjs/fontawesome",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -39,7 +40,23 @@ export default {
     "@nuxtjs/style-resources",
     "@nuxtjs/axios",
     "cookie-universal-nuxt",
+    [
+      "nuxt-fontawesome",
+      {
+        component: "fa",
+        imports: [
+          {
+            set: "@fortawesome/free-solid-svg-icons",
+            icons: ["faBars", "faTimes", "faChevronLeft"],
+          },
+        ],
+      },
+    ],
   ],
+
+  fontawesome: {
+    component: 'fa'
+  },
 
   axios: {
     baseUrl: "http://127.0.0.1:3333",

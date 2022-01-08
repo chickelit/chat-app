@@ -23,8 +23,7 @@
           <NuxtLink to="/friendships/requests" @click.native.prevent>Pendentes</NuxtLink>
         </li>
       </ul>
-      <HamburgerButton @click="toggleHamburgerMenu" />
-      
+      <HamburgerButton class="hamburger-button" @click="toggleHamburgerMenu" /> 
     </Wrapper>
     <HamburgerMenu
       :active="hamburgerMenuActive"
@@ -59,6 +58,9 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.hamburger-button {
+  width: 3rem;
+}
 .navigation {
   background: color("dark", "darkest");
   display: grid;
@@ -67,10 +69,9 @@ export default Vue.extend({
   z-index: 1;
   .wrapper {
     display: grid;
-    grid-template-columns: 3rem auto;
+    grid-template-columns: 3rem 3rem;
     align-items: center;
-    justify-items: space-between;
-    gap: 3rem;
+    justify-content: space-between;
     .profile {
       width: 100%;
       padding: 0.5rem 0;

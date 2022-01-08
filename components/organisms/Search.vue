@@ -48,7 +48,6 @@ export default Vue.extend({
       loading: false,
       text: "Pesquisar",
       result: [] as User[],
-      page: 1,
       form: {
         username: "",
       },
@@ -83,7 +82,7 @@ export default Vue.extend({
 
         await userSearch.show({
           username: this.form.username,
-          page: this.page,
+          page: 1,
           perPage: 20,
         });
 

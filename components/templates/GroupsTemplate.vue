@@ -23,7 +23,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.search-template {
+.groups-template {
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr;

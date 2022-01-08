@@ -5,16 +5,16 @@
       { active, dark: $mode === 'dark', light: $mode === 'light' },
     ]"
   >
-    <div class="leave" @click="$emit('leaveHamburgerMenu')">
-      <div class="layer"></div>
-    </div>
+    <CancelButton class="cancel" @click="$emit('leaveHamburgerMenu')" />
     <nav class="navigation">
       <ul class="navigation-items">
         <li class="navigation-item">
           <NuxtLink to="/profile" @click.native.prevent>Meu perfil</NuxtLink>
         </li>
         <li class="navigation-item">
-          <NuxtLink to="/conversations" @click.native.prevent>Conversas</NuxtLink>
+          <NuxtLink to="/conversations" @click.native.prevent
+            >Conversas</NuxtLink
+          >
         </li>
         <li class="navigation-item">
           <NuxtLink to="/groups" @click.native.prevent>Grupos</NuxtLink>
@@ -23,7 +23,9 @@
           <NuxtLink to="/friendships" @click.native.prevent>Amigos</NuxtLink>
         </li>
         <li class="navigation-item">
-          <NuxtLink to="/friendships/requests" @click.native.prevent>Pendentes</NuxtLink>
+          <NuxtLink to="/friendships/requests" @click.native.prevent
+            >Pendentes</NuxtLink
+          >
         </li>
       </ul>
     </nav>
@@ -102,36 +104,13 @@ export default Vue.extend({
       transform: translateX(0);
     }
   }
-  .leave {
+  .cancel {
     cursor: pointer;
     position: absolute;
     top: 0;
-    right: 0;
-    width: 4rem;
+    right: 0.75rem;
+    width: 3rem;
     aspect-ratio: 1 / 1;
-    display: grid;
-    align-items: center;
-    justify-items: center;
-    transition: all 0.15s linear;
-    .layer {
-      position: relative;
-      width: 60%;
-      height: 0.3125rem;
-      background: color("light", "darker");
-      border-radius: 0.15625rem;
-      transition: all 0.15s linear;
-      transform: rotate(45deg);
-      &:after {
-        content: "";
-        position: absolute;
-        height: 0.3125rem;
-        width: 100%;
-        background: color("light", "darker");
-        border-radius: 0.15625rem;
-        transition: all 0.15s linear;
-        transform: rotate(90deg);
-      }
-    }
   }
   &.light {
     background: color("light", "lightest");
@@ -146,22 +125,6 @@ export default Vue.extend({
             &.nuxt-link-exact-active {
               color: color("primary");
             }
-          }
-        }
-      }
-    }
-    .leave {
-      .layer {
-        background: color("dark");
-        &:after {
-          background: color("dark");
-        }
-      }
-      &:hover {
-        .layer {
-          background: color("dark", "lightest");
-          &:after {
-            background: color("dark", "lightest");
           }
         }
       }

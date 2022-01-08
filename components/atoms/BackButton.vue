@@ -1,16 +1,20 @@
 <template>
-  <button :class="['back-button', $modeClass]" @click="back">
-    <img src="@/assets/svg/arrow-left.svg" alt="Arrow left" />
-  </button>
+  <div :class="['back-button', $modeClass]" @click="back">
+    <fa class="icon" :icon="$fas.faChevronLeft"></fa>
+  </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 import { mode } from "~/store";
 export default Vue.extend({
   computed: {
     $modeClass() {
       return mode.$mode;
+    },
+    $fas() {
+      return fas;
     },
   },
   methods: {
@@ -24,29 +28,34 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .back-button {
   cursor: pointer;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   display: grid;
   align-items: center;
-  img {
+  justify-items: center;
+  .icon {
+    width: 80%;
+    height: 80%;
     transition: all 0.15s linear;
   }
   &.dark {
-    &:hover {
-      img {
-        filter: invert(0.75);
-      }
+    .icon {
+      color: color("light", "darkest");
     }
-    img {
-      filter: invert(0.65);
+    &:hover {
+      .icon {
+        color: color("light");
+      }
     }
   }
   &.light {
-    &:hover {
-      img {
-        filter: invert(0.35);
-      }
+    .icon {
+      color: color("dark", "darker");
     }
-    img {
-      filter: invert(0.25);
+    &:hover {
+      .icon {
+        color: color("dark", "lighter");
+      }
     }
   }
 }

@@ -12,7 +12,7 @@
         @click="closeForm"
       ></div>
       <div :class="['form-wrapper', { active: show }]">
-        <SearchUser class="search-user" :clean="clean" @completed="closeForm" />
+        <Search class="search-user" :clean="clean" @completed="closeForm" />
       </div>
     </Wrapper>
   </div>

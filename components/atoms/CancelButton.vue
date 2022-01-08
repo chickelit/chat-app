@@ -1,6 +1,6 @@
 <template>
-  <div :class="['hamburger-button', $modeClass]" @click="$emit('click')">
-    <fa class="icon" :icon="$fas.faBars"></fa>
+  <div :class="['cancel-button', $modeClass]" @click="$emit('click')">
+    <fa class="icon" :icon="$fas.faTimes"></fa>
   </div>
 </template>
 
@@ -21,16 +21,13 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.hamburger-button {
+.cancel-button {
   cursor: pointer;
   width: 100%;
   aspect-ratio: 1 / 1;
-  display: none;
+  display: grid;
   align-items: center;
   justify-items: center;
-  @include screen("small") {
-    display: grid;
-  }
   .icon {
     width: 80%;
     height: 80%;
