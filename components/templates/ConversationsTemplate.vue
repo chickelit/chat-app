@@ -23,14 +23,16 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.conversations-template {
+.search-template {
   height: 100vh;
-  background: color("dark");
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
+  &.dark {
+    background: color("dark", "darker");
+  }
   &.light {
-    background: color("light");
+    background: color("light", "lightest");
   }
 }
 </style>

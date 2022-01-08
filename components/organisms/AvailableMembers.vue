@@ -20,7 +20,7 @@
         </div>
         <button class="continue" @click.prevent="addMembers">
           <img
-            src="@/assets/img/arrow-left.svg"
+            src="@/assets/svg/arrow-left.svg"
             alt="Seta apontada para a direita"
           />
         </button>

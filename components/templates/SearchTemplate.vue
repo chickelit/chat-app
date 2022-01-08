@@ -1,12 +1,12 @@
 <template>
   <div
     :class="[
-      'groups-template',
+      'search-template',
       { dark: $mode === 'dark', light: $mode === 'light' },
     ]"
   >
     <Navigation />
-    <Groups />
+    <Search />
   </div>
 </template>
 

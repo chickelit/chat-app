@@ -23,16 +23,16 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.friendships-template {
+.search-template {
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
   &.dark {
-    background: color("dark");
+    background: color("dark", "darker");
   }
   &.light {
-    background: color("light");
+    background: color("light", "lightest");
   }
 }
 </style>

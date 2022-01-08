@@ -6,6 +6,8 @@ interface User {
   avatar?: {
     url: string;
   };
+  friendship?: boolean;
+  friendshipRequest?: boolean;
 }
 
 export default User;

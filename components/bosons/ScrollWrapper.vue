@@ -7,13 +7,19 @@
 </template>
 
 <style lang="scss" scoped>
+::-webkit-scrollbar {
+  width: 0px;
+}
 .scroll-wrapper {
   position: relative;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
   display: grid;
   grid-template-columns: 1fr;
-  height: 100%;
-  ::-webkit-scrollbar {
-    width: 0px;
+  .content {
+    position: absolute;
+    inset: 0;
   }
 }
 </style>

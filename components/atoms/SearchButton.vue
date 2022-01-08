@@ -1,13 +1,23 @@
 <template>
-  <div :class="['add-button', $modeClass]" @click="$emit('click')">
-    <img src="@/assets/svg/add.svg" alt="Sinal de mais" />
-  </div>
+  <button
+    :class="['search-button', $modeClass]"
+    :type="type"
+    @click="$emit('click')"
+  >
+    <img src="@/assets/svg/magnifying-glass.svg" alt="Lupa" />
+  </button>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { mode } from "~/store";
 export default Vue.extend({
+  props: {
+    type: {
+      type: String,
+      required: true,
+    },
+  },
   computed: {
     $modeClass() {
       return mode.$mode;
@@ -17,10 +27,10 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.add-button {
+.search-button {
   cursor: pointer;
-  width: 3rem;
-  height: 3rem;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   border-radius: 100%;
   background: color("primary");
   display: grid;

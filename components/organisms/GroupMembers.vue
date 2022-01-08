@@ -21,7 +21,7 @@
               })
             "
           >
-            <img src="@/assets/img/add.svg" alt="Sinal de adição" />
+            <img src="@/assets/svg/add.svg" alt="Sinal de adição" />
           </button>
           <ScrollWrapper>
             <MemberList />

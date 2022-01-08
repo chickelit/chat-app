@@ -1,9 +1,6 @@
 <template>
   <div
-    :class="[
-      'friendship-request-card',
-      { dark: $mode === 'dark', light: $mode === 'light' },
-    ]"
+    :class="['friendship-request-card', $modeClass]"
     @mouseleave="disableDropdown"
   >
     <div v-if="friendshipRequest" class="wrapper">
@@ -29,7 +26,7 @@
       <div class="container">
         <Avatar />
         <div class="username">
-          <div class="skeleton skeleton-text"></div>
+          <div :class="['skeleton', 'skeleton-text', $modeClass]"></div>
         </div>
       </div>
     </div>
@@ -59,7 +56,7 @@ export default Vue.extend({
     };
   },
   computed: {
-    $mode() {
+    $modeClass() {
       return mode.$mode;
     },
     $src() {

@@ -1,6 +1,6 @@
 <template>
   <button :class="['back-button', $modeClass]" @click="back">
-    <img src="@/assets/img/arrow-left.svg" alt="Arrow left" />
+    <img src="@/assets/svg/arrow-left.svg" alt="Arrow left" />
   </button>
 </template>
 

@@ -32,14 +32,14 @@
       <form>
         <AutoExpandingInput @keydown="handleKeydown($event)" />
         <button aria-label="Enviar mensagem" type="submit" class="form-button">
-          <img src="@/assets/img/send.svg" alt="Paper plane" />
+          <img src="@/assets/svg/send.svg" alt="Paper plane" />
         </button>
         <label
           aria-label="Fazer upload de mídia"
           for="file-upload"
           :class="['file-upload', 'form-button']"
         >
-          <img src="@/assets/img/arrow-up.svg" alt="Arrow up" />
+          <img src="@/assets/svg/arrow-up.svg" alt="Arrow up" />
         </label>
         <input
           id="file-upload"

@@ -27,6 +27,13 @@ export default class UserSearch extends VuexModule {
   }
 
   @Mutation
+  private DELETE_USER(userId: User["id"]) {
+    const index = this.users.findIndex((user) => user.id === userId);
+
+    this.users.splice(index, 1);
+  }
+
+  @Mutation
   private UPDATE_META(meta: Meta) {
     this.meta = meta;
   }
@@ -39,5 +46,10 @@ export default class UserSearch extends VuexModule {
 
     this.context.commit("UPDATE_USERS", data);
     this.context.commit("UPDATE_META", meta);
+  }
+
+  @Action({ rawError: true })
+  public deleteUser(userId: User["id"]) {
+    this.context.commit("DELETE_USER", userId);
   }
 }

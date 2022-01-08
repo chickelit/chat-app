@@ -1,6 +1,6 @@
 <template>
   <button :class="['scroll-down-button', { active }]" @click="$emit('click')">
-    <img src="@/assets/img/scroll-down.svg" alt="Setas apontadas para baixo" />
+    <img src="@/assets/svg/scroll-down.svg" alt="Setas apontadas para baixo" />
   </button>
 </template>
 
