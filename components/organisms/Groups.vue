@@ -128,5 +128,12 @@ export default Vue.extend({
   position: absolute;
   bottom: 0.75rem;
   right: 0.75rem;
+  width: 3rem;
+  background: color("primary");
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.15s linear;
+  &:hover {
+    background: color("primary", "lighter");
+  }
 }
 </style>

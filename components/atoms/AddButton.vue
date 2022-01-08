@@ -1,16 +1,20 @@
 <template>
   <div :class="['add-button', $modeClass]" @click="$emit('click')">
-    <img src="@/assets/svg/add.svg" alt="Sinal de mais" />
+    <fa class="icon" :icon="$fas.faPlus"></fa>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 import { mode } from "~/store";
 export default Vue.extend({
   computed: {
     $modeClass() {
       return mode.$mode;
+    },
+    $fas() {
+      return fas;
     },
   },
 });
@@ -18,31 +22,38 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .add-button {
+  max-width: 3rem;
   cursor: pointer;
-  width: 3rem;
-  height: 3rem;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   border-radius: 100%;
-  background: color("primary");
   display: grid;
   align-items: center;
   justify-items: center;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
   transition: all 0.15s linear;
-  img {
+  .icon {
     width: 60%;
+    height: 60%;
     transition: all 0.15s linear;
   }
-  &:hover {
-    background: color("primary", "lighter");
-  }
   &.dark {
-    img {
-      filter: invert(0.65);
+    .icon {
+      color: color("light", "darkest");
+    }
+    &:hover {
+      .icon {
+        color: color("light");
+      }
     }
   }
   &.light {
-    img {
-      filter: invert(0.9);
+    .icon {
+      color: color("dark", "darker");
+    }
+    &:hover {
+      .icon {
+        color: color("dark", "lighter");
+      }
     }
   }
 }

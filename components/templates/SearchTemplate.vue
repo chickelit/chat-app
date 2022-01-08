@@ -8,7 +8,7 @@
     <CustomHeader class="header">
       <Wrapper class="wrapper">
         <BackButton class="back-button" />
-        <div class="title">Meu perfil</div>
+        <div class="title">Procurar amigos</div>
       </Wrapper>
     </CustomHeader>
     <Search />

@@ -9,7 +9,7 @@
           type="search"
           placeholder="Nome de usuário..."
         />
-        <SearchButton type="submit" />
+        <SearchButton class="search-button" type="submit" />
       </form>
       <div v-if="loading" class="loading-wrapper">
         <Loading :active="loading" />
@@ -121,6 +121,14 @@ export default Vue.extend({
         }
       }
     }
+  }
+}
+.search-button {
+  background: color("primary");
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.15s linear;
+  &:hover {
+    background: color("primary", "lighter");
   }
 }
 .loading-wrapper {
