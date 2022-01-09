@@ -2,12 +2,16 @@
   <div class="conversation-message-list">
     <ScrollWrapper>
       <MessageList
+        id="conversation-message-list"
         @fullScrolled="scrollDownButtonActive = false"
         @notFullScrolled="scrollDownButtonActive = true"
       >
         <Message
-          v-for="message in messages"
+          v-for="(message, index) in messages"
           :key="message.id"
+          :class="{
+            'conversation-latest-message': index === messages.length - 1,
+          }"
           :message="message"
         />
       </MessageList>
@@ -37,7 +41,7 @@ export default Vue.extend({
       return mode.$mode;
     },
   },
-  async beforeMount() {
+  async created() {
     try {
       await conversation.show({ id: +this.$route.params.id });
       await conversationMessage.index({
@@ -51,12 +55,10 @@ export default Vue.extend({
   },
   methods: {
     scrollDown() {
-      if (this.messages.length > 0) {
-        const messageList = document.querySelector(".message-list")!;
-        const latestMessage = messageList.lastChild as Element;
+      const messageList = document.querySelector("#conversation-message-list");
+      const latestMessage = messageList?.lastChild as Element;
 
-        latestMessage?.scrollIntoView({ behavior: "smooth", block: "end" });
-      }
+      latestMessage.scrollIntoView({ behavior: "smooth", block: "end" });
     },
   },
 });

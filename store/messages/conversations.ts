@@ -8,7 +8,16 @@ interface IndexPayload {
   perPage: number;
 }
 
-@Module({ name: "messages/conversations", stateFactory: true, namespaced: true })
+interface CreatePayload {
+  receiverId: number;
+  content: string;
+}
+
+@Module({
+  name: "messages/conversations",
+  stateFactory: true,
+  namespaced: true,
+})
 export default class ConversationMessageStore extends VuexModule {
   private messages = [] as Message[];
   private meta = {} as Meta;
@@ -44,6 +53,11 @@ export default class ConversationMessageStore extends VuexModule {
 
     this.context.commit("UPDATE_MESSAGES", response.data);
     this.context.commit("UPDATE_META", response.meta);
+  }
+
+  @Action({ rawError: true })
+  public async create(payload: CreatePayload) {
+    await $axios.$post("/messages/conversation/text", payload);
   }
 
   @Action({ rawError: true })

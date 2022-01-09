@@ -2,12 +2,14 @@
   <div :class="['conversation-chat-template', $modeClass]">
     <ConversationChatHeader :user="conversation.user" />
     <ConversationMessageList />
+    <ConversationMessageEngine />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { Conversation, Message } from "~/models";
+import socket from "~/plugins/socket.client";
 import { conversation, conversationMessage, mode } from "~/store";
 export default Vue.extend({
   data() {
@@ -40,17 +42,15 @@ export default Vue.extend({
         perPage: 200,
       });
 
+      socket.emit("create", `conversation-${conversation.$single.id}`);
+
+      socket.on("newMessage", (message: Message) => {
+        conversationMessage.addMessages([message]);
+      });
+
       this.messages = conversationMessage.$all;
       this.conversation = conversation.$single;
     } catch (error) {}
-  },
-  methods: {
-    scrollDown() {
-      const messageList = document.querySelector(".message-list")!;
-      const latestMessage = messageList.lastChild as Element;
-
-      latestMessage?.scrollIntoView({ behavior: "smooth", block: "end" });
-    },
   },
 });
 </script>
