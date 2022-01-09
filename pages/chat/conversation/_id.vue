@@ -1,5 +1,5 @@
 <template>
-  <SearchTemplate />
+  <ConversationChatTemplate />
 </template>
 
 <script lang="ts">

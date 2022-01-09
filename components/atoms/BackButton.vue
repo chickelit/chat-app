@@ -27,6 +27,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .back-button {
+  max-width: 2.25rem;
   cursor: pointer;
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -50,7 +51,7 @@ export default Vue.extend({
   }
   &.light {
     .icon {
-      color: color("dark", "darker");
+      color: color("dark", "lightest");
     }
     &:hover {
       .icon {

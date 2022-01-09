@@ -1,26 +1,59 @@
 <template>
-  <div :class="['message', { 'my-message': mine }]">
+  <div :class="['message', $modeClass, { mine: $mine }]">
     <div class="container">
-      <div class="username">
-        <div v-if="!mine" class="skeleton skeleton-text"></div>
-        <div v-else>Você</div>
+      <div class="container__complementary">
+        <div class="username">
+          <div v-if="!$mine">
+            {{ message.owner.username }}
+          </div>
+          <div v-else>Você</div>
+        </div>
+        <div class="sent-in">
+          {{ $sentIn }}
+        </div>
       </div>
-      <div class="sent-in">03:33</div>
-    </div>
-    <div class="content">
-      <div class="skeleton skeleton-text"></div>
-      <div class="skeleton skeleton-text"></div>
+      <div class="content">
+        {{ message.content }}
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+/* eslint-disable vue/require-default-prop */
+// eslint-disable-next-line import/named
+import Vue, { PropOptions } from "vue";
+import { Message } from "@/models";
+import { mode, profile } from "~/store";
 export default Vue.extend({
   props: {
-    mine: {
-      type: Boolean,
-      default: true,
+    message: {
+      type: Object,
+      required: false,
+    } as PropOptions<Message>,
+  },
+  computed: {
+    $user() {
+      return profile.$single;
+    },
+    $sentIn() {
+      const message = this.message as Message;
+
+      const time = message.createdAt.split(" ")[1];
+
+      return `${time.split(":")[0]}:${time.split(":")[1]}`;
+    },
+    $mine() {
+      if (this.message) {
+        const message = this.message as Message;
+
+        return message.userId === profile.$single.id;
+      }
+
+      return true;
+    },
+    $modeClass() {
+      return mode.$mode;
     },
   },
 });
@@ -31,13 +64,15 @@ export default Vue.extend({
   user-select: all;
   height: max-content;
   width: 60%;
-  background: color("dark", "lighter");
+  max-width: 32rem;
   padding: 0.5rem;
   border-radius: 0.3125rem;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
-  display: grid;
-  grid-template-rows: auto 1fr;
-  gap: 0.5rem;
+  .container {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 0.5rem;
+  }
   .content {
     display: grid;
     gap: 0.25rem;
@@ -50,7 +85,7 @@ export default Vue.extend({
       }
     }
   }
-  .container {
+  .container__complementary {
     display: grid;
     grid-template-columns: 1fr auto;
   }
@@ -58,14 +93,12 @@ export default Vue.extend({
     height: 0.75rem;
     justify-self: end;
     border-radius: 0.125rem;
-    color: color("light", "darker");
     font-size: 0.875rem;
   }
   .username {
     height: 0.75rem;
     width: 6rem;
     border-radius: 0.125rem;
-    color: color("light", "darker");
     font-size: 0.875rem;
     .skeleton-text {
       border-radius: 0.125rem;
@@ -73,9 +106,44 @@ export default Vue.extend({
       height: 1rem;
     }
   }
+  &.dark {
+    background: color("dark", "lighter");
+    .content {
+      color: color("light");
+    }
+    .sent-in {
+      color: color("light", "darker");
+    }
+    .username {
+      color: color("light", "darker");
+    }
+  }
+  &.light {
+    background: color("light");
+    .content {
+      color: color("dark");
+    }
+    .sent-in {
+      color: color("dark", "lighter");
+    }
+    .username {
+      color: color("dark", "lighter");
+    }
+    &.mine {
+      .content {
+        color: color("light");
+      }
+      .sent-in {
+        color: color("light", "darker");
+      }
+      .username {
+        color: color("light", "darker");
+      }
+    }
+  }
 }
-.my-message {
+.mine {
   justify-self: end;
-  background: color("primary", "lighter");
+  background: color("primary") !important;
 }
 </style>

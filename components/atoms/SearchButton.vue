@@ -47,11 +47,11 @@ export default Vue.extend({
   }
   &.light {
     .icon {
-      color: color("dark", "darker");
+      color: color("light", "lighter");
     }
     &:hover {
       .icon {
-        color: color("dark", "lighter");
+        color: color("light", "lightest");
       }
     }
   }

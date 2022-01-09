@@ -16,6 +16,7 @@ import UserSearch from "~/store/users/search";
 import MembersStore from "~/store/groups/members";
 import CoverStore from "~/store/groups/cover";
 import Mode from "~/store/mode";
+import ConversationMessageStore from "~/store/messages/conversations";
 
 let view: View;
 let auth: Auth;
@@ -32,6 +33,7 @@ let userSearch: UserSearch;
 let member: MembersStore;
 let groupCover: CoverStore;
 let mode: Mode;
+let conversationMessage: ConversationMessageStore;
 
 const initializeStores = (store: Store<any>): void => {
   view = getModule(View, store);
@@ -49,6 +51,7 @@ const initializeStores = (store: Store<any>): void => {
   member = getModule(MembersStore, store);
   groupCover = getModule(CoverStore, store);
   mode = getModule(Mode, store);
+  conversationMessage = getModule(ConversationMessageStore, store);
 };
 
 export {
@@ -68,4 +71,5 @@ export {
   member,
   groupCover,
   mode,
+  conversationMessage,
 };

@@ -38,21 +38,21 @@ export default Vue.extend({
   }
   &.dark {
     .icon {
-      color: color("light", "darkest");
+      color: color("dark", "darker");
     }
     &:hover {
       .icon {
-        color: color("light");
+        color: color("dark");
       }
     }
   }
   &.light {
     .icon {
-      color: color("dark", "darker");
+      color: color("light", "lighter");
     }
     &:hover {
       .icon {
-        color: color("dark", "lighter");
+        color: color("light", "lightest");
       }
     }
   }
