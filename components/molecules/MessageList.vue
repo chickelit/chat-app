@@ -7,19 +7,23 @@
 <script lang="ts">
 import Vue from "vue";
 export default Vue.extend({
+  props: {
+    blockAutoScroll: {
+      type: Boolean,
+      required: true,
+    },
+  },
   data() {
     return {
       scrolled: false,
     };
   },
   updated() {
-    if (!this.scrolled) {
+    if (!this.blockAutoScroll) {
       const messageList = document.querySelector(".message-list")!;
       const latestMessage = messageList.lastChild as Element;
 
       latestMessage?.scrollIntoView({ behavior: "auto", block: "end" });
-
-      this.scrolled = true;
     }
   },
   methods: {
@@ -27,12 +31,15 @@ export default Vue.extend({
       const messageList = document.querySelector(".message-list")!;
 
       if (
+        messageList.scrollHeight - 500 >
+        messageList.scrollTop + messageList.clientHeight
+      ) {
+        this.$emit("notFullScrolled");
+      } else if (
         messageList.scrollHeight ===
         messageList.scrollTop + messageList.clientHeight
       ) {
         this.$emit("fullScrolled");
-      } else {
-        this.$emit("notFullScrolled");
       }
     },
   },

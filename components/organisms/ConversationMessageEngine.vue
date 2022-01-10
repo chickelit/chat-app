@@ -31,6 +31,8 @@ export default Vue.extend({
         const content = document.getElementById("conversation-message-input")!
           .textContent as string;
 
+        if (!content) return;
+
         await conversationMessage.create({
           content,
           receiverId: conversation.$single.user.id,

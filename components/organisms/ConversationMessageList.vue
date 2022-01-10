@@ -3,8 +3,9 @@
     <ScrollWrapper>
       <MessageList
         id="conversation-message-list"
-        @fullScrolled="scrollDownButtonActive = false"
-        @notFullScrolled="scrollDownButtonActive = true"
+        :block-auto-scroll="blockAutoScroll"
+        @fullScrolled="onFullScrolled"
+        @notFullScrolled="onNotFullScrolled"
       >
         <Message v-for="message in $all" :key="message.id" :message="message" />
       </MessageList>
@@ -21,11 +22,12 @@
 import Vue from "vue";
 import { Message } from "~/models";
 import socket from "~/plugins/socket.client";
-import { conversation, conversationMessage, mode } from "~/store";
+import { conversation, conversationMessage, mode, profile } from "~/store";
 export default Vue.extend({
   data() {
     return {
       scrollDownButtonActive: false,
+      blockAutoScroll: false,
       page: 1,
       updated: false,
     };
@@ -48,6 +50,10 @@ export default Vue.extend({
       });
 
       socket.on("newMessage", (message: Message) => {
+        if (message.userId === profile.$single.id) {
+          this.onFullScrolled();
+        }
+
         conversationMessage.addMessages([message]);
       });
     } catch (error) {}
@@ -58,6 +64,14 @@ export default Vue.extend({
       const latestMessage = messageList.lastChild as Element;
 
       latestMessage?.scrollIntoView({ behavior: "smooth", block: "end" });
+    },
+    onFullScrolled() {
+      this.scrollDownButtonActive = false;
+      this.blockAutoScroll = false;
+    },
+    onNotFullScrolled() {
+      this.scrollDownButtonActive = true;
+      this.blockAutoScroll = true;
     },
   },
 });

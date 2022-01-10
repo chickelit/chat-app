@@ -50,16 +50,11 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.scroll-down-button {
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
-}
 .conversation-chat-template {
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto 1fr auto;
   &.dark {
     background: color("dark", "darker");
   }
