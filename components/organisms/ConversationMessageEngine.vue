@@ -1,5 +1,5 @@
 <template>
-  <div class="conversation-message-engine">
+  <div :class="['conversation-message-engine', $modeClass]">
     <form @submit.prevent="onSubmit">
       <AutoExpandingInput
         id="conversation-message-input"
@@ -23,8 +23,13 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { conversation, conversationMessage } from "~/store";
+import { conversation, conversationMessage, mode } from "~/store";
 export default Vue.extend({
+  computed: {
+    $modeClass() {
+      return mode.$mode;
+    },
+  },
   methods: {
     async onSubmit() {
       try {
@@ -47,7 +52,13 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .conversation-message-engine {
-  box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
+  &.dark {
+    background: color("dark", "darkest");
+    box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
+  }
+  &.light {
+    box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);
+  }
   form {
     padding: 0.5rem;
     display: grid;

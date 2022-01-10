@@ -3,10 +3,7 @@
     <div class="container">
       <div class="container__complementary">
         <div class="username">
-          <div v-if="!$mine">
-            {{ message.owner.username }}
-          </div>
-          <div v-else>Você</div>
+          {{ $mine ? "Você" : message.owner.username }}
         </div>
         <div class="sent-in">
           {{ $sentIn }}
@@ -63,8 +60,9 @@ export default Vue.extend({
 .message {
   user-select: all;
   height: max-content;
-  width: 60%;
-  max-width: 32rem;
+  width: max-content;
+  min-width: 12rem;
+  max-width: 36rem;
   padding: 0.5rem;
   border-radius: 0.3125rem;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
@@ -100,6 +98,9 @@ export default Vue.extend({
     width: 6rem;
     border-radius: 0.125rem;
     font-size: 0.875rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     .skeleton-text {
       border-radius: 0.125rem;
       width: 100%;

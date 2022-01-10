@@ -36,7 +36,7 @@ export default Vue.extend({
       ) {
         this.$emit("notFullScrolled");
       } else if (
-        messageList.scrollHeight ===
+        messageList.scrollHeight - 1 ===
         messageList.scrollTop + messageList.clientHeight
       ) {
         this.$emit("fullScrolled");

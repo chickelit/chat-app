@@ -33,7 +33,6 @@ export default Vue.extend({
   min-height: 1rem;
   max-height: 7rem;
   width: auto;
-  color: color("dark");
   overflow-y: auto;
   outline: none;
   padding: 0.25rem 0.5rem;
@@ -51,19 +50,27 @@ export default Vue.extend({
     border-radius: 0.25rem;
   }
   &.dark {
+    color: color("light");
     &::-webkit-scrollbar {
       background: color("dark", "lighter");
     }
     &::-webkit-scrollbar-thumb {
       background: color("dark", "lightest");
     }
+    &:empty:before {
+      color: color("light");
+    }
   }
   &.light {
+    color: color("dark");
     &::-webkit-scrollbar {
       background: color("light", "lighter");
     }
     &::-webkit-scrollbar-thumb {
       background: color("dark", "lightest");
+    }
+    &:empty:before {
+      color: color("dark", "darker");
     }
   }
 }
