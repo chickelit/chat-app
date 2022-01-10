@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Conversation, Message } from "~/models";
+import { Conversation } from "~/models";
 import socket from "~/plugins/socket.client";
 import { conversation, conversationMessage, mode } from "~/store";
 export default Vue.extend({
@@ -16,7 +16,6 @@ export default Vue.extend({
     return {
       conversation: false as unknown as Conversation,
       scrollDownButtonActive: false,
-      messages: [] as Message[],
       page: 1,
     };
   },
@@ -44,11 +43,6 @@ export default Vue.extend({
 
       socket.emit("create", `conversation-${conversation.$single.id}`);
 
-      socket.on("newMessage", (message: Message) => {
-        conversationMessage.addMessages([message]);
-      });
-
-      this.messages = conversationMessage.$all;
       this.conversation = conversation.$single;
     } catch (error) {}
   },

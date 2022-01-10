@@ -6,14 +6,7 @@
         @fullScrolled="scrollDownButtonActive = false"
         @notFullScrolled="scrollDownButtonActive = true"
       >
-        <Message
-          v-for="(message, index) in messages"
-          :key="message.id"
-          :class="{
-            'conversation-latest-message': index === messages.length - 1,
-          }"
-          :message="message"
-        />
+        <Message v-for="message in $all" :key="message.id" :message="message" />
       </MessageList>
       <ScrollDownButton
         :active="scrollDownButtonActive"
@@ -27,18 +20,22 @@
 <script lang="ts">
 import Vue from "vue";
 import { Message } from "~/models";
+import socket from "~/plugins/socket.client";
 import { conversation, conversationMessage, mode } from "~/store";
 export default Vue.extend({
   data() {
     return {
       scrollDownButtonActive: false,
-      messages: [] as Message[],
       page: 1,
+      updated: false,
     };
   },
   computed: {
     $modeClass() {
       return mode.$mode;
+    },
+    $all() {
+      return conversationMessage.$all;
     },
   },
   async created() {
@@ -50,15 +47,17 @@ export default Vue.extend({
         perPage: 200,
       });
 
-      this.messages = conversationMessage.$all;
+      socket.on("newMessage", (message: Message) => {
+        conversationMessage.addMessages([message]);
+      });
     } catch (error) {}
   },
   methods: {
     scrollDown() {
-      const messageList = document.querySelector("#conversation-message-list");
-      const latestMessage = messageList?.lastChild as Element;
+      const messageList = document.querySelector("#conversation-message-list")!;
+      const latestMessage = messageList.lastChild as Element;
 
-      latestMessage.scrollIntoView({ behavior: "smooth", block: "end" });
+      latestMessage?.scrollIntoView({ behavior: "smooth", block: "end" });
     },
   },
 });

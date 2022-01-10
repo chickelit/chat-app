@@ -25,22 +25,18 @@
 import Vue from "vue";
 import { conversation, conversationMessage } from "~/store";
 export default Vue.extend({
-  data() {
-    return {
-      content: "",
-    };
-  },
   methods: {
     async onSubmit() {
       try {
-        const content = document.getElementById(
-          "conversation-message-input"
-        )!.textContent;
+        const content = document.getElementById("conversation-message-input")!
+          .textContent as string;
 
         await conversationMessage.create({
           content,
           receiverId: conversation.$single.user.id,
         });
+
+        document.getElementById("conversation-message-input")!.textContent = "";
       } catch (error) {}
     },
   },

@@ -7,10 +7,23 @@
 <script lang="ts">
 import Vue from "vue";
 export default Vue.extend({
+  data() {
+    return {
+      scrolled: false,
+    };
+  },
+  updated() {
+    if (!this.scrolled) {
+      const messageList = document.querySelector(".message-list")!;
+      const latestMessage = messageList.lastChild as Element;
+
+      latestMessage?.scrollIntoView({ behavior: "auto", block: "end" });
+
+      this.scrolled = true;
+    }
+  },
   methods: {
     checkScroll() {
-      this.$emit("scroll");
-
       const messageList = document.querySelector(".message-list")!;
 
       if (
