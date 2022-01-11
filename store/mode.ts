@@ -1,6 +1,10 @@
 import { Module, VuexModule, Mutation, Action } from "vuex-module-decorators";
 import { $cookies } from "~/utils/nuxt-instance";
 
+interface UpdatePayload {
+  mode: "dark" | "light";
+}
+
 @Module({
   name: "mode",
   stateFactory: true,
@@ -26,6 +30,16 @@ export default class Mode extends VuexModule {
       $cookies.set("mode", "light");
       mode = "light";
     }
+
+    this.context.commit("SET_MODE", mode);
+  }
+
+  @Action({ rawError: true })
+  public update({ mode }: UpdatePayload) {
+    $cookies.set("mode", mode, {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 30,
+    });
 
     this.context.commit("SET_MODE", mode);
   }

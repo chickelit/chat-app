@@ -4,6 +4,7 @@
       <Wrapper class="wrapper">
         <BackButton class="back-button" />
         <div class="title">Meu perfil</div>
+        <ModeSwitch class="mode-switch" />
       </Wrapper>
     </CustomHeader>
     <Profile />
@@ -26,6 +27,9 @@ export default Vue.extend({
 .back-button {
   width: 2.25rem;
 }
+.mode-switch {
+  justify-self: end;
+}
 .profile-template {
   height: 100vh;
   display: grid;
@@ -38,7 +42,7 @@ export default Vue.extend({
     padding: 0 1rem;
     .wrapper {
       display: grid;
-      grid-template-columns: 2.25rem 1fr;
+      grid-template-columns: 2.25rem 1fr 4rem;
       grid-template-rows: auto;
       align-items: center;
       justify-content: start;
