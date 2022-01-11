@@ -1,8 +1,6 @@
 <template>
   <div class="scroll-wrapper">
-    <div class="content">
-      <slot />
-    </div>
+    <slot />
   </div>
 </template>
 
@@ -17,9 +15,5 @@
   overflow-y: scroll;
   display: grid;
   grid-template-columns: 1fr;
-  .content {
-    position: absolute;
-    inset: 0;
-  }
 }
 </style>

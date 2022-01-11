@@ -7,7 +7,12 @@
         @fullScrolled="onFullScrolled"
         @notFullScrolled="onNotFullScrolled"
       >
-        <Message v-for="message in $all" :key="message.id" :message="message" />
+        <Message
+          v-for="(message, index) in $all"
+          :key="message.id"
+          :message="message"
+          :class="[{ last: index === $all.length - 1, first: index === 0 }]"
+        />
       </MessageList>
       <ScrollDownButton
         :active="scrollDownButtonActive"
@@ -80,5 +85,14 @@ export default Vue.extend({
 <style lang="scss" scoped>
 ::-webkit-scrollbar {
   width: 0px;
+}
+.conversation-message-list {
+  padding: 0 0.75rem;
+}
+.first {
+  margin-top: 0.75rem;
+}
+.last {
+  margin-bottom: 0.75rem;
 }
 </style>

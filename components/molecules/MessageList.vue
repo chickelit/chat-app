@@ -36,7 +36,7 @@ export default Vue.extend({
       ) {
         this.$emit("notFullScrolled");
       } else if (
-        messageList.scrollHeight - 1 ===
+        messageList.scrollHeight - 50 <=
         messageList.scrollTop + messageList.clientHeight
       ) {
         this.$emit("fullScrolled");
@@ -49,7 +49,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .message-list {
   position: absolute;
-  inset: 0.5rem 1rem;
+  inset: 0;
   overflow-y: scroll;
   display: grid;
   grid-auto-rows: max-content;
