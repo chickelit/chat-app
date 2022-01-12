@@ -59,6 +59,8 @@ export default Vue.extend({
           this.onFullScrolled();
         }
 
+        console.log(message)
+
         conversationMessage.addMessages([message]);
       });
     } catch (error) {}

@@ -16,6 +16,7 @@
         type="file"
         class="custom-file-upload"
         accept=".jpg,.jpeg,.png,.mp3,.mp4"
+        @input.prevent="sendMedia"
       />
     </form>
   </div>
@@ -44,6 +45,17 @@ export default Vue.extend({
         });
 
         document.getElementById("conversation-message-input")!.textContent = "";
+      } catch (error) {}
+    },
+    async sendMedia(event: any) {
+      try {
+        const file = event.target.files[0];
+
+        await conversationMessage.create({
+          category: "media",
+          file,
+          conversationId: conversation.$single.id,
+        });
       } catch (error) {}
     },
   },

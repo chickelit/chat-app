@@ -9,8 +9,11 @@
           {{ $sentIn }}
         </div>
       </div>
-      <div class="content">
+      <div v-if="message.category === 'text'" class="content">
         {{ message.content }}
+      </div>
+      <div v-else>
+        {{ message.media }}
       </div>
     </div>
   </div>

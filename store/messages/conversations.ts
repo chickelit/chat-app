@@ -9,8 +9,11 @@ interface IndexPayload {
 }
 
 interface CreatePayload {
-  receiverId: number;
-  content: string;
+  receiverId?: number;
+  conversationId?: number;
+  content?: string;
+  file?: Blob;
+  category?: "text" | "media";
 }
 
 @Module({
@@ -57,7 +60,19 @@ export default class ConversationMessageStore extends VuexModule {
 
   @Action({ rawError: true })
   public async create(payload: CreatePayload) {
-    await $axios.$post("/messages/conversation/text", payload);
+    if (payload.category === "media") {
+      const formData = new FormData();
+
+      formData.append("file", payload.file!);
+
+      await $axios.$post(
+        `/messages/conversation/${payload.conversationId}/media`,
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+    } else {
+      await $axios.$post("/messages/conversation/text", payload);
+    }
   }
 
   @Action({ rawError: true })
