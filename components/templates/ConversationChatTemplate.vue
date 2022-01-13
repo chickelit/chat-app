@@ -23,14 +23,6 @@ export default Vue.extend({
     $modeClass() {
       return mode.$mode;
     },
-    $src() {
-      if (this.conversation) {
-        const conversation = this.conversation as Conversation;
-        return conversation.user.avatar ? conversation.user.avatar.url : "";
-      }
-
-      return "";
-    },
   },
   async beforeMount() {
     try {

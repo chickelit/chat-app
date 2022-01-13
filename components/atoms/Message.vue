@@ -1,5 +1,11 @@
 <template>
-  <div :class="['message', $modeClass, { mine: $mine }]">
+  <div
+    :class="[
+      'message',
+      $modeClass,
+      { mine: $mine, media: message.category === 'media' },
+    ]"
+  >
     <div class="container">
       <div class="container__complementary">
         <div class="username">
@@ -12,8 +18,12 @@
       <div v-if="message.category === 'text'" class="content">
         {{ message.content }}
       </div>
-      <div v-else>
-        {{ message.media }}
+      <div v-else class="media">
+        <img v-if="$type === 'image'" :src="$src" />
+        <video v-if="$type === 'video'" :src="$src" />
+        <audio v-if="$type === 'audio'" controls>
+          <source :src="$src">
+        </audio>
       </div>
     </div>
   </div>
@@ -52,8 +62,32 @@ export default Vue.extend({
 
       return true;
     },
+    $src() {
+      const message = this.message as Message;
+
+      return message.media ? message.media.url : "";
+    },
     $modeClass() {
       return mode.$mode;
+    },
+    $type() {
+      if (this.message.media) {
+        const message = this.message as Message;
+        const url = message.media!.url;
+        const splittedUrl = url.split(".")
+        
+        const extname = splittedUrl[splittedUrl.length - 1]
+
+        if (["jpeg", "jpg", "png"].includes(extname)) {
+          return "image";
+        } else if (extname === "mp4") {
+          return "video";
+        } else {
+          return "audio";
+        }
+      }
+
+      return "";
     },
   },
 });
@@ -76,6 +110,24 @@ export default Vue.extend({
   @include screen("small") {
     min-width: 6rem;
     max-width: 12rem;
+  }
+  &.media {
+    max-width: 12rem;
+  }
+  .media {
+    width: 100%;
+    border-radius: 0.25rem;
+    img {
+      border-radius: 0.25rem;
+      width: 100%;
+    }
+    video {
+      border-radius: 0.25rem;
+      width: 100%;
+    }
+    audio {
+      width: 100%;
+    }
   }
   .container {
     display: grid;
