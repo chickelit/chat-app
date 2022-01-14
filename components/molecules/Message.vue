@@ -98,7 +98,8 @@ export default Vue.extend({
     gap: 0.5rem;
   }
   .content {
-    word-break: break-all;
+    word-break: normal;
+    overflow: hidden;
   }
   .container__complementary {
     display: grid;

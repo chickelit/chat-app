@@ -48,9 +48,6 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .message-list {
-  position: absolute;
-  inset: 0;
-  overflow-y: scroll;
   display: grid;
   grid-auto-rows: max-content;
   grid-auto-flow: row;

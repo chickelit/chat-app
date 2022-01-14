@@ -27,11 +27,6 @@ export default Vue.extend({
   async beforeMount() {
     try {
       await conversation.show({ id: +this.$route.params.id });
-      await conversationMessage.index({
-        conversationId: conversation.$single.id,
-        page: this.page,
-        perPage: 200,
-      });
 
       socket.emit("create", `conversation-${conversation.$single.id}`);
 

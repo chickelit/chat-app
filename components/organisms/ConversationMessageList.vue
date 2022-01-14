@@ -87,6 +87,7 @@ export default Vue.extend({
   width: 0px;
 }
 .conversation-message-list {
+  overflow-y: scroll;
   padding: 0 0.75rem;
 }
 .first {
