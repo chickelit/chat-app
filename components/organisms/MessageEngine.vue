@@ -1,10 +1,7 @@
 <template>
-  <div :class="['conversation-message-engine', $modeClass]">
+  <div :class="['message-engine', $modeClass]">
     <form @submit.prevent="onSubmit">
-      <AutoExpandingInput
-        id="conversation-message-input"
-        placeholder="Mensagem..."
-      />
+      <AutoExpandingInput id="message-input" placeholder="Mensagem..." />
       <button type="submit" class="form-button">
         <SendButton />
       </button>
@@ -15,7 +12,7 @@
         id="file-upload"
         type="file"
         class="custom-file-upload"
-        accept=".jpg,.jpeg,.png,.mp3,.mp4"
+        accept=".jpg,.jpeg,.png,.mp4"
         @input.prevent="sendMedia"
       />
     </form>
@@ -24,7 +21,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { conversation, conversationMessage, mode } from "~/store";
+import { mode } from "~/store";
 export default Vue.extend({
   computed: {
     $modeClass() {
@@ -32,38 +29,27 @@ export default Vue.extend({
     },
   },
   methods: {
-    async onSubmit() {
-      try {
-        const content = document.getElementById("conversation-message-input")!
-          .textContent as string;
+    onSubmit() {
+      const content = document.getElementById("message-input")!
+        .textContent as string;
 
-        if (!content) return;
+      if (!content) return;
 
-        await conversationMessage.create({
-          content,
-          receiverId: conversation.$single.user.id,
-        });
+      this.$emit("sendMessage", content);
 
-        document.getElementById("conversation-message-input")!.textContent = "";
-      } catch (error) {}
+      document.getElementById("message-input")!.textContent = "";
     },
-    async sendMedia(event: any) {
-      try {
-        const file = event.target.files[0];
+    sendMedia(event: any) {
+      const file = event.target.files[0];
 
-        await conversationMessage.create({
-          category: "media",
-          file,
-          conversationId: conversation.$single.id,
-        });
-      } catch (error) {}
+      this.$emit("sendMedia", file);
     },
   },
 });
 </script>
 
 <style lang="scss" scoped>
-.conversation-message-engine {
+.message-engine {
   &.dark {
     background: color("dark", "darkest");
     box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.1);

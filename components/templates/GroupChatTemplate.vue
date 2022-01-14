@@ -2,7 +2,7 @@
   <div :class="['group-chat-template', $modeClass]">
     <GroupChatHeader :group="group" />
     <GroupMessageList />
-    <GroupMessageEngine />
+    <MessageEngine />
   </div>
 </template>
 

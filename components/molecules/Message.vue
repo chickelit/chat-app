@@ -6,7 +6,7 @@
       { mine: $mine, media: message.category === 'media' },
     ]"
   >
-    <div class="container">
+    <div v-if="message.conversationId" class="container">
       <div class="container__complementary">
         <div class="username">
           {{ $mine ? "Você" : message.owner.username }}
@@ -19,11 +19,7 @@
         {{ message.content }}
       </div>
       <div v-else class="media">
-        <img v-if="$type === 'image'" :src="$src" />
-        <video v-if="$type === 'video'" :src="$src" />
-        <audio v-if="$type === 'audio'" controls>
-          <source :src="$src">
-        </audio>
+        <Media :src="$src" />
       </div>
     </div>
   </div>
@@ -70,25 +66,6 @@ export default Vue.extend({
     $modeClass() {
       return mode.$mode;
     },
-    $type() {
-      if (this.message.media) {
-        const message = this.message as Message;
-        const url = message.media!.url;
-        const splittedUrl = url.split(".")
-        
-        const extname = splittedUrl[splittedUrl.length - 1]
-
-        if (["jpeg", "jpg", "png"].includes(extname)) {
-          return "image";
-        } else if (extname === "mp4") {
-          return "video";
-        } else {
-          return "audio";
-        }
-      }
-
-      return "";
-    },
   },
 });
 </script>
@@ -112,22 +89,8 @@ export default Vue.extend({
     max-width: 12rem;
   }
   &.media {
-    max-width: 12rem;
-  }
-  .media {
+    max-width: 16rem;
     width: 100%;
-    border-radius: 0.25rem;
-    img {
-      border-radius: 0.25rem;
-      width: 100%;
-    }
-    video {
-      border-radius: 0.25rem;
-      width: 100%;
-    }
-    audio {
-      width: 100%;
-    }
   }
   .container {
     display: grid;

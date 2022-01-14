@@ -2,7 +2,7 @@
   <div :class="['conversation-chat-template', $modeClass]">
     <ConversationChatHeader :user="conversation.user" />
     <ConversationMessageList />
-    <ConversationMessageEngine />
+    <MessageEngine @sendMessage="sendMessage($event)" @sendMedia="sendMedia($event)" />
   </div>
 </template>
 
@@ -37,6 +37,25 @@ export default Vue.extend({
 
       this.conversation = conversation.$single;
     } catch (error) {}
+  },
+  methods: {
+    async sendMessage(content: string) {
+      try {
+        await conversationMessage.create({
+          content,
+          receiverId: conversation.$single.user.id,
+        });
+      } catch (error) {}
+    },
+    async sendMedia(file: any) {
+      try {
+        await conversationMessage.create({
+          category: "media",
+          file,
+          conversationId: conversation.$single.id,
+        });
+      } catch (error) {}
+    },
   },
 });
 </script>
