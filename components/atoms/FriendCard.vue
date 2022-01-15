@@ -114,13 +114,13 @@ export default Vue.extend({
     },
     async handleConversationTransition() {
       try {
-        await conversation.create({ userId: this.friend.id });
-
-        this.setView({
-          newView: "ConversationChat",
-          previousView: view.$view,
-          previousNavigationActiveClass: view.$navigationActiveClass,
-        });
+        if (this.friend.existingConversation) {
+          this.$router.push(
+            `/chat/conversation/${this.friend.existingConversation.id}`
+          );
+        } else {
+          this.$emit("openForm", this.friend)
+        }
       } catch (e) {
         const err = error.$error;
 

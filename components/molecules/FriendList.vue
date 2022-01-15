@@ -13,7 +13,7 @@
           last: index === friends.length - 1 && friends.length > 1,
         }"
       >
-        <FriendCard v-if="friend" :index="index" :friend="friend" />
+        <FriendCard v-if="friend" :index="index" :friend="friend" @openForm="$emit('openForm', $event)" />
       </div>
     </transition-group>
     <div v-else class="list">

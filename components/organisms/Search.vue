@@ -9,25 +9,29 @@
           type="search"
           placeholder="Nome de usuário..."
         />
-        <SearchButton class="search-button" type="submit" />
+        <button type="submit" >
+          <SearchButton class="search-button" />
+        </button>
       </form>
       <div v-if="loading" class="loading-wrapper">
         <Loading :active="loading" />
       </div>
-      <ScrollWrapper v-else-if="$all.length > 0" class="scroll-wrapper">
-        <transition-group name="result-list">
-          <div
-            v-for="(user, index) of $all"
-            :key="user.id"
-            :class="[
-              'card',
-              { last: index === $all.length - 1 && $all.length > 1 },
-            ]"
-          >
-            <SearchUserCard :user="user" />
-          </div>
-        </transition-group>
-      </ScrollWrapper>
+      <div v-else-if="$all.length > 0" class="container">
+        <ScrollWrapper class="scroll-wrapper">
+          <transition-group name="result-list">
+            <div
+              v-for="(user, index) of $all"
+              :key="user.id"
+              :class="[
+                'card',
+                { last: index === $all.length - 1 && $all.length > 1 },
+              ]"
+            >
+              <SearchUserCard :user="user" />
+            </div>
+          </transition-group>
+        </ScrollWrapper>
+      </div>
     </Wrapper>
   </div>
 </template>
@@ -112,7 +116,14 @@ export default Vue.extend({
 .result-list-leave-to {
   opacity: 0;
 }
+.container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
 .scroll-wrapper {
+  position: absolute;
+  inset: 0;
   overflow-y: scroll;
   .last {
     ::v-deep.search-user-card {

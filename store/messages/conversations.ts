@@ -71,7 +71,9 @@ export default class ConversationMessageStore extends VuexModule {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
     } else {
-      await $axios.$post("/messages/conversation/text", payload);
+      const message = await $axios.$post("/messages/conversation/text", payload);
+
+      return message;
     }
   }
 

@@ -1,3 +1,5 @@
+import { Conversation } from ".";
+
 interface User {
   id: number;
   email: string;
@@ -8,6 +10,7 @@ interface User {
   };
   friendship?: boolean;
   friendshipRequest?: boolean;
+  existingConversation?: Conversation;
 }
 
 export default User;
