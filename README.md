@@ -42,7 +42,7 @@ Tabela de conteúdos
 - [x] Pedidos de amizade
 - [x] Amizades
 - [x] Conversas privadas
-- [ ] Mensagens privadas
+- [x] Mensagens privadas
 - [x] Socket.io
 
 <div id="imagens">
