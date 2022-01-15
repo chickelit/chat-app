@@ -1,5 +1,11 @@
 <template>
-  <div :class="['group-chat-header', $modeClass]">
+  <div
+    :class="[
+      'group-chat-header',
+      $modeClass,
+      { mine: group.userId === $user.id },
+    ]"
+  >
     <BackButton class="back-button" />
     <Cover :src="$src" />
     <div v-if="group" class="title">
@@ -7,6 +13,11 @@
     </div>
     <div v-else class="title">
       <div :class="['skeleton', 'skeleton-text', $modeClass]"></div>
+    </div>
+    <div v-if="group.userId === $user.id" class="options">
+      <NuxtLink :to="`/groups/${group.id}/details`" @click.native.prevent>
+        <OptionsButton />
+      </NuxtLink>
     </div>
   </div>
 </template>
@@ -16,7 +27,7 @@
 // eslint-disable-next-line import/named
 import Vue, { PropOptions } from "vue";
 import { Group } from "~/models";
-import { mode } from "~/store";
+import { mode, profile } from "~/store";
 export default Vue.extend({
   props: {
     group: {
@@ -33,6 +44,9 @@ export default Vue.extend({
       }
 
       return "";
+    },
+    $user() {
+      return profile.$single;
     },
     $modeClass() {
       return mode.$mode;
@@ -51,6 +65,9 @@ export default Vue.extend({
   grid-template-rows: 3.4rem;
   align-items: center;
   gap: 0.5rem;
+  &.mine {
+    grid-template-columns: auto 3.4rem 1fr auto;
+  }
   .back-button {
     width: 2.25rem;
   }

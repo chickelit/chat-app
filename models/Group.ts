@@ -3,7 +3,7 @@ import { User } from ".";
 interface Group {
   id: number;
   userId: number;
-  title: number;
+  title: string;
   createdAt: string;
   updatedAt: string;
   owner?: User;

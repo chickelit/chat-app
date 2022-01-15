@@ -20,53 +20,36 @@ export default Vue.extend({
     socket.emit("create", `user-${profile.$single.id}`);
 
     socket.on("newFriendshipRequest", (data) => {
-      console.log(`new request: ${data}`);
       friendshipRequest.updateFriendshipRequests([data]);
     });
 
-    socket.on("friendshipRequestAccepted", (data) => {
-      console.log(`accepted: ${data}`);
-      /* notity */
-    });
-
     socket.on("newFriend", (user) => {
-      console.log(`new friend: ${user}`);
       friendship.updateFriends([user]);
     });
 
     socket.on("deleteFriend", (userId) => {
-      console.log(`deleted friend: ${userId}`);
       friendship.deleteFriend(userId);
     });
 
     socket.on("newConversation", (data) => {
-      console.log(`new conversation: ${data}`);
       conversation.updateConversations([data]);
     });
 
     socket.on("newGroup", (data) => {
-      console.log(`new group: ${data}`);
       group.updateGroups([data.group]);
-      /* notify with data.user */
     });
 
     socket.on("newMember", ({ groupId, user }) => {
-      console.log(`new member: ${user} on group: ${groupId}`);
-
       if (group.$single.id === groupId) {
         member.updateMembers([user]);
       }
     });
 
     socket.on("deleteGroup", (groupId) => {
-      console.log(`delete group: ${groupId}`);
-
       group.deleteGroup(groupId);
     });
 
     socket.on("deleteMember", ({ groupId, user }) => {
-      console.log(`delete member: ${user} on group: ${groupId}`);
-
       if (group.$single.id === groupId) {
         member.deleteMember(user);
       }

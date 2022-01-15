@@ -6,7 +6,7 @@
       { mine: $mine, media: message.category === 'media' },
     ]"
   >
-    <div v-if="message.conversationId" class="container">
+    <div class="container">
       <div class="container__complementary">
         <div class="username">
           {{ $mine ? "Você" : message.owner.username }}

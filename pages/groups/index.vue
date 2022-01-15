@@ -1,5 +1,5 @@
 <template>
-  <HomeTemplate />
+  <GroupsTemplate />
 </template>
 
 <script lang="ts">
