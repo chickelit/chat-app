@@ -42,11 +42,7 @@ Tabela de conteúdos
 - [x] Pedidos de amizade
 - [x] Amizades
 - [x] Conversas privadas
-- [x] Grupos
-- [x] Membros do grupo
-- [x] Imagem do grupo
 - [ ] Mensagens privadas
-- [ ] Mensagens em grupo
 - [x] Socket.io
 
 <div id="imagens">
@@ -69,31 +65,6 @@ Tabela de conteúdos
         <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-Home.jpg?raw=true" title="Mobile home">
       </td>
       <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-GroupChat.jpg?raw=true" title="Mobile group chat">
-      </td>
-      <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-GroupDetails.jpg?raw=true" title="Mobile group details">
-      </td>
-    </tr>
-  </table>
-  
-  <table>
-    <tr>
-      <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-GroupMembers.png?raw=true" title="Desktop group members">
-      </td>
-      <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Desktop-AddMember.png?raw=true" title="Desktop available members">
-      </td>
-    </tr>
-  </table>
-
-  <table>
-    <tr>
-      <td align="center" style="padding=0;width=50%;">
-        <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-CreateGroup.jpg?raw=true" title="Mobile create group form">
-      </td>
-      <td align="center" style="padding=0;width=50%;">
         <img src="https://github.com/jose13162/chatApp/blob/main/docs/Mobile-UserSearch.jpg?raw=true" title="Mobile user search">
       </td>
       <td align="center" style="padding=0;width=50%;">
@@ -101,7 +72,7 @@ Tabela de conteúdos
       </td>
     </tr>
   </table>
-  
+
   <table>
     <tr>
       <td align="center" style="padding=0;width=50%;">
@@ -171,7 +142,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [VueJS](https://v3.vuejs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Scss](https://www.sass-lang.com/)
-- [Vue Notification](https://www.npmjs.com/package/vue-notification/)
 - [Socket.io Client](https://socket.io/docs/v4/client-api/)
 
 
