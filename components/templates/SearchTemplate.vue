@@ -28,6 +28,9 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+::-webkit-scrollbar {
+  width: 0px;
+}
 .back-button {
   width: 2.25rem;
 }

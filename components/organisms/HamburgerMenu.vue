@@ -17,9 +17,6 @@
           >
         </li>
         <li class="navigation-item">
-          <NuxtLink to="/groups" @click.native.prevent>Grupos</NuxtLink>
-        </li>
-        <li class="navigation-item">
           <NuxtLink to="/friendships" @click.native.prevent>Amigos</NuxtLink>
         </li>
         <li class="navigation-item">

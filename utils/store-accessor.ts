@@ -10,14 +10,10 @@ import Register from "~/store/register";
 import ForgotPassword from "~/store/forgotPassword";
 import Conversation from "~/store/conversations";
 import Friend from "~/store/friends/main";
-import Group from "~/store/groups/main";
 import FriendshipRequest from "~/store/friends/requests";
 import UserSearch from "~/store/users/search";
-import MembersStore from "~/store/groups/members";
-import CoverStore from "~/store/groups/cover";
 import Mode from "~/store/mode";
 import ConversationMessageStore from "~/store/messages/conversations";
-import GroupMessageStore from "~/store/messages/groups";
 
 let view: View;
 let auth: Auth;
@@ -28,14 +24,10 @@ let register: Register;
 let forgotPassword: ForgotPassword;
 let conversation: Conversation;
 let friendship: Friend;
-let group: Group;
 let friendshipRequest: FriendshipRequest;
 let userSearch: UserSearch;
-let member: MembersStore;
-let groupCover: CoverStore;
 let mode: Mode;
 let conversationMessage: ConversationMessageStore;
-let groupMessage: GroupMessageStore;
 
 const initializeStores = (store: Store<any>): void => {
   view = getModule(View, store);
@@ -47,14 +39,10 @@ const initializeStores = (store: Store<any>): void => {
   forgotPassword = getModule(ForgotPassword, store);
   conversation = getModule(Conversation, store);
   friendship = getModule(Friend, store);
-  group = getModule(Group, store);
   friendshipRequest = getModule(FriendshipRequest, store);
   userSearch = getModule(UserSearch, store);
-  member = getModule(MembersStore, store);
-  groupCover = getModule(CoverStore, store);
   mode = getModule(Mode, store);
   conversationMessage = getModule(ConversationMessageStore, store);
-  groupMessage = getModule(GroupMessageStore, store);
 };
 
 export {
@@ -68,12 +56,8 @@ export {
   forgotPassword,
   conversation,
   friendship,
-  group,
   friendshipRequest,
   userSearch,
-  member,
-  groupCover,
   mode,
   conversationMessage,
-  groupMessage,
 };

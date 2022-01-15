@@ -11,8 +11,6 @@ import {
   friendship,
   friendshipRequest,
   profile,
-  group,
-  member,
 } from "~/store";
 export default Vue.extend({
   middleware: auth,
@@ -33,26 +31,6 @@ export default Vue.extend({
 
     socket.on("newConversation", (data) => {
       conversation.updateConversations([data]);
-    });
-
-    socket.on("newGroup", (data) => {
-      group.updateGroups([data.group]);
-    });
-
-    socket.on("newMember", ({ groupId, user }) => {
-      if (group.$single.id === groupId) {
-        member.updateMembers([user]);
-      }
-    });
-
-    socket.on("deleteGroup", (groupId) => {
-      group.deleteGroup(groupId);
-    });
-
-    socket.on("deleteMember", ({ groupId, user }) => {
-      if (group.$single.id === groupId) {
-        member.deleteMember(user);
-      }
     });
   },
   beforeDestroy() {

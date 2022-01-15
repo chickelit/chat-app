@@ -113,6 +113,7 @@ export default Vue.extend({
   opacity: 0;
 }
 .scroll-wrapper {
+  overflow-y: scroll;
   .last {
     ::v-deep.search-user-card {
       .wrapper {
