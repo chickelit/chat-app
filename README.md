@@ -11,7 +11,7 @@
   </div>
 </div>
 <h4 align="center"> 
-	🚧  Em desenvolvimento...  🚧
+  🚀  Finalizado  🚀
 </h4>
 
 <div id="tabela-de-conteudos"></div>
