@@ -1,5 +1,5 @@
 <div id="sobre">
-  <h1 align="center">chatApp</h1>
+  <h1 align="center">ChatApp</h1>
   <p align="center">Client para a API de conversas em tempo real</p>
   <div align="center">
     <img src="https://img.shields.io/badge/npm-v7.19.1-brightgreen" />
@@ -109,7 +109,7 @@ Tabela de conteúdos
 ### Pré-requisitos
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), [Npm](https://npmjs.com).
-Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/). E por fim, o link para a API: [ChatAPI](https://github.com/jose13162/ChatAPI/).
 
 <div id="instalacao"></div>
 
